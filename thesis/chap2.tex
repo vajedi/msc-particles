@@ -1,0 +1,178 @@
+\chapter{Colloidal Systems}
+
+
+% - Different cases/parameters to consider (large particles, inertialess....)
+% - The models to describe these cases
+% - The maxey-riley equation and why it's useful
+
+Intro about this chapter.
+
+In order to describe the dynamics of particles in a turbulent fluid it is important to construct a model with appropriate approximations. The Navier-Stokes equations with moving boundary conditions could in principle be used to describe the motion of the particles. These equations are, however, very difficult to solve for large turbulent systems, both analytically and numerically. Thus, a model that best describes a system is not necessarily the ideal one. Simple models which can be evaluated analytically may be very illuminating as new interesting properties can be discovered of the system. 
+
+%A lot of research has been done to make the right kind of approximations to find a sufficiently accurate, and simple, model for different fluid systems. Different fluid systems can be very different in nature, Not all fluids behave the same way, so a good model for one system is not necessarily good for the next. In this section we will study different models that have been used in this field. The equation of motion that will be treated with extra care in this thesis is the Maxey-Riley equation, but first the simple advective model.
+
+%First we will examine a very simple model which has been used extensively in numerous occasions. the dynamics of point particles with no inertia. The approximation is that the particles have no size and no mass. This approximation is valid in many situations and has been used extensively in various applications. 
+\section{Equations of Motion}
+
+
+\subsection{Advective Model}
+
+Let us first consider point particles with no inertia. This approximation is valid when the particle mass and size are negligible. The equation of motion is in this model given by
+\begin{equation}
+\dvec{r}(t) = \vec u(\vec{r}(t),t),
+\eqlbl{inertialess}
+\end{equation}
+where $\vec r (t)$ is the particle position at time $t$ and $\vec u $ is the fluid velocity. The dots over variables denote time derivatives. As evident from this equation, the particle will in this model follow the flow completely and at every point take on the velocity of the fluid. This phenomenon is called \emph{advection}.
+
+This model is valid in numerous cases and has been used extensively in applications. However, it does not account for many interesting properties of ....
+
+%Thus, inertial particles Particles which satisfy this equation of motion are 
+%\emph{advected} and are called \emph{passive tracers}. This approximation 
+%has many applications in fluid dynamics and in the early days, 
+%\eq{inertialess} was used predominantly, neglecting the mass and size 
+%of the particles. However, in order to describe 
+%more complex behavior like clustering and path coalescence, this is not enough.
+
+\subsection{Stokes' Law}
+\sseclbl{stokeslaw}
+
+%Suspended particles with finite size have inertia, and the result is that 
+%the particles do not only follow the flow of the surrounding fluid. They 
+%may coalesce and cluster, and ... This is 
+%how rain cloud can form and .... In order to analyse these interesting 
+%behaviors of inertial particles more sophisticated models are necessary.
+
+Now consider instead a spherical particle with radius $a$ and mass $m_p$. Suspended particles with finite size have inertia, and the result is that the particles do not only follow the flow of the surrounding fluid. Now, as pictured in Fig 2.1, the velocity of the flow close to the particle surface differs from the flow velocity a little distance away. Let us neglect this effect and instead consider the relative velocity between the particle and the fluid as $\vec w = \vec u(\vec r, t) - \dvec r$. The particle Reynolds number is then defined to be Re$_p \equiv L_0 |\vec w| / \nu $. 
+
+The fricitonal force, commonly referred to as Stokes' drag, is
+\beq
+\vec F = 6 \pi a \nu \rho_f \vec w,
+\eeq
+and, assuming that this is the dominant force determining the motion of the particle, the equation of motion becomes 
+\beq
+\ddvec r = \gamma [\vec u (\vec r ,t) - \dvec r],
+\eqlbl{stokeslaw}
+\eeq
+where $\gamma = 6 \pi a \nu \rho_f/m$ is the damping rate. 
+This equation is hard to evaluate because the fluid velocity $\vec u$ depends on $\vec r$. 
+
+This model assumes that the major forces are due to viscuous drag, and that the particle size is small so that the velocity field changes negligibly across the particle. Moreover, the interaction between particles is not taken into account, and effects of the inertia of the displaced fluid parcels are neglected. We will next consider corrections to the Stokes' law \eqref{stokeslaw} using the Maxey-Riley equation.
+
+%The Stokes number $\St = 1/\gamma\tau$ is the (inverse?) intensity of the damping. When $\St \rightarrow 0$ the particles are completely advected and behave like point particles with no inertia, and the equation of motion is then given by \eq{inertialess}. 
+
+%\emph{Vorticity} is the measure of how fast fluid elements rotate about themselves. The curl of the velocity field is the vorticity field and is denoted $\vec{\omega} = \nabla \times \vec{u}$. Vorticity is a local measure and does is not necessarily nonzero even if the fluid rotates at a large scale. A vortex is a region of high vorticity.
+
+% http://www.scribd.com/doc/81564634/Aurelie-Goater-Dispersion-of-Heavy-Particles-in-an-Isolated-Pancake-Like-Vortex
+% Equation of motion for a small rigid sphere in a nonuniform flow
+
+\subsection{The Maxey-Riley Equation}
+
+% Bra k�lla: http://www.lec.csic.es/~julyan/PDFs/79_2010_Springer.pdf
+
+%- For small spherical rigid particle advected by a (smooth) flow.
+
+%- Valid for small particles at low particle Reynolds numbers Re$_p$.
+
+%- Velocity difference across the particle must be small
+
+%Intro historia om Maxey-Riley equation, how it come to and evolved why it is important and useful, what can you describe with it? 
+
+The Maxey-Riley equation is valid for small, spherical and rigid particles advected by a smooth flow, i.e. flows that are predominantly laminar. The particles should have small Reynolds numbers Re$_p$, and the velocity difference across 
+the particle must be small. The Maxey-Riley equation for a particle of density $\rho_p$ and radius $a$ is given by
+%\begin{align}
+%m_p\dvec{v} = & m_f \frac{\D}{\D t}\vec{u}(\vec{r}(t),t)- \frac{1}{2}m_f\left(\dvec{v}-\frac{\D}{\D t}\left[\vec{u}(\vec{r}(t),t)+\frac{1}{10}a^2\nabla^2\vec{u}(\vec{r}(t),t)\right]\right) \nonumber \\& -6\pi a \rho_f \nu \vec{q}(t) + (m_p-m_f)\vec{g}-6\pi a^2\rho_f \nu \int\limits_0^t \frac{\d \tau}{\sqrt{\pi\nu (t-\tau)}} \frac{\d \vec{q}(\tau)}{\d \tau},
+%\end{align}
+
+We will consider one term at a time. 
+
+\subsubsection{Bouyancy Force}
+
+Previously we have neglected the gravitational force and assumed that the dynamics of the particles are mainly influenced by the fluid, but how would rain droplets fall if not for gravity? The bouyancy force is the correction of the differences of density between the particles and the surrounding fluid. It has the simple form
+\beq
+\vec F_b = (\rho_p - \rho_f) \vec g V_p,
+\eqlbl{bouyancyforce}
+\eeq
+%  $m_f$ is the mass of the fluid parcel displaced by the sphere, and
+where $\vec g$ is the gravitational acceleration and $V_p$ the volume of the particle. If the particle density is less than that of the fluid they are referred to as \emph{bubbles}. [lite om bubbles]. This thesis will mainly focus on systems where $\rho_p > \rho_f$.
+
+%The first term on the right-hand side of the Maxey-Riley equation is the bouyancy force due to gravity. When $\rho_p < \rho_f$ the particles are lighter and hence referred to as \emph{bubbles}. [lite om bubbles] 
+
+%However, this thesis will mainly focus on systems where the particle density is greater than that of the fluid. This is the case of aerosols and cumulus clouds. 
+
+%This thesis will mainly focus on \emph{particle suspension}, where the particle density is greater than that of the fluid. In the reverse? case, the particles are lighter and hence referred to as \emph{bubbles}.  
+
+\subsubsection{Force of the Undisturbed Flow}
+
+The effects of the undisturbed fluid is evaluated in position $\vec r$, at the center of the particle sphere. The force is the same as the flow would exert on a fluid element of the same size as the particle, and it is applied in the direction of the trajectory of the \emph{fluid element} and not the particle trajectory. 
+
+To understand which direction the fluid is moving, let us first consider an arbitrary material property $\alpha(\vec r, t)$ of the fluid which depends on time $t$ and position $\vec r(t) \equiv (x(t), y(t), z(t))$. A small change $\d \alpha$ will then be given by
+\beq
+\d \alpha = \pafrac{\alpha}{t}\d t + \pafrac{\alpha}{x}\d x + \pafrac{\alpha}{y}\d y + \pafrac{\alpha}{z}\d z.
+\eeq
+Thus the change of $\alpha$ during time $\d t$ is 
+\beq
+\defrac{ \alpha}{t} = \pafrac{\alpha}{t} + \pafrac{\alpha}{x}\defrac{x}{t} + \pafrac{\alpha}{y}\defrac{y}{t} + \pafrac{\alpha}{z}\defrac{z}{t}.
+\eqlbl{materchange}
+\eeq
+Since the velocity of the fluid is $\vec u = \left(\defrac{x}{t},\defrac{y}{t},\defrac{z}{t}\right)$, \eq{materchange} can be written as
+\beq
+\defrac{ \alpha}{t} = \pafrac{\alpha}{t} + \vec u \cdot \nabla \alpha.
+\eeq
+This is the \emph{material derivative}, and $\alpha$ could denote any property of the fluid, e.g. pressure, temperature, density, and the list goes on. To express the time derivative of the fluid it is in fluid dynamics conventional to replace the operator $\d/\d t$ with $\D/\D t$, and this is done to better differentiate between particle and fluid properties. 
+
+The acceleration of the fluid element is obtained by setting $\alpha \equiv \vec u$:
+\beq
+\Dfrac{\vec u}{t} = \pafrac{\vec u}{t} + \vec u \cdot \nabla \vec u
+\eeq
+This is the acceleration of the undisturbed fluid in position $\vec r$. The force exerted on the particle by the undisturbed fluid is thus 
+\beq 
+\vec F_f = \rho_f V_p \Dfrac{\vec u}{t},
+\eeq
+and is evaluated along the trajectory of the fluid element rather than the particle trajectory.
+
+%The second term is the force The derivative 
+%\begin{equation}
+%\frac{\D\vec u}{\D t} = \frac{\partial \vec{u}}{\partial t} + \vec u \cdot \nabla \vec u
+%\end{equation}
+%is the \emph{convective derivative} and is evaluated along the trajectory of the fluid element rather than the particle trajectory. 
+
+\subsubsection{Added Inertia}
+
+An accelerating particle in a fluid moves an amount of fluid as it travels along its trajectory, and the result is that the particle appears to have additional inertia. This is commonly referred to as the \emph{added-mass effect}. It is a fricitonal force and in practice slows the particle down. The added-mass term has the form
+\beq 
+\vec F_m = -\frac{\rho_f V_p}{2}\left\{\ddvec r - \Dfrac{}{t}\left[\vec u -\frac{1}{10}a^2\nabla^2\vec u\right]\right\}.\nn
+\eeq
+The factor of $a^2\nabla^2\vec u$ is the \emph{Faxen correction} and is due to spatial variations of the velocity field. This term has mostly been neglected because the size of the particle is usually small so that the flow velocity does not change significantly across the particle.  
+
+\subsubsection{Stokes' Drag}
+
+Stokes' drag is the frictional force due to the viscosity of the fluid. This was discussed in \ssec{stokeslaw}, but now we want to include Faxen corrections so that flow variations are taken into account. The form of Stokes' drag is then
+\beq
+F_{\rm  st}=- \frac{9 \rho _f \nu V_p}{2 a^2}\vec Q,
+\nn
+\eeq
+where
+\begin{equation}
+\vec Q = \dvec r - \vec u-\frac{1}{6}a^2\nabla^2\vec u.
+\end{equation}
+%It does makes sense that large viscosity would make the particle slower in the fluid, so we expect Stokes' drag to be proportional to $-\nu$. 
+
+\subsubsection{Basset-Boussinesq History Term}
+
+The integral is the \emph{Basset-Boussinesq history force}, which accounts for the fact that the vorticity diffuses away from the particle due to viscosity. wiki: This force is usually neglected, but it can be large if the particle accelerate at a high rate. 
+
+% is the force exerted by a fluid element in position $\vec{r}(t)$ and corresponds to the force by the force of the undisturbed fluid. The second term is due to the \emph{added-mass effect}, which results from the fact that the particle displaces a certain amount of fluid along its trajectory, which makes the particle appear to have additional mass. The third and the fourth terms result from the viscosity and the buoyancy force, respectively, of the fluid, which represent the Stokes drag. The factor of $a^2\nabla^2 \vec{u}$ is due to the spatial variation of the velocity field across the particle, and the terms containing this are called \emph{Faxen corrections}.
+
+\subsubsection{The Maxey-Riley Equation}
+The final form of the Maxey-Riley equation is obtained by summing all the terms and divide by the particle volume. The equation of motion becomes
+\begin{align}
+\rho_p \ddvec r = &(\rho _p - \rho _f) \vec g + \rho _f 
+\frac{\D \vec u}{\D t} - \frac{\rho_f}{2}\left\{\ddvec r - 
+\frac{\D}{\D t}\left[\vec u - \frac{1}{10}a^2\nabla^2 \vec u \right] 
+\right\} \nn \\ &- \frac{9 \rho _f \nu}{2 a^2}\left\{\vec Q + 
+a \int_0^t \d \tau \frac{\dvec Q (\tau )}{\sqrt{\pi \nu (t-\tau )}}
+\right\}.
+\end{align}
+%Here dots over variables denote time derivatives. Note that $\vec r\equiv \vec r(t)$, $\rho_f$ is the fluid density, $\nu$ the kinematic viscosity of the fluid, and $\vec g$ the gravitational acceleration. 
+*The conditions where MR holds. (small particles)
+*I will consider corrections for larger particles (faxen corrections will change)

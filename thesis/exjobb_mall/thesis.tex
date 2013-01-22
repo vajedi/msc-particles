@@ -1,0 +1,380 @@
+%************************************************
+%
+%Made by:
+%  Ling Bao
+%
+%        Created: 2003-12-04
+%Latest revision: 2004-08-17
+%         Status: Finished      
+%
+%Description/notes:
+%        Thesis work :
+%               Algebraic Structures in M-theory
+%        
+%************************************************
+
+\documentclass[a4paper,12pt,twoside,openright]{UGthesis}
+\usepackage{amssymb}
+\usepackage[swedish, english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{enumerate}
+\usepackage{epic}
+\usepackage{fancyheadings}
+\usepackage[dvips]{graphicx}
+%\usepackage{graphpap}
+\usepackage{ifthen}
+\usepackage{subfigure}
+\usepackage{textcomp}
+\usepackage{textfit}
+
+%\usepackage{amsmath}
+
+\usepackage[errorshow]{tracefnt}
+%\usepackage{makeidx}
+%\usepackage{fancybox}
+%\usepackage{psboxit}
+
+%\include{psfig}
+
+%\input MHmacros
+
+%New commands.
+
+%Differential forms
+\newcommand{\we}{\wedge}
+\newcommand{\dxmu}{dx^\mu}
+\newcommand{\dxnu}{dx^\nu}
+\newcommand{\la}{\lambda}
+\newcommand{\La}{\Lambda}
+\newcommand{\si}{\sigma}
+\newcommand{\ta}{\tau}
+\newcommand{\al}{\alpha}
+\newcommand{\ka}{\kappa}
+\newcommand{\om}{\omega}
+\newcommand{\be}{\beta}
+\newcommand{\ga}{\gamma}
+\newcommand{\da}{\dagger}
+
+\newcommand{\wils}{\langle W(\Sigma)\rangle}
+\newcommand{\corr}[1]{\left\langle #1 \right\rangle}
+\newcommand{\com}[1]{\lbrack #1 \rbrack}
+\newcommand{\expo}{\textrm{exp}}
+\newcommand{\reg}{\textrm{reg}}
+\newcommand{\ren}{\textrm{ren}}
+\newcommand{\xnp}{x_\textrm{np}}
+\newcommand{\non}{\nonumber}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\Or}{\mathcal{O}}
+\newcommand{\Lagr}{\mathcal{L}}
+\newcommand{\D}{\mathfrak{D}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\bein}{\textsf{e}}
+\newcommand{\g}{\textbf{g}}
+
+%derivatives
+\newcommand{\pa}{\partial}
+\newcommand{\pamd}{\partial_\mu}
+\newcommand{\pamu}{\partial^\mu}
+\newcommand{\pand}{\partial_\nu}
+\newcommand{\panu}{\partial^\nu}
+\newcommand{\pard}{\partial_\rho}
+\newcommand{\paru}{\partial^\rho}
+\newcommand{\patd}{\partial_\tau}
+\newcommand{\patu}{\partial^\tau}
+\newcommand{\pald}{\partial_\lambda}
+\newcommand{\palu}{\partial^\lambda}
+
+%integrals
+\newcommand{\intphi}{\int_0^{2\pi}}
+\newcommand{\inttheta}{\int_0^{\pi}}
+
+%Dirac notation
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\bracket}[3]{\langle #1 |#2| #3 \rangle}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+
+\newcommand{\matlab}{\textsc{Matlab~}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\beqa}{\begin{eqnarray}}
+\newcommand{\eeqa}{\end{eqnarray}}
+
+\newcommand\ffam{\sffamily}
+\newcommand\fser{\bfseries}
+\newcommand\fsh{\upshape}
+
+\newcommand\blankpage{\thispagestyle{empty}\mbox{}\newpage}
+
+\newcommand\rctr{\renewcommand{\theenumi}{\roman{enumi}}}
+\newcommand\actr{\renewcommand{\theenumi}{\arabic{enumi}}}
+\renewcommand{\theenumii}{\alph{enumii}}
+
+\newcommand\nn{\nonumber}
+
+\newcommand\benu{\begin{enumerate}}
+\newcommand\eenu{\end{enumerate}}
+\newcommand\bit{\begin{itemize}}
+\newcommand\eit{\end{itemize}}
+
+\newcommand{\ctxt}[2]{\put(#1){\makebox(0,0){#2}}}
+\newcommand{\ltxt}[2]{\put(#1){\makebox(0,0)[l]{#2}}}
+
+\newcommand{\chrf}[3]{\left\{ \hspace{-2mm}
+\begin{array}{ccc}
+#1 \\ [-1.2mm]#2 ~ #3
+\end{array}
+\hspace{-2mm} \right\}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Labeling and refering
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\eqnlab}[1]{\label{eqn:#1}}
+\newcommand{\figlab}[1]{\label{fig:#1}}
+\newcommand{\tablab}[1]{\label{tab:#1}}
+\newcommand{\eqnref}[1]{(\ref{eqn:#1})}
+\newcommand{\figref}[1]{\ref{fig:#1}}
+\newcommand{\tabref}[1]{\ref{tab:#1}}
+\newcommand{\Eqnref}[1]{Eq.~(\ref{eqn:#1})}
+\newcommand{\Figref}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\Tabref}[1]{Table~\ref{tab:#1}}
+\newcommand{\Eqsref}[1]{Eqs.~(\ref{eqn:#1})}
+\newcommand{\Figsref}[1]{Figs.~\ref{fig:#1}}
+\newcommand{\Tabsref}[1]{Tables~\ref{tab:#1}}
+
+\newcommand{\chlab}[1]{\label{ch:#1}}
+\newcommand{\seclab}[1]{\label{sec:#1}}
+\newcommand{\sseclab}[1]{\label{ssec:#1}}
+\newcommand{\chref}[1]{\ref{ch:#1}}
+\newcommand{\secref}[1]{\ref{sec:#1}}
+\newcommand{\ssecref}[1]{\ref{ssec:#1}}
+\newcommand{\Chref}[1]{Chapter~\ref{ch:#1}}
+\newcommand{\Secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\Ssecref}[1]{Subsec.~\ref{ssec:#1}}
+\newcommand{\Chsref}[1]{Chapter~\ref{ch:#1}}
+\newcommand{\Secsref}[1]{Sections.~\ref{sec:#1}}
+\newcommand{\Ssecsref}[1]{Subsecs.~\ref{ssec:#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Document
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{hyperref}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Cover
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\include{cover}
+
+%\blankpage
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Title page
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+
+%\vspace*{-1cm}
+%\vspace*{4mm}
+
+\begin{center}
+  {\fsh\ffam\fser Thesis for the degree of Master of Science in
+    Engineering Physics}
+\end{center}
+
+
+\vspace*{0.5cm}
+
+\begin{center}
+{\upshape\sffamily\bfseries\LARGE Algebraic Structures in M-theory}
+\end{center}
+
+\vspace*{2mm}
+\begin{center}
+        \rule{110mm}{2pt}
+\end{center}
+
+\vspace*{4mm}
+\begin{center}
+  {\fsh\ffam\fser\Large Ling Bao}\\
+\end{center}
+\vfill
+
+\begin{center}
+%       \includegraphics[width=4cm]{/usr/local/lib/cthlogo.eps} 
+\includegraphics[width=9cm]{pics/ChalmGUmarke.epsi} 
+%       \epsffile{/home/tfe/gran/tex/figures/AvancezM70mm.eps}
+%       \hspace*{2cm}
+%       \includegraphics[width=4cm]{/usr/local/lib/gulogo.eps} 
+\end{center}
+
+\vfill
+\begin{center}
+        {\ffam\fsh Department of Theoretical Physics\\*[1mm]
+        Chalmers University of Technology and Göteborg
+        University\\*[2mm]
+        Göteborg, Sweden 2004}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Tryckort-sida
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mbox{}\thispagestyle{empty}\newpage
+\vspace*{165mm}
+
+%{\ffam
+%       {\center ISBN  ??-????-???-? \\ ISSN ????-???? \\}
+%       \hspace*{20mm}
+%       {\center Bibliotekets reproservice\\ Göteborg 2003 \\}
+%}
+
+\blankpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Abstract
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\begin{center}
+        {\ffam 
+        {\fser\Large Algebraic Structures in M-theory}\\
+%       {\fser\large A study of conformally invariant actions}\\[6mm]
+%       {\fsh\ffam\fser\Large On Various Aspects of $p$-branes}\\[4mm]
+\vspace{3mm}
+        {\normalsize Ling Bao  \\
+        Department of Theoretical Physics \\
+        Chalmers University of Technology and Göteborg University \\
+        SE-412 96 Göteborg, Sweden} \\[7mm]}
+\end{center}
+
+\centerline{\ffam\fser Abstract}
+\medskip
+\normalsize
+\noindent\input{abstract}
+
+\vfill
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Acknowledgments
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{plain}
+\vspace*{4cm}
+
+\centerline{\ffam\fser\Large Acknowledgments}
+\medskip
+\smallskip
+
+\normalsize
+\noindent\input{acknow} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Table of contents
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pagestyle{plain}
+\cleardoublepage
+\tableofcontents
+\pagestyle{empty}
+
+\cleardoublepage
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter\ \ \ #1}{#1}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ \ #1}}
+\lhead[\fancyplain{}{\sffamily\thepage}]%
+  {\fancyplain{}{\sffamily\rightmark}}
+\rhead[\fancyplain{}{\sffamily\leftmark}]%
+  {\fancyplain{}{\sffamily\thepage}}
+\cfoot{}
+\setlength\headheight{14pt}
+
+\rctr
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Text
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\baselineskip=14.56pt
+
+\include{introduction}
+
+\include{nonlinear}
+
+\include{algebra}
+
+\include{symmetry}
+
+\include{conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Appendix
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+\pagestyle{plain}
+
+\include{pform}
+
+\include{conformal}
+
+\include{closure}
+
+\include{transformation}
+
+\include{principal}
+
+\include{lattice}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Bibliography
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pagestyle{empty}
+\cleardoublepage
+\pagestyle{plain}
+\def\href#1#2{#2}
+\bibliographystyle{biblio/utphysmod2}
+%\bibliographystyle{plain}
+\addcontentsline{toc}{chapter}{\sffamily\bfseries Bibliography}
+\bibliography{biblio/biblio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Papers
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

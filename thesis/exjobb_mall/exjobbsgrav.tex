@@ -1,0 +1,879 @@
+\chapter{Supergravity}
+\chlab{sugra}
+As everybody should know by now, general relativity and quantum mechanics cannot be unified in a renormalizable way. 
+A candidate for a quantized gravity theory, or even nicer, a theory for everything, is the so far mysterious M-theory, which Witten introduced in 1995 in the so called {\it{second superstring revolution}}.
+M-theory relates the 5 known consistent 10 dimensional supersymmetric string theories and 11 dimensional supergravity by different kinds of dualities.
+It appears that all theories seem to be different approximations of one single theory in 11 dimensions, i.e. of M-theory.  
+The fact that there is no scalar field in 11 dimensions, c.f. the field content of 11 dimensional supergravity in subsection \ssecref{sugra_dof}, makes it impossible to handle the theory perturbatively, as is done in string theory.
+Since the full mathematical tool box needed to study such a theory doesn't yet exist, it could be a great idea to study its approximations instead.
+The fact that the low energy approximations of the string theories are supergravities, makes us interested in supergravity. So what is supergravity? To answer that question we must first explore some basic supersymmetry (commonly denoted SUSY). 
+Supersymmetry can be seen as an extension of the Poincaré group in such a way that two supersymmetry transformations corresponds to a space-time translation, typically on the form
+\begin{equation}
+\{Q,\bar Q\} =2\sigma^M P_M, 
+\end{equation}
+where $Q$ and $\bar Q$ are supersymmetry generators.  
+Forcing the supersymmetry to be local, i.e. coordinate dependent, we create space-time translations which are different in different space-time coordinates, i.e. general coordinate transformations.
+The invariance under local supersymmetry transformations thus implies gravity in the sense of general relativity and theories with local supersymmetry is usually called supergravity theories.
+It can be shown that a theory with local supersymmetry actually has to include gravity \cite{sugra}.
+Although supergravity in itself isn't a renormalizable quantum theory, it is believed to be a step in the right direction, since it provides a bridge between quantum mechanics and general relativity via the local supersymmetry and since it is a low energy approximation of theories that actually are consistent quantum theories of gravity. 
+Furthermore it might be possible to actually verify supergravity in direct experiments in the near future \cite{cern}.
+
+Supergravities can have several different numbers N of supersymmetries.
+The maximum number of SUSYs there can be is limited by the fact that we don't want to incorporate particles with spin higher than 2 in our theory. 
+There are several reasons for this. The most obvious is simply that particles with spin higher than 2 hasn't been observed\footnote{Actually, only particles of spin $\half$ and 1 has been directly measured in experiments, but the world wouldn't make much sense for physicists if particles like spin 0 Higgs bosons, spin $\frac{3}{2}$ gravitinos or spin 2 gravitons didn't exist.} neither direct nor indirect.
+Another reason to discard such particles is that they are very hard to handle theoretically.
+Of course these arguments doesn't comprise a proof, effects of spin $>$ 2 might just be too small to measure, just compare the difference in coupling strengths between the other forces at daily energy scales.
+With this condition we find that in $D=4$ dimensions, we have the maximal number of N=8 supersymmetries \cite{nilsson}, corresponding to $8\cdot 2^{\frac{4}{2}}=32$ supergenerators.
+This is exactly the same as the number of supergenerators of 11 dimensional N=1 supersymmetry ($1\cdot 2^{\frac{10}{2}}=32$). If we consider higher dimensions, with Minkowski signature, the size of the minimal spinors becomes larger than 32, e.g. $1\cdot 2^{\frac{12}{2}}=64$ in D=12, so D=11 seems to be the largest possible dimension for supergravity and all dimensions between 4 and 11 have spinor representations small enough to fit 32 generators.
+Theories with exactly 32 supercharges are called maximal supergravity theories.
+
+\section{The D=11 supergravity action}
+11 dimensional supergravity is currently believed to be a low energy approximation to M-theory.
+It's action has already been found, by Cremmer, Julia and Scherk\cite{startaction} in 1978, so we don't need to derive it here.
+Instead we give some motivations for which symmetries and what field content it should have before we state its form in subsection \ssecref{sugra_action}.
+
+\subsection{Symmetries of the action}
+First of all, being a theory of gravity, we must have general covariance. Consider a general infinitesimal coordinate transformation
+\begin{equation}
+x^M\rightarrow x'^M = x^M + \delta x^M = x^M - \hat\lambda^M(x),
+\eqnlab{sugra_cov_eleven}
+\end{equation}
+where $\delta x^M = -\hat\lambda^M(x)$ is an arbitrary infinitesimal
+vector field. This means that the metric transforms as (use Taylor
+expansion of $\hat g'_{MN}(x')$ around $x$, throw powers higher than 1
+in $\hat\lambda$, $\partial\hat\lambda$ and $\partial\delta\hat g$ 
+%(......... Vad s'ger att $\partial\lambda$ och $\partial g$ 'r
+%sm[?.........)
+and use $\partial x^M/\partial x'^N$ $= (\delta^M_N - \partial_N\hat\lambda^M)^{-1} \approx \delta^M_N + \partial_N\hat\lambda^M$)
+% Kolla p 290-291, 362 Weinberg
+\begin{align}
+\eqnlab{sugra_metric_cov_eleven}
+\hat g_{MN}(x)&\rightarrow \hat g'_{MN}(x) = \hat g'_{MN}(x') - \partial_P\hat g'_{MN}(x)\lp x'^P-x^P\rp + \cdots\nn\\
+& = \lp\delta^P_M + \partial_M\hat\lambda^P\rp\lp\delta^Q_N + \partial_N\hat\lambda^Q\rp\hat g_{PQ}(x) + \partial_P\hat g_{MN}(x)\hat\lambda^P\\
+& = \hat g_{MN}(x) + \underbrace{\partial_M\hat\lambda^P\hat g_{PN}(x) + \partial_N\hat\lambda^Q\hat g_{MQ}(x) + \hat\lambda^P\partial_P\hat g_{MN}(x)}_{\delta\hat g_{MN}(x)}.\nn
+\end{align}
+%
+Doing the same variation for the components of a p-form $A_{(p)}$ we find
+\begin{equation}
+A_{M_1\cdots M_p}\rightarrow A'_{M_1\cdots M_p}
+ = A_{M_1\cdots M_p} + \underbrace{p\partial_{[M_1}\hat\lambda^N A_{|N|M_2\cdots M_p]} + \hat\lambda^N\partial_N A_{M_1\cdots M_p}}_{\delta A_{M_1\cdots M_p}(x)}.
+\eqnlab{sugra_field_cov_eleven}
+\end{equation}
+%(......... Skriv kanske n[n mening till om g.c.t. .........)
+
+Secondly we have local coordinate dependent SO(1,10) Lorentz symmetry, under which the spinors transform. A little more about this symmetry can be found in section \secref{ricci}.
+
+To form a supergravity we also need local supersymmetry. Local supersymmetry means that the theory must be 
+invariant under a transformation involving a fermionic parameter $\epsilon$ which converts boson fields to 
+fermionic fields and vice versa. Since the symmetry is local, $\epsilon$ is coordinate dependent. We will 
+not use these transformations specifically in this work, and therefore we will not include them here. However, 
+since $\epsilon$ is coordinate dependent then so is translations generated by supersymmetry transformations. But this 
+is nothing but a general coordinate transformation and we conclude that the inclusion of gravity is an inevitable consequence 
+of local supersymmetry.
+
+As we will see in the next subsection the theory also need a 3-form gauge field $\hat C$, with field strength $\hat G = d\hat C$ and gauge invariance
+\begin{equation}
+\delta \hat{C}=d \hat{\chi}\Rightarrow \delta\hat G=d^2 \hat{\chi} = 0,
+\eqnlab{sugra_gauge11}
+\end{equation}
+where $\hat\chi$ is a 2-form, leaving integral terms depending only on $\hat G$ or combinations like $\hat G\we\hat G\we\hat C$ unchanged, since
+\begin{equation}
+\delta\int\hat G\we\hat G\we\hat C = \int\hat G\we\hat G\we d \hat{\chi} = -\int d\lp d\hat C\we d\hat C\rp\we \hat{\chi} = 0.
+\end{equation}
+
+\subsection{Counting the degrees of freedom}
+\sseclab{sugra_dof}
+To form a supergravity in 11 dimensions we first need a bosonic metric (graviton) $\hat g_{MN}$ and its superpartner the fermionic gravitino $\hat\psi_M$, with constraint $\hat\psi_M\Gamma^M = 0$ in 11 dimensions. 
+Being superpartners means the graviton and gravitino mixes under local supersymmetry transformations.
+Supersymmetry requires an equal amount of bosonic and fermionic degree of freedom (d.o.f.).
+To count the physical d.o.f.s for a general covariant metric $\hat g_{MN}$ in $\hat D$ dimensions, we start by noting that a $\hat D\times\hat D$ symmetric matrix has $\hat D(\hat D+1)/2$ independent components.
+The metric is invariant under general coordinate transformations $\delta x^M = -\hat\lambda^M$, removing $\hat D$ d.o.f.s.
+The solution to the field equations is also invariant under a metric variation \cite{weinberg} removing $\hat D$ more d.o.f.s.
+This leaves us with $\hat D(\hat D+1)/2 - 2\hat D = \hat D(\hat D - 3)/2 = 44$ in 11 dimensions.
+
+Next we count the d.o.f.s of the gravitino. In $\hat D = 11$ dimensions the size of Dirac's gammamatrices is 
+$2^{[\hat D/2]}\times 2^{[\hat D/2]} = 32\times 32$ ([number] denotes integer part), so the gravitino has 32 components. 
+By using light-cone coordinates (the on-shell condition) the SUSY algebra becomes just creation and annihilation operators algebra with 
+half of the operators represented trivially \cite{diverse_dim_supergrav}, leaving 16 independent components. We have already mentioned the 
+SO(1,10) Lorentz symmetry, under which the spinors transform. Now we want to find out the subgroup of SO(1,10) that leaves
+the momentum invariant in light-cone coordinates, the so called \textit{little group}. Since the on-shell condition fixes the 
+linear combinations between the time coordinate and one of the spatial coordinates all we have to do is to chop off 
+time and one space coordinate from SO(1,10), which gives the group SO(9). In terms of little group representations, the gravitino 
+is a vector spinor with 9 components in the vector. This would give $9 \cdot 16=144$ degrees of freedom. However, the constraint 
+$\hat\psi_M\Gamma^M = 0$ subtracts a spinor's worth of components reducing the number of d.o.f to $8 \cdot 16=128$.
+
+%*http://hamilton.uchicago.edu/~sethi/Teaching/P487/antSUGRA.pdf
+
+Using the fact that a supersymmetric theory should have an equal amount of fermionic and bosonic d.o.f.s, we see that we are $128 - 44 = 84$ bosonic d.o.f.s short.
+To match the d.o.f.s we need to include an antisymmetric gauge field to the supergravity multiplet.
+Consider a p-form $A_{(p)}$. An antisymmetric tensor has $\hat D(\hat D-1)(\hat D-2)\cdots (\hat D-p+1)$ nonzero components and the p indices can be ordered in $p!$ ways, so $p!$ of the tensor components are related by at most a sign change. We are therefore left with
+\begin{equation}
+\frac{\hat D(\hat D-1)(\hat D-2)\cdots (\hat D-p+1)}{p!} = \binom{\hat D}{p} %= \Binom{\hat D}{p}
+\end{equation}  
+independent components. But because of the on-shell condition, what we really want is a $p$-form antisymmetric representation 
+of the little group SO($\hat D -2$) and thus
+%If the p-form has a gauge symmetry $\delta A_{(p)}= d\chi_{(p-1)}$ we need to remove the d.o.f.s of $\chi_{(p-1)}$, which can in turn be seen as a (p-1)-form with a gauge symmetry $\delta \chi_{(p-1)}= d\chi_{(p-2)}$. We thus need to iterate until we reach $\chi_{(0)}$ and the d.o.f.s of $\chi_{(p-1)}$ becomes (use $\Binom{\hat D}{k} = \Binom{\hat D-1}{k} + \Binom{\hat D-1}{k-1}$)
+%\begin{align}
+%\Binom{\hat D}{p-1}&-\lp\Binom{\hat D}{p-2}-\lp\Binom{\hat D}{p-3}-\lp\cdots-\lp\Binom{\hat D}{1}-\Binom{\hat D}{0}\rp\cdots\rp\rp\rp\\
+%& = \Binom{\hat D-1}{p-1} + \Binom{\hat D-1}{p-2} - \lp\Binom{\hat D-1}{p-2}+\Binom{\hat D-1}{p-3}-\cdots\rp = \Binom{\hat D-1}{p-1}\nn
+%\end{align}
+%But we aren't done yet. If we fix the gauge by the Lorentz condition $d *A_{(p)} = 0$, it is invariant under transformations $\delta A_{(p)} = d\tilde\chi_{(n-1)}$, with condition $d*d\tilde\chi_{(n-1)} = 0$. Consider $\gamma_{(\hat D-n)} = *d\tilde\chi_{(n-1)}$ as a ($\hat D-n$)-form carrying $\Binom{\hat D-1}{n-1}$ d.o.f.s. 
+a generalized gauge field in $\hat D$ dimensions has 
+\begin{equation}
+\binom{\hat D-2}{p}
+\eqnlab{sugra_gauge_dof}
+\end{equation}
+independent components. We see that a 3-form $A_{(3)} = C$, with exactly $\binom{9}{3} = 84$ components, matches the bosonic and the fermionic d.o.f. in 11 dimensions.
+The field content of 11 dimensional supergravity is hence \{$\hat g_{MN}$, $\hat C_{MNP}$, $\hat\psi_M$\}, where $\hat g_{MN}$ and $\hat C_{MNP}$ forms a bosonic graviton.
+It can be shown that there is no other combination of forms that give the correct number of states. The supermultiplet is unique making $\hat D=11$ very special. Of course, if we want to form supergravity in other dimensions we will have other (usually bigger) sets of fields, as we can have more supersymmetries and include more gauge fields and scalar fields. 
+%se A survey of SUGRAs in various dimensions, Prahlad Warszawski, slutet sidan 7
+
+\subsection{The action and its bosonic field equations}
+\sseclab{sugra_action}
+Now we introduce the most general action with the conditions mentioned above and 2 or fewer derivatives, in $\hat D=11$ dimensions. 
+This action will be considered throughout the first part of this thesis, so if you are currently thinking about something else, {\bf{wake up now!}}
+It is given by 
+\begin{equation}
+S^{D=11}=S^{D=11}\subtext{bosonic} + S^{D=11}\subtext{fermionic},
+\end{equation}
+where the bosonic part is given by 
+\begin{equation}
+S^{D=11}\subtext{bosonic}=\frac{1}{2\kappa_{11}^2}\int d^{11}x
+\sqrt{|\hat g|}\left[\hat R-\frac{1}{2\cdot 4!}\hat G^2\right] +
+\frac{1}{2\kappa_{11}^2}\int \frac{1}{3!}\hat G \wedge \hat G \wedge
+\hat C
+\eqnlab{sugra_11dim} % Don't rename (In exjobbreduct)
+\end{equation}
+and the fermionic part by
+\begin{equation}
+S^{D=11}\subtext{fermionic} = \frac{i}{2}\bar\psi_M\Gamma^{MNP}D_N\psi_P + ...
+% +\frac{1}{384}\lp\bar\psi_\mu\Gamma^{\mu\nu\alpha\beta\gamma\delta}\psi_\nu + 12\bar\psi^\alpha\Gamma^{\gamma\delta}\psi^\beta \rp\lp F_{\alpha\beta\gamma\delta} + \hat F_{\alpha\beta\gamma\delta}\rp
+\eqnlab{sugra_11dim_fermion}
+\end{equation}
+where ... means higher order fermionic and mixed terms. From now on we put $\kappa_{11}^2 = 1/2$. We will refer to the 3 terms of the bosonic part as (in order of appearance) the Einstein term, the kinetic or $G^2$ term and the Chern-Simon term. 
+
+
+From the definition of the field strength $\hat G = d\hat C$ we easily derive its Bianchi identity 
+\begin{equation}
+d\hat G = d^2\hat{C} = 0.
+\end{equation}
+To derive the equations of motion corresponding to the bosonic degrees of freedom, we vary bosonic part of the supergravity action \eqnref{sugra_11dim} with respect to first $\hat C_{MNP}$ and then $\hat g_{MN}$.
+Varying the action with respect to $\hat{C}$ yields
+\begin{equation}
+\delta S = {1 \over 2} \Big{(} \underbrace{\int \delta (\hat{G}) \wedge
+  *\hat{G}}_{I_1} + \underbrace{\int \hat{G} \wedge
+  \delta(*\hat{G})}_{I_2} \Big{)} + {1 \over 6}\underbrace{\int \delta
+  (\hat{G} \wedge \hat{G} \wedge \hat{C})}_{I_3} =0.
+\end{equation}
+We start with $I_1$, the easiest term
+\begin{equation}
+I_1=\int d \delta \hat{C} \wedge *\hat{G} = \int \delta \hat{C} \wedge d (*\hat{G}),
+\label{Iett}
+\end{equation}
+where we have used \eqnref{conven_extder_product}, and continue with the a little more tricky $I_2$
+\begin{align}
+I_2 &= \int d\hat{C} \wedge *d\delta \hat{C} \nonumber \\
+&= {-1 \over 3!4!7!} \int d^{11}x \sqrt{|\hat{g}|} \varepsilon^{M_1
+  \cdots M_{11}} {\partial}_{M_4} \hat{C}_{M_3 \cdots M_1}
+{\varepsilon}_{M_{11} \cdots M_5 N_4 \cdots N_1} \partial^{N_4} \delta
+\hat{C}^{N_3 \cdots N_1} \nonumber \\
+&= {-1 \over 3!4!7!} \int d^{11}x
+\sqrt{|\hat{g}|}{\varepsilon}_{N_{11} \cdots N_5 M_4 \cdots M_1}
+\partial^{M_4} \hat{C}^{M_3 \cdots M_1} {\varepsilon}^{N_1 \cdots
+  N_{11}} {\partial}_{N_4} \delta \hat{C}_{N_3 \cdots N_1} \nonumber
+\\
+&= \int d \delta \hat{C} \wedge * d \hat{C} = \int \delta \hat{C}
+\wedge d(* \hat{G}),
+\end{align}
+where we have used \eqnref{conven_extder}, \eqnref{conven_hodge_comp} and (\ref{Iett}). Finally $I_3$
+becomes
+\begin{align}
+I_3 &= \int \Big{(}2d\delta \hat{C} \wedge \hat{G} \wedge \hat{C} +
+  \hat{G} \wedge \hat{G} \wedge \delta \hat{C}\Big{)} = \int \Big{(}2\delta
+  \hat{C} \wedge d(\hat{G} \wedge \hat{C}) \nonumber \\
+&\phantom{=} + \delta
+  \hat{C} \wedge \hat{G} \wedge \hat{G}\Big{)} = \int 3 \delta \hat{C}
+  \wedge \hat{G} \wedge \hat{G},
+\end{align}
+where we have again used \eqnref{conven_extder_product}. Putting $I_1$, $I_2$ and $I_3$
+together gives the equation of motion
+\begin{equation}
+d(*\hat{G})=-{1 \over 2}\hat{G} \wedge \hat{G}.
+\eqnlab{bianchig7}
+\end{equation}
+If we instead want to describe the dynamics with the dual field strength $\hat G_{(7)} = *\hat G$, corresponding to the 6-form Gauge field $\hat C_{(6)}$, we get the equation of motion from variation of the action w.r.t. $\hat C_{(6)}$
+\begin{equation}
+d*\hat G_{(7)} = 0
+\end{equation}
+and we must have a modified Bianchi identity, consistent with equation \eqnref{bianchig7}
+\begin{equation}
+d\hat G_{(7)}=-{1 \over 2}\hat{G} \wedge \hat{G}
+\end{equation}
+implying that $G_{(7)}$ is a modified field strength
+\begin{equation}
+\hat G_{(7)} = d\hat C_{(6)} - \half\hat G\we\hat C. 
+\label{fieldstrengthdual}
+\end{equation}
+The conclusion is that if we want to describe the dynamics with $\hat G_{(7)}$ instead of $\hat G$, we must change Bianchi identities against equations of motion and vice versa.
+%We will make use of this observation later in subsection \ssecref{sl5so5higher}.
+This dualisation procedure is closely related to the electric-magnetic duality of D=4, where an electric charge in one potential is a magnetic charge in the other.
+Note also that according to equation \eqnref{sugra_gauge_dof} the degrees of freedom for a p-form potential is equal to the d.o.f.s of a $(\hat D - 2 - p)$-form potential.
+In other words $\hat C$ and $\hat C_{6}$ carries the same amount of d.o.f.s, which is required if we want to see this as a generalization of the 4 dimensional electric-magnetic duality. 
+
+Finally, varying the action with respect to the metric gives (use that the first term is pure gravity, \eqnref{conven_gvar} for the second term and \eqnref{conven_parinv} for the third term) 
+\begin{align}
+\delta S & = \int d^{11}x\lp\delta\lp\sqrt{|\hat g|}\hat R\rp -\delta\sqrt{|\hat g|}\frac{\hat G^2}{48} - \sqrt{|\hat g|}\frac{4}{48}\delta\hat g^{MN}\hat G\od{M}\ou{PQR}\hat G\od{NPQR}\rp\nn\\  
+& =\int d^{11}x \sqrt{|\hat g|} \lp\hat R^{MN} - g^{MN}\frac{\hat R}{2} - g^{MN}\frac{\hat G^2}{96} + \frac{\hat G^{2MN}}{12} \rp\delta g_{MN}=0,
+\end{align}
+where $\hat G^{2MN} = \hat G\ou{MPQR}\hat G\ou{N}\od{PQR}$. $\delta\hat g_{MN}\ne 0$ gives the e.o.m.
+\begin{equation}
+\hat R^{MN} - \half g^{MN}\hat R = \hat T^{MN} = \frac{1}{96} g^{MN}\hat G^2 - \frac{1}{12}\hat G\ou{MPQR}\hat G\ou{N}\od{PQR}.
+\end{equation}
+%(......... Bra att ha om vi ska ha med n[t om solitonl;sningar senare. Referera is[danafall till den sectionen h'r .........)
+
+\section{Kaluza-Klein reduction}
+\seclab{sugra_kk}
+Since our world, for most people, doesn't seem to be 11-dimensional, we need to explain why some dimensions aren't observed. A way to do this is to say that these dimensions are curled up and too small to be detected by direct experiments. Of course you can detect them indirect since they affect properties like mass, charge e.t.c. of all objects looking like pointlike particles at our length scales.
+If you believe in the Big Bang theory, predicted by general relativity and supported by experiments, you should also not have any problems with the conceptual idea of curled up dimensions, since after all, at the dawn of time, all dimensions were curled up.  
+There are many ways in which one could try and compactify a theory to a lower dimension. The simplest and most intuitive way (in the sense of symmetry) is to choose the n compactified dimensions as one 
+-dimensional circles $S^1$. Choosing the circles orthogonal to each other, an n-dimensional torus $T^n$ is formed, which is easier to handle mathematically than the maybe more intuitive n-dimensional sphere $S^n$.
+Although the shape of the compactified dimensions, in reality, have a richer structure than circles, we can (hopefully) learn something from the symmetries and dynamics falling out when compactifying on circles.
+In this thesis we will only consider reductions on tori.
+
+Assume that we compactify a $\hat D$-dimensional theory on a circle of radius $R=R_{\hat D}$. The number of compactified dimensions are henceforth $D=1$ and the number of uncompactified dimensions are $d = \hat D - 1$. 
+We split the compactified and uncompactified coordinates as $x^M = (x^\mu,x^m)$, where $M=1\dots \hat D$, $\mu=1\dots d$ and $m=D$ (formerly known as $\hat D$). Fourier expand the $\hat D$-dimensional metric $\hat g_{MN}$ in the $x^m$ variable on the interval $x^m\in[0,2\pi R]$  
+\begin{equation}
+\hat g_{MN}(x^M) = \sum_{n=0}^\infty g_{MN}^{(n)}(x^\mu)e^{inx^m/R}. 
+\end{equation}
+We see that we have an infinite set of fields $g_{MN}^{(0)}(x^\mu),g_{MN}^{(1)}(x^\mu),\dots$ in d dimensions.
+For our considerations we can discard all fourier modes with $n\neq 0$, which is because the modes with $n > 0$ are highly massive and we can ignore them in a low energy approximation.
+This can sketchily be seen by considering the Klein-Gordon equation for a massless scalar field $\phi$ in $\hat D$ dimensions
+\begin{equation}
+\partial^M\partial_M\hat\phi = 0,
+\end{equation}
+where we expand $\hat\phi$ as
+\begin{equation}
+\hat \phi = \sum_{n=0}^\infty \phi^{(n)}(x^\mu)e^{inx^m/R}. 
+\end{equation}
+Fourier transform all $\mu$-derivatives and perform the m-derivatives of a certain mode n, so
+\begin{equation}
+(-E^2+p_1^2+\cdots +p_{d-1}^2-\frac{n^2}{R^2}) \phi^{(n)}(x^\mu)e^{inx^m/R} = 0 
+\end{equation}
+and compare to the mass-shell condition $m^2 = E^2 - p_1^2 \dots - p_{d-1}^2$. The mass of the field in d dimensions can thus be read of as $m_n = n/R$. Since R was in order of the Planck length, the masses is of Planck mass order $\sim 10^{-8}$ kg, which is enormous compared to e.g. the electron's puny $\sim 10^{-30}$ kg rest mass.
+Discarding the massive modes leaves a metric $g_{MN}(x^\mu)$ that is independent of the $x^m$ coordinate.
+% (......... Skriv eventuellt lite om laddningar (Ambjornsson kap 7) .........)
+
+Reducing the transformation of this metric under a general coordinate change in the compactified directions $\delta x^\mu = -\hat\lambda^\mu(x^\mu,x^m) = -\lambda^\mu$ gives (use \eqnref{sugra_metric_cov_eleven})
+\begin{align}
+\eqnlab{sugra_red_trans_mu}
+\delmu g_{MN}&=\toto{\delmu g_{\mu\nu}}{\delmu g_{\mu n}}{\delmu g_{m \mu}}{\delmu g_{mn}},\hspace{0.2 cm}\mbox{where}\\  
+\delmu g_{\mu\nu} &= \lambda^\rho\partial_\rho g_{\mu\nu} + g_{\rho\nu}\partial_\mu\lambda^\rho + g_{\mu \rho}\partial_\nu\lambda^\rho,\nonumber\\ 
+\delmu g_{\mu n} &= \delmu g_{n\mu} = \lambda^\rho\partial_\rho g_{\mu n} +  g_{\rho n}\partial_\mu\lambda^\rho,\nonumber\\
+\delmu g_{mn} &= \lambda^\rho\partial_\rho g_{mn}. 
+\end{align}
+The first transformation is the same as \eqnref{sugra_metric_cov_eleven} with d-dimensional indices, so it is clearly the transformation of a metric under a general coordinate transformation in d dimensions.
+Comparing the other two relations to the transformations \eqnref{sugra_field_cov_eleven} of a scalar $\phi$ (0-form) and a vector $\tilde A_\mu$ (1-form) in d dimensions, we see that $g_{mn}$ transforms as $\phi$ and $g_{\mu n}$ transforms as $\tilde A_\mu$.   
+
+To get more hints on what objects we are dealing with, we also reduce the $\hat\lambda^m$ component of the transformations
+$\delta x^m = -\hat\lambda^m(x^\mu,x^m) = -\lambda^m(x^\mu) - \Lambda{^m}_nx^n$, where $\Lambda{^m}_n=\Lambda$ is an arbitrary real constant that can be extended to a general n$\times$n matrix, belonging to the group GL(n,$\rr$), when compactifying on $T^n$. This $x^m$ dependence is obvious since we must have something that doesn't depend on $x^m$ when inserting $\hat\lambda^m(x^\mu,x^m)$ in the metric transformations \eqnref{sugra_metric_cov_eleven}.
+Since $\hat\lambda^m$ only enters with derivatives we have the condition $\partial_N\hat\lambda^m$ independent on $x^m$, i.e. the $x^m$ dependence must be linear and independent of $x^\mu$. 
+So the transformation of the metric under transformations of the $x^m$ coordinate becomes
+\begin{align}
+\eqnlab{sugra_red_trans_m}
+\delm g_{\mu\nu} &= g_{p\nu}\partial_\mu\lambda^p +  g_{\mu p}\partial_\nu\lambda^p = \tilde A_\nu\partial_\mu\lambda + \tilde A_\mu\partial_\nu\lambda,\nonumber\\
+\delm g_{\mu n} &= g_{pn}\partial_\mu\lambda^p +  g_{\mu p}\partial_n\lambda^p = \phi\partial_\mu\lambda + \tilde A_\mu\Lambda = \delm\tilde A_\mu,\nonumber\\
+\delm g_{mn} &= g_{pn}\partial_m\lambda^p +  g_{mp}\partial_n\lambda^p = 2\phi\Lambda = \delm\phi.
+\end{align}
+The easiest way to interpret the first relation is to add a term $\tilde A_\mu \tilde A_\nu/\phi$ to the upper left d$\times$d submatrix of the 11-dimensional metric $\hat g_{\mu\nu}$ resulting in a variable change
+\begin{equation}
+g_{\mu\nu} := g_{\mu\nu} + \frac{1}{\phi}\tilde A_\mu \tilde A_\nu.
+\end{equation}  
+The first transformations of equation \eqnref{sugra_red_trans_mu} is unaffected by this and the first transformation of equation \eqnref{sugra_red_trans_m} becomes
+\begin{equation}
+\delm \lp g_{\mu\nu} + \frac{1}{\phi}\tilde A_\mu \tilde A_\nu\rp= \tilde A_\nu\partial_\mu\lambda + \tilde A_\mu\partial_\nu\lambda\nonumber\\,
+\end{equation}  
+giving (using the other $\delm$ transformations in \eqnref{sugra_red_trans_m})
+\begin{align}
+\delm g_{\mu\nu} & = \tilde A_\nu\partial_\mu\lambda + \tilde A_\mu\partial_\nu\lambda - \delm\lp \frac{1}{\phi}\tilde A_\mu \tilde A_\nu\rp \\
+& = \tilde A_\nu\partial_\mu\lambda + \tilde A_\mu\partial_\nu\lambda 
++\frac{2\phi\Lambda}{\phi^2}\tilde A_\mu \tilde A_\nu - \frac{2}{\phi}\tilde A_{(\mu}\lp \phi\partial{_{\nu)}}\lambda + \tilde A_{\nu)}\Lambda\rp = 0.\nn
+\end{align}  
+If we let $\tilde A_\mu = \phi A_\mu$, we see that the second relation becomes
+\begin{equation}
+\delm\tilde A_\mu = \delm(\phi A_\mu) = \phi\delm A_\mu + A_\mu\delm\phi = \phi\partial_\mu\lambda + A_\mu\phi\Lambda 
+\end{equation}
+giving, with the use of the third relation
+\begin{equation}
+\delm A_\mu  = \partial_\mu\lambda + A_\mu\Lambda - 2A_\mu\Lambda = \partial_\mu\lambda - A_\mu\Lambda.
+\end{equation}
+So the symmetries in d dimensions are general covariance, local U(1) gauge transformations of the massless $A_\mu$ vector field
+\begin{equation}
+\delta A_\mu = \partial_\mu\lambda
+\end{equation}
+and a global GL(1) scaling symmetry
+\begin{align}
+\delta g_{\mu\nu} &= 0,\nonumber\\
+\delta A_\mu &= -\Lambda A_\mu,\nonumber\\
+\delta \phi &= 2\Lambda\phi, 
+\end{align}
+which will be enlarged to a global GL(n) symmetry, when compactifying on an n-torus.
+The metric in $\hat D$ dimensions, using the variable changes, is explicitly
+\begin{equation}
+\hat g_{MN} = \toto{g_{\mu\nu} + \phi A_\mu A_\nu}{\phi A_\mu}{\phi A_\nu}{\phi}.
+\end{equation}
+
+So far we have considered compactification on a circle, D=1.
+If you generalize this procedure to an n-torus instead, D=n, you get the metric
+\begin{equation}
+\hat g_{MN} = \toto{g_{\mu\nu} + A_\mu^m G_{mn}A_\mu^n}{A_\mu^mG_{mn}}{G_{mn}A_\nu^n}{G_{mn}},
+\eqnlab{sugra_kk_metric}
+\end{equation}
+which contain a metric tensor $g_{\mu\nu}$, $D$ Kaluza-Klein vectors $A_\mu^m$ and $D(D+1)/2$ scalars in the internal metric $G_{mn}$. 
+The vielbein giving rise to this Kaluza-Klein metric becomes, after choosing all $\hat D(\hat D-1)/2$ components under the diagonal to be 0 (c.f. subsection \ssecref{ricci_local_geom}) 
+\begin{equation}
+\hat e{_M}^A = \toto{e{_\mu}^a}{A_\mu^me{_m}^i}{0}{e{_m}^i},
+\eqnlab{sugra_kk_ansatz}
+\end{equation}
+which is the vielbein we will use as a starting point in our Kaluza-Klein Ansatz later on in section \secref{reduct}. 
+
+\section{Maximal supergravity in lower dimensions}
+In the previous section we considered only compactification of the metric.
+One can in the same manner decompose all other fields of the higher-dimensional theory into lower-dimensional fields when reducing the dimension.
+By, for instance, reducing the bosonic sector of the 11 dimensional supergravity \eqnref{sugra_11dim} to ten dimensions by compactifying on a circle, first done in \cite{firstsugra10}, the action (in the Einstein frame) becomes
+\begin{align}
+S_{IIA} =&  - \frac{1}{2}\int B\wedge dC_{(3)}\wedge dC_{(3)} + \int d^{10}x\sqrt{|g|}\bigg[R-\frac{1}{2}(\partial\phi)^2 \nonumber \\
+&-\frac{1}{2}e^{-\phi}H\cdot H - \frac{1}{2}\sum_{p=1,3}e^{\frac{4-p}{2}\phi}G_{(p+1)}\cdot G_{(p+1)} \bigg],
+\eqnlab{sugra_IIAlagrangian}
+\end{align}
+which is the low energy limit action for the type IIA string theory. 
+The dimensional reduction has induced an $\rr^+$ scaling symmetry, that wasn't in the 11-dimensional theory (c.f. the GL(1)-symmetry found when reducing only the pure metric in the last section).
+To see this we assign, to each field in the Lagrangian, a scale transformation $\lambda^\alpha$, where $\lambda$ is an arbitrary real constant and the exponent $\alpha$ is different for each different field.
+The fields then transforms as $\delta A = \lp\lambda^\alpha - 1\rp A$ so $A\rightarrow A' = A + \delta A = \lambda^\alpha A$, with $\lambda\in\rr^+$.
+The $\alpha$ weights of this symmetry for the IIA action are presented in table 2.1. 
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l|l l l l l}
+Field & $g_{\mu\nu}$ & $B_{(3)}$ & $C_{(1)}$ & $C_{(3)}$ & $e^\phi$\\ \hline
+$\rr^+$ scaling $\alpha$ & 0 & 2 & -3 & -1 & 4
+\end{tabular}
+\caption{The scaling exponents of the ${\rr}^+$ symmetry for the different fields in type IIA theory.} 
+\end{center}
+\tablab{reduct_IIAweights}
+\end{table}
+
+%One strange thing is that the theories coincides although we considered only the massless zero modes in the Kaluza-Klein reduction.  
+%Luckily one can identify the discarded massive modes as nonpertubative D0-branes in 10 dimensions. These branes doesn't appear in the pertubative string spectrum.
+%So, reducing 11-dimensional supergravity gives pertubative type IIA string theory together with nonpertubative effects, not explained in string theory. This gives a strong hint that maybe something is right in M-theory.  
+
+Maximal supergravity is a unique theory in 11 dimensions and it has been found to be so in all lower dimensions except 10. 
+In 10 dimensions, we also have the type IIB string theory with a maximal (N=2) supergravity low energy limit. 
+The type IIB theory cannot be created from dimensional reduction of 11 dimensional supergravity, but instead, if you compactify IIB on a circle, you get the same 9 dimensional theory as if you compactify the type IIA string theory on a circle.
+The unique maximal supergravities for $d < 9$ can then be obtained by further Kaluza Klein reductions.
+
+Note that we cannot obtain nonmaximal supergravity (e.g. the 3 different N=1 string theories) by Kaluza-Klein reductions of maximal supergravity.
+This is because the toroidal background does not break supersymmetry, which means that dimensionally reduced supergravity 
+will still have 32 supercharges. This is however not true for compactifications on less trivial spaces (e.g. Calabi-Yau) where the number of supersymmetries are reduced.
+
+The action of maximal supergravity, compactified to a general dimension d, can be shown to be\cite{generalsugra}
+\begin{equation}
+S_d=\int D^dx\sqrt{-g}\left[R-\frac{1}{2}(\partial \vec\phi)^2 - \frac{1}{2}\sum_{p=0}^{4}\sum_{i=1}^{N(p)}e^{\vec\alpha_p^i\cdot\vec\phi} G^i_{(p+1)}\cdot G^i_{(p+1)}\right]+S_{CS},
+\eqnlab{sugra_all_dim}
+\end{equation}
+where the $(p+1)$-forms $G^i_{(p+1)}$ are field strengths to p-form gauge potentials $C_{i(p)}$, $\vec\phi$ is a vector of D dilatons (one per reduced dimension, coming from the diagonal components of the internal G - metric), $\alpha_p^i$ is just ... vectors for now and $S_{CS}$ is the reduced version of the Chern-Simons term in \eqnref{sugra_11dim} 
+The maximum summation value of $i$, $N(i)$ can be read off from table 2.2.
+For instance, when $D=7$, i runs from 1 to $N(p=0) = 14$, $N(p=1) = 10$, $N(p=2) = 5$, $N(p=3) = 0$ and $N(p=4) = 0$.
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l|c c c c c}
+Dimension & p=0 & p=1 & p=2 & p=3 & p=4\\ \hline
+11 &  &  &  & 1 & \\
+10, IIA & 1 & 1 & 1 & 1 & \\
+10, IIB & 2 &  & 2 &  & 1$^+$\\
+9 & 3 & 3 & 2 & 1 & \\
+8 & 7 & 6 & 3 & 2$^+$ & \\
+7 & 14 & 10 & 5 & & \\
+6 & 25 & 16 & 10$^+$ & & \\
+5 & 42 & 27 & & & \\
+4 & 70 & 56$^+$ & & & \\
+3 & 128 & & & &
+\end{tabular}
+\caption{The bosonic field contents for maximal supergravity in different dimensions. The number of scalars (p=0) is dim[E] - dim[F] (c.f. table 2.3.)}
+\end{center}
+\tablab{sugra_fieldcontent}
+\end{table}
+
+\newpage
+
+\section{Scalar cosets}
+\seclab{scalarcosets}
+The scalar dependence of the Lagrangian in \eqnref{sugra_all_dim} is (look at the term with $p=0$ in the sum)
+\begin{equation}
+\mathcal L_{scalar} = \sqrt{-g}\left[-\frac{1}{2}(\partial \vec\phi)^2 - \frac{1}{2}\sum_{i=1}^{N(0)}e^{\vec\alpha^i\cdot\vec\phi} G^i\cdot G^i\right],
+\eqnlab{sugra_scalar}
+\end{equation}
+where unnecessary indices has been suppressed (so $G^i\leftarrow G^i_{(1)}$ are 1-form field strengths and $\alpha^i\leftarrow\alpha^i_0$ are the zeroth $\alpha^i$ vectors).
+The $\alpha^i$ can be considered as positive root vectors of a simple Lie algebra.
+
+All semisimple Lie algebras $\g$ can be triangularly decomposed as $\g = \g_+\oplus \g_0\oplus \g_-$, where $\g_{\pm}$ is the span of all positive/negative root generators $E^{\pm\alpha}$ and $g_0$ the is Cartan subalgebra of $\g$, which is the biggest set of independent commuting generators $H^i$ of the algebra $\g$.
+In the Chevalley-Serre basis the generators are Cartan generators $H^i$ and root generators $E^\alpha$, with commutator relations
+\begin{align}
+\com{H^i,H^j} & = 0,\nonumber\\
+\com{H^i,E^j_\pm} & = \pm A^{ji}E^j_\pm,\nonumber\\
+\com{E_+^i,E_-^j} & = \delta_{i,j}H^j,\nonumber\\
+(ad_{E_\pm^i})^{1-A^{ji}}E_\pm^i & = 0,
+% Masvinge =\left\{\begin{array}{ll}e_{\alpha,\beta}\delta_{\alpha+\beta,\gamma} & \mbox{if } \alpha+\beta\in\Phi\cr 0 & \mbox{elsewise}\end{array}\right.
+\eqnlab{sugra_chevalley}
+\end{align}
+where $A^{ij}$ is the Cartan matrix with the elements 
+\begin{equation}
+A_{ij}=2\frac{(\alpha^{(i)},\alpha^{(j)})}{(\alpha^{(j)},\alpha^{(j)})}.
+\end{equation}
+The Chevalley-Serre relations are invariant under the Cartan involution
+\begin{equation}
+E_+^{\alpha} \rightarrow - E_-^{\alpha}, \hspace{1cm} E_-^{\alpha} \rightarrow - E_+^{\alpha}, \hspace{1cm} H^{\alpha} \rightarrow - H^{\alpha},
+\end{equation}
+for any positive root $\alpha$. The generators ($E_+^{\alpha} - E_-^{\alpha}$) are even under the Cartan involution and 
+hence form the maximal compact subalgebra of the original algebra \cite{ling}, while the remaining generators are odd under the involution.
+
+
+The subspaces $\g_\pm$ are nilpotent subalgebras and the two subspaces $\lgb_\pm=\g_0\oplus \g_\pm$ are called Borel subalgebras of $\g$.
+A matrix representation for the $n^2-1$ generators of the complex Lie algebra sl(n,$\cc$) = $A_{n-1}$ is
+\begin{align}
+H^i & = \varepsilon_{i,i}-\varepsilon_{i+1,i+1},\hspace{0.5 cm} i=1,2,\dots,n-1,\nonumber\\
+E_+^i & = \varepsilon_{i,j},\hspace{0.5 cm} 1\leq i<j\leq n,\nonumber\\
+E_-^i & = (E_+^i)^T,
+\eqnlab{sugra_basis}
+\end{align}
+where we have used the matrix units $(\varepsilon_{i,j})_{kl}=\delta_{ik}\delta_{jl}$, which denotes n$\times$n matrices with all zeroes except at position i,j, which is 1.
+The normal real form of a complex Lie algebra is obtained from subfield restriction, i.e. restrict the base field from $\cc$ to $\rr$ to get the real form.
+In the sl(n,$\cc$) case the normal real form is sl(n,$\rr$), so the generators of sl(n,$\rr$) can thus be represented as in \eqnref{sugra_basis}. 
+\subsection{Iwasawa decomposition}
+Consider the positive Borel subalgebra $\lgb_+=\g_0\oplus \g_\pm$ %($\g_{+}$???) 
+and construct it's Lie group
+\begin{equation}
+\V=\exp\left\{\sum_i\tau_i E_+^i\right\}\exp\left\{-\frac{1}{2}\sum_{j=1}^r\phi_j H^j\right\}.
+\end{equation}
+$\V$ now belongs to the $B=G/H$ coset, where G is the Lie group generated by all generators in $\g$, H is the Lie group generated by the removed generators and B is the Lie algebra generated by the Borel subgroup considered.
+If one act on $\V$ with another group element $\W\in B$ it will still remain in B, since it formed a subgroup. If one, on the other hand, acts with a group element belonging to G, i.e. possibly in H, $\W\in G$, the result $\tilde\V=\W\V$ will not belong to B.
+Luckily $\tilde\V$ can be decomposed as $\tilde\V = \V'\U$, where $\V'\in B$ and $\U\in H$. Since $\V$ and thus $\tilde\V$ depends on the scalar fields $\tau_i$ and $\phi_j$ (and also the constant element $\W$ of G), 
+the group element $\U$ must, in general, be coordinate dependent and hence belong to a local version of the H group.  
+%Isawa factorization:(......... Flytta till appendix? .........)\\
+%Consider a real inverible matrix $G$ and perform an QR-factorization $G=OR$, where $O$ is an orthogonal matrix and R is an invertible ($r_{ii}\ne 0$) upper triangular matrix.
+%(......... K. Iwasawa:On some types of topological groups. Ann. of Math. 50, (1949), 507-558 .........)
+
+To get further we need to introduce the concept of Iwasawa decomposition. 
+Iwasawa claims that every semisimple Lie algebra g can be decomposed as $\g = \lgo\oplus\lgd\oplus\lgu$
+and it's Lie group can be written as $G=ODU$, where\\
+O - Orthogonal matrix in matrix decomposition. It is usually O you divide out when forming the symmetric scalar coset.\\
+D - $D=\exp(\lgd)$. Diagonal matrix with positive entries in matrix decomposition.\\
+U - $U=\exp(\lgu)$. Unit upper triangular (Upper diagonal with ones on the diagonal) in matrix decomposition.\\
+We note that D and U are noncompact and O, which is orthogonal is the maximal compact subgroup of G with lie algebra $\lgo$.
+Now consider the case of sl(n,$\rr$). We already now from the Cartan involution that ($E_+^{\alpha} - E_-^{\alpha}$) generates 
+the maximal compact subalgebra and the corresponding Lie group can thus be identified with O. For example, when $n=2$ we get
+\begin{equation}
+O = \exp\lp\theta(E_+-E_-)\rp = \toto{\cos\theta}{\sin\theta}{-\sin\theta}{\cos\theta},
+\end{equation}
+which indeed is both compact and orthogonal. We can also identify D and U with
+\begin{align}
+D &= \exp\lp H t\rp = \toto{\exp\lp t\rp}{0}{0}{\exp\lp-t\rp},\\
+U &= \exp\lp E_+s\rp = \toto{1}{s}{0}{1},
+\end{align}
+by noting that 
+\begin{equation}
+ODU = \toto{e^{t}\cos\theta }{se^{t}\cos\theta + e^{-t}\sin\theta}{-e^{t}\sin\theta}{-se^{t}\sin\theta+e^{-t}\cos\theta},
+\end{equation}
+which is a perfect representation of SL(2,$\rr$). That this decomposition always is possible is of course not proven by this simple 
+example, but still it gives clear indications that D is generated by the Cartan generators and U by the positive root generators and 
+we will consider it as a fact from now on. 
+%The Iwosawa decomposition of a general element of m M$\in$SL(2,$\rr$) is thus
+%\begin{align}
+%M &= \id\cosh{d} + \frac{1}{d}m\sinh{d} = KAN = \toto{e^{t}\cos\theta }{se^{t}\cos\theta + e^{-t}\sin\theta}{-e^{t}\sin\theta}{-se^{t}\sin\theta+e^{-t}\cos\theta}
+%\end{align}
+%(.........
+%the 'Iwasawa decomposition' of a real semisimple Lie group. 
+%Iwasawa proved in particular that if a locally compact group G has a closed normal subgroup N such that N and G/N are Lie groups then G is a Lie group.
+%..........)
+
+With the maximal subgroup identified, $\V$ is clearly given by
+\begin{equation}
+\V=\exp\left\{\sum_{i=1}^{r(r+1)/2}\tau_i E_+^i\right\}\exp\left\{-\frac{1}{2}\sum_{i=1}^r\phi_i H^i\right\}
+\end{equation} 
+with the generators given in \eqnref{sugra_chevalley}. $\V$ will be upper triangular (since no generator has nonzero elements under the diagonal) and it is obvious you can put $\tilde\V$ back to upper diagonal form with $RQ$-decomposition (which can be performed on all real invertible matrices), where R is a upper diagonal matrix 
+%(.........inte helt saker pa att V' tillhor B bara for att den ar uppattriangular.........)
+and $Q^TQ=\id$, meaning $\tilde\V=\V'Q$, where Q has been defined to have determinant 1 so $\V'$ has determinant 1.
+The conditions on Q makes it an element of SO(n) and we have the coset
+\begin{equation}
+\frac{SL(n,\rr)}{SO(n)}.
+\eqnlab{sugra_slso}
+\end{equation}
+It can also be shown that SO(n) is spanned by the removed generators ($E_+^{\alpha} - E_-^{\alpha}$). %(....Kolla detta!....)
+%(......... Det maste ga att se att det ar SO(n) ocksa fran att de bortplockade generatorerna, som egentligen ar (Ling p31) $E^i_+-E^i_-$ d.v.s. spanner SO(n) .........)
+
+So we have found that $\W\V=\tilde\V=\V'\U(\tau_1,\tau_2,\dots,\phi_1,\phi_2,\dots,\phi_r,\W)$ and can define a transformation
+\begin{equation}
+\V(\tau_i,\phi_j)\rightarrow\V'(\tau_i,\phi_j) = \W\V(\tau_i,\phi_j)\U(\tau_i,\phi_j,\W)^{-1} = \V(\tau_i',\phi_j'), 
+\end{equation}
+where $\U$ is called a compensating element since its inverse cancels the effect of $\W$ and moves everything back to the coset B.
+
+Considering that $\V$ connects two different symmetries it is tempting to consider it as a metric vielbein.
+% (......... Ok, behover nog nan lite gedignare anledning har .........).
+This can be done and the metric created by contracting the local indices of two such vielbeins is
+\begin{equation}
+\M=\V\V^T,
+\end{equation}
+which transforms as
+\begin{equation}
+\M=\V\V^T\rightarrow\Lambda\V RR^T\V^T\Lambda^T,
+\end{equation}
+i.e. the metric doesn't see the local H-transformations at all and transforms as a regular metric under the global G-transformation.
+Note also that $\M$ has unit determinant.
+
+Now all scalars of the action \eqnref{sugra_scalar} can be written as one kinetic term 
+%(......... Kolla upp och eventuellt skriv att det verkligen blir sahar, anvand eventuellt SL-fallet .........)
+\begin{equation}
+\mathcal L_{scalar} = \sqrt{-g}\left[\frac{1}{4}\tr(\partial\M\M^{-1})\right].
+\end{equation}
+It turns out that the global G transformation also is a symmetry of
+the action, or the equation of motions, when including higher rank
+potentials and fermions. 
+%(......... Har inte fermionerna den lokala symmetrin? .........). 
+The reason it sometimes is only a symmetry of the equations of motions is that it e.g. needs the dual potentials to be a complete symmetry. 
+These global symmetries are called Cremmer-Julia groups, (or U-dualities after quantization) but before discussing them in more detail we will give some examples of coset parametrisations we will use later on in chapter \secref{reduct}.
+
+It is important to realize that, in even dimensions d, the U-duality is not a symmetry of the entire Lagrangian. It is only a symmetry of the equations of motion and the Bianchi identities. 
+The typical reason is that the symmetry involves a Hodge dualisation of a gauge potential, so the symmetry can thus only be realized in the equations of motions c.f. the $T^3$ case in the next chapter. 
+This is the origin of the selfdual representations, indicated with ${^+}$, on some of the field numbers i.
+In odd dimensions on the other hand, the U-duality group is a symmetry of the action \cite{generalsugra2,roest}.
+
+
+\subsection{Example \coset{2}}
+\sseclab{example_sl2so2}
+Choose the Cartan generators of sl(2,$\rr$)
+\begin{align}
+H&=\sigma_3 = \toto{1}{0}{0}{-1}, \nn \\
+E_+ &= \frac{1}{2}(\sigma_1-i\sigma_2) = \toto{0}{1}{0}{0}, \nn \\
+E_- &= \frac{1}{2}(\sigma_1+i\sigma_2) = \toto{0}{0}{1}{0}, \nn
+\end{align} 
+with commutation relations
+\begin{equation}
+[H,E_\pm] = \pm 2E_\pm,\;\;[E_+,E_-] = H.
+\end{equation}
+Form a coset group element from the subalgebra generated by H and $E_+$ as
+\begin{equation}
+\V{_M}^A = e^{\tau_1 E_+}e^{-\frac{\phi}{2}H} = \toto{1}{\tau_1}{0}{1}\toto{e^{-\frac{\phi}{2}} }{ 0}{ 0}{ e^{\frac{\phi}{2}}} = \toto{ e^{-\frac{\phi}{2}} }{ \tau_1 e^{\frac{\phi}{2}}}{ 0 }{ e^{\frac{\phi}{2}}},
+\eqnlab{sl2vielbein}
+\end{equation} 
+which could be considered a vielbein with one index M of the SL(2,$\rr$) algebra and one index A of the local compensating algebra.
+This vielbein transforms as $\V{_M}^A\rightarrow\V'{_M}^A=\Lambda{_M}^N\V{_N}^B(R^{-1}){_B}^A$, where
+\begin{equation}
+\Lambda = \toto{a}{b}{c}{d},\;\;\;\;\;\;ad-bc=1,
+\end{equation}
+is a constant SL(2,$\rr$) matrix and $R=R(a,\phi)$ is a field dependent element of the compensating group SO(2) as was found in the discussion leading to \eqnref{sugra_slso}. 
+
+Form the metric $\M$ parametrising the coset as
+\begin{equation}
+\M_{MN} = \V\V^T = \toto{ e^{-\phi} + \tau_1^2e^{\phi} }{ \tau_1 e^{\phi}}{ \tau_1 e^{\phi} }{ e^{\phi}} = \frac{1}{\imag(\tau)}\toto{|\tau|^2 }{ \real(\tau) }{ \real(\tau) }{ 1},
+\end{equation}
+where we have introduced the complex parameter $\tau = \tau_1 + ie^{-\phi}$.
+The metric transforms as 
+\begin{equation}
+\M=\V\V^T\rightarrow\Lambda\V RR^T\V^T\Lambda^T,
+\end{equation}
+%\M_{MN}=\V{_M}^A\V_{AN}\rightarrow \Lambda{_M}^N\V{_N}^B(R^{-1}){_B}^A (R^{T}){_A}^C  \Lambda{_M}^N\V{_N}^B(R^{-1}){_B}^A
+which equals $\Lambda\M\Lambda^T$ if we imply the condition $RR^T=\id$ on the compensating matrix. Further R must have unit determinant, as can be seen from the transformation of $\V$, where $\det{\V'}=\det{\V}=\det{\Lambda}=1$.
+
+\subsection{Example \coset{5}}
+\sseclab{ex_sl5so5}
+The same procedure can be applied to the \coset{5} coset. SL(5,$\rr$) is a rank 4 Cartan algebra, so we need to 
+use 4 Cartan generators. The sum over the Cartan generators with parameters are given by
+\begin{equation}
+-\frac{1}{2}\sum_{j=1}^4\phi_j H^j = \begin{pmatrix}-\frac{\phi_1}{2} & 0 & 0 & 0 & 0\cr 0 & \frac{\phi_1-\phi_2}{2} & 0 & 0 & 0\cr 0 & 0 & \frac{\phi_2-\phi_3}{2} & 0 & 0\cr 0 & 0 & 0 & \frac{\phi_3-\phi_4}{2} & 0\cr 0&0&0&0&\frac{\phi_4}{2}\end{pmatrix},
+\end{equation}
+while the sum over the positive root generators with parameters becomes
+\begin{equation}
+\sum_{i=1}^{10}\tau_i E_+^i = \begin{pmatrix}0&\tau_1&\tau_5&\tau_8&\tau_{10}\cr 0&0&\tau_2&\tau_6&\tau_9\cr 0&0&0&\tau_3&\tau_7\cr 0&0&0&0&\tau_4\cr 0&0&0&0&0\end{pmatrix},
+\end{equation}
+which gives 14 scalar parameters altogether. Constructing the vielbein totally analogous to \eqnref{sl2vielbein} yields
+%\begin{equation}
+%\sum_{j=1}^{10}\sigma_i (E_+^i-E_-^i) = \begin{pmatrix}0&\sigma_1&\sigma_5&\sigma_8&\sigma_{10}\cr -\sigma_1&0&\sigma_2&\sigma_6&\sigma_9\cr -\sigma_5&-\sigma_2&0&\sigma_3&\sigma_7\cr -\sigma_8&-\sigma_6&-\sigma_3&0&\sigma_4\cr -\sigma_{10}&-\sigma_9&-\sigma_7&-\sigma_4&0\end{pmatrix}\nonumber\\
+%\end{equation}
+\begin{align}
+\V{_M}^A = & \exp\lp\sum_{i=1}^{10}\tau_i E_+^i\rp \exp\lp-\frac{1}{2}\sum_{j=1}^4\phi_jH^j\rp \nonumber \\
+&= \begin{pmatrix}e^{-\frac{\phi_1}{2}} & \tau_1e^{\frac{\phi_1-\phi_2}{2}} & \tilde\tau_5e^{\frac{\phi_2-\phi_3}{2}} & \tilde\tau_8e^{\frac{\phi_3-\phi_4}{2}} & \tilde\tau_{10}e^{\frac{\phi_4}{2}}\cr 0 & e^{\frac{\phi_1-\phi_2}{2}} & \tau_2e^{\frac{\phi_2-\phi_3}{2}} & \tilde\tau_6e^{\frac{\phi_3-\phi_4}{2}} & \tilde\tau_9e^{\frac{\phi_4}{2}}\cr 0 & 0 & e^{\frac{\phi_2-\phi_3}{2}} & \tau_3e^{\frac{\phi_3-\phi_4}{2}} & \tilde\tau_7e^{\frac{\phi_4}{2}}\cr 0 & 0 & 0 & e^{\frac{\phi_3-\phi_4}{2}} & \tau_4e^{\frac{\phi_4}{2}}\cr 0&0&0&0&e^{\frac{\phi_4}{2}}\end{pmatrix},
+\eqnlab{ex_sl5so5_v}
+\end{align}
+where
+\begin{align}
+\tilde\tau_5 &= \tau_5 + \frac{1}{2}\tau_1\tau_2, &&\tilde\tau_8 = \tau_8 + \frac{1}{6}\tau_1\tau_2\tau_3 + \frac{1}{2}\lp\tau_3\tau_5+\tau_1\tau_6\rp,\nn\\ 
+\tilde\tau_6 &= \tau_6 + \frac{1}{2}\tau_2\tau_3, &&\tilde\tau_9 = \tau_9 + \frac{1}{6}\tau_2\tau_3\tau_4 + \frac{1}{2}\lp\tau_4\tau_6+\tau_2\tau_7\rp,\nn\\ 
+\tilde\tau_7 &= \tau_7 + \frac{1}{2}\tau_3\tau_4, &&\tilde\tau_{10} = \tau_{10} + \frac{1}{24}\tau_1\tau_2\tau_3\tau_4 + \frac{1}{6}\lp\tau_3\tau_4\tau_5+\tau_1\tau_4\tau_6+\tau_1\tau_2\tau_7\rp\nn\\
+&&& \;\;\;\;\;\;\;\;+ \frac{1}{2}\lp\tau_5\tau_7+\tau_4\tau_8+\tau_1\tau_9\rp.\nn\\ 
+\end{align}
+%&= begin{pmatrix}e^{-\frac{\phi_1}{2}} & \tau_1e^{\frac{\phi_1-\phi_2}{2}} & \frac{1}{2}\lp \tau_1\tau_2+2\tau_5\rp e^{\frac{\phi_2-\phi_3}{2}} & \frac{1}{6}\lp \tau_1\tau_2\tau_3 + 3\tau_3\tau_5 + 3\tau_1\tau_6 + 6\tau_8\rp e^{\frac{\phi_3-\phi_4}{2}} & \tau_{10}e^{\frac{\phi_4}{2}}\cr 0 & e^{\frac{\phi_1-\phi_2}{2}} & \tau_2e^{\frac{\phi_2-\phi_3}{2}} & \tau_6e^{\frac{\phi_3-\phi_4}{2}} & \tau_9e^{\frac{\phi_4}{2}}\cr 0 & 0 & e^{\frac{\phi_2-\phi_3}{2}} & \tau_3e^{\frac{\phi_3-\phi_4}{2}} & \tau_7e^{\frac{\phi_4}{2}}\cr 0 & 0 & 0 & e^{\frac{\phi_3-\phi_4}{2}} & \tau_4e^{\frac{\phi_4}{2}}\cr 0&0&0&0&e^{\frac{\phi_4}{2}}\end{pmatrix}.
+In the next chapter we will make use of this vielbein for a \coset{5} parametrisation of the scalars and the 1-form gauge potentials appearing in 7-dimensional supergravity.
+\section{U-duality}
+The symmetries of the maximal supergravity are called U-duality and plays an important part in trying to understand M-theory.
+As we have mentioned before, the non-perturbative nature of M-theory makes it very difficult to deduce its microscopic degrees of freedom. 
+But the U-duality symmetry implies that $p$-branes form duality multiplets, something we will see examples of later in this thesis. 
+If the $p$-branes are expected to describe physical states at the non-perturbative quantum level, then one also have to expect that there 
+exist some sort of organizing symmetry at the quantum level. It is commonly believed that U-duality is a symmetry of the theory at the full quantum level. 
+\begin{table}
+\begin{center}
+\begin{tabular}{l|l l l l}
+Dim & E$_d$ & F$_d$ & dim[E] & dim[F] \\ \hline
+11 & 1 & 1 & 0 & 0 \\
+10, IIA & ${\mathbb R}^+$ & 1 & 1 & 0\\
+10, IIB & SL(2,${\mathbb R}$) & SO(2) & 3 & 1\\
+9 & GL(2)$\sim$SL(2,${\mathbb R}$)$\times {\mathbb R}^+$ & SO(2) & 4 & 1\\
+8 & E$_3$$\sim$SL(3,${\mathbb R}$)$\times$SL(2,${\mathbb R}$) & U(2)$\sim$SO(3)$\times$SO(2) & 11 & 4\\
+7 & E$_4$$\sim$SL(5,${\mathbb R}$) & USp(4)$\sim$SO(5) & 24 & 10\\
+6 & E$_5$$\sim$SO(5,5) & USp(4)$\times$USp(4) &45 & 20\\
+& & $\sim$ SO(5)$\times$SO(5)\\
+5 & E$_6$ & USp(8) & 78 & 36\\
+4 & E$_7$ & SU(8) & 133 & 63\\
+3 & E$_8$ & SO(16) & 248 & 120
+\end{tabular}
+\caption{The scalar coset spaces and their dimensions}
+\end{center}
+\tablab{sugra_udualities}
+\end{table}
+
+\subsection{Symmetries of pure gravity}
+At a first glance it is not completely transparent which groups should enter table 2.3. In section \secref{scalarcosets} we used the fact that the dilaton vectors ($\alpha^i$) can be considered to be positive root vectors 
+of a simple Lie algebra to show that compactified pure gravity have the symmetry ${SL(n,\rr)}/{SO(n)}$. 
+Hence, if we had started with just pure gravity in 11 dimensions it would have been simple. The $E_d$ column of table 2.3 would just have been filled with $SL(d,\rr)$ and the $F_d$ column with $SO(d)$\footnote{This is true for $d>3$. When compacting further we must also consider the dual field strengths.}.
+The ${SL(n,\rr)}$ symmetry of gravity can also be illustrated with a Dynkin diagram. 
+For pure gravity Kaluza-Klein compactified on an $D$-torus we have $D$ 1-form gauge fields with field strengths $G^i_{(2)}$ $(i=1,\dots, D)$, $D(D-1)/2$ axions with field strengths $G^{ij}_{(1)}$ ($j=1,\dots, D$ and $i<j$) and a length $D$ dilatonic vector $\vec\phi$. 
+The kinetic part of \eqnref{sugra_all_dim} becomes
+\begin{equation}
+\mathcal L_{pure} =-\frac{1}{2}(\partial \vec\phi)^2 - \frac{1}{2}\sum_{j=1}^D\sum_{i<j}e^{\vec{\alpha_{ij}} \cdot\vec\phi} G^{ij}_{(1)}\cdot G^{ij}_{(1)} - \frac{1}{2}\sum_{i=1}^De^{\vec\alpha_i\cdot\vec\phi} G^{i}_{(2)}\cdot G^{i}_{(2)}.
+\eqnlab{lagrangian_pure_gravity}
+\end{equation}
+To get further we need to introduce the vectors $\vec\gamma$ and $\vec\varphi_i$ with $d=11-D$ components for $D$ compactified dimensions, given by
+\begin{align}
+\vec\gamma &= 3(\sigma_1,\sigma_2,\cdots,\sigma_d), \\
+\vec\varphi_i &= (\underbrace{0,0, \cdots, 0}_{i-1}, (10-i)\sigma_i,\sigma_{i+1}, \cdots, \sigma_d),
+\end{align}
+where
+\begin{equation}
+\sigma_i=\sqrt{2/(10-i)(9-i)}.
+\end{equation}
+The scalar products formed with these vectors become
+\begin{equation}
+\vec\gamma \cdot \vec\gamma = {2(11-D)\over D-2}, \hspace{0.5cm} \vec\gamma \cdot \vec\varphi_i = {6 \over D-2}, \hspace{0.5cm} \vec\varphi_i \cdot \vec\varphi_j = 2\delta_{ij} + {2 \over D-2}.
+\eqnlab{vgyuhb}
+\end{equation}
+The dilaton vectors in \eqnref{lagrangian_pure_gravity} are constants that characterize the couplings of the dilatonic scalars to the various gauge fields.
+It turns out that they can be related to the vectors $\vec\gamma$ and $\vec\varphi_i$ according to\cite{lu_classification}
+\begin{equation}
+\vec\alpha_i=-\vec\varphi_i, \hspace{1cm} \vec\alpha_{ij}= -\vec\varphi_i + \vec\varphi_j.
+\eqnlab{njiokm}
+\end{equation}
+Now define the vector $\vec\eta_i$ as
+\begin{equation}
+\vec\eta_i=\vec\alpha_i + {3\over 11-D}\vec\gamma.
+\end{equation}
+It follows from \eqnref{vgyuhb} and \eqnref{njiokm} that
+\begin{equation}
+\vec\eta_i \cdot \vec\gamma=0, \hspace{1cm} \vec\alpha_{ij}=\vec\eta_i - \vec\eta_j,
+\end{equation}
+which means that we can split the original dilaton vector into $\vec\gamma \phi + \vec\eta_i \phi$ where the dilaton $\vec\gamma \phi$ is perpendicular to the other ($d-1$) dilatons $\vec\eta_i \phi$. 
+For $\vec\alpha_{ij}$ we get the sum rule
+\begin{equation}
+\vec\alpha_{ij}=\vec\alpha_{ik}+\vec\alpha_{kj},
+\end{equation}
+and hence all $\vec\alpha_{ij}$ can be obtained by adding mulitplets of $\vec\alpha_{i,i+1}$ with positive integer coefficients. 
+Thus $\vec\alpha_{i,i+1}$ can be considered as simple root vectors of the algebra. In the Dynkin diagram every simple root give rise to a circle, and since we in 
+our case have ($d-1$) roots that are not perpendicular we will get ($d-1$) circles connected with a straight line (figure \figref{sugra_bollar_pure}).
+
+
+\newcommand\boll{\circle*{3}}
+
+
+\setlength{\unitlength}{1.0mm}
+\begin{figure}[h]
+\begin{center}
+\begin{picture}(65,10)(0,0)
+\put(0,7){\makebox(0,0){$\vec\alpha_{12}$}}
+\put(10,7){\makebox(0,0){$\vec\alpha_{23}$}}
+\put(60,7){\makebox(0,0){$\vec\alpha_{n-1,n}$}}
+\put(0,0){\boll}
+\put(10,0){\boll}
+\put(20,0){\boll}
+\put(50,0){\boll}
+\put(60,0){\boll}
+\path(0,0)(10,0)
+\path(10,0)(20,0)
+\path(20,0)(30,0)
+\path(40,0)(50,0)
+\path(50,0)(60,0)
+\put(35,0){\makebox(0,0){$\cdots$}}
+\end{picture}
+\caption{Symmetries of pure gravitational reduction}
+\figlab{sugra_bollar_pure}
+\end{center}
+\end{figure}
+Those familiar with group theory and Dynkin diagrams recognize figure \figref{sugra_bollar_pure} as the 
+Dynkin diagram of ${SL(n,\rr)}$ and we can conclude that the dilaton vectors $\alpha_{ij}$ give 
+rise to the complete set of simple root vectors for ${SL(n,\rr)}$. We can also note that including the perpendicular root 
+$\vec\gamma$ turns the symmetry into ${SL(n,\rr) \times \rr}=GL(n,\rr)$.
+
+\subsection{Symmetries of reduced gravity and fields}
+It is now time to look into the symmetries of reduced gravity and the reduced fields combined, i.e. when the $3$-form potential 
+$\hat C$ is not set to zero. Since $\hat C$ is the only gauge field in 11 dimensions, only the field strength $\hat G$ will be included in the Lagrangian before the reduction.
+To get the correct number of fields we note that every $p$-form potential will descend to give a $p$-form and a $(p-1)$-form potential when reduced one step. (We will see lots of examples of this in the next chapter.)
+This means that we will always have only one $3$-form potential no matter how many dimensions that have been compactified. 
+We can also conclude that no $1$-form potentials can be created until the reduction step after the first $2$-form was created ($d\le 9$), 
+and no $0$-form potential can arise until the step after the first $1$-form potential was created ($d\le 8$).
+In general the number of $p$-forms coming from an $q$-form reduced on $T^D$ is $\binom{D}{q-p}$, with $p=q-D,\dots, q$.
+We thus add the fields coming from the reduction of $\hat C$ to the pure gravity \eqnref{lagrangian_pure_gravity} and get
+\begin{align}
+\mathcal L &= \mathcal L_{pure} - \frac{1}{2}e^{\vec\beta\cdot\vec\phi} G_{(4)}\cdot G_{(4)} - \frac{1}{2}\sum_{i=1}^{D}e^{\vec\beta_i\cdot\vec\phi} G^{i}_{(3)}\cdot G^{i}_{(3)}\nn\\
+& - \frac{1}{2}\sum_{j=1}^{D}\sum_{i<j}e^{\vec\beta_{ij}\cdot\vec\phi} G^{ij}_{(2)}\cdot G^{ij}_{(2)} - \frac{1}{2}\sum_{k=1}^D\sum_{j<k}\sum_{i<j}e^{\vec\beta_{ijk}\cdot\vec\phi} G^{ijk}_{(1)}\cdot G^{ijk}_{(1)}.
+\end{align}
+We see that we get new $\beta$-vectors that characterize the coupling between the dilaton scalars and the gauge fields. These can also be related to $\vec\gamma$ and $\vec\varphi_i$ according to
+\begin{align}
+\vec\beta=-\vec\gamma, \hspace{0.5cm} \vec\beta_i = \vec\varphi_i - \vec\gamma, \hspace{0.5cm} \vec\beta_{ij} =\vec\varphi_i +\vec\varphi_j- \vec\gamma, \hspace{0.5cm} \vec\beta_{ijk} =\vec\varphi_i +\vec\varphi_j+\vec\varphi_k - \vec\gamma.
+\end{align}
+To find what symmetry group that describes the symmetry of the theory in each dimension we must now find the subset of dilaton vectors 
+that corresponds to the simple roots of the Lie algebra. In other words, we must find the set of dilaton vectors that allows us 
+to write all the other vectors as a linear combination of the simple roots with positive integer coefficients. But much of the problem have already been solved. 
+We saw above that all the $\vec\alpha_{ij}$ could be expressed by combinations of $\vec\alpha_{i,i+1}$. For the $\vec\beta$-vectors it is clear 
+that we only need $\vec\beta_{ijk}$ to express all the others. But we can also write $\vec\beta_{ijk}$ as $\vec\beta_{123}$ plus a linear combination of $\vec\alpha_{ij}$ and thus also of $\vec\alpha_{i,i+1}$.
+Hence the simple roots of the Lie algebra is $\vec\alpha_{i,i+1}$ and $\vec\beta_{123}$.
+
+So how will the Dynkin diagrams look like for the different dimensions? When two dimensions are compactified we will only have the root vector $\vec\alpha_{12}$ 
+and the Dynkin diagram will only be a single circle. This corresponds to the ${SL(2,\rr)}$ symmetry for 9-dimensional supergravity in table 2.3. When 
+three dimensions are compactified, the number of reduced dimensions are enough to create the $0$-form potential that give rise to the $\vec\beta_{ijk}$-vector and thus we will have the 
+root vectors $\vec\alpha_{12}$, $\vec\alpha_{23}$ and $\vec\beta_{123}$. The first two will however be perpendicular to the third one and the Dynkin diagram will be that of figure \figref{sugra_bollar_8dim}
+and the corresponding symmetry is ${SL(2,\rr)} \times {SL(3,\rr)}$.
+\setlength{\unitlength}{1.0mm}
+\begin{figure}[h]
+\begin{center}
+\begin{picture}(65,20)(0,0)
+\put(0,7){\makebox(0,0){$\vec\alpha_{12}$}}
+\put(10,7){\makebox(0,0){$\vec\alpha_{23}$}}
+\put(20,17){\makebox(0,0){$\vec\beta_{123}$}}
+\put(0,0){\boll}
+\put(10,0){\boll}
+\put(20,10){\boll}
+\path(0,0)(10,0)
+\end{picture}
+\caption{The symmetry of 8-dimensional supergravity}
+\figlab{sugra_bollar_8dim}
+\end{center}
+\end{figure}
+When four dimensions are compactified an additional $\vec\alpha_{34}$ root vector will be added, connecting to both $\vec\alpha_{23}$ and $\vec\beta_{123}$, giving a straight dynkin diagram of 4 nodes. Thus the symmetry in 7 dimensions should be ${SL(5,\rr)}$.
+For each new dimension compactified a new node corresponding to an $\alpha$ root will be added to the diagram, giving the Dynkin diagrams for the global symmetry groups. 
+This will go on until the number of unreduced dimensions are three, since then things get a little more complicated. 
+The final Dynkin diagram following this so called A-D-E classification will be that of figure \figref{sugra_bollar_mixed} corresponding to the $E_8$ symmetry in 3-dimensional supergravity. The complete 
+list of all the symmetries for the different dimensions can be found in table 2.3. 
+\begin{figure}[h]
+\begin{center}
+\begin{picture}(65,20)(0,-6)
+\put(0,-5.77){\boll}
+\put(10,-5.77){\boll}
+\put(20,0){\boll}
+\put(30,0){\boll}
+\put(40,0){\boll}
+\put(50,0){\boll}
+\put(60,0){\boll}
+\put(10,5.77){\boll}
+\path(0,-5.77)(10,-5.77)
+\path(10,-5.77)(20,0)
+\path(20,0)(30,0)
+\path(30,0)(40,0)
+\path(40,0)(50,0)
+\path(50,0)(60,0)
+\path(10,5.77)(20,0)
+\put(0,0){\makebox(0,0){$\vec\alpha_{12}$}}
+\put(10,0){\makebox(0,0){$\vec\alpha_{23}$}}
+\put(10,12){\makebox(0,0){$\vec\beta_{123}$}}
+\put(20,5){\makebox(0,0){$\vec\alpha_{34}$}}
+\put(30,5){\makebox(0,0){$\vec\alpha_{45}$}}
+\put(40,5){\makebox(0,0){$\vec\alpha_{56}$}}
+\put(50,5){\makebox(0,0){$\vec\alpha_{67}$}}
+\put(60,5){\makebox(0,0){$\vec\alpha_{78}$}}
+\end{picture}
+\caption{Symmetries of reduction of both gravity and fields}
+\figlab{sugra_bollar_mixed}
+\end{center}
+\end{figure}
+To get the Dynkin diagram figure \figref{sugra_bollar_mixed} we have started with 11 dimensional supergravity and dimensionally reduced on tori giving roots $\alpha_{ii+1}$ corresponding to pure gravity and $\beta_{ijk}$ corresponding to the reduction of the field content. 
+One can equally well interpret the diagram as if we started with type IIB supergravity and dimensionally reduced it on tori as seen in figure \figref{sugra_bollar_mixed_IIB}\cite{iib_ade}.
+\begin{figure}[h]
+\begin{center}
+\begin{picture}(65,20)(0,-6)
+\put(0,-5.77){\boll}
+\put(10,-5.77){\boll}
+\put(20,0){\boll}
+\put(30,0){\boll}
+\put(40,0){\boll}
+\put(50,0){\boll}
+\put(60,0){\boll}
+\put(10,5.77){\boll}
+\path(0,-5.77)(10,-5.77)
+\path(10,-5.77)(20,0)
+\path(20,0)(30,0)
+\path(30,0)(40,0)
+\path(40,0)(50,0)
+\path(50,0)(60,0)
+\path(10,5.77)(20,0)
+\put(0,0){\makebox(0,0){$\vec d$}}
+\put(10,0){\makebox(0,0){$\vec\beta^{NS}_{23}$}}
+\put(10,12){\makebox(0,0){$\vec\alpha_{12}$}}
+\put(20,5){\makebox(0,0){$\vec\alpha_{23}$}}
+\put(30,5){\makebox(0,0){$\vec\alpha_{34}$}}
+\put(40,5){\makebox(0,0){$\vec\alpha_{45}$}}
+\put(50,5){\makebox(0,0){$\vec\alpha_{56}$}}
+\put(60,5){\makebox(0,0){$\vec\alpha_{67}$}}
+\end{picture}
+\caption{Symmetries of reduction of both gravity and fields of type IIB supergravity. $\vec d$ and $\vec\beta^{NS}_{23}$ are dilaton vectors of the IIB theory.}
+\figlab{sugra_bollar_mixed_IIB}
+\end{center}
+\end{figure}
+In 8 dimensions with global symmetry $SL(3,\rr)\times SL(2,\rr)$ the two viewpoints are extra distinguished, according to figure \figref{sugra_bollar_8dim} we could either view the $SL(3,\rr)$ as coming from the reduction of pure 11 dimensional gravity and the $SL(2,\rr)$ as a hidden enhancement symmetry due to the field reductions or it could come from pure IIB gravity reduction with $SL(3,\rr)$ as hidden symmetry.      
+From this observation it looks like IIB with symmetry $SL(2,\rr)$ can be interpreted geometrically as the part of a dimensional reduction of a 12 dimensional theory.
+Such a theory has been named F-theory and although giving some promising results it must most likely have 2 time dimensions, which is something that is not supported by experiments and thus have to be worked around one way or another.  
+
+ 
+
+
+
+
+%\section{SL(2,R) example on compactness}
+%Now look at an arbitrary traceless matrix m
+%\begin{equation}
+%m = \toto{a}{b}{c}{-a},
+%\end{equation}
+%a,b and c are real numbers. Take the opportunity to define $d^2=a^2+bc$, so $m^2=d^2\id$ and calculate
+%\begin{align}
+%\exp(m) & = \sum_{n=0}^\infty\frac{1}{n!}m^n = \id + m + \frac{d^2}{2!}\id + \frac{d^2}{3!}m + \frac{d^4}{4!}\id + \frac{d^4}{5!}m + \cdots\nn\\
+%& = \id\cosh{d} + \frac{1}{d}m\sinh{d}
+%\end{align}
+%If we let the m matrix generate a one-dimensional lie group, we get 
+%\begin{equation}
+%M=\exp(\tau m) = \id\cosh\lp d\tau\rp + \frac{1}{d}m\sinh\lp d\tau\rp
+%\end{equation}
+%If $d^2 > 0$ the matrix elements of M are unbounded in $\tau$ and the constructed lie group is hence not compact. By imposing the Lorentz orthogonality condition $M^T\eta M=\eta$ we get a parametrisation of the noncompact SO(1,1) subgroup of SL(2,$\rr$)  
+%\begin{equation}
+%SO_{1,1}=\toto{}{}{}{}
+%\end{equation}
+%When $d=0$ we have
+%\begin{equation}
+%M = \exp(\tau m) = \id + m\tau
+%\end{equation}
+%which is also a noncompact group.
+%When $d^2 < 0$, let $d=i\mu$ with $\mu$ real and use $\cosh(i\mu)=\cos(\mu)$ and $\sinh(i\mu)=i\sin(\mu)$ to get
+%\begin{equation}
+%M = \exp(\tau m) = \id\cos\lp\mu\tau\rp + \frac{1}{\mu}m\sin\lp\mu\tau\rp 
+%\end{equation}
+%Now the only $\tau$ dependence comes from $\sin(\mu\tau)$ and $\cos(\mu\tau)$ and hence the matrix elements are bounded.
+%By imposing the orthogonality condition $M^TM=\id$ we got a parametrisation of the compact subgroup SO(2) of SL(2,$\rr$)
+%\begin{equation}
+%SO_{2}=\toto{}{}{}{}
+%\eqnlab{so2}
+%\end{equation}
+%\\
+%By setting $a=\tau_3$, $b=\tau_1$ and $c=\tau_2$ (or $b=\tau_1-\tau_2$ and $c=\tau_1+\tau_2$ to get an analogy to the generators used before), we have gotten ourselves a parametrisation of SL(2,$\rr$).
+%\\

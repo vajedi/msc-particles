@@ -1,0 +1,874 @@
+\chapter{128 bit integer arithmetics}
+\chlab{int128}
+To solve the duality equations in chapter \chref{csolutions} we need to expand the equations to very high orders, implying very large coefficients due to the binomial factors in the expansion of $(\det G)^{-1/2}$. 
+The current PC:s use a 32 bit word length ($\sim$ 9 decimal digits) and Delphi, the programming language we use, has support for 64 bit integers ($\sim$ 19 decimal digits) in its system.
+To handle sufficiently large expansions with numbers larger than this we need to include 128 bit integer representations ($\sim$ 39 decimal digits) and some basic arithmetic operations on these. 
+The easiest way to include such large integers would be to borrow the work of someone else, but to our astonishment we can't find such a work on the internet. Thus we have to write it ourselves and include it in this thesis so future solvers of grandiose duality equations can have the chance to find it.       
+
+To implement 128 bit integers is one of the cases where it is actually motivated to write the code directly using x86 assembler.
+To begin with we need the code to be fast since we will use the 128 bit arithmetic operations a lot.
+An even more important motivation is that we need operations not accessible by ordinary code, e.g. shift over 32-bit boundaries, bit string scans, addition with carry bit and subtraction with borrow bit. Of course we could do this in a complicated way using standard operations in Delphi, but that would give unnecessarily big performance flaws and would probably be even harder to implement than an assembler analogue.    
+To get started it is a good idea to check how the compiler translates the 64 bit integer operations to machine code and try to generalize to 128 bits (The Intel Architecture Manual\cite{intel} will be in handy).
+
+\section{General assembler guidelines}
+One problem when writing code in assembler is that there is always a big number of choices like which instructions to use and how to order them.
+Each problem can be solved in so many ways and it is hard to know which one is the fastest.
+We will try to follow the general guidelines in \cite{intelopt} to write fast integer code. The main points are
+\begin{itemize}
+\item Minimize branch count, i.e. avoid conditional jumps as far as possible. For the branches we cannot avoid, we should (if there is a choice) branch for the least probable condition result and fall through for the most probable result in an if statement and put the condition last in loops. This is because the branch predictor assumes, if there is no branch history for the current instruction, that a fall through will occur if the destination lies at a higher memory address and that a branch jump will occur when the destination is a lower memory address. 
+\item Minimize memory accesses count, use the registers to keep variables as long as they are needed. Instructions involving only registers are in general faster executed than instructions involving memory accesses.
+\item Pair pairable instructions so the processor can run them simultaneously in the two integer pipelines and do not pair other instructions, since that would be unnecessary work (Use data in \cite{intelopt} to see which instructions are pairable and how many $\mu$ops each instruction needs). Further do not use registers that has been changed the previous instruction, doing that prevents pairing. 
+\item For fast cache memory access we should align our 32 byte coefficients to memory addresses divisible by 32 (the cache is read in blocks of 32 bytes), but that would increase either the memory size or the complexity of the data storage, so we store over cache boundaries with a slight (the data is still 4 byte aligned) performance loss.
+\end{itemize}
+An additional point should be to use smart algorithms, which of course can have greater effects than any possible optimizations using the points stated above.
+
+\section{The Int128 type}
+To represent the 128 bit integers we use the type Int128 which is simply defined as a structure of four succeeding 32 bit integers. Furthermore we define the type pInt128 as a pointer to an Int128. 
+\begin{verbatim}
+type
+  Int128 = record
+    data1,data2,data3,data4:Int32;
+   end;
+  pInt128 = ^Int128;
+\end{verbatim}
+We use the Little endian storage format, meaning that the least significant Int32 (= data1) is at the lowest memory address, the bytes within each Int32 are by machine default also Little endian\footnote{The bits within each byte is ordered least significant bit at highest address, but we will never see this when using machine instructions}. 
+The integers should be signed so we use two's complement to store the integers in memory where the most significant bit in data4 is used to indicate sign, i.e. the positive numbers $0,1,\dots,2^{127}-1$ are represented by (in hexadecimal code) $\mbox{000}\dots\mbox{00},\mbox{000}\dots\mbox{01},\dots,\mbox{7FF}\dots\mbox{FF}$ and the negative numbers $-1,-2,\dots,-2^{127}$ becomes $\mbox{FFF}\dots\mbox{FF},\mbox{FFF}\dots\mbox{FE},\dots,\mbox{800}\dots\mbox{00}$. Note that this is not the order in which the integers are actually stored in memory.
+We define the following 128 bit functions to handle all operations on Int128 needed: 
+{\tiny
+\begin{verbatim}
+function IsZero128(x:pInt128):boolean;
+function IsOne128(x:pInt128):boolean;
+function IsNeg128(x:pInt128):boolean;
+function IsPos128(x:pInt128):boolean;
+function IsEqual128(x,y:pInt128):boolean;
+procedure Neg128(x:pInt128);
+procedure Abs128(x:pInt128);
+procedure Add_128_128(x,y:pInt128);
+procedure Add_128_128_128(res,x,y:pInt128);
+procedure Mul_128_128_128(res,x,y:pInt128);
+procedure ReduceFraction128(frac:pointer);
+\end{verbatim}
+}
+\noindent
+plus some conversion routines between Int128, Int32 and (text)strings.
+The first five conditional functions are easy to implement and we illustrate them all with one example    
+{\tiny
+\begin{verbatim}
+function IsPos128(x:pInt128):boolean;
+// Result:=x > 0
+// Params: eax = x; al = Result;
+asm
+ cmp [eax+12], 0     // Compare x.data4 - 0 to 0
+ jnz @returnSign     // Return sign if x.data4 <> 0    
+ cmp [eax+8],0       // Compare x.data3 - 0 to 0
+ ja @returnTrue      // Return true if unsigned x.data3 > 0
+ cmp [eax+4],0       // Compare x.data2 - 0 to 0
+ ja @returnTrue      // Return true if unsigned x.data3 > 0
+ cmp [eax],0         // Compare x.data1 - 0 to 0
+ ja @returnTrue      // Return true if unsigned x.data3 > 0
+                     // Return false on fallthrough
+ mov al, 0           // Set false result
+ ret                 // Return from function
+@returnSign:
+ setg al             // Set result = signed positive
+ ret                 // Return from function
+@returnTrue:
+ mov al, 1           // Set true result
+end;
+\end{verbatim}
+}
+\noindent
+which returns 1 in register al if the argument x is larger than 0 and returns 0 otherwise.
+The negations in Neg128 and Abs128 and the additions in Add\_128\_128 (Add with result in first parameter) and Add\_128\_128\_128 are almost as easy. We illustrate them all with one example 
+{\tiny
+\begin{verbatim}
+procedure Neg128(x:pInt128);
+// var x:=-x;
+// Params: eax = @x;
+asm
+ xor ecx, ecx        // ecx:=0
+ neg [eax]           // x.data1:=- x.data1, sets flags
+ sbb ecx, [eax+4]    // ecx:=0 - x.data2 - Borrow
+ mov edx, 0          // edx:=0, preserves flags unlike xor
+ mov [eax+4], ecx    // Write back the negation of x.data2
+ sbb edx, [eax+8]    // edx:=0 - x.data3 - Borrow
+ mov ecx, 0          // ecx:=0
+ mov [eax+8], edx    // Write back the negation of x.data3
+ sbb ecx, [eax+12]   // ecx:=0 - x.data4 - Borrow
+{$IFOPT Q+}          // If overflow check is on
+ jno @noOverflow
+ call IntNegOverflow // Cannot negate $800000...000 =>error
+@noOverflow:
+{$ENDIF}
+ mov [eax+12], ecx   // Write back the negation of x.data4
+end;
+\end{verbatim}
+}
+\noindent
+that negates the value of x. The additions are done similarly with one "add" and 3 "adc" (add with carry) instructions.
+
+Now there are only 2 functions left, but there is a reason they stand last. These functions will be more complex and we start with the multiplication function Mul\_128\_128\_128.
+For the multiplication we finally, after 16 years of impatient wait, find an application for the elementary school second grade multiplication algorithm, which in the $2^{32}$ base between the 128 bit integers $x=x_4:x_3:x_2:x_1$ and $y=y_4:y_3:y_2:y_1$ becomes\\\\
+\setlength{\unitlength}{1.0mm}
+\begin{equation}
+\begin{picture}(40,35)(0,0)% (size)(offset)
+%\path(0,0)(40,0)(40,35)(0,35)(0,0) % Frame (remove)
+\put(0,0){
+\put(5,2.5){\makebox(0,0){$r_{7}$}}
+\put(10,2.5){\makebox(0,0){$r_{6}$}}
+\put(15,2.5){\makebox(0,0){$r_{5}$}}
+\put(20,2.5){\makebox(0,0){$r_{4}$}}
+\put(25,2.5){\makebox(0,0){$r_{3}$}}
+\put(30,2.5){\makebox(0,0){$r_{2}$}}
+\put(35,2.5){\makebox(0,0){$r_{1}$}}
+
+\put(-2.5,5){\line(1,0){40}}
+
+\put(0,7.5){\makebox(0,0){$+$}}
+\put(5,7.5){\makebox(0,0){$z_{44}$}}
+\put(10,7.5){\makebox(0,0){$z_{34}$}}
+\put(15,7.5){\makebox(0,0){$z_{24}$}}
+\put(20,7.5){\makebox(0,0){$z_{14}$}}
+
+\put(10,12.5){\makebox(0,0){$z_{43}$}}
+\put(15,12.5){\makebox(0,0){$z_{33}$}}
+\put(20,12.5){\makebox(0,0){$z_{23}$}}
+\put(25,12.5){\makebox(0,0){$z_{13}$}}
+
+\put(15,17.5){\makebox(0,0){$z_{42}$}}
+\put(20,17.5){\makebox(0,0){$z_{32}$}}
+\put(25,17.5){\makebox(0,0){$z_{22}$}}
+\put(30,17.5){\makebox(0,0){$z_{12}$}}
+
+\put(20,22.5){\makebox(0,0){$z_{41}$}}
+\put(25,22.5){\makebox(0,0){$z_{31}$}}
+\put(30,22.5){\makebox(0,0){$z_{21}$}}
+\put(35,22.5){\makebox(0,0){$z_{11}$}}
+
+\put(5,27.5){\makebox(0,0){$c_{6}$}}
+\put(10,27.5){\makebox(0,0){$c_{5}$}}
+\put(15,27.5){\makebox(0,0){$c_{4}$}}
+\put(20,27.5){\makebox(0,0){$c_{3}$}}
+\put(25,27.5){\makebox(0,0){$c_{2}$}}
+\put(30,27.5){\makebox(0,0){$c_{1}$}}
+
+\put(2.5,30){\line(1,0){35}}
+
+\put(15,32.5){\makebox(0,0){$\cdot$}}
+\put(20,32.5){\makebox(0,0){$y_{4}$}}
+\put(25,32.5){\makebox(0,0){$y_{3}$}}
+\put(30,32.5){\makebox(0,0){$y_{2}$}}
+\put(35,32.5){\makebox(0,0){$y_{1}$}}
+
+\put(20,37.5){\makebox(0,0){$x_{4}$}}
+\put(25,37.5){\makebox(0,0){$x_{3}$}}
+\put(30,37.5){\makebox(0,0){$x_{2}$}}
+\put(35,37.5){\makebox(0,0){$x_{1}$}}
+
+\put(2,6){\dashbox{1}(15,23.5){}}
+
+
+%\path(2.5,0)(17.5,0)(17.5,24)(2.5,24)(2.5,0) % Frame (remove)
+
+}
+\end{picture}
+\eqnlab{int128_mulalg}
+\end{equation}
+where $z_{ij}=x_iy_j$, $c_i$ the carry from the addition on the previous column and $r_i$ is the $i$:th result component in the $2^{32}$ base given by addition of the column over it.
+For the product to be a valid Int128 we must have $r_7=r_6=r_5=0$, i.e. all symbols in the dashed box must be zeroes (or hexadecimal FFFFFFFF:s, indicating the sign extension of a negative number).  
+Furthermore the non sign information of the product (bit 0\dots 126) isn't allowed to change the value of the 127:th (sign) bit.
+Checking this product for overflow (calculating and checking all the symbols in the dashed box plus checks for overflow to the 127:th bit) would almost take as long time as calculating the valid symbols. Therefore we, like Delphi in the 64 bit case\footnote{It would have saved us from much trouble if they had actually told us in the documentation rather than in the source code that the overflow check on most 64 bit integer operations wasn't supported yet.}, ignore the overflow bits, but unlike Delphi we at least make a sign consistency test, checking if the result has the correct sign knowing the operands signs. This should detect half the overflows of multiplications between completely random Int128 operands. 
+In assembler the algorithm \eqnref{int128_mulalg} becomes 
+%\makebox[\textwidth]{\hrulefill}
+\begin{multicols}{2}
+{\tiny
+\begin{verbatim}
+procedure MulPro_128_128_128(res,x,y:pInt128);
+// dst:=x * y;
+// Params: eax = @dst; edx = @x; ecx = @y;
+asm
+// Set up the stack frame (x and y might change if res=x|y)
+ push esi
+ push ebx
+ push [ecx+12]
+ push [ecx+8]
+ push [ecx+4]
+ push [ecx]
+ push [edx+12]
+ push [edx+8]
+ push [edx+4]
+ push [edx]
+
+// y = (y4:y3,y2,y1) = [ESP+28]:[ESP+24]:[ESP+20]:[ESP+16]
+// x = (x4:x3:x2:x1) = [ESP+12]:[ESP+8]:[ESP+4]:[ESP]
+
+ mov esi, eax        // esi:=@res
+ mov eax, [esp+16]   // eax:=y1
+ mul [esp]           // edx:eax:=y1*x1
+ mov ebx, edx        // ebx:=(y1*x1).hi,ebx now stores res2
+ mov [esi], eax      // @res^.data1:=(y1*x1).lo
+
+ mov eax, [esp+16]   // eax:=y1
+ xor ecx, ecx        // ecx:=0
+ mul [esp+4]         // edx:eax:=y1*x2
+ add ebx, eax        // ebx:=(y1*x1).hi+(y1*x2).lo
+ mov eax, [esp+20]   // eax:=y2
+ adc ecx, edx        // ecx:=(y1*x2).hi+carry
+
+ mul [esp]           // edx:eax:=y2*x1
+ add ebx, eax        // ebx:=(y1*x1).hi+(y1*x2).lo
+                     //   +(y2*x1).lo
+ adc ecx, 0          // ecx:=(y1*x2).hi+carry, o.f. impos.
+ mov [esi+4], ebx    // @res^.data2:=(y1*x1).hi+(y1*x2).lo
+                     //   +(y2*x1).lo
+ xor ebx, ebx        // ebx:=0, ebx is now storage for res4
+ mov eax, [esp+16]   // eax:=y1
+ add ecx, edx        // ecx:=(y1*x2).hi+(x1*y2).hi
+ adc ebx, 0          // ebx:=0+carry
+
+ mul [esp+8]         // edx:eax:=y1*x3
+ add ecx, eax        // ecx:=(y1*x2).hi+(x1*y2).hi
+                     //   +(y1*x3).lo
+ mov eax, [esp+20]   // eax:=y2
+ adc ebx, edx        // ebx:=(y1*x3).hi+carry
+
+ mul [esp+4]         // edx:eax:=y2*x2
+ add ecx, eax        // ecx:=(y1*x2).hi+(x1*y2).hi
+                     //   +(y1*x3).lo+(y2*x2).lo
+ mov eax, [esp+24]   // eax:=y3
+ adc ebx, edx        // ebx:=(y1*x3).hi+(y2*x2).hi+carry
+                     //   (Ignore overflow)
+ mul [esp]           // edx:eax:=y3*x1
+ add ecx, eax        // ecx:=(y1*x2).hi+(x1*y2).hi
+                     //   +(y1*x3).lo+(y2*x2).lo+(y3*x1).lo
+ adc ebx, edx        // ecx:=(y1*x3).hi+(y2*x2).hi
+                     //   +(y3*x1).hi+Carry (Ign. overflow)
+ mov eax, [esp+12]   // eax:=x4
+ mov [esi+8], ecx    // @res^.data3:=(y1*x2).hi+(x1*y2).hi
+                     //   +(y1*x3).lo+(y2*x2).lo+(y3*x1).lo
+
+{$IFOPT Q+}          // If overflow check is on
+ mov ecx, eax        // ecx:=x4, check sign using ecx
+{$ENDIF}
+ mul [esp+16]        // edx:eax:=x4*y1
+ add ebx, eax        // ebx:=(y1*x3).hi+(y2*x2).hi
+                     //   +(y3*x1).hi+(x4*y1).lo (Ign o.f.)
+ mov eax, [esp+20]   // eax:=y2
+ mul [esp+8]         // edx:eax:=y2*x3
+ add ebx, eax        // ebx:=(y1*x3).hi+(y2*x2).hi
+                     //   +(y3*x1).hi+(x4*y1).lo+(y2*x3).lo
+                     // (Ignore overflow)
+ mov eax, [esp+24]   // eax:=y3
+ mul [esp+4]         // edx:eax:=y3*x2
+ add ebx, eax        // ebx:=(y1*x3).hi+(y2*x2).hi
+                     //   +(y3*x1).hi+(x4*y1).lo+(y2*x3).lo
+                     //   +(y3*x2).lo (Ignore overflow)
+ mov eax, [esp+28]   // eax:=y4
+{$IFOPT Q+}          // If overflow check is on
+ xor ecx, eax        // ecx:=x4 xor y4
+{$ENDIF}
+ mul [esp]           // edx:eax:=y4*x1
+ add ebx, eax        // ebx:=(y1*x3).hi+(y2*x2).hi
+                     //   +(y3*x1).hi+(x4*y1).lo+(y2*x3).lo
+                     //   +(y3*x2).lo+(y4*x1).lo (Ign o.f.)
+ mov [esi+12], ebx   // @res^.data4:=(y1*x3).hi+(y2*x2).hi
+                     //   +(y3*x1).hi+(x4*y1).lo+(y2*x3).lo
+                     //   +(y3*x2).lo+(y4*x1).lo (Ign o.f.)
+{$IFOPT Q+}          // If overflow check is on
+ mov eax, [esi]      // eax:=res1
+ test ebx, ebx       // Check whether ebx=res4 is nonzero
+ jnz @resNonZero
+ mov edx, [esi+4]    // edx:=res2
+ test eax, eax       // Check whether eax=res1 is nonzero
+ jnz @resNonZero
+ mov eax, [esi+8]    // eax:=res3
+ test edx, edx       // Check whether edx=res2 is nonzero
+ jnz @resNonZero
+ test eax, eax       // Check whether eax is zero
+ jz @maybeNoOverflow
+@resNonZero:         // res is nonzero and the sign bit
+                     //   is sgn(x) xor sqn(y)
+ xor ecx, ebx        // esi:=res4 xor x4 xor y4
+ jns @maybeNoOverflow // if and odd number of minuses in x,
+                     //   y,res an error must have occured
+ call IntMulSignOverflow
+@maybeNoOverflow:
+{$ENDIF}
+ add esp, 32         // Reset the stack pointer
+ pop ebx
+ pop esi
+end;
+\end{verbatim}
+}
+\end{multicols}
+
+\subsection{Quotient reduction}
+If you thought the multiplication was tedious you should probably rip out the remaining pages, the division will not be as easy.
+Since we chose to represent the coefficients as quotients between two 128 bit integers we can implement divisions as multiplication with the denominator. 
+To avoid overflow we need to reduce the quotient coefficients by their greatest common divisor (gcd), i.e. if the coefficient is $x/y$ we want to find the largest factor $z=\gcd(x,y)$, shared by both x and y, so $x\rightarrow x/z$ and $y\rightarrow y/z$ becomes the reduced quotient.
+
+We base our reduction algorithm on an GCD algorithm made up by J. Stein in 1967\cite{knuth}, which is based on the following facts
+\begin{itemize}
+\item If $x$ and $y$ are even, then $\gcd(x,y)=2\cdot\gcd(x/2,y/2)$, meaning we can start by shifting x and shifting y N bits to the right, i.e. dividing by $2^N$, where N is the least significant nonzero bit in either x or y (remember that the bits are numbered 0,1,2,\dots).
+\item If $x$ even and $y$ odd, then because 2 is not common to an even and an odd number $\gcd(x,y)=\gcd(x/2,y)$, meaning we can reduce the gcd from $\gcd(x,y)=\gcd(x',y)$, where M is the least significant nonzero bit in x and $x'=x/2^M$.    
+\item If $x$ and $y$ are odd, then $\gcd(x,y)=\gcd(x',y')$, where $x'=\max(x,y)-\min(x,y)$ and $y'=\min(x,y)$ (this is because any number that is a factor of both $x$ and $y$ must also be a factor of $x-y$ and vice versa) so we can come back to the previous step with $x'$ even and $y'$ odd. 
+\item If $x = y$, then $\gcd(x,y) = x = y$. 
+\end{itemize}
+Thus the algorithm is to first divide $x$ and $y$ by $2^N$, using fact 2 and 3 successively until the transformed variables becomes equal, $x'=y'$. Thus $z=\gcd(x,y)=2^N\gcd(x',y')=2^Nx'$ should be divided from both x and y. The factor $2^N$ can easily be shifted away already in the gcd-algorithm.   
+
+\subsubsection{Division without remainder}
+Name the bits of the 128 bit integers $x$, $y$ and $q$ as 
+\begin{align}
+x&=x_{127}:x_{126}:\dots:x_1:x_0\nn\\
+y&=y_{127}:y_{126}:\dots:y_1:y_0\nn\\
+q&=q_{127}:q_{126}:\dots:q_1:q_0
+\end{align}
+To perform a division $q=x/y$, where we know that y is a factor in x, i.e. the remainder is zero, we use
+\begin{align}
+0 = qy - x &= \lp q_{127}2^{127} + \dots + q_{1}2^{1} + q_{0}2^{0}\rp \lp y_{127}2^{127} + \dots + y_{1}2^{1} + y_{0}2^{0}\rp\nn\\
+& - \lp x_{127}2^{127} + \dots + x_{1}2^{1} + x_{0}2^{0}\rp 
+\eqnlab{int128_zerorem}
+\end{align}
+and our mission is to find $q$.
+We know $x$ and $y$ so we can scan them from the most significant bit to find the first non zero entries $x_i$ and $y_j$, where $i\ge j$ at all times for a no remainder division.
+For the relation to hold ($x$ can only cancel cross terms up to order $i$) we must then have
+\begin{align}
+q_{k} = \left\{\begin{array}{ll} 
+0 , & k > i-j'\cr
+1 , & k = i-j'
+\end{array}\right. 
+\end{align}
+where $j'\ge j$ depends on $x$ and $y$. In the case $j'=j$ it is trivial to see that the first relation should hold and that the second relation can fail from carry bits in lower order multiplications between $y$ and q and thus we introduce $j'$ which might me greater than $j$. 
+The relation \eqnref{int128_zerorem} is
+\begin{align}
+0 &= \lp 2^{i-j'} + q_{i-j'-1}2^{i-j'-1} + \dots \rp y - \lp 2^{i} + x_{i-1}2^{i-1} + \dots \rp\nn\\ 
+& = \lp q_{i-j'-1}2^{i-j'-1} + \dots \rp y - \lp 2^{i} + x_{i-1}2^{i-1} + \dots \rp + 2^{i-j'}y\nn\\ 
+& = \lp q_{i-j'-1}2^{i-j'-1} + \dots \rp y - \lp x'_{i-1}2^{i-1} + \dots + x'_02^0 \rp 
+\end{align}
+where we have used that the first term in $2^{i-j'}y$ cancels $2^i$ in x and
+\begin{align}
+x'_{i-i'}=\left\{\begin{array}{ll}
+x_{i-i'} - y_{j'-i'}, & j'-i' \ge 0\cr
+x_{i-i'} , & j'-i' < 0\cr
+\end{array}\right.
+\end{align}
+where $i'=1,2,\dots,i$.
+We are now back in the same situation as in \eqnref{int128_zerorem} but with $x'$ with most significant bit of order less than $i$. Repeating this procedure until nothing remains completely determines all coefficients $q_k$ and we are done.
+The only problem left is thus to find a method to decide $j'$ given $j$, $x$ and $y$. This can be done by checking bits after the most significant bit in $x$ and $y$, i.e. let $\Delta_i$ be the number of nonzero bits after $x_i$ and $\Delta_j$ the number after $y_j$. If $\Delta_i=\Delta_j$ we ignore the zero bit and continue the bit scan until $\Delta_i\ne\Delta_j$. 
+We have
+\begin{align}
+j'=\left\{\begin{array}{ll}
+j, & \mbox{if $\Delta_i>\Delta_j$}\cr
+j+1, & \mbox{if $\Delta_i<\Delta_j$}\cr
+\end{array}\right.
+\end{align}
+Since there are only two options on $j'$ we can comfortably shift $y$ left $i-j$ steps and check if $2^{i-j}y>x$ and if so we simply shift $y$ right one step and set bit $i-j-1$ in $q$. 
+In assembler the quotient reduction algorithm becomes 
+\begin{multicols}{2}
+{\tiny
+\begin{verbatim}
+procedure ReduceFraction128(frac:pointer);
+// frac is a pointer to a 256 bit coefficient
+//     fracUp:fracDown
+// frac^
+// fracDown is assured to be positive if fracUp is nonzero
+// ReduceFraction128 divides fracUp and FracDown with their
+//   greatest common divisor
+procedure helperShr128;
+// Helper function, shifts a 128 bit integer to the right
+// Nonconventional parameter pass:
+//   edi:esi:edx:eax = 128 bit integer to shift
+//   cl = number of bits to shift
+asm
+// Note: Comparing cl to an 8 bit imm. value gives smaller
+//   code than comparing ecx to a 32 bit immediate value.
+// shrd doesnt pair
+ cmp cl, 32          // Compare cl - 32 to 0
+ jb  @shiftBelow32   // Do a word shift if cl < 32
+ cmp cl, 64          // Compare cl - 64 to 0
+ jb  @shiftBelow64   // Do a double word shift if cl < 64
+ cmp cl, 96          // Compare cl - 96 to 0
+ jb  @shiftBelow96   // Do a triple word shift if cl < 96
+ cmp cl, 128         // Compare cl - 128 to 0
+ jb  @shiftBelow128  // Do a quad word shift if cl < 128
+                     // t > 128 => val = 0
+                     // Should never reach here
+ ud2                 // Undefined instr. => Raises an error
+ jmp @afterShift
+@shiftBelow128:
+ mov eax, edi        // eax:=data4
+ shr eax, cl         // eax:=data4 shifted right
+                     //   96 + cl mod 32 bits (no sign)
+ xor edx, edx        // edx:=0
+ xor esi, esi        // esi:=0
+ xor edi, edi        // edi:=0
+ jmp @afterShift
+@shiftBelow96:
+ mov eax, esi        // eax:=data3
+ mov edx, edi        // edx:=data4
+ shrd eax, edx, cl   // eax:=data3 shifted right
+                     //   64 + cl mod 32 bits into data1
+ shr edx, cl         // edx:=data4 shifted right
+                     //   64 + cl mod 32 bits (no sign)
+ xor esi, esi        // esi:=0
+ xor edi, edi        // edi:=0
+ jmp @afterShift
+@shiftBelow64:
+ mov eax, edx        // eax:=data2
+ mov edx, esi        // edx:=data3
+ mov esi, edi        // esi:=data4
+ shrd eax, edx, cl   // eax:=data3 shifted right
+                     //   32 + cl mod 32 bits into data1
+ shrd edx, esi, cl   // edx:=data4 shifted right
+                     //   32 + cl mod 32 bits into data2
+ shr esi, cl         // esi:=data4 shifted right
+                     //   32 + cl mod 32 bits (no sign)
+ xor edi, edi        // edi:=0
+ jmp @afterShift
+@shiftBelow32:       // Right shift less than 32 bits
+ shrd eax, edx, cl   // eax:=data2 s.r. cl bits into data1
+ shrd edx, esi, cl   // edx:=data3 s.r. cl bits into data2
+ shrd esi, edi, cl   // esi:=data4 s.r. cl bits into data3
+ shr edi, cl         // edi:=data4 s.r. cl bits (no sign)
+@afterShift:         // Now edi:esi:edx:eax = a
+end;
+procedure helperShl128;
+// Helper function, shifts a 128 bit integer to the left
+// Works like helperShr128;
+asm
+ cmp cl, 32          // Compare cl - 32 to 0
+ jb  @shiftBelow32   // Do a word shift if cl < 32
+ cmp cl, 64          // Compare cl - 64 to 0
+ jb  @shiftBelow64   // Do a double word shift if cl < 64
+ cmp cl, 96          // Compare cl - 96 to 0
+ jb  @shiftBelow96   // Do a triple word shift if cl < 96
+ cmp cl, 128         // Compare cl - 128 to 0
+ jb  @shiftBelow128  // Do a quad word shift if cl < 128
+                     // t > 128 => val = 0
+ jmp @afterShift
+@shiftBelow128:
+ mov edi, eax        // edi:=data1
+ shr edi, cl         // edi:=data1 shifted left
+                     //   96 + cl mod 32 bits
+ xor esi, esi        // esi:=0
+ xor edx, edx        // edx:=0
+ xor eax, eax        // eax:=0
+ jmp @afterShift
+@shiftBelow96:
+ mov edi, edx        // edi:=data2
+ mov esi, eax        // esi:=data1
+ shld edi, esi, cl   // edi:=data1 shifted left
+                     //   64 + cl mod 32 bits into data4
+ shl esi, cl         // esi:=data1 shifted left
+                     //   64 + cl mod 32 bits
+ xor edx, edx        // edx:=0
+ xor eax, eax        // eax:=0
+ jmp @afterShift
+@shiftBelow64:
+ mov edi, esi        // edi:=data3
+ mov esi, edx        // esi:=data2
+ mov edx, eax        // edx:=data1
+ shld edi, esi, cl   // edi:=data2 shifted left
+                     //   32 + cl mod 32 bits into data3
+ shld esi, edx, cl   // esi:=data1 shifted left
+                     //   32 + cl mod 32 bits into data2
+ shl edx, cl         // edx:=data1 shifted left
+                     //   32 + cl mod 32 bits
+ xor eax, eax        // eax:=0
+ jmp @afterShift
+@shiftBelow32:       // Shift less than 32 bits to the left
+ shld edi, esi, cl   // edi:=data3 s.l. cl bits into data4
+ shld esi, edx, cl   // esi:=data2 s.l. cl bits into data3
+ shld edx, eax, cl   // edx:=data1 s.l. cl bits into data2
+ shl eax, cl         // edi:=data1 s.l. cl bits
+@afterShift:         // Now edi:esi:edx:eax = a
+end;
+procedure helperDivZeroRem_128_128(x,y:pInt128);
+// Helper function, divides two 128 bit integers, no rem.
+// x:=x / y, no remainder, x > 0, y > 0 assured
+// Params: eax = @x; edx = @y;
+asm
+// Check if y is less than 32 bits and push some regs
+ mov ecx, [edx+12]   // ecx:=y.data4
+ push ebx
+ or ecx, [edx+4]     // ecx:=y.data4 or y.data2
+ mov ebx, [edx+8]    // ebx:=y.data3
+ or ebx, ecx         // ebx:=y.data4 or y.data3 or y.data2
+ jz @denomLength32   // Jump if all y.data2-4 are 0
+// Perform a full 128 bit division
+ push esi
+ push edi
+ push ebp
+ push eax
+ mov ebp, edx        // ebp pointer to y
+ mov edi, [eax+12]   // Push x to stack
+ mov esi, [eax+8]
+ push edi
+ push esi
+ mov edi, [eax+4]
+ mov esi, [eax]
+ mov [eax], 0        // Store 0 as result
+ mov [eax+4], 0
+ mov [eax+8], 0
+ mov [eax+12], 0
+ push edi
+ push esi
+// Find most significant bit in y and store its pos in ebx
+ mov ebx, 96
+ bsr ecx, [ebp+12]   // Get most significant bit in y.data4
+ jnz @foundMostSignY
+ bsr ecx, [ebp+8]    // Get most significant bit in y.data3
+ mov ebx, 64
+ jnz @foundMostSignY
+ bsr ecx, [ebp+4]    // Get most significant bit in y.data2
+ mov ebx, 32
+ jnz @foundMostSignY
+ bsr ecx, [ebp]      // Get most significant bit in y.data1
+ mov ebx, 0
+ jnz @foundMostSignY // Jump if bit was found
+                     // Should never reach here (y = 0)
+ ud2                 // Undef. instruct. => Raises an error
+@foundMostSignY:
+ add ebx, ecx        // ebx:=Pos of first bit = j
+ push ebx            // Put ebx=j on bottom of stack
+// Current mem layout:
+//   regs: edi:esi:edx:eax = y, ebp = pointer to mem y
+//   stack: [esp]=j, [esp+4]=x, [esp+20]=pointer to res,
+//     [esp+24]=old ebp,edi,esi
+// Repeat x':=x-2^(i-j)y until x'=0
+@beforeRepeat1:
+// Find most significant bit of x and store its pos in ecx
+ mov ecx, 96
+ bsr ebx, [esp+16]   // Get most significant bit in x.data4
+ jnz @foundMostSignX
+ bsr ebx, [esp+12]   // Get most significant bit in x.data3
+ mov ecx, 64
+ jnz @foundMostSignX
+ bsr ebx, [esp+8]    // Get most significant bit in x.data2
+ mov ecx, 32
+ jnz @foundMostSignX
+ bsr ebx, [esp+4]    // Get most significant bit in x.data1
+ mov ecx, 0
+ jnz @foundMostSignX // Jump if bit was found
+                     // Should never reach here (x = 0)
+ ud2                 // Undef. instruct. => Raises an error
+@foundMostSignX:
+ add ecx, ebx        // ecx:=Pos of first bit = i
+ sub ecx, [esp]      // ecx:=i-j
+// Calculate x'=x-2^(i-j)y
+ mov eax, [ebp]      // edi:esi:edx:eax:=y
+ mov edx, [ebp+4]
+ mov esi, [ebp+8]
+ mov edi, [ebp+12]
+ call helperShl128   // Shift y left i-j steps
+ cmp [esp+16], edi   // Check if y*2^(i-j) > x
+ ja @doSubtract
+ jb @useCarry
+ cmp [esp+12], esi
+ ja @doSubtract
+ jb @useCarry
+ cmp [esp+8], edx
+ ja @doSubtract
+ jb @useCarry
+ cmp [esp+4], eax
+ jae @doSubtract
+@useCarry:           // y*2^(i-j) > x => use j'=j+1
+ mov ebx, ecx
+ mov ecx, 1
+ call helperShr128   // Shift y right 1 step
+ mov ecx, ebx
+ dec ecx
+@doSubtract:
+ sub [esp+4], eax    // x.data1:=x.data1-(2^(i-j)y).data1
+ sbb [esp+8], edx    // x.data2:=x.data2-(2^(i-j)y).data2
+ sbb [esp+12], esi   // x.data3:=x.data3-(2^(i-j)y).data3
+ sbb [esp+16], edi   // x.data4:=x.data4-(2^(i-j)y).data4
+// Set bit i-j in result
+ mov ebx, [esp+20]   // ebx:=pointer to res
+ mov eax, 1          // eax:=1 (to be shifted)
+ cmp cl, 32          // Compare cl - 32 to 0
+ jb  @setBitBelow32
+ cmp cl, 64          // Compare cl - 64 to 0
+ jb  @setBitBelow64
+ cmp cl, 96          // Compare cl - 96 to 0
+ jb  @setBitBelow96
+                     // Set bit in res.data4
+ shl eax, cl         // eax:=1 shl (i-j)mod 32
+ or [ebx+12], eax    // res.data4:=res.data4 or eax
+ jmp @afterSetBit
+@setBitBelow96:      // Set bit in res.data3
+ shl eax, cl         // eax:=1 shl (i-j)mod 32
+ or [ebx+8], eax     // res.data3:=res.data3 or eax
+ jmp @afterSetBit
+@setBitBelow64:      // Set bit in res.data2
+ shl eax, cl         // eax:=1 shl (i-j)mod 32
+ or [ebx+4], eax     // res.data2:=res.data2 or eax
+ jmp @afterSetBit
+@setBitBelow32:      // Set bit in res.data1
+ shl eax, cl         // eax:=1 shl (i-j)mod 32
+ or [ebx], eax       // res.data1:=res.data1 or eax
+@afterSetBit:
+ cmp [esp+4], 0      // Check if x.data1 = 0
+ jnz @beforeRepeat1
+ cmp [esp+8], 0      // Check if x.data2 = 0
+ jnz @beforeRepeat1
+ cmp [esp+12], 0     // Check if x.data3 = 0
+ jnz @beforeRepeat1
+ cmp [esp+16], 0     // Check if x.data4 = 0
+ jnz @beforeRepeat1
+ add esp, 24         // Throw i, x and pointer to res away
+ pop ebp
+ pop edi
+ pop esi
+ jmp @afterDiv
+@denomLength32:
+// Divide a 128 bitnumerator with a 32 bit numerator
+ mov ecx, eax        // ecx:=pointer to x
+ mov ebx, [edx]      // ebx:=y1
+ mov eax, [ecx+12]   // eax:=x4
+ xor edx, edx        // edx:=0
+ div ebx             // edx:eax:=rem and quote of 0:x4/y1
+ mov [ecx+12], eax    
+ mov eax, [ecx+8]    // eax:=x3
+ div ebx             // edx:eax:=rem and quote of rem:x3/y1
+ mov [ecx+8], eax
+ mov eax, [ecx+4]    // eax:=x2
+ div ebx             // edx:eax:=rem and quote of rem:x2/y1
+ mov [ecx+4], eax
+ mov eax, [ecx]      // eax:=x1
+ div ebx             // edx:eax:=rem and quote of rem:x1/y1
+ mov [ecx], eax
+@afterDiv:
+ pop ebx
+end;
+// Now ReduceFraction128 begins!
+// Local variables in ReduceFraction128:
+var sign:boolean;
+    a,b:int128;
+begin
+// If fracUp = 0 set fracDown to 0 and return
+ if IsZero128(pInt128(frac)) then
+  begin
+   pWord(integer(frac)+16)^:=IMM_0;
+   exit;
+  end;
+
+{$IFDEF DEBUG}
+Assert(IsPos128(pInt128(integer(frac)+16)));
+{$ENDIF}
+
+// Set sign = x < 0 
+ sign:=pInt128(frac)^.data4 < 0;
+// Change fracUp to its absolute value
+ Abs128(pInt128(frac));
+
+asm
+ push esi            
+ push edi
+ push ebx
+// mov fracUp and fracDown to a and b
+ mov eax, [frac]     // Load address of fracUp:fracDown
+ mov ecx, [eax]      // edi:esi:edx:ecx:=fracUp
+ mov edx, [eax+4]    //
+ mov esi, [eax+8]    //
+ mov edi, [eax+12]   // 
+ mov a.data1, ecx    // a:=fracUp
+ mov a.data2, edx
+ mov a.data3, esi
+ mov a.data4, edi
+ mov ecx, [eax+16]   // edi:esi:edx:ecx:=fracDown
+ mov edx, [eax+20]   // (edx will be kept for later use)
+ mov esi, [eax+24]   // (esi will be kept for later use)
+ mov edi, [eax+28]   // (edi will be kept for later use)
+ mov b.data1, ecx    // b:=fracDown
+ mov b.data2, edx
+ mov b.data3, esi
+ mov b.data4, edi
+// Find least sig. bit in fracDown and store its pos in ecx
+ xor ecx, ecx        // ecx:=0
+ bsf eax, b.data1    // Get least significant bit in
+                     //   fracDown.data1 (bsf doesnt pair)
+ jnz @foundFirstBit1 // Jump if bit was found
+ bsf eax, edx        // Get l.s. bit in fracDown.data2
+ mov cl, 32          // ecx:=32
+ jnz @foundFirstBit1 // Jump if bit was found
+ bsf eax, esi        // Get l.s. bit in fracDown.data3
+ mov cl, 64          // ecx:=64
+ jnz @foundFirstBit1 // Jump if bit was found
+ bsf eax, edi        // Get l.s. bit in fracDown.data4
+ mov cl, 96          // ecx:=96
+ jnz @foundFirstBit1 // Jump if bit was found
+                     // Should never be here (fracDown = 0)
+ ud2                 // Undef. instr. => Raises an error
+@foundFirstBit1:
+ add ecx, eax        // ecx:=ecx+eax is the global position 
+// Find least signi. bit in fracUp and store its pos in ebx
+ xor ebx, ebx        // ebx:=0
+ bsf eax, a.data1    // Get l.s. bit in fracUp.data1
+ jnz @foundFirstBit2 // Jump if bit was found
+ bsf eax, a.data2    // Get l.s. bit in fracUp.data2
+ mov bl, 32          // ebx:=32
+ jnz @foundFirstBit2 // Jump if bit was found
+ bsf eax, a.data3    // Get l.s. bit in fracUp.data3
+ mov bl, 64          // ebx:=64
+ jnz @foundFirstBit2 // Jump if bit was found
+ bsf eax, a.data4    // Get l.s. bit in fracUp.data4
+ mov bl, 96          // ebx:=96
+ jnz @foundFirstBit2 // Jump if bit was found
+                     // Should never be here (fracUp = 0)
+ ud2                 // Undef. instr. => Raises an error
+@foundFirstBit2:
+ add ebx, eax        // ebx:=ebx+eax is the global position
+
+// Get minimum number N of bits to shift
+// N=ecx<-min(ecx,ebx), ebx<-max(ecx,ebx)-min(ecx,ebx)
+ cmp ecx, ebx        // Compare ecx-ebx to 0
+ setbe bh            // Use bit 8 in ebx to store which of
+                     //   original ecx and ebx was the lar-
+                     //   gest, bit is set if ecx <= ebx
+                     //   (bh=bit 8..15 in ebx)
+ jbe @afterSwap      // Jump if already ecx'=min(ecx,ebx)
+                     //             and ebx'=max(ecx,ebx)
+ mov al, cl          // eax:=ebx
+ mov cl, bl          // ecx':=Min(ebx,ecx)
+ mov bl ,al          // ebx':=Max(ebx,ecx)
+@afterSwap:
+
+// Divide the actual values of fracUp and fracDown with 2^N
+//   by shifting N steps to the right
+// Use helper function by putting edi:esi:edx:eax:=fracDown
+//   edi,esi,edx already assigned from before
+ mov eax, b.data1    // eax:=fracDown.data1
+ call helperShr128   // Shift fracDown ecx steps right
+ sub bl, cl          // ebx':=Max(ebx,ecx)-Min(ebx,ecx)
+                     //   moved to avoid possible memory stall
+ push ecx            // Store ecx
+ mov ecx, [frac]     // Load address of fracUp:fracDown
+ mov [ecx+16], eax   // Update shifted fracDown to memory
+ mov [ecx+20], edx
+ mov [ecx+24], esi
+ mov [ecx+28], edi
+ test bh, bh         // Check if it was fracDown (bh = 0)
+                     //   that should be shifted extra
+ jnz @afterExtraShift1 // Jump if not
+ mov cl, bl          // Get number of shifts cl from bl
+ call helperShr128   // Shift fracDown ecx steps right
+@afterExtraShift1:
+ pop ecx             // Restore ecx
+ mov b.data1, eax    // Copy possibly shifted fracDown to b
+ mov b.data2, edx
+ mov b.data3, esi
+ mov b.data4, edi
+// Use helper function by putting edi:esi:edx:eax:=fracUp
+ mov eax, a.data1    // Copy fracUp to edi:esi:edx:eax
+ mov edx, a.data2
+ mov esi, a.data3
+ mov edi, a.data4
+ call helperShr128   // Shift fracUp ecx steps (=>ecx free)
+ mov ecx, [frac]     // Load address of fracUp:fracDown
+ mov [ecx], eax      // Update shifted fracUp to memory
+ mov [ecx+4], edx
+ mov [ecx+8], esi
+ mov [ecx+12], edi
+ test bh, bh         // Check if it was fracUp (bh = 1)
+ jz @afterExtraShift2//   that should be shifted extra
+ mov cl, bl
+ call helperShr128   // If so shift fracUp ecx steps right
+@afterExtraShift2:
+
+// edi:esi:edx:eax contains a, don't need to update memory
+// Both a and b are now odd
+// Repeat: a:=a-b and divide by 2 until odd if a>b
+//         b:=b-a and divide by 2 until odd if b>a
+// until a = b
+@beforeWhile1:       // Use edi:esi:edx:eax = a on enter
+ cmp edi, b.data4    // Compare a4-b4 to 0
+ jnle @aGreaterWhile1 // Jump if a4>b4 => a>b (signed comp)
+ jl @bGreaterWhile1  // Jump if a4<b4 => b>a (signed comp)
+                     // Fallthrough if a4 = b4
+ cmp esi, b.data3    // Compare a3-b3 to 0
+ jnbe @aGreaterWhile1 // Jump if a3>b3 => a>b
+ jb @bGreaterWhile1  // Jump if a3<b3 => b>a
+                     // Fallthrough if a3 = b3
+ cmp edx, b.data2    // Compare a2-b2 to 0
+ jnbe @aGreaterWhile1 // Jump if a2>b2 => a>b
+ jb @bGreaterWhile1  // Jump if a2<b2 => b>a
+                     // Fallthrough if a2 = b2
+ cmp eax, b.data1    // Compare a1-b1 to 0
+ jz @afterWhile1     // Exit loop if a1 = b1 => a = b
+ jb @bGreaterWhile1  // Jump if a1<b1 => b>a
+                     // Fallthrough if a.data1 < b.data1
+@aGreaterWhile1:
+// a:=a-b, edi:esi:edx:eax = a
+ sub eax, b.data1    // eax:=a1 - b1, sets flags
+ sbb edx, b.data2    // edx:=a2 - b2 - Borrow, sets flags
+ sbb esi, b.data3    // esi:=a3 - b3 - Borrow, sets flags
+ sbb edi, b.data4    // edi:=a4 - b4 - Borrow
+// Divide a with 2 until a becomes odd
+@repeat1Start:
+// a:=a shr 1;       // Run loop at least once
+ shrd eax, edx, 1    // eax:=a2 shif. right one bit into a1
+ shrd edx, esi, 1    // edx:=a3 shif. right one bit into a2
+ shrd esi, edi, 1    // esi:=a4 shif. right one bit into a3
+ shr edi, 1          // edi:=a4 shif. right one bit(no sgn)
+ test al, 1          // Check if a even with bitwise and
+ jz @repeat1Start    // Repeat if a even
+ jmp @beforeWhile1   // Repeat big loop
+
+@bGreaterWhile1:
+// b:=b-a, edi:esi:edx:eax = a
+ mov a.data1, eax    // Store a so we can put b in regs
+ mov a.data2, edx
+ mov a.data3, esi
+ mov a.data4, edi
+ mov ebx, eax        // ebx:=a1
+ mov eax, b.data1    // eax:=b1
+ sub eax, ebx        // eax:=b1 - a1, sets flags
+ mov ebx, edx        // ebx:=a2, mov dowesn't affect flags
+ mov edx, b.data2    // edx:=b2
+ sbb edx, ebx        // edx:=b2 - a2 - Borrow, sets flags
+ mov ebx, esi        // ebx:=a3
+ mov esi, b.data3    // esi:=b3
+ sbb esi, ebx        // edx:=b3 - a3 - Borrow, sets flags
+ mov ebx, edi        // ebx:=a4
+ mov edi, b.data4    // edi:=b4
+ sbb edi, ebx        // edx:=b4 - a4 - Borrow
+// Divide b with 2 until b becomes odd
+@repeat2Start:
+// b:=b shr 1;       // Run loop at least once
+ shrd eax, edx, 1    // eax:=b2 shif. right one bit into b1
+ shrd edx, esi, 1    // edx:=b3 shif. right one bit into b2
+ shrd esi, edi, 1    // esi:=b4 shif. right one bit into b3
+ shr edi, 1          // edi:=b4 shif. right one bit(no sgn)
+ test al, 1          // Check if b even with bitwise and
+ jz @repeat2Start    // Repeat if b even
+ mov b.data1, eax    // Store b
+ mov b.data2, edx
+ mov b.data3, esi
+ mov b.data4, edi
+ mov eax, a.data1    // Load a for next big loop iteration
+ mov edx, a.data2
+ mov esi, a.data3
+ mov edi, a.data4
+ jmp @beforeWhile1   // Repeat big loop
+@afterWhile1:
+ mov a.data1, eax    // update a
+ mov a.data2, edx
+ mov a.data3, esi
+ mov a.data4, edi
+
+ pop ebx
+ pop edi
+ pop esi
+end;
+// Perform the division with pos numbers without remainder
+ helperDivZeroRem_128_128(pInt128(frac),@a);
+ helperDivZeroRem_128_128(pInt128(integer(frac)+16),@a);
+// Dont forget to adjust the sign of the result
+ if sign then Neg128(pInt128(frac));
+end;
+\end{verbatim}
+}
+\end{multicols}
+\noindent
+Although looking suspiciously long this actually runs faster than the same algorithm compiled in Delphi with just 64 bit integers.

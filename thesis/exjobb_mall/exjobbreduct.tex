@@ -1,0 +1,1017 @@
+\chapter{Kaluza-Klein reduction on $T^2$, $T^3$ and $T^4$}
+\label{sec:reduct}
+In the formulation of the membrane dynamics, every background $n$-form gauge 
+field will couple to its corresponding ($n$-1)-form gauge field on the 
+world-volume through a universal coupling outlined in the next section. Our 
+first task is thus to derive the background fields by reducing 11-dimensional 
+supergravity to 9-, 8- and 7-dimensional maximal supergravity. By using the coupling mentioned 
+above the membrane dynamics will automatically be covariant with respect to the 
+global symmetries of the background it couples to, and we will therefore try to write the Bianchi 
+identities and the duality relations in a form where the covariance with respect to the symmetry groups 
+given in table 2.3 is manifest. The dimensional reduction of \eqnref{sugra_11dim} will be done the standard 
+Kaluza-Klein way on a 2-, 3- and 4-torus. The $T^3$ case can also be found in for example \cite{artikeln}.
+We start from the derived Kaluza-Klein Ansatz \eqnref{sugra_kk_ansatz} for the vielbeins 
+\begin{equation}
+{\hat e}{_{M}}^A = \toto{ e{_{\mu}}^a }{ A_{\mu}^{1m}e{_{m}}^i
+  }{ 0 }{ e{_{m}}^i}, \hspace{0.5cm} {\hat e}{_{A}}^M = \toto{ e{_{a}}^\mu }{
+  -e{_{a}}^{\mu}A_{\mu}^{1m} }{ 0 }{ e{_{i}}^m},
+\eqnlab{reduct_kk_ansatz}
+\end{equation}
+\[
+dx^M = (dx^\mu,dx^m),
+\]
+where ${\hat e}{_M}^A {\hat e}{_{NA}} = {\hat g}_{MN}$ and the fields
+depends on $x^\mu$ only. Hats are used for 11-dimensional
+fields. The Ansatz is of course independent of how many dimensions that are compactified. This gives
+\begin{align}
+{\hat e}^A &= dx^M {\hat e}{_M}^A = (dx^\mu e{_\mu}^a,dx^\mu A_\mu^{1m} e{_{m}}^i + dx^m e{_{m}}^i) \nonumber \\
+&= (e^a,A^{1i} + e^i) = ({\hat e}^a,{\hat e}^i),
+\eqnlab{reduct_viel_red}
+\end{align}
+where the index 1 on $A_{\mu}^{1m}$ separates the internal vector from 
+the vector that will arise from the compactified 3-form. Using this we can 
+calculate the contribution of the 11-dimensional Einstein term to the lower-dimensional supergravities.
+
+\section{The Einstein term}
+The calculation of the Einstein term is somewhat lengthy and can be
+found in section \secref{ricci}. Here we start with the result
+\begin{align}
+\int d^{11}x \sqrt{|\hat{g}|} \hat{R} =& \int d^{d}x \sqrt{|g|} e^{-\varphi} \Big{[}R - {1 \over 4}G_{mn}F_{ab}^{1m}F^{1n \hspace{0.05cm} ab} - 2D_a (e{_i}^{m} \partial^ae{_m}^i) \nonumber \\
+&- e^{n(i}({\partial}_a e{_n}^{j)})e{_i}^m(\partial^a e_{mj}) -e{_i}^m({\partial}^a e{_m}^i) e{_j}^n({\partial}_a e{_n}^j)\Big{]},
+\label{compR}
+\end{align}
+where we have used that
+\begin{equation}
+\sqrt{\det\hat{g}_{MN}} = \det e{_M}^A = \det e{_\mu}^a\det e{_m}^i = \sqrt{\det g_{\mu \nu}} \sqrt{\det G_{mn}},
+\end{equation}
+where $G_{mn}$ is the metric on $T^D$ constructed from the D-bein $e{_m}^i$, and also the definitions
+\begin{equation}
+\sqrt{\mbox{det}G_{mn}}=e^{-\varphi}, \hspace{1cm} F_{ab}^{1m}=dA_{ab}^{1m}.
+\eqnlab{reduct_f1def}
+\end{equation}
+Note also that we have put both the prefactor $2 {\kappa}_{11}^2$ in \eqnref{sugra_11dim} and vol($T^D$)$=\int d^Dy$ equal to 1, where vol($T^D$) is the volume of the internal torus.
+The term with the covariant derivative can be integrated by parts to give
+\begin{align}
+&-2 \int d^dx \sqrt{|g|} e^{-\varphi} D_a (e{_i}^m \partial^a e{_m}^i) = -2 \int d^dx e^{-\varphi} {\partial}_a (\sqrt{|g|}e{_i}^m \partial^a e{_m}^i) \nonumber \\
+&=2\int d^dx\sqrt{|g|}({\partial}_a e^{-\varphi})e{_i}^m \partial^a e{_m}^i = 2\int d^dx \sqrt{|g|} e^{-\varphi} (-{\partial}_a \varphi)\mbox{Tr}(e^{-1}\partial e) \nonumber \\
+&=2 \int d^dx \sqrt{|g|} e^{-\varphi} ({\partial}_a \varphi) ({\partial}^a \varphi),
+\label{t1}
+\end{align}
+where we have used \eqnref{conven_divergence} and \eqnref{conven_trlog}. The last term in (\ref{compR}) can be rewritten as
+\begin{equation}
+-\int d^dx \sqrt{|g|} e^{-\varphi}e{_i}^m({\partial}^a e{_m}^i) e{_j}^n({\partial}_a e{_n}^j) = -\int d^dx \sqrt{|g|} e^{-\varphi} ({\partial}_a \varphi) ({\partial}^a \varphi),
+\label{t2}
+\end{equation}
+where we have again used \eqnref{conven_divergence}. And finally the fourth term in (\ref{compR}) can be rewritten as
+\begin{align}
+&-e^{n(i}({\partial}_a e{_n}^{j)})e{_j}^m(\partial^a e_{mi}) \nonumber \\
+&= - {1 \over 2}e^{ni}({\partial}_a e{_n}^{j})e{_j}^m(\partial^a e_{mi})- {1 \over 2}e^{ni}({\partial}_a e{_n}^{j})e{_i}^m(\partial^a e_{mj})\nonumber \\
+&=- {1 \over 2}G^{mn}e{_m}^{i}({\partial}_a e{_n}^{j})G^{pq}e_{jq}(\partial^a e_{pi})- {1 \over 2}G^{mn}({\partial}\bd{a} e\bd{n}\bu{k})(\partial\bu{a} e\bd{ml}){\delta}_{k}^j{\delta}_{j}^l \nonumber \\
+&=- {1 \over 4}G^{mn}G^{pq} \Big{(}e{_m}^{i}({\partial}_a e{_n}^{j})e_{jq}(\partial^a e_{pi})+e{_n}^{i}({\partial}_a e{_m}^{j})e_{jp}(\partial^a e_{qi})\Big{)}\nonumber \\
+&\hspace{0.47cm}-{1 \over 2}G^{mn}e^{jp}e_{pk}({\partial}_a e{_n}^{k})e{^l}_q e{^q}_j(\partial^a e_{ml})\nonumber \\
+&= - {1 \over 4}G^{mn}G^{pq}\Big{(}e_{jq}({\partial}_a e{_n}^{j})e_{mi}(\partial^a e{_p}^i)+e_{jn}({\partial}_a e{_q}^{j})e_{ip}(\partial^a e{_m}^i)\nonumber \\
+&\phantom{=}+e_{jq}({\partial}_a e{_n}^{j})e_{ip}(\partial^a e{_m}^i)+e_{jn}({\partial}_a e{_q}^{j})e_{im}(\partial^a e{_p}^i)\Big{)}\nonumber \\
+&=-{1 \over 4}G^{mn}G^{pq}\Big{(}e_{jq}({\partial}_a e{_n}^j)+e_{jn}({\partial}_a e{_q}^j)\Big{)}\Big{(}e_{mi}(\partial^a e{_p}^i)+e_{pi}(\partial^a e{_m}^i)\Big{)}\nonumber \\
+&=-{1 \over 4}G^{mn}({\partial}_a G_{qn})G^{pq}(\partial^a G_{mp})=-{1 \over 4}\mbox{Tr}(G^{-1} \partial G)^2.
+\label{t3}
+\end{align}
+Inserting (\ref{t1}), (\ref{t2}) and (\ref{t3}) in (\ref{compR}) gives
+\begin{align}
+\int d^{11}x \sqrt{|\hat{g}|} \hat{R} =& \int d^9x \sqrt{|g|} e^{-\varphi}\Big{[}R + ({\partial}_a \varphi) ({\partial}^a \varphi) \nonumber \\
+&-{1 \over 4}G\bd{mn}F_{ab}^{1m}F^{1n \hspace{0.05cm} ab} - {1 \over 4} \mbox{Tr}(G^{-1}\partial G)^2\Big{]}.
+\label{finalaction}
+\end{align}
+The next step is to rescale the action to obtain an action in the Einstein frame. But before we perform the rescaling we note that only the index values 
+separates equation (\ref{finalaction}) from the corresponding equation in 8 and 7 dimensions. Therefore we can make a general variable change according to
+\begin{equation}
+g{_{\mu \nu}} = e^{-2s\varphi}g_{\mu \nu}^E, \hspace{1cm} \M_{mn} = {G_{mn} \over (\mbox{det}G)^{1/D}},
+\label{varchange2}
+\end{equation}
+where
+\begin{equation}
+s={1 \over 2-d}, \hspace{0.5cm} d=\mbox{dim}g{_{\mu \nu}}, \hspace{0.5cm} D=\mbox{dim}G{_{mn}}.
+\end{equation}
+The D $\times$ D matrix $\M_{mn}$ provides a parametrisation of the $SL(2,{\mathbb R})/$ \newline $SO(2,{\mathbb R})$
+coset space in 9 dimensions, $SL(3,{\mathbb R})/SO(3,{\mathbb R})$ in 8 dimensions and $SL(4,{\mathbb R})/SO(4,{\mathbb R})$ in 7 dimensions. 
+The short calculation
+\begin{equation}
+G_{mn}=(\mbox{det}G)^{1/D}\M_{mn}=e^{-2\varphi /D}\M_{mn} \hspace{0.5cm} \Rightarrow \hspace{0.5cm} \mbox{det}\M_{mn}=1,
+\end{equation}
+shows that all parametrisations are unimodular, a necessary condition for $SL$-groups. 
+The first variable change in (\ref{varchange2}) gives
+\begin{equation}
+\mbox{det}g_{\mu \nu} = e^{-2ds\varphi}\mbox{det}g_{\mu \nu}^E.
+\end{equation}
+The terms in (\ref{finalaction}) will now be contracted with $g^E$ and $\M$ instead of $g$ and $G$ and thus change as
+\begin{align}
+(\partial \varphi)^2 &\rightarrow e^{2s\varphi}(\partial \varphi)^2 \hspace{0.2cm} \mbox{from}\hspace{0.2cm} g^{\mu \nu} \nonumber \\
+G_{mn}F^{1m}F^{1n} &\rightarrow  e^{4s\varphi} e^{-2\varphi/D} \M_{mn}F^{1m}F^{1n} \hspace{0.2cm} \mbox{from}\hspace{0.2cm} (g^{\mu \nu})^2 \hspace{0.2cm}\mbox{and}\hspace{0.2cm} G_{mn} \nonumber \\
+\mbox{Tr}(G^{-1} \partial G)^2 &\rightarrow e^{2s\varphi} \mbox{Tr}(e^{2\varphi/D}\M^{-1} \partial (e^{-2\varphi/D}\M))^2\hspace{0.2cm} \mbox{from}\hspace{0.2cm} g^{\mu \nu}\mbox{,}\hspace{0.2cm}G_{mn} \nonumber \\
+& \hspace{0.65cm} \mbox{and }G^{mn}\nonumber,
+\end{align}
+altogether yielding
+\begin{align}
+\int d^{11}x \sqrt{|\hat{g}|} \hat{R} =& \int d^dx \sqrt{|g^E|}\Big{[}e^{-(ds+1)\varphi}R + e^{(-ds+2s-1)\varphi}(\partial \varphi)^2 \nonumber \\
+&-{1 \over 4}e^{(-ds+4s-1-2/D)\varphi}\M_{mn}F^{1m}F^{1n} \nonumber \\
+&-{1 \over 4}e^{(-ds+2s-1)\varphi} \mbox{Tr}(e^{2\varphi/D}\M^{-1} \partial (e^{-2\varphi/D}\M))^2\Big{]}.
+\label{B1}
+\end{align}
+We can write the expression inside the trace as
+\begin{align}
+&\Big{(}e^{2\varphi/D}\M^{-1} \partial (e^{-2\varphi/D}\M)\Big{)}^2 \nonumber \\
+&=\Big{(}e^{2\varphi/D}\M^{-1}\Big\{ -\frac{2}{D}\partial \varphi e^{-2\varphi/D}\M + e^{- 2\varphi/D } \partial \M\Big\}\Big{)}^2 \nonumber \\
+&=\Big{(}-\frac{2}{D}\partial \varphi + \M^{-1} \partial \M\Big{)}^2 \nonumber \\
+&=\frac{4}{D^2}(\partial \varphi)^2 - \frac{4}{D}(\partial \varphi)\M^{-1}\partial \M +(\M^{-1}\partial \M)^2
+\end{align}
+and we note that, from $\eqnref{conven_trlog}$
+\begin{equation}
+\mbox{Tr}(\M^{-1} \partial \M)=\partial(\ln \mbox{det}\M)=0.
+\end{equation}
+We also need to investigate how the change of variables affects the Ricci scalar. For that we use (see equation \eqnref{RicciE})
+\begin{equation}
+R = e^{2s\varphi}(R_E-s^2(d-1)(d-2)(\partial \varphi)^2),
+\end{equation}
+which inserted in (\ref{B1}) gives the action in the Einstein frame as
+\begin{align}
+\int d^{11}x \sqrt{|\hat{g}|} \hat{R} =& \int d^dx \sqrt{|g^E|}\Big{[}R^E - {9 \over D(d-2)}(\partial \varphi)^2 \nonumber \\
+&-{1 \over 4}e^{-{18 \over D(d-2)}\varphi }\M_{mn}F^{1m}F^{1n}-{1 \over 4}\mbox{Tr}(\M^{-1}\partial \M)^2\Big{]}.
+\label{B2}
+\end{align}
+
+\section{Field strengths and  Bianchi identities}
+Let us now turn the attention to the 4-form field strength $\hat{G}=d\hat{C}$. Before we reduce the field strength 
+we note that the curved 2-dimensional (or 3- or 4-dimensional) basis
+\begin{equation}
+\hat{e}^m = dx^m + A^{1m}, \hspace{1cm} A^{1m}=dx^{\mu}A_{\mu}^{1m},
+\end{equation}
+is invariant under general coordinate transformations $\delta x^m = -\lambda^m(x)$ of the internal torus as is seen from
+\begin{align}
+\delta e^m &= \delta(dx^m + dx^{\mu}A_{\mu}^{1m}) = \delta dx^m + \delta dx^{\mu}A_{\mu}^{1m} = d\delta x^m + dx^{\mu}(\delta A_{\mu}^{1m}) \nonumber \\
+&= -d\lambda^m + dx^{\mu}({\partial}_{\mu}\lambda^m)=-d\lambda^m + d\lambda^m =0,
+\end{align}
+with $A_{\mu}^{1m}$ transforming under local U(1) gauge transformations
+\begin{equation}
+\delta A_{\mu}^{1m} = {\partial}_{\mu}\lambda^m
+\end{equation}
+which was shown in section \secref{sugra_kk}.
+We now want to expand the 11-dimensional 3-form $\hat{C}$ into lower-dimensional components, where the fields 
+preserve the $\lambda^m$ invariance. This is achieved by expanding in the basis above and by using the fact that 
+$\hat{C}$ is manifestly invariant \eqnref{sugra_gauge11}. Note that when
+integrating the 2, 3 or 4 compact directions in \eqnref{sugra_11dim}, only terms with
+2, 3 or 4 $dx^m$'s will be non-zero. Hence $dx^m$ appears as $e^m$ from
+the action's point of view, and in our expansion below we will
+only have terms with 2 or less $e^m$'s in the $T^2$ case, 3 or less in
+the $T^3$ case and so on.
+
+\subsubsection{The $T^2$ case}
+First we reduce the 11-dimensional relation
+\begin{equation}
+\delta \hat{C}=d \hat{\chi}
+\label{tja}
+\end{equation}
+for the $T^2$-case according to the procedure we outlined above. The 11-dimensional 3-form becomes
+\begin{align}
+\hat{C} &= {1 \over {3!}} C_{PNM}dx^M \wedge dx^N \wedge dx^P \nonumber \\
+&= {1 \over {3!}}\Big{(}C_{\rho \nu \mu}dx^{\mu} \wedge dx^{\nu} \wedge dx^{\rho} + 3C_{p \nu \mu}dx^{\mu} \wedge dx^{\nu} \wedge dx^{p} \nonumber \\
+&\phantom{=} + 3 C_{p n \mu}dx^{\mu} \wedge dx^{n} \wedge dx^{p} +C_{pnm}dx^{m} \wedge dx^{n} \wedge dx^{p}\Big{)}\nonumber \\
+&= \Big{\{ \mbox{The last term vanish because} \hspace{0.2cm}m,n,p=1,2\Big{\}}}\nonumber \\
+&= C + {3 \cdot 2 \over 6} \underbrace{({1 \over 2}C_{\nu \mu}dx^{\mu} \wedge dx^{\nu})_p}_{B_{p}} \wedge dx^p + {3 \over 6} \underbrace{(C_{\mu}dx^{\mu})_{pn}}_{-A_{pn}^2 = A_{np}^2} \wedge dx^n \wedge dx^p \nonumber \\
+&= C + B_{m} \wedge \hat{e}^m + {1 \over 2}{\epsilon}_{mn}A^2 \wedge \hat{e}^m \wedge \hat{e}^n,
+\end{align}
+where we have used \eqnref{reduct_viel_red} to see that
+\begin{align}
+d\hat e^m = d(A^{1m} + dx^m)) = F^{1m}.
+\end{align}
+Repeating this for the 2-form gauge parameter gives (superspace conventions, see appendix \chref{conven}):
+\begin{align}
+d\hat{\chi} &= d({1 \over 2}\chi_{NM}dx^M \wedge dx^N) \nonumber \\
+&= {1 \over 2}d(\chi_{\nu \mu}dx^{\mu} \wedge dx^{\nu} + 2\chi_{n \mu}dx^{\mu} \wedge dx^n + \chi_{nm}dx^{m} \wedge dx^n)\nonumber \\
+&= d(\chi' - {\chi'}_m \wedge \hat{e}^m + {1 \over 2}{\chi'}^2 {\epsilon}_{mn} \hat{e}^m \wedge \hat{e}^n)\nonumber \\
+&= \underbrace{d\chi'-{\chi'}_m \wedge F^{1m}}_{\delta C} + \underbrace{(d{\chi'}_m + {\epsilon}_{mn}{\chi'}^2 \wedge F^{1n})}_{\delta B_{m}'} \wedge \hat{e}^m \nonumber \\
+&\phantom{=}+{1 \over 2} {\epsilon}_{mn} \underbrace{d{\chi'}^2}_{\delta A^2} \wedge \hat{e}^m \wedge \hat{e}^n,
+\label{tja2}
+\end{align}
+where we also have indicated which field transformations the terms are connected to. The $\lambda^m$ invariant field strengths can now be calculated as
+\begin{align}
+\hat{G}=d\hat{C} &= \underbrace{dC + B_{m} \wedge F^{1m}}_{G} + \underbrace{(-dB_{m} + A^2 {\epsilon}_{mn} \wedge F^{1n})}_{-H_m} \wedge \hat{e}^m \nonumber \\
+&\phantom{=}+ {1 \over 2}{\epsilon}_{mn} \underbrace{dA^2}_{F^2} \wedge \hat{e}^m \wedge \hat{e}^n,
+\label{kalle1}
+\end{align}
+hence
+\begin{align}
+G&=dC + B_{m} \wedge F^{1m}, \nonumber \\
+H_m&= dB_{m} - {\epsilon}_{mn} F^{1n} \wedge A^2, \nonumber \\
+F^2&=dA^2.
+\end{align}
+The 9-dimensional field strengths thus satisfies the following Bianchi identities:
+\begin{align}
+dG&=d(dC + B_{m} \wedge F^{1m})=H_m \wedge F^{1m}, \nonumber \\
+dH_m&=d(dB_m - {\epsilon}_{mn} F^{1n} \wedge A^2) = - {\epsilon}_{mn} F^{1n} \wedge F^{2},\nonumber \\
+dF^2&=d^2 A^2 = 0.
+\end{align}
+
+\subsubsection{The $T^3$ case}
+The calculation of the 8-dimensional field strengths is very similar to the calculation of the 9-dimensional ones.
+By repeating the procedure above we get
+\begin{align}
+\hat{C} &= {1 \over {3!}} C_{PNM}dx^M \wedge dx^N \wedge dx^P \nonumber \\
+&= {1 \over {3!}}\Big{(}C_{\rho \nu \mu}dx^{\mu} \wedge dx^{\nu} \wedge dx^{\rho} + 3C_{p \nu \mu}dx^{\mu} \wedge dx^{\nu} \wedge dx^{p} \nonumber \\
+&\phantom{=} + 3 C_{p n \mu}dx^{\mu} \wedge dx^{n} \wedge dx^{p} +C_{pnm}dx^{m} \wedge dx^{n} \wedge dx^{p}\Big{)}\nonumber \\
+&= C' + B_{m}' \wedge \hat{e}^m + {1 \over 2}A^{2p} \wedge {\epsilon}_{mnp}\hat{e}^m \wedge \hat{e}^n +{a \over 6}{\epsilon}_{mnp}\hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p,
+\label{olle}
+\end{align}
+where $a$ is a scalar. The reduction of the right side of (\ref{tja}) becomes
+\begin{align}
+d\hat{\chi}=&\underbrace{d\chi'-{\chi'}_m \wedge F^{1m}}_{\delta C'}+ \underbrace{(d{\chi'}_m + {\epsilon}_{mnp}{\chi'}^{2p} \wedge F^{1n})}_{\delta B_{m}'} \wedge \hat{e}^m \nonumber \\
+&+{1 \over 2} \underbrace{d{\chi'}^{2p}}_{\delta A^{2p}} \wedge {\epsilon}_{mnp} \hat{e}^m \wedge \hat{e}^n.
+\end{align}
+From $\hat C$ we now get
+\begin{align}
+\hat{G}=d\hat{C}&= d(C' + B_{m}' \wedge \hat{e}^m + {1 \over 2}A^{2p} \wedge {\epsilon}_{mnp}\hat{e}^m \wedge \hat{e}^n + {a \over 6}{\epsilon}_{mnp}\hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p) \nonumber \\
+&= \underbrace{dC' + B_{m}' \wedge F^{1m}}_{G} + \underbrace{(-dB_{m}' + A^{2p} {\epsilon}_{mnp} \wedge F^{1n})}_{-H_m} \wedge \hat{e}^m \nonumber \\
+&\phantom{=}+ {1 \over 2} \underbrace{(dA^{2p} + aF^{1p})}_{F'^{2p}} {\epsilon}_{mnp} \wedge \hat{e}^m \wedge \hat{e}^n - {1 \over 6}(da){\epsilon}_{mnp}\hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p.
+\label{kalle2}
+\end{align}
+So, to summarize we have the field strengths
+\begin{align}
+G &= dC' + B_{m}' \wedge F^{1m}, \nonumber \\
+H_m &= dB_{m}' -  {\epsilon}_{mnp} F^{1n}\wedge A^{2p}, \nonumber \\
+F'^{2m} &= dA^{2m} + aF^{1m} = F^{2m} + aF^{1m},
+\label{hej}
+\end{align}
+satisfying the Bianchi identities
+\begin{align}
+dG &= d(dC' + B_{m}' \wedge F^{1m}) = dB'_m \wedge F^{1m} \nonumber \\
+&= (H_m + {\epsilon}_{mnp} F^{1n} \wedge A^{2p}) \wedge F^{1m} = \Big{\{} {\epsilon}_{mnp} F^{1n} \wedge A^{2p} \wedge F^{1m} \nonumber \\
+&\phantom{=}= -{\epsilon}_{mnp} F^{1n} \wedge A^{2p} \wedge F^{1m} =0 \Big{\}}= H_m \wedge F^{1m}, \nonumber \\
+dH_m &= -{\epsilon}_{mnp} F^{1n} \wedge F^{2p}, \nonumber \\
+dF'^{2m} &= da \wedge F^{1m}.
+\label{dhf}
+\end{align}
+
+\subsubsection{The $T^4$ case}
+To get the 7-dimensional field strengths we start by reducing $\hat{C}$ in exactly the same way as above, giving
+\begin{align}
+\hat{C} &= {1 \over {3!}} C_{PNM}dx^M \wedge dx^N \wedge dx^P \nonumber \\
+&= C' + B_{m}' \wedge \hat{e}^m + {1 \over 2}A^{2pq} \wedge {\epsilon}_{mnpq}\hat{e}^m \wedge \hat{e}^n \nonumber \\
+&\phantom{=} +{a^q \over 6}{\epsilon}_{mnpq}\hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p,
+\end{align}
+where $A^{2pq}$ is antisymmetric in $p$ and $q$. The gauge parameter becomes
+\begin{align}
+d\hat{\chi}=&\underbrace{d\chi'-{\chi'}_m \wedge F^{1m}}_{\delta C'}+ \underbrace{(d{\chi'}_m + {\epsilon}_{mnpq}{\chi'}^{2pq} \wedge F^{1n})}_{\delta B_{m}'} \wedge \hat{e}^m \nonumber \\
+&+{1 \over 2} \underbrace{d{\chi'}^{2pq}}_{\delta A^{2pq}} {\epsilon}_{mnpq} \wedge \hat{e}^m \wedge \hat{e}^n,
+\end{align}
+and finally we get $\hat{G}$ as
+\begin{align}
+\hat{G}=d\hat{C}=& \underbrace{dC' + B_{m}' \wedge F^{1m}}_{G} + \underbrace{(-dB_{m}' + A^{2pq} {\epsilon}_{mnpq} \wedge F^{1n})}_{-H_m} \wedge \hat{e}^m \nonumber \\
+&+ {1 \over 2} \underbrace{(dA^{2pq} + a^{[q} F^{1p]})}_{F'^{2pq}} {\epsilon}_{mnpq} \wedge \hat{e}^m \wedge \hat{e}^n \nonumber \\
+&- {1 \over 6}(da^q){\epsilon}_{mnpq}\hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p.
+\label{fieldsT4}
+\end{align}
+We end up with field strengths very similar to the 8-dimensional ones
+\begin{align}
+G &= dC' + B_{m}' \wedge F^{1m}, \nonumber \\
+H_m &= dB_{m}' -  {\epsilon}_{mnpq} A^{2pq}\wedge F^{1n} , \nonumber \\
+F'^{2mn} &= dA^{2mn} + a^{[n} F^{1m]} = F^{2mn} - a^{[m}F^{1n]},
+\eqnlab{reduct_7d_fprim}
+\end{align}
+satisfying the Bianchi identities
+\begin{align}
+dG &= H_m \wedge F^{1m}, \nonumber \\
+dH_m &= -{\epsilon}_{mnpq} F^{2pq} \wedge F^{1n}, \nonumber \\
+dF'^{2mn} &= - da^{[m} \wedge F^{1n]}.
+\eqnlab{reduct_7d_bianchi}
+\end{align}
+
+\section{The Chern-Simons term}
+Having already reduced the 11-dimensional 3-form $\hat{C}$ and its 4-form field strength $\hat{G}$, it is not a difficult task to reduce the Chern-Simons term.
+Again we will only keep terms with 2 or less $e^m$'s in the $T^2$ case, 3 or less in the $T^3$ case and so on.
+
+\subsubsection{The 9-dimensional Chern-Simons term}
+\begin{align}
+&\phantom{=}{1 \over 6} \int \hat{G} \wedge \hat{G} \wedge \hat{C} \nonumber \\
+&={1 \over 6} \int \Big{[} G \wedge G \wedge \epsilon_{mn} {1 \over 2}A^2 \wedge \hat{e}^m \wedge \hat{e}^n - 2 G \wedge H_m \wedge \hat{e}^m \wedge B_n \wedge \hat{e}^n \nonumber \\
+&\phantom{=} + 2 G \wedge {1 \over 2} \epsilon_{mn} F^2 \wedge \hat{e}^m \wedge \hat{e}^n \wedge C + H_m \wedge \hat{e}^m \wedge H_n \wedge \hat{e}^n \wedge C \Big{]} \nonumber \\
+&= \Big{\{} \hat{e}^m \wedge \hat{e}^n = d^2 x \sqrt{|G|}{\varepsilon}^{mn} = d^2 x \epsilon^{mn},\hspace{0.2cm} {\epsilon}_{mn} {\epsilon}^{mn} = 2 \Big{\}} \nonumber \\
+&= {1 \over 6} \int \Big{[} G \wedge G \wedge A^2 - 2\epsilon^{mn} G \wedge H_m \wedge B_n +2 G \wedge F^2 \wedge C \nonumber \\
+&\phantom{=} - \epsilon^{mn} H_m \wedge H_n \wedge C \Big{]}
+\end{align}
+
+\subsubsection{The 8-dimensional Chern-Simons term}
+\begin{align}
+&\phantom{=}{1 \over 6} \int \hat{G} \wedge \hat{G} \wedge \hat{C} \nonumber \\
+&={1 \over 6} \int \Big{[} {\epsilon}_{mnp} G \wedge G {a \over 6} +{\epsilon}_{mnq} G \wedge H_p \wedge A^{2q} \nonumber \\
+&\phantom{=}+ {\epsilon}_{mnq} G \wedge F'^{2q} \wedge B'_p + {1 \over 3} {\epsilon}_{mnp} G \wedge (da) \wedge C' \nonumber \\
+&\phantom{=}- H_m \wedge H_n \wedge B'_p +  {\epsilon}_{mnq} H_p \wedge F'^{2q} \wedge C' \Big{]} \wedge \hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p \nonumber \\
+&=\Big{\{} \hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p = d^3 x {\epsilon}^{mnp},\hspace{0.2cm} {\epsilon}_{mnp} {\epsilon}^{mnq} = 2\delta^{p}_q ,\hspace{0.2cm} {\epsilon}_{mnp}{\epsilon}^{mnp} = 6 \Big{\}} \nonumber \\
+&={1 \over 6} \int \Big{[} G \wedge G a + 2G \wedge H_m \wedge A^{2m} + 2G \wedge F'^{2m} \wedge B'_m \nonumber \\
+&\phantom{=}+ 2G \wedge (da) \wedge C' - {\epsilon}^{mnp}H_m \wedge H_n \wedge B'_p \nonumber \\
+&\phantom{=}+2H_m \wedge F'^{2m} \wedge C' \Big{]},
+\label{kjd}
+\end{align}
+
+\subsubsection{The 7-dimensional Chern-Simons term}
+\begin{align}
+&\phantom{=}{1 \over 6} \int \hat{G} \wedge \hat{G} \wedge \hat{C} \nonumber \\
+&={1 \over 6} \int \Big{[} 2 \epsilon_{mnpq'} G \wedge H_q {a^{q'} \over 6} +2 \epsilon_{mnp'q'} \epsilon_{m'n'pq} G \wedge {1 \over 2} F'^{2p'q'} \wedge {1 \over 2} A^{2m'n'} \nonumber \\
+&\phantom{=}-2 \epsilon_{mnpq'} G \wedge {1 \over 6}(da^{q'}) \wedge B'_q +\epsilon_{mnp'q'} H_p \wedge H_q \wedge {1 \over 2} A^{2p'q'} \nonumber \\
+&\phantom{=}+2 \epsilon_{mnp'q'} H_q \wedge {1 \over 2}F'^{2p'q'} \wedge B'_p +2 \epsilon_{mnpq'} H_q \wedge {1 \over 6}(da^{q'}) \wedge C' \nonumber \\
+&\phantom{=} +\epsilon_{mnp'q'} \epsilon_{m'n'pq} {1 \over 2}F'^{2p'q'} \wedge {1 \over 2}F'^{2m'n'} \wedge C' \Big{]} \wedge \hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p \wedge \hat{e}^q \nonumber \\
+&=\Big{\{} \hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p \wedge \hat{e}^q= d^4 x {\epsilon}^{mnpq},\hspace{0.2cm} {\epsilon}_{mnp'q'} {\epsilon}^{mnpq} = 4\delta^{ \phantom{[} p \phantom{'} q}_{[p'q']} ,\nonumber \\
+&\phantom{=}{\epsilon}_{mnpq'}{\epsilon}^{mnpq} = 6 \delta^q_{q'} \Big{\}} \nonumber \\
+&={1 \over 6} \int \Big{[} 2G \wedge H_m a^{m} +2\epsilon_{mnpq}G \wedge F'^{2mn} \wedge A^{2pq} \nonumber \\
+&\phantom{=}-2G \wedge (da^{m}) \wedge B'_m +2H_m \wedge H_n \wedge A^{2mn} \nonumber \\
+&\phantom{=}+4 B'_m \wedge H_n \wedge F'^{2mn} +2 H_m \wedge (da^{m}) \wedge C' \nonumber \\
+&\phantom{=}+ \epsilon_{mnpq} F'^{2mn} \wedge F'^{2pq} \wedge C' \Big{]}
+\end{align}
+
+\section{The $\hat{G}^2$ term and the symmetries of the actions}
+The $\hat{G}^2$ term in \eqnref{sugra_11dim} will be reduced in the same way as the field strength in the previous section, i.e. by expanding the 4-form $\hat{G}$ 
+in lower dimensional field strengths. We will also clarify how the remaining symmetries in 9-, 8-dimensional 
+supergravity according to table 2.3 (i.e ${\mathbb R}^+$ for $T^2$ and $SL(2,{\mathbb R})$ for $T^3$) can be seen in the actions. 
+(The ${\mathbb R}^+$ symmetry in 9-dimensional supergravity origins from $GL(2) \sim SL(2,{\mathbb R}) \times {\mathbb R}^+$.) Last but not least 
+we will write the 7-dimensional Lagrangian in an $SL(5,{\mathbb R})$ covariant way.
+
+\subsection{The 9-dimensional action}
+We start by writing
+\begin{equation}
+\hat{G}={1 \over 4!}\hat{G}_{M_{1} \cdots M_{4}}dx^{M_{4}} \wedge \cdots \wedge dx^{M_{1}},
+\label{kalle}
+\end{equation}
+and by comparing (\ref{kalle}) with (\ref{kalle1}) we find
+\begin{align}
+\hat{G}_{\mu \nu \rho \sigma}&=G_{\mu \nu \rho \sigma} \hspace{1.1cm} \mbox{1 combination}, \nonumber \\
+\hat{G}_{\mu \nu \rho m}&=-H_m \hspace{1.15cm} \mbox{4 combinations}, \nonumber \\
+\hat{G}_{\mu \nu mn}&=F^2 {\epsilon}_{mn} \hspace{1cm} \mbox{6 combinations},
+\end{align}
+hence
+\begin{align}
+{1 \over 48}\hat{G}_{M_{1} \cdots M_{4}} \hat{G}^{M_{1} \cdots M_{4}}&={1 \over 48}G^2 + {1 \over 12}H_m H^m + {1 \over 8}F^2 F^2 {\epsilon}_{mn} {\epsilon}^{mn} \nonumber \\
+&= {1 \over 48}G^2 + {1 \over 12}H_m H^m + {1 \over 4}F^2 F^2.
+\end{align}
+When going to the Einstein frame we need to scale the fields as
+\begin{align}
+\sqrt{|g|} e^{-\varphi} &\rightarrow \sqrt{|g_E|}e^{-(ds+1)\varphi}, \nonumber \\
+G^2 &\rightarrow e^{8s \varphi} G^2, \nonumber \\
+H_m H^m &\rightarrow e^{6s\varphi}e^{2\varphi/D}\M^{mn}H_m H_n, \nonumber \\
+F^2F^2 &\rightarrow e^{4s \varphi}F^2F^2, \nonumber \\
+{\epsilon}_{mn} {\epsilon}^{mn} &\rightarrow e^{4\varphi/D} M^{pm} M^{qn} {\epsilon}_{mn} {\epsilon}_{pq}.
+\label{ertyui}
+\end{align}
+The $G^2$ term in the Einstein frame then becomes
+\begin{align}
+S_{\hat G^2} &= - \int d^{11}x \sqrt{|\hat{g}|} \Big{[} \frac{1}{48} \hat G^2 \Big{]} \nonumber \\
+& = - \int d^9x \sqrt{|g_E|}e^{-(ds+1)\varphi}\Big{[}\frac{1}{48}e^{8s\varphi}G^2+\frac{1}{12}e^{(6s+2/D)\varphi}H_mH_n\M^{mn} \nonumber \\
+& \phantom{=}+ \frac{1}{4}e^{(4s+4/D)\varphi}(F^2)^2\Big{]}.
+\end{align}
+For the $T^2$ case we have $D=2$, $d=9$, $s=-1/7$ and we get the $G^2$ term as  
+\begin{equation}
+S_{\hat G^2} = - \int d^9x \sqrt{|g_E|}\left[\frac{1}{48}e^{-\frac{6}{7}\varphi}G^2+\frac{1}{12}e^{\frac{3}{7}\varphi}H_mH_n\M^{mn}+\frac{1}{4}e^{\frac{12}{7}\varphi}(F^2)^2\right].
+\end{equation}
+By writing the $G^2$ term together with the Einstein term and making a redefinition $\varphi \rightarrow (\sqrt{7}/3)\varphi$ (to get a factor 1/2 in front of the kinetic $(\partial\varphi)^2$ term) we get
+\begin{align}
+&\phantom{=}\int d^{11}x \sqrt{|\hat{g}|} (\hat{R}-{1 \over 48}\hat{G}^2) \nonumber \\
+&=\int d^9x \sqrt{|g_E|} \Big{[} R_E - {1 \over 2}(\partial \varphi)^2-{1 \over 4}e^{-\frac{3}{\sqrt 7}\varphi}\M_{mn}F^{1m}F^{1n} \nonumber \\
+&\phantom{=}-{1 \over 4}\mbox{Tr}(\M^{-1}\partial \M)^2 - {1 \over 48}e^{-\frac{2}{\sqrt 7}\varphi}G^2 - {1 \over 12}e^{\frac{1}{\sqrt 7}\varphi}H_mH_n\M^{mn} \nonumber \\
+&\phantom{=}- {1 \over 4}e^{\frac{4}{\sqrt 7}\varphi}\M_{mn}(F^2)^2\Big{]}.
+\label{tjolahopp}
+\end{align}
+A symmetric metric of unit determinant $\M$ parametrises the coset space SL(2,$\rr$)/SO(2), as was seen in subsection \ssecref{example_sl2so2}.
+By performing an SL(2,$\rr$) transformation
+\begin{align}
+&\M_{mn}\rightarrow\Lambda{_m}^p \M_{pq} \Lambda{^q}_n,\;\; F^{1m}\rightarrow F^{1n}(\Lambda^{-1}){_n}^m,\;\; \nonumber \\
+&H_m\rightarrow \Lambda{_m}^nH_m,\;\; \Lambda \in SL(2,\rr)
+\end{align}  
+to the terms in the Lagrangian, the SL(2,$\rr$) scalars
+\begin{align}
+&F^{1T}\M F^{1}\rightarrow F^{1T}\Lambda^{-1}\Lambda \M
+\Lambda^T\Lambda^{T-1}F^1 = F^{1T}\M F^{1}\nonumber\\
+&H^{T}\M^{-1}H\rightarrow H^{T}\Lambda^T(\Lambda \M \Lambda^T)^{-1}\Lambda H = H^{T}\M^{-1}H 
+\end{align}
+are invariant and also the scalar kinetic term
+\begin{align}
+&\frac{1}{4}\mbox{Tr}(\M^{-1}\partial \M)^2 = -\frac{1}{4}\mbox{Tr}(\partial \M^{-1}\partial \M) \nonumber \\
+&\rightarrow %\frac{1}{4}\mbox{Tr}(\partial((\Lambda \M\Lambda^T)^{-1})\partial(\Lambda \M\Lambda^T)) = 
+-\frac{1}{4}\mbox{Tr}(\Lambda^{T-1}\partial \M^{-1} \Lambda^{-1}\Lambda \partial \M \Lambda^T) = \frac{1}{4}\mbox{Tr}(\M^{-1}\partial \M)^2,
+\eqnlab{sugra_kinetic_transform}
+\end{align}
+where we have used \eqnref{conven_kinetic} and that $\Lambda$ is constant so $\partial\Lambda = 0$, is invariant. 
+The Lagrangian is also invariant under an $R^+$ scaling symmetry.
+To see this we assign, to each field in the Lagrangian, a scale transformation $\lambda^\alpha$, where $\lambda$ is an arbitrary real constant and the exponent $\alpha$ is different for each different field.
+By choosing the $\alpha$:s according to table (\ref{reduct_weights}) and by noting that $e^{x\varphi}$ scales as $2x\sqrt 7$, one can easily check that the Lagrangian (\ref{tjolahopp}) is invariant under the ${\rr}^+$ symmetry.
+Consequently we have found that the Lagrangian is invariant under $\rr^+\times$SL(2,$\rr$)/SO(2)$\sim$GL(2,$\rr$)/SO(2) transformations, which is consistent with the expected data for d=9 in table 2.3.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l|l l l l l l l}
+Field & $g_{\mu\nu}$ & $A_\mu^{1m}$ & $A_\mu^2$ & $B_{\mu\nu m}$ & $C_{\mu\nu\rho}$ & $\phi^m$ & $e^\varphi$\\ \hline
+$\rr^+$ scaling $\alpha$ & 0 & $3$ & $-4$ & $-1$ & $2$ & 0 & $2\sqrt 7$
+\end{tabular}
+\label{reduct_weights}
+\caption{The scaling exponents of the ${\rr}^+$ symmetry for the different fields. $\phi^m$ denotes the 2 coset scalars in $\M$.} 
+\end{center}
+\end{table}
+
+\subsection{The 8-dimensional action}
+
+Again we start with
+\begin{equation}
+\hat{G}={1 \over 4!}\hat{G}_{M_{1} \cdots M_{4}}dx^{M_{4}} \wedge \cdots \wedge dx^{M_{1}},
+\end{equation}
+to identify the terms in (\ref{kalle2}) with
+\begin{align}
+\hat{G}_{\mu \nu \rho \sigma}&=G_{\mu \nu \rho \sigma} \hspace{2.03cm} \mbox{1 combination}, \nonumber \\
+\hat{G}_{\mu \nu \rho m}&=-H_m \hspace{2.1cm} \mbox{4 combinations}, \nonumber \\
+\hat{G}_{\mu \nu mn}&=F'^{2p} {\epsilon}_{mnp} \hspace{1.55cm} \mbox{6 combinations}, \nonumber \\
+\hat{G}_{\mu mnp}&=-({\partial}_{\mu}a){\epsilon}_{mnp} \hspace{1cm} \mbox{4 combinations},
+\end{align}
+which gives
+\begin{align}
+{1 \over 48}\hat{G}_{M_{1} \cdots M_{4}} \hat{G}^{M_{1} \cdots M_{4}}&={1 \over 48}G^2 + {1 \over 12}H_m H^m + {1 \over 8}F'^{2p} F'{^2}_q {\epsilon}_{mnp} {\epsilon}^{mnq} \nonumber \\
+&\phantom{=}+ {1 \over 12}({\partial}_{\mu}a)({\partial}^{\mu}a){\epsilon}_{mnp}{\epsilon}^{mnp} \nonumber \\
+&= \Big{\{} {\epsilon}_{mnp} {\epsilon}^{mnq} = 2\delta^{p}_q ,\hspace{0.2cm} {\epsilon}_{mnp}{\epsilon}^{mnp} = 6 \Big{\}} \nonumber \\
+&= {1 \over 48}G^2 + {1 \over 12}H_m H^m + {1 \over 4}F'^{2p} F'{^2}_p + {1 \over 2}({\partial}_{\mu}a)({\partial}^{\mu}a).
+\end{align}
+To get the action in the Einstein frame we can use (\ref{ertyui}) together with
+\begin{align}
+F'^2_m F'^{2m} &\rightarrow e^{4s \varphi}e^{-2\varphi /D}\M_{mn}F'^{2m}F'^{2n}, \nonumber \\
+(\partial a)^2 &\rightarrow e^{2s\varphi} (\partial a)^2, \nonumber \\
+{\epsilon}_{mnp}{\epsilon}^{mnp} &\rightarrow e^{6\varphi /D}\M^{mq}\M^{nr}\M^{ps} {\epsilon}_{mnp}{\epsilon}_{qrs},
+\end{align}
+where we have used (\ref{varchange2}). We now have $D=3$, $d=8$ and $s=-1/6$, and we get the action in the Einstein frame as
+\begin{align}
+S_{\hat G^2} =& \int d^8x \sqrt{|g|} \Big{[} {1 \over 48}e^{-\varphi}G^2 + {1 \over 12}H_mH_n\M^{mn} \nonumber \\
+&+ {1 \over 4}e^{\varphi}\M_{mn}F'^{2m}F'^{2n} + {1 \over 2}e^{2\varphi}(\partial a)^2 \Big{]}.
+\end{align}
+Writing the Einstein term together with the $G^2$ term gives
+\begin{align}
+&\phantom{=}\int d^{11}x \sqrt{|\hat{g}|} (\hat{R}-{1 \over 48}\hat{G}^2) \nonumber \\
+&= \int d^8x \sqrt{|g_E|} \Big{[} R_E - {1 \over 2}(\partial \varphi)^2-{1 \over 4}e^{-\varphi}\M_{mn}F^{1m}F^{1n} -{1 \over 4}\mbox{Tr}(\M^{-1}\partial \M)^2 \nonumber \\
+&\phantom{=}- {1 \over 48}e^{-\varphi}G^2 - {1 \over 12}H_mH_n\M^{mn} - {1 \over 4}e^{\varphi}\M_{mn}F'^{2m}F'^{2n} - {1 \over 2}e^{2\varphi}(\partial a)^2 \Big{]}.
+\label{hej2}
+\end{align}
+
+\subsubsection{SL(2) $\times$ SL(3) parametrisation}
+
+We now want to formulate the action in a more $SL(2,{\mathbb R}) \times
+SL(3,{\mathbb R})$ covariant way (see table 2.3). 
+We define the metric
+\begin{equation}
+\W= {1 \over \mbox{Im} (\tau) }\toto{|\tau|^2 }{ \mbox{Re}(\tau) }{ \mbox{Re}(\tau) }{ 1} = e^{\varphi}\toto{a^2 + e^{-2\varphi} }{ a }{ a }{ 1},
+\end{equation}
+with
+\begin{equation}
+\tau = a + \mbox{i} e^{-\varphi}
+\end{equation}
+parametrising the $SL(2,{\mathbb R})/SO(2)$ coset. We get
+\begin{equation}
+\W^{-1}={1 \over \mbox{Im} (\tau) }\toto{ 1}{ -\mbox{Re}(\tau) }{ -\mbox{Re}(\tau) }{ |\tau|^2}=e^{\varphi}\toto{ 1}{ -a }{ -a }{ a^2 + e^{-2\varphi}}
+\end{equation}
+and
+\begin{equation}
+\partial \W=(\partial \varphi) \W + e^{\varphi}\toto{ 2a\partial a - 2\partial \varphi e^{-2\varphi}}{ \partial a }{ \partial a }{ 0},
+\end{equation}
+hence
+\begin{align}
+\partial \W \W^{-1}=& \hspace{0.15cm} \id \partial \varphi+ \nonumber \\
+&  + e^{2\varphi}\toto{a\partial a - 2\partial \varphi e^{-2\varphi} }{ -a^2 \partial a + 2a\partial \varphi e^{-2\varphi} + \partial a e^{-2\varphi} }{ \partial a }{ -a \partial a} \nonumber \\
+=& \hspace{0.15cm} e^{2\varphi}\toto{a\partial a - \partial \varphi e^{-2\varphi} }{ -a^2 \partial a + 2a\partial \varphi e^{-2\varphi} + \partial a e^{-2\varphi} }{ \partial a }{ -a \partial a + \partial \varphi e^{-2\varphi}}.
+\end{align}
+Finally we get
+\begin{align}
+\mbox{Tr}(\partial \W \W^{-1})^2 &= e^{4 \varphi}\Big{(}2(a\partial a - \partial \varphi e^{-2\varphi})^2 + 2(-a^2(\partial a)^2 + 2a\partial a\partial \varphi e^{-2 \varphi} \nonumber \\
+&\phantom{=}+ (\partial a)^2 e^{-2 \varphi}) \Big{)}= 2\Big{(}(\partial \varphi)^2 + (\partial a)^2 e^{2 \varphi}\Big{)}.
+\label{hej3}
+\end{align}
+Now look at the term
+\begin{align}
+F^{rm}F^{sn}\W_{rs} &= (a^2 e^{\varphi} + e^{-\varphi})F^{1m}F^{1n} + 2ae^{\varphi}F^{1m}F^{2n} +e^{\varphi}F^{2m}F^{2n} \nonumber \\
+&= e^{\varphi}(aF^{1m}F'^{2n} + F'^{2m}F^{2n}) + e^{-\varphi}F^{1m}F^{1n} \nonumber \\
+&= e^{\varphi}F'^{2m}F'^{2n} + e^{-\varphi} F^{1m}F^{1n},
+\label{hej4}
+\end{align}
+where we have repeatedly used (\ref{hej}). Inserting (\ref{hej3}) and (\ref{hej4}) in (\ref{hej2}) yields
+\begin{align}
+&\int d^{11}x \sqrt{|\hat{g}|} (\hat{R}-{1 \over 48}\hat{G}^2) \nonumber \\
+&= \int d^8x \sqrt{|g_E|} \Big{[} R_E - {1 \over 4}\mbox{Tr}(\partial \W \W^{-1})^2 -{1 \over 4}\mbox{Tr}(\M^{-1}\partial \M)^2 \nonumber \\
+&\phantom{=}- {1 \over 4}\M_{mn}F^{rm}F^{sn}\W_{rs} - {1 \over 12}H_mH_n\M^{mn}- {1 \over 48}e^{-\varphi}G^2 \Big{]}.
+\label{tjena}
+\end{align}
+We can now explicitly verify that the action (apart from the $G^2$ term that will be treated later) is invariant under the
+following $SL(2,{\mathbb R})$ and $SL(3,{\mathbb R})$ transformations:
+\begin{equation}
+\W \rightarrow \Lambda \W \Lambda^{T}, \hspace{0.5cm} F^{m} \rightarrow (\Lambda^{T})^{-1}F^m, \hspace{0.5cm} \Lambda \in SL(2),
+\end{equation}
+\begin{equation}
+\M \rightarrow R\M R^T, \hspace{0.5cm} H_m \rightarrow R{_m}^n H_m, \hspace{0.5cm} F^m \rightarrow F^n (R^{-1}){_n}^m, \hspace{0.5cm} R \in SL(3).
+\label{sl3trans}
+\end{equation}
+To see that term 4 and 5 in (\ref{tjena}) are inert we only need to do the short calculations
+\begin{equation}
+H^T \M^{-1}H \rightarrow H^T R^T R^{-T}\M^{-1}R^{-1}RH = H^T \M^{-1}H,
+\end{equation}
+\begin{align}
+F^T(\M \otimes \W)F \rightarrow & \hspace{0.15cm} F^T R^{-1} R\M R^T R^{-T}F \otimes F^T \Lambda^{-1} \Lambda \W {\Lambda}^{T} {\Lambda}^{-T}F \nonumber \\
+&=F^T(\M \otimes \W)F,
+\end{align}
+whilst for term 2 and 3 we can reuse the shown transformation symmetry of the scalar kinetics in \eqnref{sugra_kinetic_transform}.
+
+\subsubsection{The $G$-doublet}
+
+We see in \ref{tjena} that there is no $SL(2,{\mathbb R})$ symmetry for the $G^2$-term. This is because the $SL(2,{\mathbb R})$ 
+symmetry is not a symmetry of the whole action, but we will show below that by using a 4-form coming from the dual of $\hat{G}$ 
+we can create an $SL(2,{\mathbb R})$-doublet and derive $SL(2,{\mathbb R})$ covariant Bianchi identities for $H$ and $G$.
+But before we do this we will first redefine the potentials to get the field strengths written in an $SL(2,{\mathbb R})$ 
+invariant way. The way that we have defined $H_m$ in (\ref{dhf}) is clearly not $SL(2,{\mathbb R})$ covariant, 
+a fact which is easily remedied by the redefinition
+\begin{equation}
+B'_m = B_m - {1 \over 2}{\epsilon}_{mnp}A^{1n} \wedge A^{2p},
+\end{equation}
+which implies that
+\begin{align}
+H_m=dB'_m &= dB_m - {1 \over 2}{\epsilon}_{mnp}(F^{1n} \wedge A^{2p} - F^{2n} \wedge A^{1p}) \nonumber \\
+&=dB_m - {1 \over 2}{\epsilon}_{mnp}{\epsilon}_{rs}F^{rn} \wedge A^{sp},
+\end{align}
+where $r,s = 1,2$. This gives the $SL(2,{\mathbb R})$ covariant Bianchi identity
+\begin{equation}
+dH_m=-{1 \over 2}{\epsilon}_{mnp}{\epsilon}_{rs}F^{rn} \wedge F^{sp}.
+\end{equation}
+It is also convenient to redefine $C'$ as
+\begin{equation}
+C'=C - {1 \over 3}A^{1m} \wedge B_m + {1 \over 6}{\epsilon}_{mnp}A^{1m} \wedge A^{2n} \wedge A^{1p},
+\end{equation}
+which gives
+\begin{align}
+G &= dC -{1 \over 3}dA^{1m} \wedge B_m - {1 \over 3}A^{1m} \wedge dB_m +{1 \over 6}{\epsilon}_{mnp}dA^{1m} \wedge A^{2n} \wedge A^{1p} \nonumber \\
+&\phantom{=}-{1 \over 6}{\epsilon}_{mnp}A^{1m} \wedge dA^{2n} \wedge A^{1p} + {1 \over 6}{\epsilon}_{mnp}A^{1m} \wedge A^{2n} \wedge dA^{1p} \nonumber \\
+&\phantom{=}+(B_m - {1 \over 2}{\epsilon}_{mnp}A^{1n} \wedge A^{2p})\wedge F^{1m} \nonumber \\
+&=dC + {2 \over 3}B_m \wedge F^{1m} - {1 \over 3}A^{1m} \wedge dB_m \nonumber \\
+&\phantom{=}+({1 \over 6}+{1 \over 6}-{1 \over 2}){\epsilon}_{mnp}A^{1m} \wedge A^{2n} \wedge F^{1p} + {1 \over 6}{\epsilon}_{mnp}A^{1m} \wedge A^{1n} \wedge F^{2p} \nonumber \\
+&=dC + {2 \over 3}B_m \wedge F^{1m} \nonumber \\
+& \phantom{=}+ {1 \over 3}A^{1m} \wedge \Big{(}dB_m + {1 \over 2}{\epsilon}_{mnp}(A^{1n} \wedge F^{2p} - A^{2n} \wedge F^{1p}) \Big{)} \nonumber \\
+&=dC + {2 \over 3}B_m \wedge F^{1m} + {1 \over 3}A^{1m} \wedge H_m
+\end{align}
+Note that these redefinitions do not affect the corresponding Bianchi identities.
+Unfortunately they do affect the invariance under reparametrisations along the internal 3-torus as one can immediately see in the definitions above.
+This invariance is lost for the $B$ and $C$ fields, an unavoidable consequence of imposing manifest $SL(2,{\mathbb R})$ covariance.
+
+Next it is finally time to deal with the $G^2$ term. We will try to write $G$ as a $SL(2,{\mathbb R})$ doublet by using the dual to $\hat{G}$.
+The dual is calculated by $\hat{G}_7=*\hat{G}$, where $*$ is the Hodge dual operator (see \eqnref{conven_hodge_form}) and hence $\hat{G}_7$ is a 7-form.
+When reducing the 11-dimensional 7-form we will receive a 4-form which is dual to the 4-form $G$. Expanding $\hat{G}_7$ gives
+\begin{align}
+\hat{G}_7 &= {1 \over 7!} \hat{G}_{7M{_7} \cdots M_{1}} dx^{M_{1}} \wedge \cdots \wedge dx^{M_{7}} \nonumber \\
+&={1 \over 7!}\Big{(}G_{7 {\mu}_7 \cdots {\mu}_1} dx^{{\mu}_{1}} \wedge \cdots \wedge dx^{{\mu}_{7}} + 7G_{7 m_7 {\mu}_6 \cdots {\mu}_1} dx^{{\mu}_{1}} \wedge \cdots \wedge dx^{{\mu}_{6}} \wedge dx^{m_7} \nonumber \\
+&\phantom{=} +{7 \cdot 6 \over 2!}G_{7 m_7 m_6 {\mu}_5 \cdots {\mu}_1}dx^{{\mu}_{1}} \wedge \cdots \wedge dx^{{\mu}_{5}} \wedge dx^{m_6} \wedge dx^{m_7} \nonumber \\
+&\phantom{=} +{7 \cdot 6 \cdot 5 \over 3!}G_{7 m_7 m_6 m_5 {\mu}_4 \cdots {\mu}_1}dx^{{\mu}_{1}} \wedge \cdots \wedge dx^{{\mu}_{4}} \wedge dx^{m_5} \wedge dx^{m_6} \wedge dx^{m_7} \Big{)} \nonumber \\
+\intertext{}
+&= \underbrace{{1 \over 7!}G_{7 {\mu}_7 \cdots {\mu}_1} dx^{{\mu}_{1}} \wedge \cdots \wedge dx^{{\mu}_{7}}}_{G_7} + \underbrace{({1 \over 6!}G_{7{\mu}_6 \cdots {\mu}_1} dx^{{\mu}_{1}} \wedge \cdots \wedge dx^{{\mu}_{6}})_{m}}_{-G_{6m}} \wedge dx^m \nonumber \\
+&\phantom{=} +{1 \over 2!} \underbrace{({1 \over 5!}G_{7{\mu}_5 \cdots {\mu}_1} dx^{{\mu}_{1}} \wedge \cdots \wedge dx^{{\mu}_{5}})_{nm}}_{-G_{5nm}} \wedge dx^m \wedge dx^n \nonumber \\
+&\phantom{=} +{1 \over 3!} \underbrace{({1 \over 4!}G_{7{\mu}_4 \cdots {\mu}_1}dx^{{\mu}_{1}} \wedge \cdots \wedge dx^{{\mu}_{4}})_{pnm}}_{G'{\epsilon}_{pnm}} \wedge dx^m \wedge dx^n  \wedge dx^p \nonumber \\
+&= G_7 - G_{6m} \wedge \hat{e}^m + {1 \over 2!} G_{5mn} \wedge \hat{e}^m \wedge \hat{e}^n - {1 \over 3!}G' \wedge {\epsilon}_{mnp} \hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p,
+\label{g7}
+\end{align}
+where the 4-form $G'$ is dual to $G$ and the signs has been chosen so that the corresponding expansion of $\hat C_{(6)}$ has positive signs. To form the $SL(2,{\mathbb R})$ doublet we need the Bianchi identity for $\hat{G}_7$
+\begin{equation}
+d(*\hat{G})=d{\hat{G}_7}=-{1 \over 2}\hat{G} \wedge \hat{G},
+\label{bianchig7}
+\end{equation}
+which was derived in \eqnref{bianchig7}. We can now use (\ref{bianchig7}) together with (\ref{g7}) to get
+\begin{align}
+d\hat{G}_7 &= \cdots +{1 \over 3!} dG' \wedge {\epsilon}_{mnp}
+\hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p + \cdots = dG' d^Dy + \cdots\nn\\
+& = -{1 \over 2}\hat{G} \wedge \hat{G}
+= -{1 \over 2}\Big( \cdots -{2 \over 3!} G \wedge da \wedge
+{\epsilon}_{mnp}\hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p \nonumber
+\\
+&\phantom{=}-{2 \over 2!} H_q \wedge \hat{e}^q \wedge F'^{2p} {\epsilon}_{mnp}\wedge \hat{e}^m \wedge \hat{e}^n + \cdots\Big) \nonumber \\
+&= \big( G \wedge da + H_m\wedge F'^{2m}\big) d^Dy + \cdots
+\end{align}
+We thus read off the Bianchi identity for $G'$ as
+\begin{equation}
+dG'=G \wedge da + H_m \wedge F'^m = G \wedge da + H_m \wedge F^{2m} + H_m \wedge F^{1m}a.
+\end{equation}
+The next step is to make the definition
+\begin{equation}
+G' = -e^{-\varphi}(*_8 G),
+\end{equation}
+where $*_8$ is the 8-dimensional Hodge dual operator. This way of defining $G'$ is however not 
+suitable for the construction of the $SL(2,{\mathbb R})$ doublet. Instead we make another definition
+\begin{equation}
+\tilde{G}=G'-aG=-e^{-\varphi}(*_8 G)-aG,
+\end{equation}
+with the Bianchi identity
+\begin{equation}
+d\tilde{G}=H_m \wedge F^{2m}.
+\end{equation}
+Hence, with the definitions $G^1 = G$, $G^2 = \tilde{G}$, $r = 1,2$ and $dA^{2m}=F^{2m}$, we get
+\begin{equation}
+dG^r=H_m \wedge F^{rm},
+\end{equation}
+and we also define
+\begin{equation}
+G^r=dC^r+{2 \over 3}B_m \wedge F^{rm} - {1 \over 3}A^{rm} \wedge H_m.
+\end{equation}
+Finally, by looking at the components of the dual of $G$ we find
+\begin{align}
+*_8G^1&=e^{-\varphi}G'=e^{-\varphi}(G^2+aG^1)=-\W_{21}G^1-\W_{22}G^2 \nonumber \\
+&=-\W_{2t}G^t, \\
+*_8G^2&=*_8(G'-aG^1)=e^{-\varphi}G^1+ae^{\varphi}G^2+a^2e^{\varphi}G^1=\W_{11}G^1+\W_{12}G^2 \nonumber \\
+&=\W_{1t}G^t, \\
+\Rightarrow & *_8G^r=-\epsilon^{rs}\W_{st}G^t.
+\end{align}
+The redefinitions of the potentials also affects the transformations that leaves the field strengths invariant. 
+The new gauge transformations becomes:
+\begin{align}
+&\delta A^{rm}=d\chi^{rm}, \hspace{1cm} \delta B_m =d\chi_m -{1 \over 2}\epsilon_{mnp}\epsilon_{rs}A^{rn} \wedge d\chi^{sp}, \nonumber \\
+&\delta C^r = d\chi^r -{2 \over 3}A^{rm} \wedge d\chi_m +{1 \over 3}B_m \wedge d\chi^{rm} + {1 \over 6}\epsilon_{mnp}\epsilon_{st}A^{rm} \wedge A^{sn} \wedge d\chi^{tp},
+\end{align}
+and the calculations
+\begin{align}
+\delta F^{rm}&=d \delta A^{rm} = d^2 \chi^{rm}=0, \\
+\delta H_m&=d\delta B_m - {1 \over 2}\epsilon_{mnp}\epsilon_{rs}F^{rn} \wedge \delta A^{sp} \nonumber \\
+&={1 \over 2}\epsilon_{mnp}\epsilon_{rs}(F^{rn}\wedge d\chi^{sp}-F^{rn}\wedge d\chi^{sp})=0, \\
+\intertext{}
+\delta G^r&=d \delta C^r + {2 \over 3} \delta B_m \wedge F^{rm} - {1 \over 3}\delta A^{rm} \wedge H_m =-{2 \over 3}F^{rm} \wedge d\chi_m \nonumber \\
+&\phantom{=}-{1 \over 3}dB_m \wedge d\chi^{rm}-{1 \over 6}\epsilon_{mnp}\epsilon_{st}d(A^{rm} \wedge A^{sn}) \wedge d\chi^{tp} \nonumber \\
+&\phantom{=}+{2 \over 3} d\chi_m \wedge F^{rm}-{1 \over 6}\epsilon_{mnp}\epsilon_{st}A^{sn} \wedge d\chi^{tp} \wedge F^{rm} +{1 \over 3}H_m \wedge d\chi^{rm} \nonumber \\
+&=-{1 \over 6}\epsilon_{mnp}\epsilon_{st}\Big{(}A^{rm} \wedge F^{sn} \wedge d\chi^{tp} - A^{sm} \wedge F^{rn} \wedge d\chi^{tp} \nonumber \\
+&\phantom{=}+ F^{sn} \wedge A^{tp} \wedge d\chi^{rm}\Big{)} \nonumber \\
+&= \Big{\{} \mbox{Use } \epsilon_{mnp}\epsilon_{st}(A^{rm} \wedge F^{sn} \wedge d\chi^{tp} + F^{sn} \wedge A^{tp} \wedge d\chi^{rm}) \nonumber \\
+&\phantom{=}= -\epsilon_{mnp}\epsilon_{st}(A^{sm} \wedge F^{rn} \wedge d\chi^{tp} + 2F^{rm} \wedge A^{sn} \wedge d\chi^{tp}), \nonumber \\
+&\phantom{=}\mbox{(calculate each component separate)}\Big{\}} \nonumber \\
+&={1 \over 3}\epsilon_{mnp}\epsilon_{st}(A^{sm} \wedge F^{rn} + A^{sn} \wedge F^{rm})\wedge d\chi^{tp}=0,
+\end{align}
+shows that the field strengths are invariant.
+
+
+
+
+
+
+\subsection{The 7-dimensional action}
+
+We will calculate the $\hat{G}^2$-term for $T^4$ in exactly the same way as for $T^2$ and $T^3$, hence we start with (\ref{fieldsT4}) to identify $\hat{G}^2$ with
+\begin{align}
+&\phantom{=}{1 \over 48}\hat{G}_{M_{1} \cdots M_{4}} \hat{G}^{M_{1} \cdots M_{4}} \nonumber \\
+&= {1 \over 48}G^2 + {1 \over 12}H_m H^m + {1 \over 8}F'^{2}_{pq}F'^{2p'q'}{\epsilon}_{mnp'q'}{\epsilon}^{mnpq} \nonumber \\
+&\phantom{=}+{1 \over 12}({\partial}^{\mu} a^q)({\partial}_{\mu}a^{q'})G_{q'q''}{\epsilon}_{mnpq}{\epsilon}^{mnpq''} \nonumber \\
+&= \Big{\{} {\epsilon}_{mnp'q'}{\epsilon}^{mnpq}=4 \delta^{ \phantom{[} p \phantom{'} q}_{[p'q']}, {\epsilon}_{mnpq}{\epsilon}^{mnpq''}=3! \delta^{q''}_{q} \Big{\}} \nonumber \\
+&= {1 \over 48}G^2 + {1 \over 12}H_m H^m + {1 \over 2}F'^{2}_{mn}F'^{2mn} + {1 \over 2}({\partial}^{\mu} a^{q'})({\partial}_{\mu}a^{q})G_{qq'}.\phantom{iiiiii}
+\end{align}
+Switching to Einstein frame requires the scaling
+\begin{align} 
+F'^2_{mn} F'^{2mn} &\rightarrow e^{4s \varphi}e^{-4\varphi /D}\M_{mm'}\M_{nn'}F'^{2m'n'}F'^{2mn}, \nonumber \\
+({\partial}_{\mu} a^q)({\partial}^{\mu} a^{q'})G_{qq'} &\rightarrow e^{2s\varphi} e^{-2\varphi /D} ({\partial}_{\mu} a^q)({\partial}^{\mu} a^{q'}) \M_{qq'}, \nonumber \\
+{\epsilon}_{mnpq}{\epsilon}^{mnpq} &\rightarrow e^{8\varphi /D}\M^{mm'}\M^{nn'}\M^{pp'}\M^{qq'} {\epsilon}_{mnpq}{\epsilon}_{m'n'p'q'},\phantom{iiii}
+\end{align}
+together with (\ref{ertyui}). Recognizing $D=4$, $d=7$ and $s=-1/5$ we find
+\begin{align}
+S_{\hat G^2} =& \int d^7x \sqrt{|g|} \Big{[} {1 \over 48}e^{-{6 \over 5}\varphi}G^2 + {1 \over 12}e^{-{3 \over 10}\varphi}H_mH_n\M^{mn} \nonumber \\
+&+ {1 \over 2}e^{{3 \over 5}\varphi}\M_{mm'}\M_{nn'}F'^{2m'n'}F'^{2mn} + {1 \over 2}e^{{3 \over 2}\varphi}({\partial}_{\mu}a^{q})({\partial}^{\mu}a^{q'})\M_{qq'} \Big{]}
+\end{align}
+and writing $\hat{G}^2$ together with $R$ and a redefinition $\varphi \rightarrow (\sqrt{10}/3) \varphi$ gives
+\begin{align}
+&\int d^{11}x \sqrt{|\hat{g}|} (\hat{R}-{1 \over 48}\hat{G}^2) \nonumber \\
+&= \int d^7x \sqrt{|g_E|} \Big{[} R_E - {1 \over 2}(\partial \varphi)^2-{1 \over 4}e^{-{3 \over \sqrt{10}}\varphi}\M_{mn}F^{1m}F^{1n} \nonumber \\
+&\phantom{=} -{1 \over 4}\mbox{Tr}(\M^{-1}\partial \M)^2 - {1 \over 48}e^{{-4 \over \sqrt{10}}\varphi}G^2 - {1 \over 12}e^{-{1 \over \sqrt{10}} \varphi}H_mH_n\M^{mn} \nonumber \\
+&\phantom{=}- {1 \over 2}e^{{2 \over \sqrt{10}} \varphi}\M_{mm'}\M_{nn'}F'^{2m'n'}F'^{2mn} - {1 \over 2}e^{{\sqrt{10} \over 2} \varphi}({\partial}_{\mu} a^q)({\partial}^{\mu} a^{q'})\M_{qq'} \Big{]}.
+\eqnlab{reduct_7d}
+\end{align}
+
+
+\subsubsection{SL(5)/SO(5) parametrisation}
+From table 2.3 we find that the U-duality coset in d=7 is \coset{5}. We thus want to rewrite the Lagrangian \eqnref{reduct_7d} in an SL(5,$\rr$) covariant way with the help of an \coset{5} parametrisation matrix $\W$. 
+It makes sense to start with the scalars.
+
+\subsubsection{The scalar terms}
+The scalar part of the Lagrangian \eqnref{reduct_7d} is 
+\begin{equation}
+\Lagr_{scalar}^{d=7} = -\frac{1}{2}(\partial\varphi)^2-\frac{1}{4}\tr(\M^{-1}\partial \M)^2-\frac{1}{2}e^{\frac{\sqrt{10}}{2}\varphi}\partial a^m\M_{mn}\partial a^n.
+\eqnlab{sl5so5_scalar_lagr}
+\end{equation}
+We note that there is a total of 14 scalar fields out of which 4 are dilatons ($\varphi$ and three in $\M$) and 10 are axions ($a\times 4$ and six lives in $\M$), in this Lagrangian, which is precisely the number and types of scalars in $\W$, as we saw in subsection \ssecref{ex_sl5so5}.  
+So the game is now to include all the scalars in $\W$ and hope that it is possible to rewrite the scalar Lagrangian as one single kinetic scalar term
+\begin{equation}
+\Lagr_{scalar}^{d=7} = -\frac{1}{4}\tr(\W^{-1}\partial \W)^2 = \frac{1}{4}\tr(\partial\W^{-1}\partial \W).
+\end{equation}
+By splitting the coset metrics $\M$ and $\W$ into upper diagonal vielbeins
+\begin{align}
+\M &= \N\N^T,&\M\in \mbox{\coset{4}}\nonumber\\
+\W &= \V\V^T,&\W\in \mbox{\coset{5}}
+\end{align}
+we can rewrite the Lagrangian as
+\begin{align}
+\Lagr_{scalar}^{d=7} &= -\frac{1}{4}\tr\left(\W^{-1}\partial \W\right)^2 = -\frac{1}{4}\tr\left(\V^{T-1}\V^{-1}(\partial\V\V^T+\V\partial\V^T)\right)^2\nonumber\\
+&=-\frac{1}{4}\tr\left(\V^{-1}\partial\V\V^{-1}\partial\V+(\V^{-1}\partial\V\V^{-1}\partial\V)^T+2\partial\V^T\V^{T-1}\V^{-1}\partial\V \right)\nonumber\\
+&=-\frac{1}{2}\tr\left(\V^{-1}\partial\V\V^{-1}\partial\V+\V^{-1}\partial\V(\V^{-1}\partial\V)^T\right)\nonumber\\
+&=-\frac{1}{2}\tr\left(\V^{-1}\partial\V(\V^{-1}\partial\V+(\V^{-1}\partial\V)^T)\right).
+\eqnlab{scalar_kinetic_simp}
+\end{align}
+From the information in \eqnref{sl5so5_scalar_lagr} we deduce that $\V$ must contain the dilaton $\varphi$ and the four axions $a^m$ together with the \coset{4} vielbein $\N$.
+We note that the Lagrangian \eqnref{sl5so5_scalar_lagr} is invariant under a redefinition $\V\rightarrow\V^{T-1}$ coming from the symmetry between $\M$ and $\M^{-1}$ in the $\tr(\partial M^{-1}\partial M)$-term.
+We thus make the Ansatz
+\begin{equation} 
+\U=\toto{\T f(a^m,\varphi)}{g(a^m,\varphi)}{0}{h(a^m,\varphi)}=
+\setlength{\unitlength}{.4mm}
+\left(\begin{array}{l}\cr\mbox{}\end{array}\right.
+\begin{picture}(23,30)(8,10)% (size)(offset)
+\put(0,0){
+\path(0,7)(20,7)(20,27)(0,27)(0,7)
+\path(0,0)(20,0)(20,5)(0,5)(0,0)
+\path(22,7)(27,7)(27,27)(22,27)(22,7)
+\path(22,0)(27,0)(27,5)(22,5)(22,0)
+\put(10,17){\makebox(0,0){\tiny 4$\times$4}}
+\put(10,2.5){\makebox(0,0){\tiny 1$\times$4}}
+\put(35,17){\makebox(0,0){\tiny 4$\times$1}}
+\put(35,2.5){\makebox(0,0){\tiny 1$\times$1}}
+\path(25,17)(29,17)
+\path(25,2.5)(29,2.5)
+}
+\end{picture}
+\left.\begin{array}{l}\cr\mbox{}\end{array}\right)
+\end{equation}
+where f and h are scalar functions of the fields, g is a 4-dimensional vector function of the fields, $\U$ is either $\V$ or $\V^{T-1}$, which can be chosen for convenience later and $\T$ is similarly either $\N$ or $\N^{T-1}$. 
+We have thus reduced the problem to the level of a four piece jigsaw puzzle, so all that is left is to fit the pieces together.
+
+The condition $\det\U=1$ and the knowledge $\det\T=1$ gives a relationship between f and h
+\begin{equation}
+1=\det\U=hf^4\det\T=hf^4,
+\end{equation}
+so $h$ will henceforth be replaced by $f^{-4}$.
+The inverse of $\U$ is easily found to be
+\begin{equation}
+\U^{-1}=\toto{f^{-1}\T^{-1}}{-f^{3}\T^{-1}g}{0}{f^4}
+\end{equation}
+and
+\begin{equation}
+\partial\U=\toto{f\partial\T+\partial f\T}{\partial g}{0}{-4f^{-5}\partial f}
+\end{equation}
+giving
+\begin{equation}
+\U^{-1}\partial\U = \toto{\T^{-1}\partial\T+f^{-1}\partial f}{f^{-1}\T^{-1}\partial g+4f^{-2}\partial f\T^{-1}g}{0}{-4f^{-1}\partial f}. 
+\end{equation}
+The upper left part of the matrix in the trace in \eqnref{scalar_kinetic_simp} becomes
+\begin{align}
+(\U^{-1}&\partial\U(\U^{-1}\partial\U+(\U^{-1}\partial\U)^T)_{mn}=\T^{-1}\partial\T\T^{-1}\partial\T+\T^{-1}\partial\T(\T^{-1}\partial%%@
+\T)^T\nonumber\\
+&+3f^{-1}\partial f \T^{-1}\partial\T+f^{-1}\partial f (\T^{-1}\partial\T)^T+2f^{-2}(\partial f)^2\id_{4\times4}\nonumber\\
+&+f^{-2}\T^{-1}\partial g\partial g^T\T^{T-1}+4f^{-3}\partial f\T^{-1}\partial g g^T\T^{T-1}\nonumber\\
+&+4f^{-3}\partial f\T^{-1}g\partial g^T\T^{T-1}+16f^{-4}(\partial f)^2\T^{-1}gg^t\T^{T-1}
+\end{align}
+and the lower right part becomes
+\begin{align}
+(\U^{-1}&\partial\U(\U^{-1}\partial\U+(\U^{-1}\partial\U)^T)_{55}=32f^{-2}(\partial f)^2.
+\end{align}
+Take the trace and remember that $\tr(\T^{-1}\partial\T)=0$ from \eqnref{conven_parinv}
+\begin{align}
+\Lagr_{scalar}^{d=7} &=-\frac{1}{2}\tr\left(\U^{-1}\partial\U(\U^{-1}\partial\U+(\U^{-1}\partial\U)^T)\right)\\
+&=-\frac{1}{2}\tr\left(\T^{-1}\partial\T(\T^{-1}\partial\T+(\T^{-1}\partial\T)^T)\right)-\frac{1}{2}f^{-2}\partial g^T\T^{T-1}\T^{-1}\partial g\nonumber\\
+&-4f^{-3}\partial fg^T\T^{T-1}\T^{-1}\partial g
+-8f^{-4}(\partial f)^2g^t\T^{T-1}\T^{-1}g-20f^{-2}(\partial f)^2.\nonumber
+\end{align}
+The first term is independent on the choice of $\T$ and can be written as $\Lagr_0=-\tr(\M^{-1}\partial\M)^2/4$ in both cases. Since the scalars in the Lagrangian \eqnref{sl5so5_scalar_lagr} are multiplied with $\M$ and not $\M^{-1}$, we choose to use $\U=\V^{T-1}$ so $\T=\N^{T-1} \Leftrightarrow \T^{T-1}\T^{-1}=\M$.
+Refine the Ansatz by letting
+\begin{align}
+f&=e^{x\varphi},\hspace{1cm} &g&=a^me^{y\varphi},\nonumber\\
+\partial f &= x\partial\varphi e^{x\varphi}, &\partial g &=y\partial\varphi a^me^{y\varphi} + \partial a^me^{y\varphi},
+\end{align}
+where x and y are real parameters to be adjusted later.
+This means
+\begin{align}
+\Lagr&_{scalar}^{d=7}-\Lagr_0 = \left\{-\frac{1}{2}(y\partial\varphi a^m + \partial a^m)\M_{mn}(y\partial\varphi a^n + \partial a^n)\right.\nonumber\\ 
+&-4x\partial\varphi a^m\M_{mn}(y\partial\varphi a^n + \partial a^n)-8x^2(\partial\varphi)^2a^m\M_{mn}a^n\bigg\}e^{2y\varphi-2x\varphi}\nonumber\\
+&-20x^2(\partial\varphi)^2.
+\end{align}
+Comparing the last term to $-(\partial\varphi)^2/2$ in \eqnref{sl5so5_scalar_lagr} gives $x=\pm 1/(2\sqrt{10})$ and comparing the exponent $2(y-x)\varphi$ to the exponent in 
+\begin{align}
+-\frac{1}{2}e^{\frac{\sqrt{10}}{2}\varphi}\partial a^m\M_{mn}\partial a^n
+\end{align}
+from \eqnref{sl5so5_scalar_lagr}, gives $y=(10\pm 2)/(4\sqrt{10})$. Choosing the minus sign, so $x=-1/(2\sqrt{10})$ and $y=2/\sqrt{10}$, removes all unwanted terms and we have   
+\begin{equation}
+-\frac{1}{4}\tr(\W^{-1}\partial \W)^2 = -\frac{1}{2}(\partial\varphi)^2-\frac{1}{4}\tr(\M^{-1}\partial \M)^2-\frac{1}{2}e^{\frac{\sqrt{10}}{2}\varphi}\partial a^m\M_{mn}\partial a^n
+\eqnlab{sl5so5_scalar_kinetic}
+\end{equation}
+just as we wanted. $\W$ is explicitly given by
+\begin{align}
+\W&=\V\V^T = \U^{T-1}\U^{-1} = \toto{f^{-1}\N}{0}{-f^{3}g^T\N}{f^4}\toto{f^{-1}\N^{T}}{-f^{3}\N^{T}g}{0}{f^4}\nonumber\\ 
+&= \toto{f^{-2}\M}{-f^{2}\M g}{-f^{2}g^T\M}{f^6g^T\M g+f^8}=e^{\frac{1}{\sqrt{10}}\varphi}\toto{\M_{mn}}{-a_m}{-a_n}{a_m a^m+e^{\frac{-5}{\sqrt{10}}\varphi}}.
+\eqnlab{sl5so5_metric}
+\end{align}
+To see that the metric indeed is a parametrisation of \coset{5} we first note that if $\W$ belongs to \coset{5} then so does $\W^{-1}$. This means we can compare the vielbein $\U$ to the vielbein $\V$ \eqnref{ex_sl5so5_v} found in the \coset{5} example.
+We find that after doing the following field redefinitions in \eqnref{ex_sl5so5_v}
+\begin{align}
+&\tilde\tau_{10}=a_1,\hspace{.5cm}\tilde\tau_9=a_2,\hspace{.5cm}\tilde\tau_7=a_3,\hspace{.5cm}\tau_4=a_4,\hspace{.5cm}\phi_1=\phi_1'+\frac{1}{\sqrt{10}}\varphi,\nonumber\\
+&\phi_2=\phi_2'+\frac{2}{\sqrt{10}}\varphi,\hspace{.5cm}\phi_3=\phi_3'+\frac{3}{\sqrt{10}}\varphi,\hspace{.5cm}\phi_4=\frac{4}{\sqrt{1%%@
+0}}\varphi
+\end{align}
+the vielbeins are identical and hence $\W\in$\coset{5}.
+
+\subsubsection{The 1-form terms}
+We now want to use the found metric $\W$ to write the 1-form gauge potentials in an \coset{5} covariant way. 
+The 1-form part of the Lagrangian \eqnref{reduct_7d} is 
+\begin{equation}
+\Lagr_{A}^{d=7} = -\frac{1}{4}e^{-\frac{3}{\sqrt{10}}\varphi}F^{1m}\M_{mn}F^{1n}-\frac{1}{2}e^{\frac{2}{\sqrt{10}}\varphi}F'^{2[mn]}\M_{mm'}\M_{nn'}F'^{2[m'n']}.
+\eqnlab{sl5so5_1form_lagr}
+\end{equation}
+Let r,s,... run from 1 to 5 and decompose
+\begin{align}
+F^{[rs]}\W_{rr'}\W_{ss'}F^{[r's']} &= F^{[mn]}\W_{mm'}\W_{nn'}F^{[m'n']}+4F^{[mn]}\W_{m5}\W_{nn'}F^{[5n']}\nonumber\\
+& \phantom{=} +2F^{[5n]}\W_{55}\W_{nn'}F^{[5n']}+2F^{[5n]}\W_{5m'}\W_{n5}F^{[m'5]}.
+\eqnlab{sl5so5_1form_expansion}
+\end{align}
+Define the 10 field strengths of $F^{[rs]}$ to contain the 4 $F^{1m}$ field strengths and the 6 $F^{'2[mn]}$ field strengths according to  
+\begin{align}
+F^{5n} &= \frac{1}{2}F^{1n} = -F^{n5},\nonumber\\
+F^{[mn]} &= F^{2[mn]} = F^{'2[mn]} + a^{[m}F^{1n]},
+\label{dsdg}
+\end{align}
+where we have used the relation for $F'^{2mn}$ in \eqnref{reduct_7d_fprim}.
+Inserting this together with the components of $\W$ into \eqnref{sl5so5_1form_expansion} gives
+\begin{align}
+F&^{[rs]}\W_{rr'}\W_{ss'}F^{[r's']} = \bigg\{F^{2[mn]}\M_{mm'}\M_{nn'}F^{2[m'n']}-2F^{2[mn]}a_m\M_{nn'}F^{1n'}\nonumber\\ 
+&+\left.\frac{1}{2}F^{1m}\left(a_pa^p\M_{mn}+e^{-\frac{5}{\sqrt{10}}\varphi}\M_{mn}-a_ma_n\right)F^{1n}\right\}e^{\frac{2}{\sqrt{10}}\varphi}\nonumber\\
+&=\bigg\{F'^{2[mn]}\M_{mm'}\M_{nn'}F'^{2[m'n']}+(2-2)F'^{2[mn]}a_m\M_{nn'}F^{1n'}\nonumber\\ 
+&+\left.F^{1m}\left(\frac{1}{2}e^{-\frac{5}{\sqrt{10}}\varphi}\M_{mn}+(a_pa^p\M_{mn}-a_ma_n)(\frac{1}{2}+\frac{1}{2}-1)\right)F^{1n}\right\}e^{\frac{2}{\sqrt{10}}\varphi}\nonumber\\
+&=e^{\frac{2}{\sqrt{10}}\varphi}F'^{2[mn]}\M_{mm'}\M_{nn'}F'^{2[m'n']}+\frac{1}{2}e^{-\frac{3}{\sqrt{10}}\varphi}F^{1m}\M_{mn}F^{1n}.
+\end{align}
+We thus see that we can rewrite the 1-form Lagrangian \eqnref{sl5so5_1form_lagr} as
+\begin{equation}
+\Lagr_{A}^{d=7} = -\frac{1}{2}F^{[rs]}\W_{rr'}\W_{ss'}F^{[r's']}
+\eqnlab{sl5so5_1form_term}
+\end{equation}
+which is invariant under SL(5,$\rr$) transformations.
+
+\subsubsection{Higher order terms}
+
+
+We now have the action
+\begin{align}
+S^{d=7} = \int d^7x \sqrt{|g_E|} &\Big{[} R_E - \frac{1}{4}\tr(\W^{-1}\partial \W)^2 - {1 \over 2}F^{[rs]}\W_{rr'}\W_{ss'}F^{[r's']}\nonumber\\ 
+& - {1 \over 12}e^{-{1 \over \sqrt{10}} \varphi}H_mH_n\M^{mn} - {1 \over 48}e^{{-4 \over \sqrt{10}}\varphi}G^2 \Big{]}.
+\label{asdfghjkl}
+\end{align}
+The next step is to write the $H$ and $G$ terms in an \coset{5} invariant way. To accomplish this we will use that the 
+dual of $G$ in 7 dimensions is a 3-form and hence we can write it together with with the four 3-forms $H_m$ by using the 5-dimensional metric $\W$ 
+derived above. We start by noting that
+\begin{equation}
+-{1 \over 48}\int d^7x \sqrt{|g_E|} e^{{-4 \over \sqrt{10}}\varphi}G^2 = -{1 \over 2}\int e^{{-4 \over \sqrt{10}}\varphi} *G \wedge G.
+\end{equation}
+Inserting this in the action and varying with respect to $C$ gives
+\begin{align}
+\delta S &=-{1 \over 2}\int e^{{-4 \over \sqrt{10}}\varphi}( \delta G \wedge *G + G \wedge \delta*G ) + \delta S_{CS} \nonumber \\
+& =-\int e^{{-4 \over \sqrt{10}}\varphi}( d \delta C \wedge *G ) + \delta S_{CS} \nonumber \\
+& =- \int \delta C \wedge d(e^{{-4 \over \sqrt{10}}\varphi}*G) + \delta S_{CS},
+\eqnlab{kjskj}
+\end{align}
+where $\delta S_{CS}$ is the variation of the Chern-Simons term. We can also calculate the dual of $\hat{G}$ and expand it in the same way 
+as in (\ref{g7}), yielding
+\begin{equation}
+\hat{G_7}= \cdots +{1 \over 3!}G'^q \epsilon_{mnpq} \hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p - {1 \over 4!}H' \epsilon_{mnpq} \hat{e}^m \wedge \hat{e}^n \wedge \hat{e}^p \wedge \hat{e}^q, 
+\end{equation}
+where we have ignored the forms of higher order than four. Via \eqnref{bianchig7} we get
+\begin{equation}
+dH'=H_m \wedge da^m + {1 \over 2}\epsilon_{mnpq}F'^{2mn} \wedge F'^{2pq}.
+\eqnlab{sadf}
+\end{equation}
+If we would have calculated $\delta S_{CS}$ in \eqnref{kjskj} we would have found the equation of motion for $e^{{-4 \over \sqrt{10}}\varphi}*G$ 
+to be the right hand side of \eqnref{sadf}. (This of course have to be the case since the Bianchi identity for $H'$ is derived from the $\hat{C}$-e.o.m.) 
+This means that we can swap the equation of motion and the Bianchi identity and define
+\begin{equation}
+H'=e^{{-4 \over \sqrt{10}}\varphi}*G.
+\end{equation}
+The next step is to rewrite $G^2$ in (\ref{asdfghjkl}) as $4(*G)^2$. This gives, if we only consider the $H$ and $G$ terms, the action
+\begin{align}
+S_{H,G} &= \int d^7x \sqrt{|g_E|} \Big{[} -{1 \over 12}e^{-{1 \over \sqrt{10}} \varphi}H_mH_n\M^{mn} - {4 \over 48}e^{{-4 \over \sqrt{10}}\varphi}(*G)^2 \Big{]} \nonumber \\
+&= -{1 \over 12} \int d^7x \sqrt{|g_E|} \Big{[} e^{-{1 \over \sqrt{10}} \varphi}H_mH_n\M^{mn} + e^{{4 \over \sqrt{10}}\varphi}(H')^2 \Big{]}.
+\end{align}
+If we define
+\begin{equation}
+H_5 = H' - H_m a^m
+\label{h5}
+\end{equation}
+and
+\begin{equation}
+H_r = (H_m,H_5),
+\end{equation}
+we get
+\begin{align}
+-{1 \over 12} \int & d^7x \sqrt{|g_E|} H_r H_s \W^{rs}  \nonumber \\
+=& -{1 \over 12} \int d^7x \sqrt{|g_E|} \Big{[} e^{-{1 \over \sqrt{10}} \varphi}H_mH_n\M^{mn} + e^{{4 \over \sqrt{10}} \varphi}a^m a^n H_m H_n \nonumber \\
+& +2e^{{4 \over \sqrt{10}} \varphi}H_mH_5a^m +e^{{4 \over \sqrt{10}} \varphi}H_5H_5 \Big{]} \nonumber \\
+=& -{1 \over 12} \int d^7x \sqrt{|g_E|} \Big{[} e^{-{1 \over \sqrt{10}} \varphi}H_mH_n\M^{mn} + e^{{4 \over \sqrt{10}} \varphi}\Big{(}a^m a^n H_m H_n \nonumber \\
+& +2H_ma^m(H'-H_na^n) + (H'-H_ma^m)(H'-H_na^n) \Big{)}\Big{]} \nonumber \\
+=& -{1 \over 12} \int d^7x \sqrt{|g_E|} \Big{[} e^{-{1 \over \sqrt{10}} \varphi}H_mH_n\M^{mn} + e^{{4 \over \sqrt{10}} \varphi}H'^2 \Big{]},
+\end{align}
+and hence the complete action (apart from the Chern-Simons term) for 7-dimensional supergravity becomes
+\begin{align}
+S^{d=7} = \int d^7x \sqrt{|g_E|} &\Big{[} R_E - \frac{1}{4}\tr(\W^{-1}\partial \W)^2 - {1 \over 2}F^{[rs]}\W_{rr'}\W_{ss'}F^{[r's']}\nonumber\\ 
+& - {1 \over 12}H_r H_s \W^{rs} \Big{]}.
+\end{align}
+From \eqnref{reduct_7d_bianchi}, \eqnref{sadf} and (\ref{h5}) we get the Bianchi identity
+\begin{align}
+dH_5 &=dH'-H_m \wedge da^m -dH_ma^m \nonumber \\
+&= {1 \over 2}\epsilon_{mnpq}F'^{2mn} \wedge F'^{2pq} + \epsilon_{mnpq}a^mF^{1n}\we F^{2pq},
+\end{align}
+and we also have, from \eqnref{reduct_7d_bianchi} once again
+\begin{equation}
+dH_q=\epsilon_{mnpq}F^{1m} \wedge F^{2np}=2\epsilon_{mnpq}F^{5m} \wedge F^{2np}.
+\end{equation}
+These can now be combined to the single SL(5,$\rr$) covariant Bianchi identity
+\begin{equation}
+dH_v={1 \over 2}\epsilon_{rstuv}F^{rs} \wedge F^{tu},
+\eqnlab{SL5bianchiH}
+\end{equation}
+as is proved by calculating the components
+\begin{align}
+{1 \over 2}\epsilon&_{rstu5}F^{rs} \wedge F^{tu} \nonumber \\
+&={1 \over 2}\epsilon_{mnpq5}F^{mn} \wedge F^{pq} ={1 \over 2}\epsilon_{mnpq5}(F'^{2mn} + a^m F^{1n}) \wedge (F'^{2pq} + a^p F^{1q}) \nonumber \\
+&=\Big{\{} \epsilon_{mnpq5}a^m F^{1n} \wedge a^p F^{1q} =0\Big{\}} \nonumber \\
+&={1 \over 2}\epsilon_{mnpq5}(F'^{2mn} \wedge F'^{2pq} + 2 a^m F^{1n} \wedge F'^{2pq}) \nonumber \\
+&={1 \over 2}\epsilon_{mnpq5}(F'^{2mn} \wedge F'^{2pq} + 2 a^m F^{1n} \wedge F^{2pq})=dH_5,
+\end{align}
+and
+\begin{align}
+{1 \over 2}\Big{(}& \epsilon_{5mnpq}F^{5m} \wedge F^{np} + \epsilon_{m5npq}F^{m5} \wedge F^{np} + \epsilon_{mn5pq}F^{mn} \wedge F^{5p} \nonumber \\
+&+ \epsilon_{mnp5q}F^{mn} \wedge F^{p5} \Big{)} = {1 \over 2}\Big{(}4\epsilon_{mnpq5}F^{5m} \wedge F^{np}\Big{)}=dH_q.
+\end{align}
+Before we finish this chapter we want to make the rest of the Bianchi identities and the gauge transformations SL(5,$\rr$) covariant. 
+With $F^{rs}$ defined as in (\ref{dsdg}) we see that we get
+\begin{equation}
+dF^{rs}=0,
+\end{equation}
+and also that the field strength is invariant under the transformation
+\begin{equation}
+\delta A^{rs} = d\chi^{rs}.
+\end{equation}
+Next we turn the attention to the variation of the $B$-field. First we combine $B_5$, the (not exact) potential to $H_5$, 
+with $B'_m$ to form $B_v=(B'_m,B_5)$. Then we note that it is possible, even without a redinition of $B'_m$, to write
+\begin{equation}
+H_v=dB_v + {1 \over 2}\epsilon_{rstuv}F^{rs} \wedge A^{tu}.
+\end{equation}
+Differentiating this immediately gives \eqnref{SL5bianchiH}. $H_v$ is thus invariant under the SL(5,$\rr$) covariant transformation
+\begin{equation}
+\delta B_v = d\chi_v + {1 \over 2}\epsilon_{rstuv}A^{rs} \wedge d\chi^{tu}.
+\end{equation}
+The last Bianchi identity that needs to be made covariant is the one for $G$. Noting that $F^{1m}=2F^{5m}$, the B.I. for $G$ turns into
+\begin{equation}
+dG=2H_m \wedge F^{5m}.
+\end{equation}
+Redefining $C'$ as
+\begin{equation}
+C'=C-2A^{5m} \wedge B_m + 2\epsilon_{mnpq}A^{5m} \wedge A^{pq} \wedge A^{5n},
+\end{equation}
+gives $G$ as
+\begin{equation}
+G=dC+B_m \wedge F^{5m} - A^{5m} \wedge H_m.
+\end{equation}
+Hence we can combine $G$ with the four 4-forms originating from the dual of $\hat{G}$ to form
+\begin{equation}
+G^r=dC^r + B_s \wedge F^{rs} - A^{rs} \wedge H_s.
+\label{awedc}
+\end{equation}
+This is consistent with
+\begin{equation}
+dG^r=2H_s \wedge F^{rs},
+\end{equation}
+as is shown by the calculation
+\begin{align}
+dG^{r'}&=dB_v \wedge F^{r'v} -A^{r'v} \wedge dH_v + F^{r'v} \wedge H_v \nonumber \\
+&=2H_v \wedge F^{r'v} - {1 \over 2}\epsilon_{rstuv}F^{rs} \wedge (A^{tu} \wedge F^{r'v} + A^{r'v} \wedge F^{tu}).
+\end{align}
+The vanishing of the second term above can be shown by first setting $r'=5$ according to
+\begin{align}
+\epsilon_{rstuv}F^{rs} \wedge (&A^{tu} \wedge F^{5v} + A^{5v} \wedge F^{tu}) \nonumber \\
+&=\epsilon_{rstuq}F^{rs} \wedge (A^{tu} \wedge F^{5q} + A^{5q} \wedge F^{tu}) \nonumber \\
+&=\epsilon_{mn5pq}F^{mn} \wedge (A^{5p} \wedge F^{5q} + A^{5q} \wedge F^{5p}) \nonumber \\
+&\phantom{=}+\epsilon_{rspuq}F^{rs} \wedge (A^{pu} \wedge F^{5q} + A^{5q} \wedge F^{pu}) \nonumber \\
+&=2\epsilon_{mn5pq}F^{mn} \wedge (A^{5p} \wedge F^{5q} + A^{5q} \wedge F^{5p}) \nonumber \\
+&\phantom{=}+\epsilon_{rsnpq}F^{rs} \wedge (A^{np} \wedge F^{5q} + A^{5q} \wedge F^{np}) \nonumber \\
+&=2\epsilon_{mn5pq}F^{mn} \wedge (A^{5p} \wedge F^{5q} + A^{5q} \wedge F^{5p}) \nonumber \\
+&\phantom{=}+2\epsilon_{m5npq}F^{m5} \wedge (A^{np} \wedge F^{5q} + A^{5q} \wedge F^{np}) \nonumber \\
+&=4\epsilon_{mn5pq}F^{mn} \wedge (A^{5p} \wedge F^{5q} + A^{5q} \wedge F^{5p})=0,
+\end{align}
+where $r,s,t,u,v$ are 5-dimensional indices and $m,n,p,q$ are 4-dimensional indices as usual.
+Doing the same calculation but this time with $r'=m$ would show that the term is zero, and hence we receive the desired Bianchi identity. With $G^r$ 
+defined as in (\ref{awedc}) the variation of it becomes
+\begin{align}
+\delta G^{r'} &= d \delta C^{r'} + \delta B_v \wedge F^{r'v} - \delta A^{r'v} \wedge H_v \nonumber \\
+&=d\delta C^{r'} + (d\chi_v + {1 \over 2}\epsilon_{rstuv}A^{rs} \wedge d\chi^{tu}) \wedge F^{r'v} - d\chi^{r'v} \wedge H_v \nonumber \\
+&=d(\delta C^{r'} + d\chi_v \wedge A^{r'v} + {1 \over 2}\epsilon_{rstuv}A^{rs} \wedge d\chi^{tu} \wedge A^{r'v} - d\chi^{r'v} \wedge B_v) \nonumber \\
+&\phantom{=}-{1 \over 2}\epsilon_{rstuv}(F^{rs} \wedge d\chi^{tu} \wedge A^{r'v} + d\chi^{r'v} \wedge F^{rs} \wedge A^{tu}) \nonumber \\
+&=d(\delta C^{r'} + d\chi_v \wedge A^{r'v} + {1 \over 2}\epsilon_{rstuv}A^{rs} \wedge d\chi^{tu} \wedge A^{r'v} - d\chi^{r'v} \wedge B_v),
+\end{align}
+where one again have to calculate the components of the $F \wedge A$ terms to see that they cancel out.
+If we want $G^r$ to be invariant we see that the variation of $C^r$ must be
+\begin{equation}
+\delta C^{r'}=d\chi^{r'} - A^{r's} \wedge d\chi_s + B_s \wedge d\chi^{r's} - {1 \over 2}\epsilon_{rstuv}A^{r'r} \wedge A^{st} \wedge d\chi^{uv}.
+\end{equation}
+
+This concludes the third chapter. After all this calculational work, a short summary might be needed. In this chapter 
+we have constructed the complete bosonic action for 9-, 8- and 7-dimensional supergravity with the various symmetries clearly expressed. 
+We have also constructed U-duality covariant Bianchi identities as well as U-duality covariant gauge transformations. 
+These will all play a very important role in the rest of this thesis work.
+
+
+
+
+

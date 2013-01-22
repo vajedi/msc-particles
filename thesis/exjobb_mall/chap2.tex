@@ -1,0 +1,84 @@
+\chapter{Nan}
+
+The motions of suspended particles in a turbulent fluid are complex and 
+approximations must be made. A very convenient one would be to consider 
+inertaless point particles, in which case the equation of motion would be
+given by
+\begin{equation}
+\dvec{r}(t) = \vec{u}(\vec{r}(t),t).
+\label{eq:inertialess}
+\end{equation}
+The particles would hence follow the flow and at every point take on the 
+velocity of the fluid. Particles which satisfy this equation of motion are 
+\emph{advected} and are called \emph{passive tracers}. This approximation 
+has many applications in fluid dynamics and in the early days, 
+\eq{inertialess} was used predominantly. However, in order to describe 
+more complex behavior like ... and ..., this is not enough.
+
+$\gamma$ is the damping rate. The Stokes number $\St = 1/\gamma\tau$ is the 
+(inverse?) intensity of the damping. When $\St \rightarrow 0$ 
+the particles are completely 
+advected and behave like point particles with no inertia, and the equation 
+of motion is then given by \eq{inertialess}. 
+
+\emph{Vorticity} is the measure of how fast fluid elements rotate about themselves. 
+The curl of the velocity field is the vorticity field and is denoted 
+$\vec{\omega} = \nabla \times \vec{u}$. Vorticity is a local measure and 
+does is not necessarily nonzero even if the fluid rotates at a large scale. 
+
+A vortex is a region of high vorticity.
+
+% http://www.scribd.com/doc/81564634/Aurelie-Goater-Dispersion-of-Heavy-Particles-in-an-Isolated-Pancake-Like-Vortex
+% Equation of motion for a small rigid sphere in a nonuniform flow
+
+The particle Reynolds number is given by
+\begin{equation}
+\Re _p = \frac{d| \vec{\nu}_p-\vec{u}|}{\nu}.
+\end{equation}
+
+\section{The Maxey-Riley equation}
+
+% Bra källa: http://www.lec.csic.es/~julyan/PDFs/79_2010_Springer.pdf
+
+- For small spherical rigid particle advected by a (smooth) flow.
+- Valid for small particles at low particle Reynolds numbers Re$_p$.
+- Velocity difference across the particle must be small
+
+The Maxey-Riley equation is given by
+\begin{align}
+m_p\dvec{v} = & m_f \frac{\D}{\D t}\vec{u}(\vec{r}(t),t)- 
+\frac{1}{2}m_f\left(\dvec{v}-\frac{\D}{\D t}\left[\vec{u}(\vec{r}(t),t)
++\frac{1}{10}a^2\nabla^2\vec{u}(\vec{r}(t),t)\right]\right) \nonumber \\
+& -6\pi a \rho_f \nu \vec{q}(t) + (m_p-m_f)\vec{g}-6\pi a^2\rho_f \nu 
+\int\limits_0^t \frac{\d \tau}{\sqrt{\pi\nu (t-\tau)}} 
+\frac{\d \vec{q}(\tau)}{\d \tau},
+\end{align}
+where
+\begin{equation}
+\vec{q}(t) = \vec{v}(t) - \vec{u}(\vec{r}(t),t)-\frac{1}{6}a^2\nabla^2\vec{u}
+\end{equation}
+$m_p$ is the particle mass, $a$ the particle radius, $m_f$ the mass of 
+the fluid displaced by the particle, $\rho_f$ is the density 
+of the fluid, $\nu$ the viscosity of the fluid. The first term 
+on the right-hand side of the Maxey-Riley is the force exerted by a fluid 
+element in position $\vec{r}(t)$ and corresponds to the force by the force of 
+the undisturbed fluid. The second term is due to the \emph{added-mass effect}, 
+which results from the fact that the particle displaces a certain amount of fluid 
+along its trajectory, which makes the particle appear to have additional mass. 
+The third and the fourth terms result from the viscosity and the buoyancy force, 
+respectively, of the fluid, which represent the Stokes' drag. The factor of 
+$a^2\nabla^2 \vec{u}$ is due to the spatial variation of the velocity field 
+across the particle, and the terms containing this are called \emph{Faxén 
+corrections}. 
+
+The integral is the \emph{Basset-Boussinesq history term}, which accounts for 
+the fact that the vorticity diffuses away from the particle due to viscosity. 
+
+\begin{equation}
+\frac{\D\vec{u}}{\D t} = \frac{\partial \vec{u}}{\partial t} + 
+(\vec{u}\cdot \nabla)\vec{u}.
+\end{equation}
+\begin{equation}
+\frac{\d\vec{u}}{\d t} = \frac{\partial \vec{u}}{\partial t} + 
+(\vec{v}\cdot \nabla)\vec{u}.
+\end{equation}

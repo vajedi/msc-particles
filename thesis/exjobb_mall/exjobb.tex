@@ -1,0 +1,502 @@
+% Kommandon:
+%
+% Textrader i en align: \intertext{text}
+% Mjuk avstavning: \-
+% Anv�nd \intertext{} f�r att avstava ekvationer
+
+%************************************************
+%
+%Made by:
+%  John Svensson, Kristian Gustavsson
+%
+%        Created: 2003-12-04
+%Latest revision: 2004-08-17
+%         Status: Finished      
+%
+%Description/notes:
+%        Thesis work :
+%               Algebraic Structures in M-theory
+%        
+%************************************************
+
+
+\documentclass[a4paper,12pt,twoside,openright]{UGthesis}
+\usepackage{amssymb}
+\usepackage[swedish,english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{enumerate}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{fancyheadings}
+\usepackage[dvips]{graphicx}
+%\usepackage{graphpap}
+\usepackage{ifthen}
+\usepackage{subfigure}
+\usepackage{textcomp}
+\usepackage{textfit}
+
+\usepackage{amsmath}
+\usepackage{multicol}
+
+\usepackage[errorshow]{tracefnt}
+%\usepackage{makeidx}
+%\usepackage{fancybox}
+%\usepackage{psboxit}
+
+%\include{psfig}
+
+%\input MHmacros
+
+%New commands.
+
+%Differential forms
+\newcommand{\we}{\wedge}
+\newcommand{\dxmu}{dx^\mu}
+\newcommand{\dxnu}{dx^\nu}
+\newcommand{\la}{\lambda}
+\newcommand{\La}{\Lambda}
+\newcommand{\si}{\sigma}
+\newcommand{\ta}{\tau}
+\newcommand{\al}{\alpha}
+\newcommand{\ka}{\kappa}
+\newcommand{\om}{\omega}
+\newcommand{\be}{\beta}
+\newcommand{\ga}{\gamma}
+\newcommand{\da}{\dagger}
+
+\newcommand{\wils}{\langle W(\Sigma)\rangle}
+\newcommand{\corr}[1]{\left\langle #1 \right\rangle}
+\newcommand{\com}[1]{\lbrack #1 \rbrack}
+\newcommand{\expo}{\textrm{exp}}
+\newcommand{\reg}{\textrm{reg}}
+\newcommand{\ren}{\textrm{ren}}
+\newcommand{\xnp}{x_\textrm{np}}
+\newcommand{\non}{\nonumber}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\Or}{\mathcal{O}}
+\newcommand{\Lagr}{\mathcal{L}}
+\newcommand{\D}{\mathfrak{D}}
+\newcommand{\bein}{\textsf{e}}
+
+%derivatives
+\newcommand{\pa}{\partial}
+\newcommand{\pamd}{\partial_\mu}
+\newcommand{\pamu}{\partial^\mu}
+\newcommand{\pand}{\partial_\nu}
+\newcommand{\panu}{\partial^\nu}
+\newcommand{\pard}{\partial_\rho}
+\newcommand{\paru}{\partial^\rho}
+\newcommand{\patd}{\partial_\tau}
+\newcommand{\patu}{\partial^\tau}
+\newcommand{\pald}{\partial_\lambda}
+\newcommand{\palu}{\partial^\lambda}
+
+%integrals
+\newcommand{\intphi}{\int_0^{2\pi}}
+\newcommand{\inttheta}{\int_0^{\pi}}
+
+%Dirac notation
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\bracket}[3]{\langle #1 |#2| #3 \rangle}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+
+\newcommand{\matlab}{\textsc{Matlab~}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\beqa}{\begin{eqnarray}}
+\newcommand{\eeqa}{\end{eqnarray}}
+
+\newcommand\ffam{\sffamily}
+\newcommand\fser{\bfseries}
+\newcommand\fsh{\upshape}
+
+\newcommand\blankpage{\thispagestyle{empty}\mbox{}\newpage}
+
+\newcommand\rctr{\renewcommand{\theenumi}{\roman{enumi}}}
+\newcommand\actr{\renewcommand{\theenumi}{\arabic{enumi}}}
+\newcommand\rctrii{\renewcommand{\theenumii}{\roman{enumii}}}
+\newcommand\actrii{\renewcommand{\theenumii}{\arabic{enumii}}}
+
+
+\newcommand\nn{\nonumber}
+
+\newcommand\benu{\begin{enumerate}}
+\newcommand\eenu{\end{enumerate}}
+\newcommand\bit{\begin{itemize}}
+\newcommand\eit{\end{itemize}}
+
+\newcommand{\ctxt}[2]{\put(#1){\makebox(0,0){#2}}}
+\newcommand{\ltxt}[2]{\put(#1){\makebox(0,0)[l]{#2}}}
+
+\newcommand{\chrf}[3]{\left\{ \hspace{-2mm}
+\begin{array}{ccc}
+#1 \\ [-1.2mm]#2 ~ #3
+\end{array}
+\hspace{-2mm} \right\}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Labeling and refering
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\eqnlab}[1]{\label{eqn:#1}}
+\newcommand{\figlab}[1]{\label{fig:#1}}
+\newcommand{\tablab}[1]{\label{tab:#1}}
+\newcommand{\eqnref}[1]{(\ref{eqn:#1})}
+\newcommand{\figref}[1]{\ref{fig:#1}}
+\newcommand{\tabref}[1]{\ref{tab:#1}}
+\newcommand{\eq}[1]{Eq.~(\ref{eq:#1})}
+\newcommand{\fig}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\tab}[1]{Table~\ref{tab:#1}}
+\newcommand{\eqs}[1]{Eqs.~(\ref{eq:#1})}
+\newcommand{\figs}[1]{Figs.~\ref{fig:#1}}
+\newcommand{\tabs}[1]{Tables~\ref{tab:#1}}
+
+\newcommand{\chlab}[1]{\label{ch:#1}}
+\newcommand{\seclab}[1]{\label{sec:#1}}
+\newcommand{\sseclab}[1]{\label{ssec:#1}}
+\newcommand{\chref}[1]{\ref{ch:#1}}
+\newcommand{\secref}[1]{\ref{sec:#1}}
+\newcommand{\ssecref}[1]{\ref{ssec:#1}}
+\newcommand{\Chref}[1]{Chapter~\ref{ch:#1}}
+\newcommand{\Secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\Ssecref}[1]{Subsec.~\ref{ssec:#1}}
+\newcommand{\Chsref}[1]{Chapter~\ref{ch:#1}}
+\newcommand{\Secsref}[1]{Sections.~\ref{sec:#1}}
+\newcommand{\Ssecsref}[1]{Subsecs.~\ref{ssec:#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Document
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{hyperref}
+
+% Ordinary nth order (\Od) and 1st order (\OD) derivative
+% Ex: \Od{3}{f}{x}  \OD{f}{x}
+\newcommand{\Od}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+\newcommand{\OD}[2]{\frac{d#1}{d#2}}
+
+% Partial nth order (\Pd) and 1st order (\PD) derivative 
+% Ex: \Pd{2}{f}{y} \PD{f}{y}
+\newcommand{\Pd}[3]{\frac{\partial^{#1}#2}{\partial#3^{#1}}}
+\newcommand{\PD}[2]{\frac{\partial#1}{\partial#2}}
+
+% Fourier and Laplace transform symbols
+% Ex: \Fourier \Laplace
+\newcommand{\Fourier}{\mathcal{F}}
+\newcommand{\Laplace}{\mathcal{F}}
+
+% Real and Complex 
+% Ex: \Real \Complex
+\newcommand{\Real}{\mathbf{R}}
+\newcommand{\Complex}{\mathbf{C}}
+
+% Real and imaginary parts (nicer than \Re and \Im)
+% Ex \real \imag
+\newcommand{\real}{\mathrm{Re}\ }
+\newcommand{\imag}{\mathrm{Im}\ }
+
+% My definitions
+% Titel
+\newcommand{\titel}{Fluid dynamics}
+% Indexes next to each other
+% One up/down
+\newcommand{\od}[1]{{}_{#1}}
+\newcommand{\ou}[1]{{}^{#1}}
+% Both up/down
+\newcommand{\bd}[1]{{}_{#1}^{\phantom{#1}}}
+\newcommand{\bu}[1]{{}^{#1}_{\phantom{#1}}}
+\newcommand{\bb}[2]{{}^{#1}_{#2}}
+% Lowered text
+\newcommand{\subtext}[1]{_{\mbox{\tiny{#1}}}}
+% Raised text
+\newcommand{\suptext}[1]{^{\mbox{\tiny{#1}}}}
+% Omega with 3 indices
+\newcommand{\Om}[2]{\Omega\od{#1}\ou{#2}}
+\newcommand{\Omh}[2]{\hat\Omega\od{#1}\ou{#2}}
+% Delta with small indices
+\newcommand{\delmu}{\delta_{{_{x^\mu}}}}
+\newcommand{\delm}{\delta_{{_{x^m}}}}
+% 2 by 2 matrix
+\newcommand{\toto}[4]{\begin{pmatrix}#1 & #2 \cr #3 & #4\end{pmatrix}}
+% 3 by 3 matrix
+\newcommand{\tete}[9]{\pmatrix{ #1 & #2 & #3\cr #4 & #5 & #6\cr #7 & #8 & #9}}
+% SL(n,R)/SO(n) coset
+\newcommand{\coset}[1]{SL(#1,$\rr$)/SO(#1)}
+% Real, complex space
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\cc}{\mathbb{C}}
+% Matrices M,N,T,U,V,W
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\W}{\mathcal{W}}
+% Lie group g,h
+\newcommand{\lga}{\mathbf{a}} % (Not finished)
+\newcommand{\lgb}{\mathbf{b}} % (Not finished)
+\newcommand{\lgd}{\mathbf{d}} % (Not finished)
+\newcommand{\g}{\mathbf{g}} % (Not finished)
+\newcommand{\h}{\mathbf{h}} % (Not finished)
+\newcommand{\lgk}{\mathbf{k}} % (Not finished)
+\newcommand{\lgn}{\mathbf{n}} % (Not finished)
+\newcommand{\lgo}{\mathbf{o}} % (Not finished)
+\newcommand{\lgu}{\mathbf{u}} % (Not finished)
+% Identity matrix
+\newcommand{\id}{\mathbb{I}} % (Not finished)
+% Zero matrix
+\newcommand{\mzero}{\mathbb{O}}
+% Trace
+\newcommand{\tr}{\mbox{Tr}}
+% Parentesis
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\lbp}{\left\{}
+\newcommand{\rbp}{\right\}}
+% 1/2
+\newcommand{\half}{\frac{1}{2}}
+% Binom that isnt too darn high
+\newcommand{\Binom}[2]{{}_{#1}\mathcal{C}_{#2}}
+% Ordo
+\newcommand{\Ordo}{\mathcal{O}}
+% Invariant with a star
+\newcommand{\US}[1]{U_{#1\star}}
+\newcommand{\VS}[1]{V_{#1\star}}
+\newcommand{\WS}[1]{W_{#1\star}}
+% Triple v
+\newcommand{\VVV}{WV}
+
+% n/m fractions
+% Ex: \nfrac{2}{3}
+\newcommand{\nfrac}[2]{{}^{#1}\!\!/\!{}_{#2}}
+% Charge unit vectors
+\newcommand{\pup}[1]{\hat p_\parallel^#1}
+\newcommand{\qup}[1]{\hat q_\parallel^#1}
+\newcommand{\puo}[1]{\hat p_\perp^#1}
+\newcommand{\quo}[1]{\hat q_\perp^#1}
+\newcommand{\pug}[1]{\hat p_\Gamma^#1}
+\newcommand{\pdp}[1]{\hat p_{\parallel #1}}
+\newcommand{\qdp}[1]{\hat q_{\parallel #1}}
+\newcommand{\pdo}[1]{\hat p_{\perp #1}}
+\newcommand{\qdo}[1]{\hat q_{\perp #1}}
+\newcommand{\pdg}[1]{\hat p_{\Gamma #1}}
+
+
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\dvec}[1]{\dot{\vec{#1}}}
+\renewcommand{\d}{\mathrm{d}}
+\renewcommand{\D}{\mathrm{D}}
+\newcommand{\St}{\mathrm{St}}
+\newcommand{\Ku}{\mathrm{Ku}}
+\renewcommand{\Re}{\mathrm{Re}}
+
+% detta gör texten bredare
+\addtolength{\textwidth}{2cm}
+\addtolength{\hoffset}{-1cm}
+
+% And here the document begins!
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Cover
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\include{cover}
+
+%\blankpage
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Title page
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+
+%\vspace*{-1cm}
+%\vspace*{4mm}
+
+\begin{center}
+  {\fsh\ffam\fser Thesis for the degree of Master of Science in Engineering Physics}
+\end{center}
+
+
+\vspace*{0.5cm}
+
+\begin{center}
+{\upshape\sffamily\bfseries\LARGE \titel}
+\end{center}
+
+\vspace*{2mm}
+\begin{center}
+        \rule{110mm}{2pt}
+\end{center}
+
+\vspace*{4mm}
+\begin{center}
+  {\fsh\ffam\fser\Large Simon Vajedi}\\
+\end{center}
+\vfill
+
+\begin{center}
+%       \includegraphics[width=4cm]{/usr/local/lib/cthlogo.eps} 
+\scalebox{1.3941}{\includegraphics*[1.8cm,1.8cm][4.8cm,4.6cm]{pics/ChalmGUmarke.epsi}}
+%\includegraphics[width=9cm]{pics/ChalmGUmarke.epsi} 
+%       \epsffile{/home/tfe/gran/tex/figures/AvancezM70mm.eps}
+%       \hspace*{2cm}
+%       \includegraphics[width=4cm]{/usr/local/lib/gulogo.eps} 
+\end{center}
+
+\vfill
+\begin{center}
+        {\ffam\fsh Fundamental Physics\\*[1mm]
+        Chalmers University of Technology\\*[2mm]
+        Göteborg, Sweden 2013}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Tryckort-sida
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mbox{}\thispagestyle{empty}\newpage
+\vspace*{165mm}
+
+%{\ffam
+%       {\center ISBN  ??-????-???-? \\ ISSN ????-???? \\}
+%       \hspace*{20mm}
+%       {\center Bibliotekets reproservice\\ Göteborg 2003 \\}
+%}
+
+\blankpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Abstract
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\begin{center}
+        {\ffam 
+        {\fser\Large \titel}\\
+%       {\fser\large A study of conformally invariant actions}\\[6mm]
+%       {\fsh\ffam\fser\Large On Various Aspects of $p$-branes}\\[4mm]
+\vspace{3mm}
+        {\normalsize Simon Vajedi  \\
+        Fundamental Physics \\
+        Chalmers University of Technology\\
+        SE-412 96 Göteborg, Sweden} \\[7mm]}
+\end{center}
+
+\centerline{\ffam\fser Abstract}
+\medskip
+\normalsize
+\noindent\input{abstract}
+
+\vfill
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Acknowledgments
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{plain}
+\vspace*{4cm}
+
+\centerline{\ffam\fser\Large Acknowledgments}
+\medskip
+\smallskip
+
+\normalsize
+\noindent\input{acknowledgements} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Table of contents
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pagestyle{plain}
+\cleardoublepage
+\tableofcontents
+\pagestyle{empty}
+
+\cleardoublepage
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter\ \ \ #1}{#1}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ \ #1}}
+\lhead[\fancyplain{}{\sffamily\thepage}]%
+  {\fancyplain{}{\sffamily\rightmark}}
+\rhead[\fancyplain{}{\sffamily\leftmark}]%
+  {\fancyplain{}{\sffamily\thepage}}
+\cfoot{}
+\setlength\headheight{14pt}
+
+\rctr
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Text
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\baselineskip=14.56pt
+
+\include{intro}
+\part{Dimensional Reduction}
+\include{chap2}
+%\include{exjobbreduct}
+
+%\part{Dynamics}
+%\include{exjobbdynamics}
+%\include{exjobbsolution}
+%\include{exjobbcsolution}
+%%\include{exjobbcompare}
+
+%\include{exjobbconclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Appendix
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+\pagestyle{plain}
+\include{appendixconven}
+\include{appendixricci}
+\include{appendixint128}
+
+% Lägger till alla referenser
+\nocite{*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Bibliography
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pagestyle{empty}
+\cleardoublepage
+\pagestyle{plain}
+\def\href#1#2{#2}
+\bibliographystyle{biblio/utphysmod2}
+%\bibliographystyle{plain}
+\addcontentsline{toc}{chapter}{\sffamily\bfseries Bibliography}
+\bibliography{biblio/biblio}
+
+\end{document}

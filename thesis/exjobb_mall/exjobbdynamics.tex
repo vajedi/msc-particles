@@ -1,0 +1,452 @@
+\chapter{Brane dynamics}
+\label{sec:dynamics}
+
+In part one of this thesis we used several pages to calculate and explain the Bianchi identities and the duality relations that arise in compactified supergravity.
+We also made an effort in trying to show the various symmetries in supergravity and how they manifest themselves in the equations. 
+But the main purpose of this thesis is to investigate the dynamics of a brane embedded in the previously derived background.
+Hence, our next step is to construct an action for a brane that couples to the all the background fields.
+This is what we will do in the next chapter, by using field strengths roughly of the form "$f=da-A$", where $a$ is a world-volume field and $A$ is the pullback of a background field. 
+In other words, every background field has its world-volume counterpart and there is a maximal limit to what rank of the background fields the brane couples to. 
+This type of coupling is very useful as we will see in the next chapter, but still it needs some explanation and motivation and that is what we will try to provide here. 
+The procedure was used in \cite{artikeln}, first outlined in \cite{valskriven} and developed and generalized in \cite{ref10},\cite{ref11},\cite{ref12},\cite{ref13}.
+
+\section{Maurer-Cartan theory}
+\label{sec:maurer}
+The definition of a Lie group (see for example \cite{fuchs}) is a finite-dimensional differentiable manifold that also 
+carries the algebraic structures of a group. A simple one-dimensional example is the circle. After identifying the 
+identity element, any other point at angle $\theta$ from the identity acts by rotating the circle by the angle $\theta$ 
+and hence obeying the group properties. Another example is the group $SO(n)$ of all rotations in an $n$-dimensional space. 
+This can also be described as the group of all $n \times n$-matrices that are orthogonal and have determinant one. 
+A consequence of combining group and manifold structures is that there always exists differentiable mappings of the Lie 
+group manifold such that any group element can be mapped to any other group element. These kind of mappings are called left- or right-translations. 
+This property makes it possible to construct the tangent space at some fixed group 
+element and then by left- or right-translations transport a basis of the vector space to any other point of the manifold, and in this way obtain a basis 
+in the tangent space of each point of the group manifold. This construction implies that on a Lie group manifold there exists 
+global vector fields that vanish nowhere. They can be obtained by fixing a vector in some arbitrary tangent space (but usually at the identity element) and then 
+transport it to the tangent space of any other element of the group. These vector fields are invariant under left- and right-translations respectively and the vector space of the invariant vector fields are, by construction, isomorphic to any tangent space. 
+For any two vector fields $A$, $B$ on an arbitrary differentiable manifold we now define the bracket
+\begin{equation}
+[A,B]^a = \displaystyle\sum_{b=1}^{d}{B^b{\partial A^a \over \partial \xi^b}} - \displaystyle\sum_{b=1}^{d}{A^b{\partial B^a \over \partial \xi^b}},
+\label{liebracket}
+\end{equation}
+where $\xi_a$ are the local coordinates. This definition is covariant under a change of the coordinate system, and hence the bracket is again a vector field. 
+It can be shown that $[A,B]$ fulfills the Jacobi identity and it is manifestly bilinear and antisymmetric. In short, the vector space 
+of all vector fields endowed by (\ref{liebracket}) becomes a Lie algebra. In the special case where the manifold is a Lie group it can be shown that the invariant 
+vector fields mentioned above gets a natural structure of a finite-dimensional Lie subalgebra of the Lie algebra of all vector fields. The point of all this is to 
+show that the tangent space at the unit element (or any other element) of a Lie group carries the structure of a Lie algebra, and that invariant vector fields 
+on the manifold are used to identify it. \newline
+Using invariant vector fields is perhaps the most common way to describe a Lie group and its Lie algebra, but there is an alternative way that uses differential forms 
+on the manifold to capture information about the Lie algebra. This approach is called Maurer-Cartan theory and is often more appropriate 
+when dealing with supergravity since the goal is to construct an action integral. Consider a manifold $M$ 
+and its cotangent space CT($M$), CT($M$) being the vector space of 1-forms on the manifold $M$. The Maurer-Cartan forms $\xi^A$ 
+is a basis to CT($M$) and hence $d\xi^A$ is a 2-form and can be expressed in the basis provided by $\xi^B \wedge \xi^C$,
+\begin{equation}
+d\xi^A=f{^A}_{BC}\xi^B \wedge \xi^C.
+\end{equation}
+If we can find a basis $\xi^A$ such that $f{^A}_{BC}$ are constants,
+\begin{equation}
+f{^A}_{BC}=-{1 \over 2}C{^A}_{BC},
+\end{equation}
+we get
+\begin{equation}
+d\xi^A+{1 \over 2}C{^A}_{BC}\xi^B \wedge \xi^C=0,
+\label{mcstructure}
+\end{equation}
+and
+\begin{equation}
+d^2 \xi^A = -C{^A}_{BC}d\xi^B \wedge \xi^C = {1 \over 2}C{^A}_{BC}C{^B}_{DE}\xi^D \wedge \xi^E \wedge \xi^C = 0.
+\label{mcjacobi}
+\end{equation}
+Then $M$ is a Lie group and (\ref{mcstructure}) are its Maurer-Cartan equations. The cotangent space is defined as the dual 
+to the tangent space and hence the relation
+\begin{equation}
+\xi^A(A_B)=\delta^{A}_B,
+\end{equation}
+gives a connection between the the two different descriptions of a Lie group. As a matter of fact, equation (\ref{mcstructure}) 
+implies (\ref{liebracket}) and vice versa, and equation (\ref{mcjacobi}) is equivalent to the Jacobi identity. To relate to potentials 
+in supergravity theory one simply replaces the 1-forms $\xi^A$ with a set of 1-forms $\mu^A$ that do not satisfy (\ref{mcstructure}). The 2-forms
+\begin{equation}
+R^A = d\mu^A + {1 \over 2}C{^A}_{BC}\mu^B \wedge \mu^C
+\label{mccurvature}
+\end{equation}
+expresses the deviation from the Maurer-Cartan equations and are called the curvatures of $\mu^A$. Equations of this type are used thoroughly 
+in section \secref{ricci} when calculating the reduction of the Ricci scalar. The authors of \cite{maurer} created a natural generalization of 
+the Maurer-Cartan equations to the case of $p$-forms, i.e. the exterior derivative of a $p$-form can be expressed as a polynomial consisting of the $p$-form with constant coefficients. 
+They also made generalizations of (\ref{mcjacobi}) and (\ref{mccurvature}) to forms of higher order. The concepts discussed in this section will be used to create an action for the branes and the coupling between the branes and the background.
+
+\section{Branes and their actions}
+\label{sec:branes}
+Since the goal of this thesis is to investigate branes and their dynamics in special backgrounds, we feel it is appropriate 
+to give a short introduction to the theory of branes and that this is the right place to give it. A rather complete introduction can be found 
+in \cite{bengtsson}, here we will only cover the most necessary parts needed for our further work. First of all we will try to 
+make clear where all of the different types of branes comes from. The $p$-branes origins from the string theories, where it became 
+clear that the theories could be extended to include objects with higher dimension than 1. The name is a generalization of the 
+2-dimensional membrane to $p$-dimensional $p$-branes. The number $p$ indicates the branes number of spatial dimensions which means that a string can be referred to as a $1$-brane. Since the string theories 
+are 10-dimensional with 9 spatial dimensions there can be no $p$-branes of higher order than 9.
+
+A special type of $p$-branes are the $D_p$-branes. They are created when one assigns Dirichlet boundary conditions to an open string. 
+For instance, if the string have Dirichlet boundary conditions in 3 spatial dimensions, it can only move in 6 spatial dimensions. 
+This 6-dimensional manifold on which the endpoints of the string is fixed is called a $D_6$-brane. Note also that for a 
+$D_9$-brane the string can move in all dimensions which implies that the string must have Neumann boundary conditions. When $D_p$-branes 
+first was discovered it was considered as a curiosity, there was no real need for them since one might easily consider the strings to have Neumann boundary conditions. 
+But this opinion had to be revised with the discovery of T-duality. It turned out that an open string with Neumann conditions got 
+Dirichlet conditions when subject to T-dualisation, making $D_p$-branes essential for the theory. Another important feature is the fact 
+that $D_p$-branes make it possible to study the excitations of the brane by using the renormalizable quantum field theory of the open string 
+instead of the non-renormalizable world-volume theory of the $D_p$-brane itself. In this way it becomes possible to compute non-perturbative phenomena using perturbative methods. 
+
+In M-theory we have two fundamental branes, M2 and M5. To see why it is easiest to compare with electromagnetic field theory in four dimensions. 
+With the $2$-form field strength $F_2$ given, one gets the electric and the magnetic source equations by acting with $d$ on the dual of $F_2$ and $F_2$ itself 
+respectively. In other words the electrically charged particle is dual to the magnetically charged particle. In 11-dimensional M-theory there is 
+only the $4$-form field strength $\hat{G}=d\hat{C}$. Acting with $d$ on the dual of $\hat{G}$ would then give a $p$-brane 
+that is electrically coupled to the gauge field $\hat{C}$. The $p$-brane will be localized in 8 of the 10 spatial dimensions and hence we can conclude that it is a $2$-brane (M2).
+Acting with $d$ directly on $\hat{G}$ gives instead a brane that is localized in 5 dimensions (M5), which is magnetically coupled to $\hat{C}$. 
+Another completely equivalent way of putting it is to say that M5 is electrically coupled to $C_6$, the dual of $\hat{C}$, and that 
+M2 is magnetically coupled to $C_6$. The M2- and the M5-brane are closely related to the $D_p$-branes. For instance, if one dimension 
+of the M2-brane is compactified it is S-dual to the fundamental string in type IIA string theory. If instead we reduce M-theory on a circle the M2-brane 
+reduces to a $D_2$-brane. In the same way, if the M5-brane wraps around a circle it becomes a $D_4$-brane in type IIA. In figure \figref{njae} one 
+finds the general picture of the different branes. The plot indicates elementary $p$-branes, i.e. 
+$p$-brane solutions carrying an electrical charge for the field strength and solitonic branes, or $p$-branes carrying 
+a magnetic charge. Finally, the plot also indicates the branes obtained 
+by Kaluza-Klein reduction\cite{supergrav_pbranes_lectures}.
+
+%*hep-th/9701088
+
+\newcommand\kk{\circle*{1.5}}
+\newcommand\soliton{\circle*{3}}
+\newcommand\element{\circle{3}}
+
+\setlength{\unitlength}{0.9mm}
+\begin{figure}[h]
+\begin{center}
+\begin{picture}(90,120)(0,-5)
+\put(0,0){\vector(0,1){110}}
+\put(0,0){\vector(1,0){90}}
+\put(0,10){\kk}
+\put(0,40){\kk}
+\put(30,40){\kk}
+\put(10,50){\kk}
+\put(30,50){\kk}
+\multiput(0,60)(10,0){6}{\kk}
+\multiput(0,70)(10,0){7}{\kk}
+\put(0,80){\kk}
+\multiput(20,80)(10,0){4}{\kk}
+\put(70,80){\kk}
+\multiput(20,90)(10,0){2}{\kk}
+\multiput(50,90)(10,0){2}{\kk}
+\put(30,100){\element}
+\put(10,90){\element}
+\put(0,90){\element}
+\put(10,80){\element}
+\put(0,50){\element}
+\put(0,30){\element}
+\put(0,20){\element}
+\put(10,30){\element}
+\put(10,40){\element}
+\put(60,100){\soliton}
+\put(70,90){\soliton}
+\put(80,90){\soliton}
+\put(60,80){\soliton}
+\put(40,50){\soliton}
+\put(20,30){\soliton}
+\put(20,40){\soliton}
+\put(10,20){\soliton}
+\put(20,50){\makebox(0,0){$\otimes$}}
+\put(40,90){\makebox(0,0){$\otimes$}}
+\put(-5,0){\makebox(0,0){\footnotesize{$1$}}}
+\put(-5,10){\makebox(0,0){\footnotesize{$2$}}}
+\put(-5,20){\makebox(0,0){\footnotesize{$3$}}}
+\put(-5,30){\makebox(0,0){\footnotesize{$4$}}}
+\put(-5,40){\makebox(0,0){\footnotesize{$5$}}}
+\put(-5,50){\makebox(0,0){\footnotesize{$6$}}}
+\put(-5,60){\makebox(0,0){\footnotesize{$7$}}}
+\put(-5,70){\makebox(0,0){\footnotesize{$8$}}}
+\put(-5,80){\makebox(0,0){\footnotesize{$9$}}}
+\put(-5,90){\makebox(0,0){\footnotesize{$10$}}}
+\put(-5,100){\makebox(0,0){\footnotesize{$11$}}}
+\put(-5,110){\makebox(0,0){$D$}}
+\put(0,-5){\makebox(0,0){\footnotesize{$0$}}}
+\put(10,-5){\makebox(0,0){\footnotesize{$1$}}}
+\put(20,-5){\makebox(0,0){\footnotesize{$2$}}}
+\put(30,-5){\makebox(0,0){\footnotesize{$3$}}}
+\put(40,-5){\makebox(0,0){\footnotesize{$4$}}}
+\put(50,-5){\makebox(0,0){\footnotesize{$5$}}}
+\put(60,-5){\makebox(0,0){\footnotesize{$6$}}}
+\put(70,-5){\makebox(0,0){\footnotesize{$7$}}}
+\put(80,-5){\makebox(0,0){\footnotesize{$8$}}}
+\put(90,-5){\makebox(0,0){\footnotesize{$d$}}}
+\put(48,32){\element}
+\put(63,32){\makebox(0,0){elementary}}
+\put(48,27){\soliton}
+\put(60.6,27){\makebox(0,0){solitonic}}
+\put(48,22){\makebox(0,0){$\otimes$}}
+\put(60.7,22){\makebox(0,0){self-dual}}
+\put(48,17){\kk}
+\put(65.4,17){\makebox(0,0){Kaluza-Klein}}
+\end{picture}
+\caption{Supergravity $p$-brane solutions ($p \leq (D-3)$). $D$ is the dimension of spacetime and $d$ is the world-volume dimension.}
+\figlab{njae}
+\end{center}
+\end{figure}
+
+
+\subsection{The point particle}
+To get to the action we will use in the next chapter we start with the 
+description of a classical point particle. As the particle moves in target space (with coordinates $X^0, X^1, \cdots, X^{D-1}$) 
+it sweeps out a world-line in spacetime, parametrised by $\tau$. The infinitesimal path length then becomes
+\begin{equation}
+dl=(-ds^2)^{1/2}=(-dX^{\mu}dX^{\nu}\eta_{\mu \nu})^{1/2},
+\end{equation}
+where $\eta_{\mu \nu}$ is the Minkowski metric and hence the action becomes
+\begin{equation}
+S=-m\int dl=-m\int d\tau (-\dot{X^{\mu}}\dot{X_{\mu}})^{1/2}.
+\end{equation}
+Now consider the action
+\begin{equation}
+S'={1 \over 2}\int d\tau ({1 \over e}\dot{X^{\mu}}\dot{X_{\mu}} - e m^2),
+\label{primedaction}
+\end{equation}
+where $e(\tau)$ is the world-line einbein. Varying $S'$ with respect to $e$ gives the equation of motion
+\begin{equation}
+e^2 m^2 + \dot{X^{\mu}}\dot{X_{\mu}} = 0,
+\label{particleeom}
+\end{equation}
+which is solved by $e = m^{-1} (-\dot{X^{\mu}}\dot{X_{\mu}})^{1/2}$. Inserting this in (\ref{primedaction}) gives $S'=S$, showing that the two actions are equivalent. 
+A big advantage with $S'$ compared to $S$ is that $S'$ allows a treatment of the massless, $m=0$, case. 
+Another nice feature with $S'$ is that it does not use the awkward square root that $S$ does. \newline Creating an action 
+for a bosonic membrane requires a similar procedure. For a 2-brane we parametrise the world-volume that the membrane sweeps out 
+with the coordinates $\xi^i$, $i=(0,1,2)$. Here, $\xi^0$ is the time coordinate and the other two spatial coordinates.
+The functions $X^{\mu}(\xi^i)$ describes the membrane's evolution in spacetime, giving the shape of the membrane's world-volume in target space.
+There is an induced metric on the world-volume given by
+\begin{equation}
+h_{ij}=\partial_i X^{\mu} \partial_j X^{\nu} \eta_{\mu \nu}
+\end{equation}
+and by (just as in the particle case) writing the action as the total volume we get
+\begin{equation}
+S=-T\int dV = -T\int d^3 \xi (-\mbox{det}\partial_i X^{\mu} \partial_j X_{\mu})^{1/2},
+\label{nambugoto}
+\end{equation}
+where the constant $T$ is the tension of the membrane. This is the Nambu-Goto action (or a generalization of it from the string case) for the membrane. 
+But just as the action with the square root for the particle was inconvenient to work with, we would like an action more like 
+(\ref{primedaction}) for the membrane. This can be created by using an independent world-volume metric $g_{ij}$,
+\begin{equation}
+S'=-{T \over 2}\int d^3 \xi \sqrt{-g} (g^{ij}\partial_i X^{\mu} \partial_j X_{\mu} -1),
+\end{equation}
+where $g=\mbox{det}(g_{ij})$ as usual. Calculating the equations of motion for this action we find
+\begin{equation}
+g_{ij}=\partial_i X^{\mu} \partial_j X_{\mu},
+\end{equation}
+i.e. the world-volume metric equals the one induced by the spacetime metric. We can also create an action totally analogous to (\ref{primedaction}) by writing it in the form
+\begin{equation}
+S''={1 \over 2}\int d^3 \xi [{1 \over V}\mbox{det}(\partial_i X^{\mu} \partial_j X_{\mu})-T^2V],
+\end{equation}
+where $V(\xi)$ is an independent world-volume density. Varying with respect to $V$ gives
+\begin{equation}
+V^2 T^2 + \mbox{det}(\partial_i X^{\mu} \partial_j X_{\mu})=0,
+\end{equation}
+and solving for $V$ and inserting in $S''$ gives $S'' = S$. Also note that that all our calculations so far can be done for general $p$-branes, i.e. the action for a $p$-brane becomes
+\begin{equation}
+S={1 \over 2}\int d^{p+1} \xi [{1 \over V}\mbox{det}(\partial_i X^{\mu} \partial_j X_{\mu})-T^2V].
+\label{membraneaction}
+\end{equation}
+
+\subsection{Scale invariance}
+\sseclab{scaleinvariance}
+Investigating the actions (\ref{primedaction}) and (\ref{membraneaction}) we find that they are not scale invariant, i.e. not invariant under the transformations
+\begin{equation}
+x^{\mu} \rightarrow \lambda x^{\mu} \hspace{1cm} V \rightarrow \lambda^{2(p+1)}V,
+\end{equation}
+(or $e \rightarrow \lambda^2 e$ in the particle case). This motivated the authors of \cite{valskriven} to modify the actions slightly. Consider the action
+\begin{equation}
+S=\int d\tau {1 \over 2e}[\dot{X^{\mu}}\dot{X_{\mu}} - \dot{Y}^2],
+\end{equation}
+where $Y$ is the coordinate of an extra dimension. The $Y$ equation of motion becomes
+\begin{equation}
+\partial_{\tau}(e^{-1}\dot{Y})=0,
+\end{equation}
+which is solved by $\dot{Y} = me$ for arbitrary mass parameter $m$. Inserting this in the action gives (\ref{primedaction}). 
+This new action is scale invariant, and the idea is that the mass of the particle can be viewed as its momentum in the extra dimension and that the scale invariance is broken when one chooses a particular solution of the equation of motion. 
+To generalize this to the case of $p$-branes we have to introduce the independent world-volume $p$-form gauge potential $A$ and its $(p+1)$-form field strength $F = dA$.
+The dual of $F$ is a scalar and hence we can write the action as
+\begin{equation}
+S=\int d^{p+1} \xi {1 \over 2V}[\mbox{det}(\partial_i X^{\mu} \partial_j X_{\mu})-(*F)^2].
+\label{scaleaction}
+\end{equation}
+The equation of motion for $A$ becomes
+\begin{equation}
+\partial_{i}(V^{-1}*F)=0,
+\end{equation}
+and if we pick the solution $*F=TV$ we have again (\ref{membraneaction}). Noting that $A$ scales as
+\begin{equation}
+A_{i_1 \cdots i_p} \rightarrow \lambda^{p+1} A_{i_1 \cdots i_p},
+\end{equation}
+we see that (\ref{scaleaction}) is indeed scale invariant. This invariance is however broken when choosing a solution to the equation of motion (if $T \neq 0$) 
+entirely analogous to the particle case.
+
+\subsection{Super $p$-branes}
+Let us now consider the supersymmetric extensions of the ideas above. For this we need to replace the scalar fields describing the embedding in the bosonic actions with 
+\begin{equation}
+Z^{M}(\xi)=(X^{\mu},\theta^{\alpha}),
+\end{equation}
+i.e. mappings from the world-volume of the $p$-brane to a superspace. The coordinates $X^{\mu}$ are the usual bosonic coordinates used above while $\theta^{\alpha}$ are fermionic coordinates. 
+(For an introduction to supersymmetry, see for example \cite{bilal}) We also need the supervielbein $e{_M}^A$ where $M = \mu,\alpha$ are world-indices and $A = a,\alpha$ are tangent space indices. 
+We can now create the most general supersymmetric one-forms
+\begin{equation}
+\Pi^A = Z^Me{_M}^A,
+\end{equation}
+which, due to how the supersymmetry generators acts on the superspace coordinates, explicitly becomes
+\begin{equation}
+\Pi^{\mu}=dX^{\mu}-i \bar{\theta} \Gamma^{\mu} d\theta, \hspace{1cm} \Pi^{\alpha} = d\theta^{\alpha},
+\label{pullbackfields}
+\end{equation}
+where $\Gamma^{\mu}$ is spacetime Dirac matrices. The pullbacks of these forms to the world-volume becomes
+\begin{equation}
+\Pi_{i}^A=\partial_i Z^Me{_M}^A,
+\end{equation}
+and replacing the scalar fields in (\ref{nambugoto}) with the pullbacks gives the action
+\begin{equation}
+S=-T\int d^{p+1} \xi \sqrt{-\mbox{det}(\Pi_{i}^{\mu}\Pi_{j}^{\nu} \eta_{\mu \nu})},
+\end{equation}
+or, as usual, by introducing a world-volume density $V$
+\begin{equation}
+S={1 \over 2}\int d^{p+1} \xi [{1 \over V}\mbox{det}(\Pi_{i}^{\mu}\Pi_{j}^{\nu} \eta_{\mu \nu})-T^2V].
+\label{superaction}
+\end{equation}
+But this is however not the whole story. For the action to be supersymmetric it must have an equal number of bosonic and fermionic degrees 
+of freedom. For example, if $p = 2$ we have $11-3=8$ bosonic degrees of freedom (in 11-dimensional spacetime). Usually superspace is made up of 32 fermionic coordinates, hence 32 degrees of freedom. Going on shell reduces 
+the number to 16, and often one uses $\kappa$-symmetry, a fermionic symmetry that reduces the degrees of freedom by a factor 2, to get to 8 fermionic degrees of freedom. 
+Actually, demanding that $\kappa$-symmetry equalizes the number of bosonic and fermionic degrees of freedom puts constraints 
+on in which dimensions the different $p$-branes can live in. All this requires an additional term to (\ref{superaction}), a so called Wess-Zumino term. 
+We will not go into exactly how the Wess-Zumino term looks like here but just note that they lead to the appearance of a $p$-form topological 
+charge that is central (i.e. commutes with all the generators) with respect to the global symmetry group of spacetime \cite{valskriven}. 
+But in the same way as we in subsection \ssecref{scaleinvariance} interpreted the mass as the momentum in an extra dimension, the central charges have a natural interpretation 
+as momentum extra dimensions. This suggests the possibility that a supersymmetrization of (\ref{scaleaction}) might 
+provide some kind of "higher-dimensional" action that is manifestly supersymmetric, i.e. not in need of a Wess-Zumino term.
+This turn out to be the case and the resulting action is
+\begin{equation}
+S=\int d^{p+1} \xi {1 \over 2V}\Big{[}\mbox{det}(\Pi_{i}^{\mu}\Pi_{j}^{\nu} \eta_{\mu \nu}) - (*F)^2\Big{]}.
+\label{manifestsuperaction}
+\end{equation}
+Here $F$ is a supertranslation-invariant modified field strength for a world-volume $p$-form gauge potential $A$.
+So, instead of using a Wess-Zumino term to make the action supersymmetric we have to put constraints on the potential $A$, i.e give it a non-trivial supersymmetric transformation 
+that makes sure that (\ref{manifestsuperaction}) is supersymmetric.
+
+\subsection{Modified field strengths}
+As we mentioned in section \secref{maurer}, the Maurer-Cartan equations can be generalized to the case of $p$-forms. 
+Hence, for a ($p+1$)-form $F$ we get
+\begin{equation}
+dF+h=0,
+\label{freediff}
+\end{equation}
+where $h$ is a ($p+2$)-form constructed from the fields $\Pi^{\mu}$ and $\Pi^{\alpha}$. 
+The important thing to note here is that if we want to write $h=db$, then $b$ can not be constructed just from $\Pi^{\mu}$ and $\Pi^{\alpha}$ but have to include $x^m$ and/or $\theta$ explicitly \cite{valskriven}.
+Eq. (\ref{freediff}) can be solved by
+\begin{equation}
+F=dA-b,
+\end{equation}
+for a $p$-form $A$ and where $b$ is the potential for $h$. The modified field strength $F$ will now be supersymmetry invariant, i.e. 
+can be used in an action of the form (\ref{manifestsuperaction}), if we ascribe the correct supersymmetry variation to $A$. 
+This variation is of course dependent of $h$ and we will not try calculate it here, but just stress the point that $b$ can not be constructed from the fields in (\ref{pullbackfields}). 
+\newline 
+We have so far in this chapter only considered flat superspace, but the results can be generalized to curved space. In fact, the action remains that of (\ref{manifestsuperaction}) 
+but the modified field strengths becomes of the type
+\begin{equation}
+F=dA-B,
+\label{axnl}
+\end{equation}
+where $B$ is the potential of the supergravity ($p+2$)-form $H$. In this way we will get world-volume field strengths that couples to all 
+the fields in the supergravity background. (In the next chapter world-volume fields and field strengths will be denoted with lower-case letters in opposite to background fields and field strengths to avoid confusion.)
+
+\subsection{The final form of the action}
+We will now continue with making some modifications to action (\ref{manifestsuperaction}). First we note that 
+the independent world-volume scalar density $V$ give rise to the constraint
+\begin{equation}
+g-(*F)^2=0,
+\eqnlab{laksoe}
+\end{equation} 
+where $g$ is the determinant of the metric. Any scalar density in front of the action would give the same constrain and hence we can define
+\begin{equation}
+{1 \over 2V}=-{\lambda \over \sqrt{-g}}.
+\eqnlab{ertnml}
+\end{equation}
+We also define
+\begin{equation}
+*F = \sqrt{-g}*h,
+\end{equation}
+now using a lower-case letter for the field strength to indicate that it is a world-volume field strength. This altogether gives
+\begin{equation}
+S=\int d^{p+1} \xi \sqrt{-g} \lambda [1 + (*h)^2],
+\end{equation}
+which is the action we would use if there was only one world-volume field strength to deal with. But in our case 
+every background tensor field of low enough rank to couple to the membrane will give rise to a field strength. 
+Due to this we will use an action of the form
+\begin{equation}
+S=\int d^{p+1} \xi \sqrt{-g} \lambda [1 + \Phi + (*h)^2],
+\eqnlab{dynamics_final_action}
+\end{equation}
+where $h$ now is the highest form field strength and $\Phi$ is a function of the other field strengths. The 
+function $\Phi$ is yet unknown and we will use most of the next chapter to derive it. Actually, obtaining $\Phi$ 
+is the main problem of the whole thesis.
+
+\section{Electrically and magnetically charged branes}
+\seclab{dynamics_charge}
+In section \secref{branes} we mentioned the M2 brane, which is electrically coupled to $\hat C$, and the magnetically coupled M5 brane. 
+To evolve this statement a little more we again turn to electromagnetic field theory. With the source equations given, the 
+total electric or magnetic charge can be calculated by a surface integral surrounding the source, where the surface is infinitely big (Gauss's law).
+Since the electrical charge is received by an integral over the dual of the field strength, (\ref{fieldstrengthdual}) 
+gives the conserved electrical charge in 11 dimensions as
+\begin{equation}
+U=\int *\hat G = \int d\hat C_{(6)} - \half\hat G\we\hat C,
+\end{equation}
+where the integral of the 7-form integrand is over the boundary at infinity of an arbitrary infinite 8-dimensional 
+spacelike subspace of $\hat D$ = 11 spacetime. This arbitrariness of the subspace indicates that $U$ in fact describes a 
+whole set of conserved charges. The embedding of the 8-dimensional spacelike subspace into the 10-dimensional spatial 
+hypersurface can be secified by a 2-form volume-element and accordingly the set of charges should properly be denoted by $U_{2}$ (where the 2 indicates a set of 2 charges, not the form of U).
+The $\hat G \wedge \hat C$ term does however vanish for certain $p$-brane solutions and the $d\hat C_{(6)}$ term only give 
+a contribution when the subspace is transverse to the (M)2-brane, leaving only one single charge\cite{supergrav_pbranes_lectures}.
+
+In the same way one may find the magnetic charge by integrating over the field strength $\hat G$. But this time, by virtue of $d\hat G =0$, 
+the charge should be conserved topologically. Because of the integrand being a 4-form, the corresponding integral
+\begin{equation}
+V=\int \hat G,
+\end{equation}
+is now being taken over the boundary at infinity of a 5-dimensional spacelike subspace. The embedding into the 10-dimensional 
+hypersurface can be specified by a 5-form volume-element and hence the proper notation for $V$ is $V_{5}$ (i.e. a set of 5 charges). It is this 
+magnetic charge that is carried by the solitonic M5-brane. But once again only one orientation of the subspace, the one transverse 
+to the brane, gives a nonvanishing contribution to the charge.
+
+The same reasoning holds for $p$-branes in reduced supergravity, i.e. the charges can be derived by integrating the field strengths, 
+much in the same way as above. This is important to have in mind when we in the next chapter identify integration parameters 
+from the equations of motion as membrane charges. For example, we have already deduced the relation $*F=TV$ and by using 
+\eqnref{laksoe} and \eqnref{ertnml} we see that $*h$ is directly related to the tension (charge) as
+\begin{equation}
+\lambda *h =-2T.
+\end{equation}
+However, the number of world-volume fields are often more then one and the field strengths are typically of the type 
+$f^r = da^r - B^r$. In the same way, $*h^r$ then becomes the set of charges with which the brane couples to the background field $B^r$, 
+\cite{ref11}.
+
+\section{The scalar fields as Goldstone modes}
+It is clear that by using field strengths of the type $f=da-A$, i.e. field strengths where every background field 
+has a world-volume counterpart, the brane dynamics will be covariant with respect to the global symmetries of the 
+background supergravity to which the brane couples to. This is why we have put so much effort in trying to write the 
+background fields and gauge transformations in an U-duality covariant way. The background coupling also indicates that
+a background gauge transformation $\delta A= d\Lambda$, is accompanied by a shift in the world-volume potential, $\delta a= \Lambda$. 
+This is directly related to the general nature of world-volume fields being Goldstone modes corresponding to
+background "gauge-symmetries" \cite{goldstone_tensor_modes}. First of all, the theory have eight bosonic degrees of freedom. Any object placed in spacetime 
+breaks translational symmetries and hence the scalar fields on the branes can be identified as Goldstone modes arising 
+from the breaking of the symmetries. For example, the M2 brane in 11-dimensional spacetime breaks the translational 
+symmetry in eight transverse directions giving eight Goldstone scalars. For the M5 brane on the other hand, there is only five 
+transverse directions leaving three scalar fields to be realized on the brane. The same situation arises in our cases, 
+i.e. a $D_1$- and a $D_2$-brane in 9- and 8-dimensional supergravity respectively. The $D_1$-brane has 7 transverse directions in 
+a 9-dimensional background leaving 1 internal scalar field on the brane, while the number of transverse directions is 
+5 for the $D_2$-brane in 8 dimensions which gives 3 internal scalar fields. Our formulation of the world-volume field strengths 
+gives internal scalar fields that can be interpreted as these remaining Goldstone modes. However, the procedure often leads to a
+situation where the number world-volume fields is larger than the number of physical Goldstone modes. Hence we have to limit the number 
+of fields by using some self-duality condition. This puts constraints on $\Phi$ that we will use in our attempt to derive it.\\
+\\
+
+%*hep-th/9811145
+
+
+
+

@@ -1,0 +1,89 @@
+%\chapter{Colloidal systems/Random flows}
+\chapter{Nature of Flows} 
+
+compressible vs incompr.
+viscuous
+reynolds number
+laminar vs turbulent flow
+newtonian vs nonNewtonian
+
+\section{Dynamics of Fluids}
+
+tracers (active tracer, passive tracer). 
+define $\vec u, \vec r, t$
+
+\subsection{Material Derivative}
+
+To measure changes of an arbitrary material property $\alpha(\vec r, t)$ of a fluid which depends on time $t$ and position $\vec r(t) \equiv (x(t), y(t), z(t))$, it is possible to measure $\alpha$ locally at a fixed point in space. That constitutes the \emph{Eulerian derivative} $\partial\alpha / \partial t$. It is also possible to follow the flow of the fluid and measure the property changes along fluid trajectories. It would then be necessary to take the derivative with respect to all variables. 
+%Consider an arbitrary material property $\alpha(\vec r, t)$ of the fluid which depends on time $t$ and position $\vec r(t) \equiv (x(t), y(t), z(t))$. 
+A small change $\d \alpha$ during time $\d t$ will then be given by
+%\beq
+%\d \alpha = \pafrac{\alpha}{t}\d t + \pafrac{\alpha}{x}\d x + \pafrac{\alpha}{y}\d y + \pafrac{\alpha}{z}\d z,
+%\eeq
+%and the change of $\alpha$ during time $\d t$ is 
+\beq
+\defrac{ \alpha}{t} = \pafrac{\alpha}{t} + \pafrac{\alpha}{x}\defrac{x}{t} + \pafrac{\alpha}{y}\defrac{y}{t} + \pafrac{\alpha}{z}\defrac{z}{t}.
+\eqlbl{materchange}
+\eeq
+Since the velocity of the fluid is $\vec u = \left(\defrac{x}{t},\defrac{y}{t},\defrac{z}{t}\right)$, \eq{materchange} can be written as
+\beq
+\defrac{ \alpha}{t} = \pafrac{\alpha}{t} +( \vec u \cdot \nabla) \alpha.
+\eqlbl{materderiv}
+\eeq
+This is the \emph{material derivative} with respect to $\alpha$. $\alpha$ could denote any property of the fluid, e.g. pressure, temperature, density, momentum, and the list goes on. Notice that the first term on the right-hand side is the Eulerian derivative, and the second term accounts for spatial variations of $\alpha$. It is in the field of fluid dynamics common to denote the material derivative by $\D/\D t$. 
+
+%To express the time derivative of the fluid it is in the field of fluid dynamics conventional to replace the operator $\d/\d t$ with $\D/\D t$, and this is done to better differentiate between particle and fluid properties. 
+
+A very useful property is the acceleration of a fluid element at position $\vec r$, which is obtained by setting $\alpha \equiv \vec u$ in \eq{materderiv}:%\footnote{$\nabla \vec u$ is the ...}
+% bra källa: http://www.scribd.com/doc/106526009/138/A-7-Covariant-Derivatives-of-Tensors
+\beq
+\Dfrac{\vec u}{t} = \pafrac{\vec u}{t} + (\vec u \cdot \nabla) \vec u.
+\eqlbl{fluidacc}
+\eeq
+%This acceleration will be used to describe motion and forces of the fluid. 
+%This acceleration will be used extensively in this thesis to model the motions of the particles and the surrounding fluid. 
+We could also insert $\alpha \equiv \rho_f$ in \eq{materderiv}, where $\rho_f$ is the density of the fluid, to obtain
+\beq
+\defrac{ \rho_f}{t} = \pafrac{ \rho_f}{t} + \vec u \cdot \nabla  \rho_f.
+\eqlbl{materrho}
+\eeq
+Using the \emph{mass continuity equation} 
+\beq
+\pafrac{\rho_f}{t}+\nabla \cdot (\rho_f \vec u) = \pafrac{\rho_f}{t}+\nabla \rho_f\cdot \vec u + \rho_f\nabla \cdot \vec u = 0,
+\eeq
+\eq{materrho} transforms into
+\beq
+\defrac{ \rho_f}{t} =-\nabla \rho_f\cdot \vec u - \rho_f\nabla \cdot \vec u  + \vec u \cdot \nabla  \rho_f =  - \rho_f\nabla \cdot \vec u.
+\eeq
+An \emph{incompressible flow} is defined as having constant density, which implies that $\d  \rho_f / \d t = 0$ and consequently 
+\beq
+%\pafrac{ \rho_f}{t} + \vec u \cdot \nabla  \rho_f = 0.
+\nabla \cdot \vec u = 0.
+\eeq
+This condition applies to all incompressible flows. 
+
+\subsection{The Navier-Stokes Equations}
+
+The Navier-Stokes equations are very useful and have many applications in many different areas. 
+
+The motion of fluids is governed by the Navier-Stokes equations. These equations are derived using Newton's second law as well as the conservation laws for momentum, mass and energy. Furthermore, it is assumed that the fluid is a continuum. Denote $\vec u(\vec r, t)$ the velocity of the fluid at position $\vec r(t) \equiv (x(t), y(t), z(t))$ and time $t$. The general form of the equations is
+%Considering the form of the fluid acceleration given in \eq{fluidacc} the Navier-Stokes equations should be of the form
+\beq
+\rho_f \Dfrac{\vec u}{t} = \nabla \cdot \vec \sigma + \vec f,
+\eeq
+where $\vec f$ is the sum of all body forces, and $\vec \sigma$ is the stress tensor given by
+\beq
+\vec \sigma = 
+\begin{pmatrix}
+\sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+\sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
+\sigma_{zx} & \sigma_{zy} & \sigma_{zz} 
+\end{pmatrix}.
+\eeq
+%where $\rho_f$ is the density of the fluid and $\vec f$ the forces per unit volume exerted on the fluid parcel. 
+
+\section{Turbulence}
+
+Turbulent systems are chaotic and irregular, motion of fluids.  
+
+\section{Simulating flows}

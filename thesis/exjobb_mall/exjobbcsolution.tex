@@ -1,0 +1,1279 @@
+\chapter{Computer solutions}
+\chlab{csolutions}
+\section{Computer solution of the aligned $d=8$ $D2$, const $\alpha\mbox{, }\beta$ case}
+\seclab{csolution_8d_const_old}
+We will here solve the derived duality equations \eqnref{solution_8d_km_orig} and \eqnref{solution_8d_jrm_orig} with $\omega^{rm}$ pointing in the $\hat p_\parallel$ direction implying $\omega_\perp^m = 0$ and further with the background field strength constraint $F^{rm} = 0$, which was studied in \cite{artikeln}.
+In addition to the case studied in \cite{artikeln}, where the equations were solved for a sixth order ansatz $\Phi$ with $\alpha=\alpha_1=-\frac{1}{6}$, we will solve the equations using higher order ansatzes and general values of $\alpha$. We also choose the closed forms $\Gamma=\Delta=0$ and the parameters $\alpha_2=\beta_1=0$ and $\beta=\beta_2=\frac{1}{6}$ to get the equations on the desired form.
+The equations we are about to solve, after the variable substitution \eqnref{solution_8d_vartrans}, are on the form 
+\begin{align}
+\eqnlab{csolution_equations_8D_w0_alpha}
+\frac{\partial\Phi}{\partial u} &= \tilde\alpha_1\sqrt{1+\Phi}v\nn\\
+\frac{\partial\Phi}{\partial v} &= \tilde\alpha_2\sqrt{1+\Phi}u,
+\end{align}
+where $\tilde\alpha_1$ and $\tilde\alpha_2$ are constant scalars. In particular $\tilde\alpha_1=-\tilde\alpha_2=2/3$ corresponds to equations \eqnref{solution_8d_duality_paper} and $\tilde\alpha_1=2\alpha_1+4/3$ and $\tilde\alpha_2=2\alpha_1-2/3$ corresponds to the equations in the special case of this section.
+Choosing $\alpha_1=-1/6$ and making a field redefinition $u\rightarrow-u$ yields
+\begin{align}
+\eqnlab{solution_equations_8D_aligned}
+\frac{\partial\Phi}{\partial u} &= -\sqrt{1+\Phi}v\nn\\
+\frac{\partial\Phi}{\partial v} &= \sqrt{1+\Phi}u,
+\end{align}
+The change of sign on $u$ is made to get the same equations as in \cite{artikeln}, eq. (3.18). This sign will be most misfortunate when we choose a relation between $u$ and $v$ later in subsection \ssecref{csolution_uvrelation}.
+
+%\begin{align}
+%S&[\Phi[\omega(\phi),f(\phi,a)],h(\phi,a,b,\omega(\phi),f(\phi,a)),\lambda]\nn\\
+%& = \int d^3\xi\sqrt{-g}\lambda\left[1 + \Phi[\omega(\phi),f(\phi,a)] - *h^r\W_{rs}*h^s\right]
+%\end{align}
+
+\subsection{The procedure to solve the duality equations}
+We will solve the equations mathematically, interpreting $u_\alpha^m$ and $v_\alpha^m$ as $3\times 3$-matrices, ignoring the two different types of indices.
+If we find solutions that cannot be modified to have the correct index structure, meaning one of the symmetries is broken, we will have to deal with that then.  
+Since $\Phi(u,v)$ is a scalar function in the matrices u and v, we need to contract the u and v matrix indices in different ways to form scalar expressions.   
+As we do not know anything about how the solution will look like, we will try to make an as general scalar ansatz in u and v as possible, i.e. the ansatz will be a polynomial of all different terms we can contract from the u and v matrices.
+The equations we want to solve are nonlinear matrix differential equations which we can series expand using our ansatz $\Phi$. 
+To reduce the number of different terms and collect dependent terms we introduce the Cayley-Hamilton matrix theory, which will let us reduce high powers of a matrix into lower powers and some invariants of the same matrix.
+
+\subsubsection{Cayley-Hamilton theory}
+Consider an $n\times n$ matrix $M$, with $n$ different eigenvalues $m_1,\dots ,m_n$ and eigenvectors ${\bf{v}}_1\dots{\bf{v}}_n$ and calculate its characteristic polynomial
+\begin{equation}
+\eqnlab{solution_char_pol}
+0 = \det(\lambda\id-M) = \prod_{i=1}^n\lp\lambda-m_i\rp 
+= \lambda^n - V_1\lambda^{n-1} - \cdots - V_m
+\end{equation}
+Now form the product $\prod_{i=1}^n\lp M-m_i\id\rp$, where all factors commute and act with it on each of the eigenvectors
+\begin{equation}
+\prod_{i=1}^n\lp M-m_i\id\rp {\bf{v}}_j = \mzero
+\end{equation}
+Since this is true for all the eigenvectors, spanning a basis, we must have
+\begin{equation}
+\eqnlab{solution_char_matrix_pol}
+M^n - V_1M^{n-1} - \cdots - V_m\id = \prod_{i=1}^n\lp M-m_i\id\rp = \mzero,
+\end{equation}
+i.e. M satisfies its own characteristic equation. This can be proven to be true also for matrices with repeated eigenvalues (using Jordan forms). 
+The coefficients $V_i$ are independent of n and can be computed iteratively.
+We get the invariants:
+\begin{center}
+\begin{tabular}{ll}
+n=1: & $V_1 = \tr M$\cr
+n=2: & $V_2 = \half\tr M^2 - \half\lp\tr M\rp^2$\cr
+n=3: & $V_3 = \frac{1}{3}\tr M^3 - \half\tr M^2\tr M + \frac{1}{6}\lp\tr M\rp^3$\cr
+n=4: & $V_4 = - \frac{1}{4}\tr M^4 - \frac{1}{3}\tr M^3\tr M - \frac{1}{8}\tr M^2\tr M^2$\cr
+ & $\phantom{V_4 =} + \frac{1}{4}\tr M^2\lp\tr M\rp^2 - \frac{1}{24}\lp\tr M\rp^4$\cr
+\end{tabular}
+\end{center}
+The nice thing is that we can now use \eqnref{solution_char_matrix_pol} to rewrite any matrix powers greater than $n-1$, in terms of lower powers of the matrix.
+For instance when $n = 2$: $M^2 = V_1M + V_2$ and so on for higher values of n. 
+
+\subsubsection{Ansatz}
+\sseclab{solution_ansatz}
+In this case u and v are 3$\times$3 matrices so we make a polynomial ansatz for $\Phi$ as
+\begin{align}
+\eqnlab{solution_phi_ansatz}
+\Phi=\sum_{i_1=0}^{\infty}\dots\sum_{i_n=0}^{\infty}a_{i_1\dots i_n}\phi_1^{i_1}\dots\phi_n^{i_n}
+\end{align}
+where the polynomial variables $\phi_{i}$ are all n possible independent contractions in u and v.
+We can use the relation
+\begin{align}
+\frac{\partial}{\partial v}\lp\tr\lp uv^3\rp\rp &= uv^2+vuv+v^2u = \frac{\partial}{\partial v}\lp\tr\lp u\lp V_3 + V_2v + V_1 v^2 \rp\rp\rp \nn\\
+&= \tr\lp uv^2\rp - V_2\tr u - V_1\tr\lp uv\rp + v\lp\tr\lp uv\rp - V_1\tr u\rp\nn\\
+& + V_2u +v^2\tr u + V_1\lp uv + vu\rp    
+\end{align}
+to find a relation (multiply by u and take trace)
+\begin{align}
+\eqnlab{csolution_tracecommuterelation}
+2\tr(u^2v^2)+\tr(uvuv)&=
+2\tr u\tr\lp uv^2\rp + 2V_1\tr(u^2v) - 2V_1\tr u\tr\lp uv\rp\nn\\
+&+ V_2\lp\tr u^2- \lp\tr u\rp^2\rp + \lp\tr(uv)\rp^2
+\end{align}
+between $\tr(u^2v^2)$ and $\tr(uvuv)$ in traces of order 3 in u and v, so we don't need to include $\tr(uvuv)$ in our ansatz.
+In a similar fashion we see that we can skip all other terms like $\tr(u^2vuv)$, $\tr(uv^2uv)$ and so on.
+Thus the polynomial variables we will use in our ansatz are
+\begin{equation}
+\eqnlab{solution_polvars}
+\phi=\{\tr(u^2v^2),\tr v^3,\tr u^3,\tr(u^2v),\tr(uv^2),\tr v^2,\tr u^2,\tr(uv),\tr v,\tr u\}.
+\end{equation} 
+The total maximal power in these variables is unknown and can, for all that we know, be infinite.
+%Hence we start at low orders and use the duality relations to find all conditions up to orders that wont change when we add further terms of higher order to the ansatz. When all conditions of a certain order has been considered we increase the order of the ansatz and repeat the procedure.
+\begin{table}[h]
+\tablab{solution_ansatz_orders}
+\begin{center}
+\begin{tabular}{|l|cccccccc|}
+\hline
+Ansatz order & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \cr\hline
+No. of terms & 1 & 3 & 9 & 23 & 52 & 108 & 214 & 398 \cr
+\hline\hline
+Ansatz order & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\cr\hline
+No. of terms & 712 & 1228 & 2050 & 3326 & 5271 & 8162 & 12391 & 18477\cr
+\hline
+\end{tabular}
+\end{center}
+\caption{The length of the ansatzes for different orders. The growth is close to a doubling for each increment of the order.}
+\end{table}
+As we can see in \Tabref{solution_ansatz_orders} the number of terms in the ansatz increases rapidly with the order of the ansatz and for technical reasons we must confine ourselves to ansatzes of quite low orders\footnote{Already at ansatz order 10 the number of coefficients becomes really large. Solving nonlinear equations in over 2000 variables is something you usually won't do before breakfast.}.
+Just as an illustration we give some terms in the order 4 ansatz
+\begin{align}
+\Phi &= a_1 + a_2\tr u + a_3\lp\tr u\rp^2 + a_4\lp\tr u\rp^3 + a_5\lp\tr u\rp^4 + a_6\tr v + a_7\tr v\tr u\nn\\
+& + \dots + a_{49}\tr v^3 + a_{50}\tr v^3\tr u + a_{51}\tr v^3\tr v + a_{52}\tr(u^2v^2)
+\end{align}
+
+\subsection{Transformation of the equations}
+\seclab{solution_equation_transformation}
+Since the equations are nonlinear in the ansatz $\Phi$, due to the $\sqrt{1+\Phi}$, we want to transform them into linear equations which are faster to solve. 
+The most obvious way to do this is to perform a variable transformation $X=\sqrt{1+\Phi}$, such that
+\begin{align}
+\eqnlab{solution_duality_transformed_linear}
+\frac{\partial\Phi}{\partial u} &= \frac{\partial X^2}{\partial u} = 2X\frac{\partial X}{\partial u} = -\sqrt{1+\Phi}v = -Xv &&\Rightarrow \frac{\partial X}{\partial u} = -\frac{v}{2}\nn\\
+\frac{\partial\Phi}{\partial v} &= \frac{\partial X^2}{\partial v} = 2X\frac{\partial X}{\partial v} = \sqrt{1+\Phi}u = Xu &&\Rightarrow \frac{\partial X}{\partial v} = \frac{u}{2}
+\end{align}
+These equations looks a lot easier to solve, but a polynomial ansatz for $X$ isn't at all equivalent to a polynomial ansatz for $\Phi$, since $\Phi = X^2 - 1$ roughly speaking is the square of the polynomial ansatz X.
+So it looks like we should solve the equations 2 times, one with $\Phi$ a polynomial ansatz using $g(\Phi)=\sqrt{1+\Phi}$ on the right hand side and one with $X$ a polynomial ansatz using $g(X)=1/2$ on the right hand side. This is not the entire story though. 
+If we do another variable transformation $X=f(Y)$ we get the equations
+\begin{align}
+\eqnlab{solution_duality_transformed_general}
+\frac{\partial X}{\partial u} &= \frac{\partial f}{\partial Y}\frac{\partial Y}{\partial u} = -\frac{v}{2} &&\Rightarrow \frac{\partial Y}{\partial u} = - \frac{v}{2} \lp\frac{\partial f}{\partial Y}\rp^{-1} = -g(Y) v\nn\\
+\frac{\partial X}{\partial v} &= \frac{\partial f}{\partial Y}\frac{\partial Y}{\partial v} = \frac{u}{2} &&\Rightarrow \frac{\partial Y}{\partial v} = \frac{u}{2} \lp\frac{\partial f}{\partial Y}\rp^{-1} = g(Y) u 
+\end{align}
+Thus meaning we should solve the equations with a polynomial expansion for $Y$ for each possible function $g(Y)$ on the right hand side.
+In other words, there is nothing "holy" about the $\sqrt{1+\Phi}$ factors entering the right hand side of the duality relations and we can in fact solve the equations with arbitrary functions $g$ multiplying u and v on the right hand side and transform these to get a solution $\Phi=X^2-1=f(Y)^2-1$ to the equations on the original form.
+So if we expand $Y$ rather than $\Phi$ as a polynomial ansatz, we can express $\Phi$ as a function of a polynomial in $\phi_i$ rather than just as a plain polynomial in $\phi_i$.
+Note that one can always add an integration constant to f to get rid of possible constant terms in $\Phi$.
+As an easy illustration consider $g(Y)=\sqrt{1+Y}$ giving $f(Y)=\sqrt{1+Y} + C$, where C is a constant, which gives the starting equations
+\begin{align}
+\frac{\partial Y}{\partial u} &= - \frac{v}{2} \lp\frac{\partial f}{\partial Y}\rp^{-1} = -\sqrt{1+Y}v\nn\\
+\frac{\partial Y}{\partial v} &= \frac{u}{2} \lp\frac{\partial f}{\partial Y}\rp^{-1} = \sqrt{1+Y}u 
+\end{align}
+and the solution is $\Phi=(\sqrt{1+Y} + C)^2-1 = Y +2C\sqrt{1+Y} + C^2$.
+So, if we find a solution $Y = \Phi_i^{(0)} = \Phi_i$ to the original duality equations, we can insert it in this solution to get a new solution $\Phi_i^{(1)}= \Phi_i^{(0)} +2C^{(0)}\sqrt{1+\Phi_i^{(0)}} + \lp C^{(0)}\rp^2$, which is trivially checked to solve the starting duality equations.    
+Since $\Phi_i^{(1)}$ is a solution we can iteratively construct an infinite amount of new solutions $\Phi_i^{(n)} = \Phi_i^{(n-1)} +2C^{(n-1)}\sqrt{1+\Phi_i^{(n-1)}} + \lp C^{(n-1)}\rp^2$.
+If we have the condition to not have constant terms in our solution $\Phi$ and allow $\Phi$ to be of infinite order, we are forced to choose $C^{(n)}=-2$ (or $C^{(n)}=0$), giving the solutions $\Phi_i^{(n)}= \Phi_i^{(n-1)} - 4\sqrt{1+\Phi_i^{(n-1)}} + 4$ (or $\Phi_i^{(n)}= \Phi_i^{(n-1)}$). 
+
+At a first sight it might look like an impossible project to solve the equations with an arbitrary function $g$ at the right hand side, but it turns out that the overlapping equations independent on $g$ really constrain most of the ansatz. 
+The overlapping equations we will use is first to put one of the equations linear in the ansatz $Y$ by just combining the two equations into
+\begin{equation}
+\eqnlab{solution_duality_linear}
+\frac{\partial Y}{\partial v}v + \frac{\partial Y}{\partial u}u = 0.
+\end{equation}
+We are then left with one of the nonlinear equations
+\begin{align}
+\eqnlab{solution_duality_transformed_general_dux}
+\frac{\partial Y}{\partial u} = -g(Y) v
+\end{align}
+which we find, using the Cayley-Hamilton theory and the assumption that the relation $u=u(v)$ is known, really is three matrix equations (multiplying each of $\id$, $v$ and $v^2$) out of which only one (the one multiplying $v$) is $g$ dependent and thus nonlinear. 
+
+\subsection{The relation between u and v}
+\sseclab{csolution_uvrelation}
+As mentioned before, the theory should only contain $3$ scalar degrees of freedom and as we saw in the general expansion, there must be relations between the triplets $u$, $v$ and $w$. Here, where $w=0$, we must have one relation between $u$ and $v$ to get $3$ scalar dofs, but we do not know what it should look like.
+The most simple guess we make is that $u$ is proportional to $v$, $u=cv$, for which the equations \eqnref{csolution_equations_8D_w0_alpha} are highly underdetermined and it is easy (from e.g. expanding the original equations or the substitution $X=\sqrt{1+\Phi}$ to first order in $u^tu, u^tv$ and $v^tv$) to find several solutions to the duality equations, e.g.
+\begin{align}
+\Phi_1 =& -\frac{1}{2c}\lp a +\half\rp \tr u^2 + a\tr(uv) - \frac{c}{2} \lp a - \frac{1}{2}\tilde\alpha_2\rp \tr v^2\mbox{, }\tilde\alpha_2 = 1\nn\\
+\Phi_2 =& \lp-\frac{1}{2c}\lp a +\half\rp \tr u^2 + a\tr(uv) - \frac{c}{2} \lp a - \frac{1}{2}\tilde\alpha_2\rp \tr v^2\rp^2\nn\\
+& -\frac{1}{c}\lp a +\half\rp \tr u^2 + 2a\tr(uv) - c \lp a - \frac{1}{2}\tilde\alpha_2\rp \tr v^2
+\end{align}
+where $a$ are different arbitrary scalars in the two solutions and we have put $\tilde\alpha_1=-1$.
+We note that $\tilde\alpha_2$ is determined in the first solution $\Phi_1$ but undetermined in the second solution $\Phi_2$, i.e. finding the value of $\tilde\alpha_2$ compatible with one solution doesn't rule out other solutions with different values on it.   
+
+Out of the 15 expansion parameters, when using $u=v$ and expanding $\Phi$ to second order in the squared $u$ and $v$ matrices, 11 are left undetermined by the constraining duality equations.
+We expect many of these solutions to disappear when $w$ and the dual terms on the right hand side are introduced.
+Instead we will try to get the relation between $u$ and $v$ by considering another relation between 1-form triplets we expect to be valid.
+As was shown in \cite{artikeln}, we can use the $M_2$-brane compactified on $T_3$ to argue that there should be 2 different related 1-form triplets, one coming from the pullback of the internal vielbein and one being its conjugate variable.    
+We have 
+\begin{align}
+S = \int d^3\xi\sqrt{-\det G},
+\end{align}
+where $G_{\alpha\beta} = g_{\alpha\beta} + e_\alpha^me_{m\beta}$ and the 1-form $\omega_\circ^m = e_\alpha^md\xi^\alpha$ is the pullback to the world volume of the internal vielbein $\hat e^m$ and is taken as the first 1-form triplet.
+The second 1-form is given by the conjugate
+\begin{align}
+\frac{\partial \mathcal L}{\partial e_\alpha^m} &= \frac{1}{2}\sqrt{-\det G}G^{\alpha'\beta}\frac{\partial G_{\alpha'\beta}}{\partial w_\alpha^m} = \sqrt{-\det G} G^{\alpha\beta}e_{m\beta}   
+\end{align}
+We will assume that $\omega_\circ^m$ is some projection of $\omega^{rm}$ in a certain direction $-\qdp{r}(p)$ \footnote{The sign is chosen to make correspondence to $\qdp{}$ in \eqnref{solution_8d_duality_general}.}, i.e. $\omega_\circ^m = -\qdp{r}\omega^{rm} = -q_1(p)\omega_\parallel^m - q_2(p)\omega_\perp^m$.
+If we note that $de^m = F^{1m}$ and that the pullback is natural, then $q_1$ and $q_2$ are uniquely determined for a given constant vector $p$ by $F^{1m} = -\qdp{r}d\omega^{rm} = \qdp{r}F^{rm}$, from which we also find that $q_1^2+q_2^2=1$ is always true.  
+In particular, for p=(1,0) we have $F_\parallel^m = F^{1m}$ and $F_\perp^m = F^{2m}$, giving $q_1=1$ and $q_2=0$ and thus $\omega_\circ^m = -v^m$ \footnote{We use this condition as if $F\ne 0$. If $F=\omega_\perp=0$ we could actually choose the coefficient multiplying $v$ arbitrary as far as we can see.} which we will use from now on until we solve the more general equations \eqnref{csolution_equations_8D_w0_alpha} in \ssecref{csolution_paper_general_alpha}.
+If we assume that $*f$ equals the second 1-form triplet we find
+\begin{align}
+u = -\sqrt{-\det G}G^{-1}v,
+\end{align}
+which we will use to solve the duality equations \eqnref{solution_equations_8D_aligned}.
+\footnote{Note that these equations was derived using a field redefinition $u\rightarrow-u$, so we should actually use $u = +\sqrt{\det G}G^{-1}v$ if we would not want to make correspondence to \cite{artikeln}. This sign will make the difference between needing to introduce the parameters $\alpha_1$ and $\alpha_2$ or not, as we will see when we solve the equations for general values on $\alpha_1$ and $\alpha_2$ in {\it{Solution for general values of $\alpha$}} in \ssecref{csolution_paper_general_alpha}}
+
+Now, considering $v_\alpha^m$ as $3\times 3$-matrices and ignoring the index types and signature, we get the following Cayley-Hamilton invariants
+\begin{align}
+V_1 &= \tr v\nn\\
+V_2 &= \half\lp\tr v^2-\lp\tr v\rp^2\rp\nn\\
+V_3 &= \frac{1}{3}\tr v^3 - \half\tr v\tr v^2 + \frac{1}{6}\lp\tr v\rp^3.
+\end{align}
+We will express the metric in a flat $8$-dimensional basis and a curved $3$-dimensional one, giving the pullbacked metric 
+\begin{align}
+G = \id + v^2  
+\end{align}
+with determinant
+\begin{align}
+\det G=(1 + V_2)^2 + (V_1-V_3)^2 = \lp 1 + v_1^2\rp\lp 1 + v_2^2\rp\lp 1 + v_3^2\rp
+\end{align}
+and inverse
+\begin{align}
+G^{-1}=\frac{1}{\det G}\bigg\{&\lp 1+V_1^2+2V_2+V_2^2-V_1V_3\rp\id \nn\\
+& + \lp V_3+V_1V_2\rp v + \lp -1-V_2\rp v^2\bigg\}.
+\end{align}
+It is now easy to calculate
+\begin{align}
+\eqnlab{solution_u8}
+u &= -\sqrt{G}\lp G^{-1}v\rp\\
+& = -\frac{1}{\sqrt{G}}\lbp\lp-V_3-V_2V_3\rp\id + \lp 1+V_1^2+V_2-V_1V_3\rp v + \lp V_3-V_1\rp v^2\rbp\nn.  
+\end{align}
+
+\subsection{Implementation}
+\seclab{solution_implementation}
+We choose to solve the equations by writing a program in Object Pascal Delphi, where we have better control on memory and performance\footnote{Our program runs thousands of times faster and is hundreds of times more memory efficient than an analogue amateur implementation in Mathematica.} compared to e.g. Mathematica.   
+To reduce the number of expansion variables we will always insert the duality relation \eqnref{solution_u8} into the polynomial variables \eqnref{solution_polvars} before representing them in the computer, meaning we will only need to implement polynomials in the variables $\{v,V_1,V_2,V_3\}$.
+A good way to represent the polynomials is to just store the coefficients to all possible combinations of these 4 variables next to each other in the memory as shown in \Figref{solution_memory}. 
+The factors will either be two integers of size 32, 64 or 128 bits each\footnote{The reason we need this good precision is the binomial coefficients from the expansion of $1/\sqrt{\det G}$ in u. The total of $2\cdot 32$, $2\cdot 64$ and $2\cdot 128$ bits turns out to be sufficient precision to expand the polynomial variables in \eqnref{solution_polvars} up to orders 26, 47 and 89 in v (Order 89 corresponds to more than 340000 expansion terms). Due to multiplications and additions the allowed orders will be somewhat lowered when the ansatz is created from the polynomial variables.}\footnote{32 and 64 bit integers are part of the Delphi language, but we need to implement the 128 bits integers by hand in assembler, which is presented in appendix \chref{int128}.}, representing the numerator and denominator of a number coefficient\footnote{In this problem all denominators are powers of 2 at all times so a better representation of the coefficients would have been an integer factor times $2^{\mbox{Int32}}$, which would be less memory consuming, allow expansions to somewhat higher orders and be much faster to reduce.}, or a reference to a coefficient structure if the coefficients are constituted of variables or polynomials of variables.  
+
+What is good with this representation is that we can create one map, for all polynomials, which tells us which element corresponds to which order in the polynomial variables.
+We can then perform all power-independent operations like addition of 2 polynomials fast by termwise addition of coefficients not caring about the power they multiply, since it is always the same. More complex operations like multiplication of 2 polynomials can be done using the power maps, not doing the multiplication if the total power becomes greater than the calculation order.
+Since most polynomials we will use are not sparse there is no need to worry about the memory waste from representing all coefficients of value zero. It also turns out that the variable coefficient structures are the real memory thieves.  
+
+It takes some time and memory (for deallocation information) to allocate memory areas from the system and since we need to store hundreds of millions small objects for the variable polynomials, it is fruitful to create some kind of memory manager which, when needed, automatically retrieves new large memory areas from the system and tells us were there is free space to store new objects.
+
+\setlength{\unitlength}{1.0mm}
+\begin{center}
+\begin{figure}[h]
+\begin{picture}(125,42)(-2,0)
+\path(0,0)(125,0)
+\path(0,5)(125,5)
+\path(0,0)(0,5)
+\path(125,0)(125,5)
+\path(30,0)(30,5)
+\path(47.5,0)(47.5,5)
+\path(77.5,0)(77.5,5)
+\path(95,0)(95,5)
+\multiput(37,2.5)(2,0){3}{\circle*{0.5}}
+\multiput(84.5,2.5)(2,0){3}{\circle*{0.5}}
+\put(15,2.5){\makebox(0,0){\scriptsize{$v^0$}}}
+\put(62.5,2.5){\makebox(0,0){\scriptsize{$v^i$}}}
+\put(110,2.5){\makebox(0,0){\scriptsize{$v^{\min(n-1,N)}$}}}
+
+\path(47.5,5)(0,8)
+\path(77.5,5)(125,8)
+\path(0,8)(125,8)
+\path(0,13)(125,13)
+\path(0,8)(0,13)
+\path(125,8)(125,13)
+\path(30,8)(30,13)
+\path(47.5,8)(47.5,13)
+\path(77.5,8)(77.5,13)
+\path(95,8)(95,13)
+\multiput(37,10.5)(2,0){3}{\circle*{0.5}}
+\multiput(84.5,10.5)(2,0){3}{\circle*{0.5}}
+\put(15,10.5){\makebox(0,0){\scriptsize{$V_3^0$}}}
+\put(62.5,10.5){\makebox(0,0){\scriptsize{$V_3^j$}}}
+\put(110,10.5){\makebox(0,0){\scriptsize{$V_3^{[(N-i)/3]}$}}}
+
+\path(47.5,13)(0,16)
+\path(77.5,13)(125,16)
+\path(0,16)(125,16)
+\path(0,21)(125,21)
+\path(0,16)(0,21)
+\path(125,16)(125,21)
+\path(30,16)(30,21)
+\path(47.5,16)(47.5,21)
+\path(77.5,16)(77.5,21)
+\path(95,16)(95,21)
+\multiput(37,18.5)(2,0){3}{\circle*{0.5}}
+\multiput(84.5,18.5)(2,0){3}{\circle*{0.5}}
+\put(15,18.5){\makebox(0,0){\scriptsize{$V_2^0$}}}
+\put(62.5,18.5){\makebox(0,0){\scriptsize{$V_2^k$}}}
+\put(110,18.5){\makebox(0,0){\scriptsize{$V_2^{[(N-3j-i)/2]}$}}}
+
+\path(47.5,21)(0,24)
+\path(77.5,21)(125,24)
+\path(0,24)(125,24)
+\path(0,29)(125,29)
+\path(0,24)(0,29)
+\path(125,24)(125,29)
+\path(30,24)(30,29)
+\path(47.5,24)(47.5,29)
+\path(77.5,24)(77.5,29)
+\path(95,24)(95,29)
+\multiput(37,26.5)(2,0){3}{\circle*{0.5}}
+\multiput(84.5,26.5)(2,0){3}{\circle*{0.5}}
+\put(15,26.5){\makebox(0,0){\scriptsize{$V_1^0$}}}
+\put(62.5,26.5){\makebox(0,0){\scriptsize{$V_1^l$}}}
+\put(110,26.5){\makebox(0,0){\scriptsize{$V_1^{N-2k-3j-i}$}}}
+
+\path(47.5,29)(0,32)
+\path(77.5,29)(125,32)
+\path(0,32)(125,32)
+\path(0,37)(125,37)
+\path(0,32)(0,37)
+\path(62.5,32)(62.5,37)
+\path(125,32)(125,37)
+\put(31.25,34.5){\makebox(0,0){\scriptsize{$32|64|128$ bits of numerator data}}}
+\put(93.75,34.5){\makebox(0,0){\scriptsize{$32|64|128$ bits of denominator data}}}
+
+\path(0,37)(125,37)
+\path(0,42)(125,42)
+\path(0,37)(0,42)
+\path(125,37)(125,42)
+\put(62.5,39.5){\makebox(0,0){\scriptsize{Pointer to variable coefficient, or}}}
+\end{picture}
+\caption{Illustration of the memory structure of an entire polynomial of order $N$. The polynomial coefficients are stored next to each other in the memory. Which variables the coefficient multiplies is decided by in which variable intervals it belongs, e.g. the coefficient in the figure multiplies $v^iV_3^jV_2^kV_1^l$. [ ] denotes integer part.}
+\figlab{solution_memory}
+\end{figure}
+\end{center}
+
+
+To implement the problem we first calculate all occurring combinations of $u$ and $v$ and their derivatives with the duality relation inserted.
+This is straightforward, if we create $u$ we can multiply it with itself and $v$ and take traces to create all polynomial variables needed.
+We use $u$ given in \eqnref{solution_u8} and simply Taylor expand the determinant factor as
+\begin{align}
+\frac{1}{\sqrt{\det G}} &= \frac{1}{\sqrt{\lp 1+V_2\rp^2+\lp V_1-V_3\rp^2}}\\
+&= \sum_{i=0}^\infty \binom{-1/2}{i}\lp 2V_2 + V_2^2 + V_1^2 - 2V_1V_3 + V_3^2\rp^i 
+\end{align}
+which is easily calculated recursively up to the decided order ($i$ runs from $0$ to $[N/2]$) using our polynomial representations.
+Of course the binomial factors are precalculated in a table, it seems unnecessary to calculate 40 digit factorials each time the program is run.
+We also implement the Cayley-Hamilton reduction of matrix powers mentioned above whenever the power in $v$ exceeds 2.
+The ansatz and its derivatives are created by recursively summing over all variable combinations up to the chosen order $N$.
+If we let $\phi_i(v,V_3,V_2,V_1)$ be the i:th polynomial variable in \eqnref{solution_polvars} of order $n_i$ with the duality relation inserted, the ansatz is simply calculated as (remember we are solving the transformed functions using the ansatz $Y$)
+\begin{align}
+Y=\sum_{i_1=0}^{[N/n_1]}\phi_1^{i_1}\cdot\lp\sum_{i_2=0}^{[(N-n_1i_1)/n_2]}\phi_2^{i_2}\cdot\lp\dots\lp\sum_{i_{10}=0}^{[(N-n_1i_1-\dots-n_9i_9)/n_{10}]}\phi_{10}^{i_{10}}a_j\rp\dots\rp\rp
+\end{align}
+where $j$ is increased for each term added and where we need $N$ temporary polynomials $p_i$ to store intermediate results to reduce the number of total multiplications.
+The derivatives w.r.t. u can be calculated parallel to the ansatz by storing previously calculated derivatives in polynomials $d_i$ so that at $i$:th level we have
+\begin{equation}
+d_i = \frac{\partial\phi_i}{\partial u}p_{i-1}+d_{i-1}\phi_i.
+\end{equation} 
+The derivatives w.r.t. $v$ is of course calculated similarly as the ones w.r.t. $u$ and we have thus created the ansatz and its derivatives with the duality relation inserted from the start.
+
+First we note that the right hand side of \eqnref{solution_duality_transformed_general_dux} is proportional to $v$, meaning we can solve $\frac{\partial Y}{\partial u} = 0$ with the duality relation inserted for the parts of $\frac{\partial Y}{\partial u}$ that are multiplying $\id V_3^jV_2^kV_1^l$ and $v^2V_3^jV_2^kV_1^l$ for all nonnegative integer values of $j$, $k$ and $l$. 
+This turns out to be very powerful conditions giving many different short equations that are easy to solve w.r.t. the ansatz variables $a_i$ and thus a suitable starting point. 
+Next we insert the ansatz in the linear equations \eqnref{solution_duality_linear} and read off the coefficients $c_{ijkl}(a_1,a_2,\dots)$ from what is multiplying each order of polynomial variables $v^iV_3^jV_2^kV_1^l$ in the expanded equations and solve $c_{ijkl}=0$ to determine more ansatz variables $a_i$. 
+These equations are linear and thus fairly easy to solve and usually a majority of the coefficients can be determined by the 2 sets of equations solved so far.  
+
+Now is a good time to save all solutions so far and try to find solutions to \eqnref{solution_duality_transformed_general_dux} using different functions $g(Y)$.
+We start by choosing $g=1/2$ corresponding to the linear equations in \eqnref{solution_duality_transformed_linear}, which can be solved in the same fashion. 
+Even if we don't find any nontrivial solution on this form, all the trivial solutions (see \secref{solution_result}) will be found and we can use them to remove one coefficient per trivial solution (see {\it Trivial solutions} in section \ssecref{solution_trivial}) in the previously saved solution.
+
+Next, considering the saved solution with the coefficients corresponding to trivial solutions removed, there is usually only a few coefficients left and by setting $g(Y)=\sqrt{Y}$ corresponding to the starting equations, we can try to solve them by inserting the ansatz in one of the squared\footnote{This avoids the series expansion of $\sqrt{Y}$, which would (probably) give equations of too high order in the ansatz variables $a_i$ to solve. Now we get equations to order 2 in $a_i$ and possible solutions with the wrong sign can easily be removed by verification of the solution in the equation we really want to solve.} nonlinear relations \eqnref{solution_equations_8D_aligned}.
+The second order equations in the remaining $N_r$ variables will be on the form
+\begin{align}
+\eqnlab{solution_second_order}
+\sum_{i=0}^{N_r}\sum_{j=0}^i c^{(p)}_{ij}a\bd{i}a\bd{j}=0
+\end{align}
+where we have introduced $a_0=1$ to get a compact expression and $c^{(p)}_{ij}$ are the different coefficients for the $p$:th equation, i.e. we are left to solve general form second order equations in $N_r$ variables.  
+Just trying to solve these second order equations will be practically impossible when $N_r$ isn't very small, since inserting the solutions of second order equations containing square roots of the coefficients quickly increases complexity of the problem. 
+Instead we try to transform the equations into a system of linear equations in $N_r(N_r+3)/2$ variables, i.e. the equations becomes  
+\begin{align}
+\sum_{k=0}^{N_r(N_r+3)/2} c^{(p)}_{k}b\bd{k}=0
+\end{align}
+where $b_k=a_ia_j$ are all the combinations of degree 2 in $a$ and $c^{(p)}_k$ are the corresponding coefficients $c^{(p)}_{ij}$ from \eqnref{solution_second_order}.
+Solving these equations corresponds to an elimination of unwanted nonlinear terms in the starting equations \eqnref{solution_second_order}.    
+This seems to be a successful method only if the number of variables left is not too high (and could thus as well be solved using Mathematica on their original form).
+
+Note that when we solve the equations for an ansatz $Y^{(N)}$ of order $N$, we expand the equations to arbitrary high orders.
+If we want to solve the equations for an ansatz $Y^{(N+1)}$ of order $N+1$, which contain all terms in $Y^{(N)}$ plus terms of order $N+1$, the only information we can use from the previous solution $Y^{(N)}$ is conditions from the equations expanded to order $N-1$, all higher order equations will be affected by terms coming from (possibly differentiated) $N+1$ order terms in $Y^{(N+1)}$.    
+Since the number of ansatz coefficients grows faster than the number of overlapping equations it is more or less meaningless to save the information gained when solving the equations for $Y^{(N)}$ and we can neither use solutions of lower order ansatzes to say anything about the number of and appearances of solutions of higher order ansatzes. 
+
+
+\subsection{Result}
+\seclab{solution_result}
+We will distinguish between 2 different kinds of solutions.
+First we have trivial solutions $\Psi_i(u,v)$ such that
+\begin{equation}
+\Psi_i(-\sqrt{G}G^{-1}v,v) = \frac{\partial\Psi_i}{\partial u}(-\sqrt{G}G^{-1}v,v) = \frac{\partial\Psi_i}{\partial v}(-\sqrt{G}G^{-1}v,v) = 0,  
+\end{equation}
+which solves the equations for all functions $g(Y)$ with $g(0)=0$.
+Thus some coefficients in the ansatz will be undetermined when using the relation $u=-\sqrt{G} G^{-1}v$ and we can add different function combinations of $\Psi_i$ without changing the solution.
+We are not so interested in such solutions because we expect them to be fixed when introducing $w$ and we thus remove them from the ansatz when detected. 
+  
+Secondly we have solutions $\Phi_i$ which are not 0 when inserting the duality relation but nevertheless solves the equations \eqnref{solution_equations_8D_aligned}.
+Since the equations are nonlinear we cannot add such solutions to each other and we don't know how many (if any) different solutions we can expect to find.
+In other words the solution should be on the form
+\begin{align}
+\Phi = \Phi_i + \sum_j g_j(u,v)\cdot\lp \psi_j(\Psi_1,\Psi_2,\dots) - \psi_j(0,0,\dots)\rp
+\end{align}
+where $g_j$ are general finite scalar functions and $\psi_j(\Psi_1,\Psi_2\dots)$ are scalar functions of the $\Psi$:s such that $\frac{\partial \psi_j}{\partial \Psi_i}(0,0,\dots)$ is finite. 
+
+\subsubsection{Trivial solutions}
+\sseclab{solution_trivial}
+For low ansatz orders the found unique, i.e. not constructed from a previous trivial solution multiplied by a polynomial, trivial $\Psi$ solutions are
+\begin{align}
+\mbox{ order 4: }&\Psi_1 = -\lp \tr u\rp^2\lp \tr v\rp^2 + \tr u^2\lp \tr v\rp^2 + 4 \tr u \tr v \tr (uv) - 2 \lp \tr (uv)\rp^2\nn\\
+&- 4 \tr v \tr (u^2v) + \lp \tr u\rp^2 \tr v^2 - \tr u^2 \tr v^2 - 4 \tr u \tr (uv^2) + 6 \tr (u^2v^2)\nn\\ 
+%
+\mbox{ order 5: }&\Psi_2 = -\tr u^2\lp \tr v\rp^3 + 2\tr u\lp \tr v\rp^2\tr (uv) - 4\tr v\lp \tr (uv)\rp^2\nn\\
+&+ \lp \tr v\rp^2\tr (u^2v) - \lp \tr u\rp^2\tr v\tr v^2 + 4\tr u^2\tr v\tr v^2 - 3\tr (u^2v)\tr v^2\nn\\
+&- 2\tr u\tr v\tr (uv^2) + 6\tr (uv)\tr (uv^2) + \lp \tr u\rp^2\tr v^3 - 3\tr u^2\tr v^3\nn\\
+%
+&\Psi_3 = -\tr u \tr u^2\lp \tr v\rp^2 + \tr u^3\lp \tr v\rp^2 + 2\lp\tr u\rp^2\tr v\tr(uv)\nn\\
+& - 4\tr u\lp \tr(uv)\rp^2 - 2\tr u\tr v\tr(u^2v) + 6\tr(uv)\tr(u^2v) - \lp\tr u\rp^3\tr v^2\nn\\
+& + 4\tr u\tr u^2\tr v^2 - 3\tr u^3\tr v^2 + \lp\tr u\rp^2\tr(uv^2) - 3\tr u^2\tr(uv^2)\nn\\
+%
+\mbox{ order 6: }&\Psi_{4-8} \nn\\
+\mbox{ order 7: }&\Psi_{9-15}\mbox{, and so on.}
+\end{align}
+The number of trivial solutions grows pretty quick since each unique trivial solution of order n should also be included multiplying a polynomial of order $N-n$, where $N$ is the total ansatz order, e.g. with ansatz order 12 the number of trivial solutions becomes about 3130 (this number might vary a little due to overlap of terms coming from different trivial solutions). 
+
+Note that the $\Psi$ solutions can be used to set some ansatz coefficients to 0 before doing any calculations at all. This is because one term in the $\Psi$ solution effectively can be rewritten as minus the other terms and the term is thus not needed. The only information lost in the solution is the removed $\Psi$ solution which we already know and can add manually at the end to possibly simplify other solutions. 
+E.g. in the order 8 ansatz we can set (read the factors from table \tabref{solution_ansatz_orders})
+\begin{align}
+\underbrace{1\cdot 52}_{\Psi_1} + \underbrace{2\cdot 23}_{\Psi_{2,3}} + \underbrace{5\cdot 9}_{\Psi_{4-8}} + \underbrace{7\cdot 3}_{\Psi_{9-15}} = 164 
+\end{align}
+different coefficients to 0, knowing the previously calculated $\Psi$ solutions up to order 7.
+Since a higher ansatz covers all solutions of a lower ansatz we are only interested in solving the equations for one ansatz order which is as high as possible.
+We can find the trivial solutions easy by simply solving the equations $\Phi=\frac{\partial\Phi}{\partial u}=\frac{\partial\Phi}{\partial v}=0$, which are pretty simple linear equations.
+All found trivial solutions now let us put a pretty big number of ansatz coefficients to 0 (compare the example of order 8 where 23\% of the coefficients can be set to 0) and finally we can put all power in one effort to solve the linear-nonlinear equation pair.
+We have the opportunity to arbitrarily choose which term of the trivial solution to remove by setting its ansatz coefficient to zero.
+A good choice seems to be to remove the ansatz term which, when varied w.r.t. $u$ and with $u(v)$ inserted to a certain order, consist of the highest term count (as a polynomial in $\{v,V_1,V_2,V_3\}$). 
+This should reduce the number of terms coming from $\frac{\partial\Phi}{\partial u}$ when constructing the duality equations.
+Note that we have to be very careful not setting all the coefficients in one trivial solution to zero, since that would mean removing the corresponding terms completely from possible nontrivial solutions.  
+
+\subsubsection{Nontrivial solutions}
+We now want to find nontrivial solutions to the transformed duality equations \eqnref{solution_duality_transformed_general} by first solving all linear conditions as mentioned above and then try to construct a solution by choosing a combination of the remaining ansatz coefficients and g(Y) such that \eqnref{solution_duality_transformed_general} is fulfilled with the duality relation inserted.
+For ansatz orders less than 6 no coefficients are left to solve with the nonlinear condition.
+For ansatz order 6 we have, with the duality relation inserted
+\begin{align}
+Y & = a_1 + \frac{a_2}{\det G} \lp V_1^4 + 4V_1^2V_2 + 8V_1V_3 - 8V_3^2 - 2V_1^2V_3^2 - 4V_2V_3^2 + V_3^4 \rp\nn\\
+\frac{\partial Y}{\partial u} & = -\frac{2a_2}{\sqrt{\det G}} \lp 2 + V_1^2 + 2V_2 - V_3^2\rp v   
+\end{align}
+and we wish to solve 
+\begin{align}
+g(Y) = \frac{2a_2}{\sqrt{\det G}} \lp 2 + V_1^2 + 2V_2 - V_3^2\rp. 
+\end{align}
+We see that $(a_1 = b, a_2 = 0)$, where $b$ is a constant such that $g(b)=0$ is a solution. Since $a_1$ corresponds to the constant term in the ansatz this solution simply corresponds to constant $\Phi=-1$, which is not a valid solution because the $\sqrt{1+\Phi}$ factor originally occurred as a denominator and since we expect actions on the form \eqnref{dynamics_final_action} not to have a constant term other than the existing $1$.
+We also see that $(a_1 = 1, a_2 = 1/4)$ solves $g(Y) = \sqrt{Y}$, which corresponds to the starting equations, giving 
+\begin{align}
+\eqnlab{csolution_paper_solution}
+\Phi=\frac{1}{2}\left[\tr v^2 - \tr u^2 + \frac{1}{2}\lp\tr\lp uv\rp\rp^2 - \tr\lp u^2v^2\rp - V_3^2\right]
+\end{align}
+where
+\begin{align}
+V_3^2 &= \frac{1}{36}\lp\tr v\rp^6 - \frac{1}{6}\lp\tr v\rp^4\tr v^2 + \frac{1}{4}\lp\tr v\rp^2\lp\tr v^2\rp^2\nn\\
+&+ \frac{1}{9}\lp\tr v\rp^3\tr v^3 - \frac{1}{3}\tr v\tr v^2\tr v^3 + \frac{1}{9}\lp\tr v^3\rp^2 
+\end{align}
+
+In the same fashion we have calculated ansatz orders 8, 10 and 12, each with an extra term and the result for order 12 is
+\begin{align}
+\eqnlab{csolution_order12}
+&Y = a_1 + \frac{a_2}{\det G} \big( V_1^4 + 4V_1^2V_2 + 8V_1V_3 - 8V_3^2 - 2V_1^2V_3^2 - 4V_2V_3^2 + V_3^4 \big)\nn\\
+&+\frac{a_3}{\lp\det G\rp^2}\big(
+(V_1 - V_3)(V_1^3 + 4V_1V_2 + 8V_3 + V_1^2V_3 + 4V_2V_3 - V_1V_3^2 - V_3^3)\nn\\
+&\cdot(16 + 16V_1^2 + V_1^4 + 32V_2 + 4V_1^2V_2 + 16V_2^2 - 24V_1V_3 + 8V_3^2 - 2V_1^2V_3^2 - 4V_2V_3^2 + V_3^4)
+\big)\nn\\
+&+\frac{a_4}{\lp\det G\rp^{5/2}}\big(
+(V_1 - V_3)(2 + V_1^2 + 2V_2 - V_3^2)(8V_3 + (V_1 + V_3)(V_1^2 + 4V_2 - V_3^2))
+\big)\nn\\
+&+\frac{a_5}{\lp\det G\rp^3}\big( 
+(V_1 - V_3)(8V_3 + (V_1 + V_3)(V_1^2 + 4V_2 - V_3^2))(14V_1^8 - 34(1 + V_2)^4 - 38V_1^5V_3\nn\\
+& - 4(1 + V_2)^2(279 + 131V_2)V_3^2 +(-55 + V_2(634 + 355V_2))V_3^4 - (93 + 112V_2)V_3^6 + 14V_3^8\nn\\
+& + V_1^6(131 + 112V_2 - 56V_3^2) + 4V_1^3V_3(296 - 38V_2 + 19V_3^2) +2V_1V_3(592(1 + V_2)^2\nn\\
+& + 4(186 + 19V_2)V_3^2 - 19V_3^4) + V_1^4(97 + 786V_2 + 355V_2^2 - (355 + 336V_2)V_3^2 + 84V_3^4) \nn\\
+& +V_1^2(4(1 + V_2)^2(-17 + 131V_2) - 2(1357 + 355V_2(2 + V_2))V_3^2 + (317 + 336V_2)V_3^4 - 56V_3^6))
+\big)\nn\\
+&\frac{\partial Y}{\partial u} = -\frac{2a_2}{\sqrt{\det G}}v \big( 2 + V_1^2 + 2V_2 - V_3^2\big) \nn\\   
+&-\frac{4a_3}{\lp\det G\rp^{3/2}}v \big( (2 + V_1^2 + 2V_2 - V_3^2)(8 + 8V_1^2 + V_1^4 + 16V_2 + 4V_1^2V_2\nn\\
+&\hspace{2.5cm} + 8V_2^2 - 8V_1V_3 - 2V_1^2V_3^2 - 4V_2V_3^2 + V_3^4)\big) \nn\\
+&+\frac{a_4}{\lp\det G\rp^{2}}v \big((V_1 - V_3)(8V_3 + (V_1 + V_3)(V_1^2 + 4V_2 - V_3^2))\nn\\
+&\hspace{2.5cm} \cdot(5V_1^4 + 16(1 + V_2)^2 + 8V_1V_3 - 4(6 + 5V_2)V_3^2 + 5V_3^4 + 2V_1^2(8 + 10V_2 - 5V_3^2))\big)\nn\\
+&-\frac{4a_5}{\lp\det G\rp^{5/2}}v \big(
+(2 + V_1^2 + 2V_2 - V_3^2)(21V_1^8 - 17(1 + V_2)^4 - 2(1 + V_2)^2(541 + 262V_2)V_3^2\nn\\
+& + 74V_1^5V_3 + (410 + V_2(1082 + 467V_2))V_3^4 -(205 + 168V_2)V_3^6 + 21V_3^8 +2V_1V_3(558(1 + V_2)^2\nn\\
+&  + V_1^6(131 + 168V_2 - 84V_3^2) - 4V_1^3V_3(-279 - 74V_2 + 37V_3^2) - 2(-131 + 74V_2)V_3^2 + 37V_3^4)\nn\\ 
+& +V_1^2(2(1 + V_2)^2(-17 + 262V_2) - 2(1082 + 467V_2(2 + V_2))V_3^2 + (541 + 504V_2)V_3^4 - 84V_3^6))\nn\\
+& + V_1^4(114 + 786V_2 + 467V_2^2 - (467 + 504V_2)V_3^2 + 126V_3^4)
+\big).
+\end{align}
+We have not been able to choose $g(Y)$ and the coefficients $a_i$ to find any more solutions.
+In conclusion, the only found solution so far is \eqnref{csolution_paper_solution}, also found in \cite{artikeln}.
+Although the order 12 equations \eqnref{csolution_order12} look rough to solve with other solutions, we should remember that moving to higher orders will most likely introduce even more terms to adjust, so it is still an open problem to prove the uniqueness of the solution with the used relation between $u$ and $v$.
+Of course the form (especially the square roots) of the equations \eqnref{csolution_order12} is highly correlated to the choice $u(v)$ and other such relations would most likely give other solutions.  
+If we demand $\Phi$ to be uniquely determined from the equations of motion, we have failed, because of all the trivial solutions.
+The reason these appear is probably that the relation $u(v)$ is wrong or that the general case $w\ne 0$ will be more restrictive.
+According to the procedure in \secref{solution_equation_transformation} we could also construct new solutions from the found one if we do not restrict $\Phi$ to a finite polynomial.
+
+%The paper solution
+%\begin{align}
+%\Phi = &+ \frac{1}{2}\tr v^2 - \frac{1}{2}\tr u^2 + \frac{1}{4}\lp\tr\lp uv\rp\rp^2 - \frac{1}{2}\tr\lp u^2v^2\rp\nn\\
+%& - \frac{1}{12}\lp\tr v^2\rp^3 + \frac{1}{4}\tr v^2\tr v^4 - \frac{1}{6}\tr v^6\nn\\ 
+%& + a\bigg[ 
+%\lp\tr\lp uv\rp\rp^2\lp\tr u^2 - 2\tr v^2\rp
+%+ 2\tr\lp u^2v^2\rp\lp\tr v^2-\tr u^2\rp\nn\\
+%&
+%+ 2\tr\lp uv\rp\lp 3\tr\lp uv^3\rp - \tr\lp u^3v\rp\rp 
+%+ 3\tr\lp v^2u^4\rp 
+%- 6\tr\lp u^2v^4\rp\nn\\
+%& + \lp\tr v^2\rp^3
+%- 4\tr v^2\tr v^4 
+%+ 3\tr v^6
+%\bigg]
+%\end{align}
+%where $a$ is a constant, multiplying an order 6 function $\Psi(u,v)$
+
+\subsubsection{Solution for general values on $\tilde\alpha_1$ and $\tilde\alpha_2$}
+\sseclab{csolution_paper_general_alpha}
+To solve the equations \eqnref{csolution_equations_8D_w0_alpha} for general values of $\tilde\alpha_1$ and $\tilde\alpha_2$ we assume the relation between $u$ and $v$ to be proportional to the conjugate 1-form as before. 
+To reduce the complexity of the now more nonlinear equations we use the invariants for $v^2$ (see header of section \secref{csolution_8d_general}) and a smaller ansatz (all terms of even orders and quadratic in $v$, see subsection \ssecref{solution_general_ansatz}). 
+When expanding the equations to sixth order, there is a unique relation between the proportionality factor, $\tilde\alpha_1$ and $\tilde\alpha_2$. 
+If we use $\omega_\circ$ in the direction $-\qdp{r}$ we get $v=-q_1\omega_\circ = q_1\omega_\parallel$ for the $w=0$ case.
+Rather than changing the relation between $u$ and $v$, which get complex, we redefine $v\rightarrow q_1 v$ in the duality equations, so to leave them unchanged we also have to redefine $\tilde\alpha_1\rightarrow \tilde\alpha_1/q_1$ and $\tilde\alpha_2\rightarrow \tilde\alpha_2/q_1$. 
+If we let 
+\begin{align}
+\eqnlab{csolution_dualit_general_alpha}
+u(v) = \frac{2}{\tilde\alpha_2-\tilde\alpha_1}\sqrt{\det G}G^{-1}v
+\end{align}
+we find the sixth order nontrivial solution\footnote{There are now 2 trivial solutions, in contrary to one before, out of which one is independent of $\tilde\alpha$.} to the duality equations to be
+\begin{align}
+\eqnlab{csolution_phi_general_alpha}
+\Phi &= \det G - 1 + \frac{\tilde\alpha_1^2}{4}\lp\tr\lp uv\rp\rp^2 + \frac{\tilde\alpha_1}{4}\lp\tilde\alpha_2-\tilde\alpha_1\rp\tr\lp u^2\lp \id+v^2\rp\rp\nn\\
+&+ \frac{\tilde\alpha_1}{\tilde\alpha_2-\tilde\alpha_1}\lp V_2 - 2V_4 - 3\frac{1}{36}\star(vvv)^2\rp  
+% These terms are without the u-transformation
+%&+ a_1\bigg[-\frac{1}{2}\star(uvv)^2 + \frac{1}{2}\star(uuv)\star(vvv) + \lp\tr\lp uv\rp\rp^2\tr v^2\nn\\
+%& - \tr u^2\lp\tr v^2\rp^2 + \tr v^2\tr\lp u^2v^2\rp - 2\tr\lp uv\rp\tr\lp uv^3\rp + \tr u^2\tr v^4\bigg]\nn\\
+%&+ a_2\bigg[-\frac{1}{2}\star(uuv)^2 - \lp\tr u^2\rp^2\tr v^2 + \tr u^4\tr v^2\nn\\
+%&+ b^2\lp \star(uuv)\star(vvv) + 2\lp\tr\lp uv\rp\rp^2\tr v^2 - 2\tr v^2\tr\lp u^2v^2\rp\rp\nn\\
+%&+ b^4\lp - \frac{1}{2}\star(vvv)^2 - \lp\tr v^2\rp^3 + \tr v^2\tr v^4\rp\bigg]
+.
+\end{align}
+To easily see that this really is a solution we note that
+\begin{align}
+\left.\tr\lp u^2\lp \id+v^2\rp\rp\right|_{u=u(v)} &= \frac{2}{\tilde\alpha_2-\tilde\alpha_1}\sqrt{G}\left.\tr\lp uv\rp\right|_{u=u(v)}\\
+& = \lp\frac{2}{\tilde\alpha_2-\tilde\alpha_1}\rp^2\lp V_2 - 2V_4 - 3\frac{1}{36}\star(vvv)^2\rp\nn 
+\end{align}
+makes $1+\Phi$ an even square, so
+\begin{align}
+\sqrt{1+\Phi}\left.\right|_{u=u(v)} = \sqrt{G} + \frac{\tilde\alpha_1}{2}\left.\tr\lp uv\rp\right|_{u=u(v)}
+\end{align}
+and the variations
+\begin{align}
+\frac{\partial\Phi}{\partial u} &=\frac{\tilde\alpha_1^2}{2}\tr\lp uv\rp v + \frac{\tilde\alpha_1}{2}\lp\tilde\alpha_2-\tilde\alpha_1\rp u\lp \id+v^2\rp\nn\\
+& = \tilde\alpha_1\lbp \frac{\tilde\alpha_1}{2}\tr\lp uv\rp + \sqrt{G}\rbp v \nn\\
+\frac{\partial\Phi}{\partial v} &=2\det G G^{-1}v + \frac{\tilde\alpha_1^2}{2}\tr\lp uv\rp u + \frac{\tilde\alpha_1}{2}\lp\tilde\alpha_2-\tilde\alpha_1\rp u^2v \nn\\
+& + \frac{2\tilde\alpha_1}{\tilde\alpha_2-\tilde\alpha_1}\lp \id - 2v^2 + 2V_2 + 3v^4 - 3V_4 - 3V_2v^2\rp v \nn\\
+&= \lbp (\tilde\alpha_2-\tilde\alpha_1)\sqrt{G} + \frac{\tilde\alpha_1^2}{2}\tr\lp uv\rp +\frac{\alpha_1}{\sqrt{G}}\lp\id + 2V_2 - 3V_4 + 4V_6\rp\rbp u \nn\\
+&= \lbp (\tilde\alpha_2-\tilde\alpha_1)\sqrt{G} + \frac{\tilde\alpha_1^2}{2}\tr\lp uv\rp +\alpha_1\sqrt{G} + \alpha_1\frac{\tilde\alpha_2-\tilde\alpha_1}{2}\tr\lp uv\rp \rbp u\nn\\
+&= \tilde\alpha_2\lbp \sqrt{G} + \frac{1}{2}\tr\lp uv\rp \rbp u
+\end{align}
+where we have used $G=\id+v^2$ and $v = \frac{\tilde\alpha_2-\tilde\alpha_1}{2}\frac{1}{\sqrt{-\det G}}Gu$, obviously solves the duality equations.
+We end this section by stating the solution to the equations on its final form without introduction of any parameters other than the relation between $\omega_\parallel$ and $\omega_\circ$ and maybe $\beta_2$.
+The equations are
+\begin{align}
+\frac{\partial\Phi}{\partial u} &= \frac{4}{3}q_1\sqrt{1+\Phi}v\nn\\
+\frac{\partial\Phi}{\partial v} &= -\frac{2}{3}q_1\sqrt{1+\Phi}u,
+\end{align}
+where $v=q_1\omega_\parallel$, $u=*f$, $w=\omega_\perp = 0$ and
+\begin{align}
+\eqnlab{csolution_phi_alpha_zero}
+\Phi &= \frac{1}{3}\lbp \frac{4}{3}\lp\tr\lp uv\rp\rp^2 - 2\tr\lp u^2\lp \id+v^2\rp\rp + V_2 - V_4 + \frac{1}{12}\star(vvv)^2\rbp
+\end{align}
+together with
+\begin{align}
+u(v) = -q_1\sqrt{-\det G}G^{-1}v.
+\end{align}
+Remember that we still use $\beta_2=\frac{1}{6}$ to remove the $*(v\we v)$ term. Some attempts to interpret these equations with $\beta_2=0$ will be found in section \secref{solution_result2}. 
+
+\section{Computer solution of the $d=8$ $D2$ general case}
+\seclab{csolution_8d_general}
+%In this section we will try and solve the equations of motion in the general case.
+
+In the previous section we solved the equations, treating $u$ and $v$ as matrices, not caring about the actual index structure.
+For the duality equations of the general parameter free case \eqnref{solution_8d_duality_general}, we need to include dualities of the field strengths and we thus have to be more careful about the index structure.
+We will treat $\lp v^2\rp\od{\alpha\alpha'} = v\od{\alpha}\ou{m}v\od{m\alpha'}$ as matrices in the world volume indices, with invariants
+\begin{align}
+V_2 &=\tr v^2\nn\\
+V_4 &=\half\lp\tr v^4 - \lp\tr v^2\rp^2\rp\nn\\
+V_6 &=\frac{1}{3}\tr v^6 - \frac{1}{2}\tr v^2\tr v^4 + \frac{1}{6}\lp\tr v^2\rp^3
+\end{align}
+and the Cayley-Hamilton relation
+\begin{align}
+\eqnlab{csolution_cayley6}
+v^6 = V_6 + V_4v^2 + V_2v^4
+\end{align}
+
+\subsection{Introduction of dual field strengths}
+We want to alter the formalism so we can include 1-forms of the type $\epsilon_{mnp}*\lp v^n\we v^p\rp$, which appears in the duality equations \eqnref{solution_8d_duality_general}.
+We introduce the following notation
+\begin{align}
+\star(uv)_m^\alpha &= \epsilon_{mnp}\lp *(u^n\we v^p)\rp^\alpha = \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} u^n_\beta v^p_\gamma\\
+\star(uvw) &= \epsilon_{mnp}*(u^m\we v^n\we w^p) = \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}u^m_\alpha v^n_\beta w^p_\gamma,
+\end{align}
+where the positional order of the tensors $u$, $v$ and $w$ doesn't matter.
+In particular we have $\star(vvv)=\frac{1}{3!}\det v_\alpha^m$.
+\paragraph{Star squared}
+We will frequently use the multiplication of different dualities of $v$, so we start by calculating them straightforwardly as
+\begin{align}
+\eqnlab{csolution_starsquared1}
+\star(vv)_m^\alpha\star(vv)^{m'}_{\alpha'} &= \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} v^n_\beta v^p_\gamma \epsilon^{m'n'p'}\varepsilon_{\alpha'\beta'\gamma'} v_{n'}^{\beta'} v_{p'}^{\gamma'}\nn\\ 
+&=-36\delta_{[mnp]}^{m'n'p'}\delta^{\alpha\beta\gamma}_{[\alpha'\beta'\gamma']} v^n_\beta v^p_\gamma v_{n'}^{\beta'} v_{p'}^{\gamma'}\nn\\
+&=4\Big(\delta^{\alpha}_{\alpha'}\delta_{m}^{m'}V_4 + \delta^{\alpha}_{\alpha'} V_2\lp v^2\rp_m^{m'} - \delta^{\alpha}_{\alpha'} \lp v^4\rp_m^{m'}\nn\\
+&-\delta_{m}^{m'}\lp v^4\rp^\alpha_{\alpha'} - \lp v^2\rp^{m'}_m \lp v^2\rp^\alpha_{\alpha'} - V_2 v^{m'}_{\alpha'}v_{m}^{\alpha}\nn\\
+&+\lp v^3\rp^{m'}_{\alpha'} v_{m}^{\alpha} + \delta_{m}^{m'}V_2 \lp v^2\rp^\alpha_{\alpha'} + \lp v^3\rp_{m}^{\alpha}v^{m'}_{\alpha'}\Big)\\
+%
+\star(vv)_m^\alpha\star(vv)^{m}_{\alpha'} &= \delta^m_{m'}\star(vv)_m^\alpha\star(vv)^{m'}_{\alpha'}\nn\\
+& = 4\lp V_4\delta^{\alpha}_{\alpha'} + V_2\lp v^2\rp_{\alpha'}^\alpha - \lp v^4\rp_{\alpha'}^\alpha\rp,\\
+%
+\eqnlab{csolution_star_squared3}
+\star(vv)_m^\alpha\star(vvv) &= v_{m'}^{\alpha'}\star(vv)_m^\alpha\star(vv)^{m'}_{\alpha'}\nn\\
+& = 12\lp V_4v_{m}^{\alpha} + V_2\lp v^3\rp_{m}^{\alpha} - \lp v^5\rp_{m}^{\alpha}\rp,\\
+%
+\star(vvv)\star(vvv) &= v^m_\alpha\star(vv)_m^\alpha\star(vvv)\nn\\
+& = 12\lp V_2V_4 + V_2\tr v^4 - \tr v^6\rp = -36V_6.
+\end{align}
+We now let $\VS{3} = \star(vvv) = 6\sqrt{-V_6}$, which we will use instead of $V_6$ when expanding the equations, i.e. we expand the equations in the independent variables $V_2, \VS{3}$ and $V_4$. 
+
+\paragraph{Reductions}
+We want to be able to reduce $\star$ acting on $v$ of different powers.
+We start by trying to reduce tensors on the forms $v^m_\alpha$, $\lp v^3\rp^m_\alpha$, $\lp v^5\rp^m_\alpha$, $\star(vv)^m_\alpha$, $\star(vv)^m_\beta \lp v^2\rp^\beta_\alpha$ and $\star(vv)^m_\beta \lp v^4\rp^\beta_\alpha$ in terms of each other and the invariants $V_2$, $\VS{3}$ and $V_4$.
+Examine the expression
+\begin{align}
+\star&(vvv)\lp v^x\rp^\alpha_m = \epsilon_{m'n'p'}\M_{mn}\varepsilon^{\alpha'\beta'\gamma'}g^{\alpha\beta}v^{m'}_{\alpha'} v^{n'}_{\beta'} v^{p'}_{\gamma'}\lp v^x\rp_\beta^n\nn\\
+&= \lp \epsilon_{mn'p'}\M_{m'n} + \epsilon_{m'mp'}\M_{nn'} + \epsilon_{m'n'm}\M_{np'}\rp\varepsilon^{\alpha'\beta'\gamma'}g^{\alpha\beta}v^{m'}_{\alpha'} v^{n'}_{\beta'} v^{p'}_{\gamma'}\lp v^x\rp_\beta^n\nn\\
+&= \epsilon_{mnp}\varepsilon^{\alpha'\beta\gamma} v^{n}_{\beta} v^{p}_{\gamma}\lp v^{x+1}\rp^{\alpha}_{\alpha'} - \epsilon_{mnp}\varepsilon^{\alpha'\beta\gamma}v^{n}_{\alpha'} v^{p}_{\gamma}\lp v^{x+1}\rp^{\alpha}_\beta + \epsilon_{mnp}\varepsilon^{\alpha'\beta\gamma}v^{n}_{\alpha'} v^{p}_{\beta}\lp v^{x+1}\rp^{\alpha}_\gamma\nn\\
+&= 3\lp v^{x+1}\star(vv)\rp^\alpha_m,
+\end{align}
+where x is an odd positive integer, giving
+\begin{align}
+\eqnlab{csolution_S2v2_reduction}
+\star(vv)^m_\beta \lp v^2\rp^\beta_\alpha & = \frac{1}{3}\star(vvv)v_\alpha^m\\
+\star(vv)^m_\beta \lp v^4\rp^\beta_\alpha & = \frac{1}{3}\star(vvv)\lp v^3\rp_\alpha^m
+\end{align}
+In a similar way we can reduce
+\begin{align}
+\star(vv)_\beta^m \lp v\rp_m^\alpha & = \frac{1}{3}\star(vvv)\delta^\alpha_\beta\\
+\star(vv)_\beta^m \lp v^3\rp_m^\alpha & = \frac{1}{3}\star(vvv)\lp v^2\rp^\alpha_\beta
+\end{align}
+By using \eqnref{csolution_star_squared3} we can reduce $v^5$ in terms of $v$, $\star(vv)$ and $v^3$ and the 3 invariants as
+\begin{align}
+\lp v^5\rp^\alpha_m
+&= -\frac{1}{12}\VS{3}\star(vv)^\alpha_m + V_4v^\alpha_m + V_2\lp v^3\rp^\alpha_m,
+\end{align}
+which becomes the ordinary Cayley-Hamilton relation \eqnref{csolution_cayley6} if multiplied by $v$ (use \eqnref{csolution_S2v2_reduction}).
+We can thus express the equations using $v$, $\star(vv)$ and $v^3$ and the 3 invariants. 
+To be able to insert the duality relations we will need to reduce terms of the types $\star(uvw)$ and $\star(uv)^\alpha_m$, coming from the variations of $\star(uvw)$, where $u$, $v$ and $w$ are tensors of one of the forms $v^m_\alpha$, $\lp v^3\rp^m_\alpha$ and $\star(vv)^m_\alpha$.
+We have
+\begin{align}
+\star((uxy)&v)^\alpha_m = \epsilon_{mnp}\M_{qq'}\varepsilon^{\alpha\beta\gamma}g^{\delta\epsilon} u^q_\beta v^p_\gamma x_\epsilon^{q'}y_\delta^n\nn\\
+&= \lp \epsilon_{qnp}\M_{mq'} + \epsilon_{mqp}\M_{q'n} + \epsilon_{mnq}\M_{q'p} \rp\varepsilon^{\alpha\beta\gamma}g^{\delta\epsilon} u^q_\beta v^p_\gamma x_\epsilon^{q'}y_\delta^n\nn\\
+&= -\epsilon_{qnp}\varepsilon^{\alpha\beta\gamma} u^n_\beta v^p_\gamma x^\delta_my_\delta^q + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} u^n_\beta v^p_\gamma x^\delta_{q}y_\delta^{q} - \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} u^n_\beta v^{q}_\gamma x^\delta_{q}y_\delta^p \nn\\
+&= -x_m^\beta y_\beta^n\star(uv)^\alpha_n + \star(uv)^\alpha_m\tr(xy) - \star(u(vxy))^\alpha_m
+\end{align} 
+i.e.
+\begin{align}
+\eqnlab{csolution_star2reduce}
+\star((uxy)v)^\alpha_m + \star(u(vxy))^\alpha_m + x_m^\beta y_\beta^n\star(uv)^\alpha_n = \star(uv)^\alpha_m\tr(xy)
+\end{align} 
+and also
+\begin{align}
+\eqnlab{csolution_star3reduce}
+\star((uxy)vw) + \star(u(vxy)w) + \star(uv(wxy)) &= \star(uvw)\tr(xy).
+\end{align} 
+We can use these relations to recursively reduce $\star$ acting on different powers of $v$ into the $V_2$, $\VS{3}$ and $V_4$ invariants and the 3 tensor forms mentioned above.
+
+As a start, consider
+\begin{align}
+\star(v^xv^y)^\alpha_m + \star(v^{x+y-1}v)^\alpha_m + \lp v^{y-1}\rp_m^n\star(v^xv)^\alpha_n = \star(v^xv)^\alpha_m\tr v^{y-1}\\
+\star(v^xv)^\alpha_m + \star(vv^x)^\alpha_m + \lp v^{x-1}\rp_m^n\star(vv)^\alpha_n = \star(vv)^\alpha_m\tr v^{x-1}
+\end{align}
+where x and y are odd positive integers, giving
+\begin{align}
+\eqnlab{csolution_S2reduction1}
+\star(v^xv)^\alpha_m &= \frac{1}{2}\lp \star(vv)^\alpha_m\tr v^{x-1} - \lp v^{x-1}\rp_m^n\star(vv)^\alpha_n \rp\\
+\star(v^xv^y)^\alpha_m &= \frac{1}{2}\star(vv)^\alpha_m\tr v^{x-1}\tr v^{y-1} \nn\\
+& - \frac{1}{2}\star(vv)^\alpha_m\tr v^{x+y-2} + \lp v^{x+y-2}\rp_m^n\star(vv)^\alpha_n\nn\\
+& -\frac{1}{2}\lp v^{y-1}\rp_m^n\star(vv)^\alpha_n\tr v^{x-1}- \frac{1}{2}\lp v^{x-1}\rp_m^n\star(vv)^\alpha_n\tr v^{y-1}
+\end{align}
+which is our first reduction relation.
+Multiplying the latter equation with $\lp v^z\rp_\alpha^m$, where $z$ is an odd positive integer, gives the next reduction relation
+\begin{align}
+\eqnlab{csolution_S3reduction1}
+\star(v^xv^yv^z) &= \frac{1}{6}\Big( \tr v^{x-1}\tr v^{y-1}\tr v^{z-1}  + 2\tr v^{x+y+z-3} - \tr v^{x-1}\tr v^{y+z-2}\nn\\
+& - \tr v^{y-1}\tr v^{x+z-2} - \tr v^{z-1}\tr v^{x+y-2}\Big)\star(vvv).   
+\end{align}
+We can derive similar relations with $v^x\star(vv)$ inside the $\star$
+\begin{align}
+\eqnlab{csolution_S2reduction2}
+\star((v^x\star(vv))v^y)^\alpha_m &= \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp v^x\rp^n_{m'}\epsilon^{m'n'p'}\varepsilon_{\beta\beta'\gamma'}v^{\beta'}_{n'}v^{\gamma'}_{p'}\lp v^y\rp^p_\gamma\nn\\
+&= 12\delta_{[\beta'\gamma']}^{\alpha\gamma}\lp v^x\rp^n_{[m}v^{\beta'}_{n}v^{\gamma'}_{p]}\lp v^y\rp^p_\gamma\nn\\
+&= 12\lp v^x\rp^n_{[m}v^{\alpha}_{n}v^{\gamma}_{p]}\lp v^y\rp^p_\gamma\nn\\
+&= 2\tr v^{y+1}\lp v^{x+1}\rp^\alpha_{m} + 2\tr v^x\lp v^{y+2}\rp^\alpha_m + 2\tr v^{x+y+1}v^{\alpha}_{m}\nn\\
+& - 2\tr v^x\tr v^{y+1}v^{\alpha}_{m} - 4\lp v^{x+y+2}\rp^\alpha_m
+\end{align}
+where $x$ is an even nonnegative integer and $y$ is a positive odd integer and
+\begin{align}
+\eqnlab{csolution_S2reduction3}
+\star((v^x&\star(vv))(v^y\star(vv)))^\alpha_m %&= \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp v^x\rp^n_{m'}\epsilon^{m'n'p'}\varepsilon_{\beta\beta'\gamma'}v^{\beta'}_{n'}v^{\gamma'}_{p'}\lp v^y\rp^p_\gamma\nn\\
+%&= 12\delta_{[\beta'\gamma']}^{\alpha\gamma}\lp v^x\rp^n_{[m}v^{\beta'}_{n}v^{\gamma'}_{p]}\lp v^y\star(vv)\rp^p_\gamma\nn\\
+%&= 12\lp v^x\rp^n_{[m}v^{\alpha}_{n}v^{\gamma}_{p]}\lp v^y\star(vv)\rp^p_\gamma\nn\\
+%&= 2\star(v^{y+1}vv) \lp v^{x+1}\rp^\alpha_{m} + 2\tr v^x \lp v^{y+2}\star(vv)\rp^\alpha_m\nn\\
+%&+ 2\star(v^{x+y+1}vv) v^{\alpha}_{m} - 2\tr v^x \star(v^{y+1}vv) v^{\alpha}_{m} - 4\lp v^{x+y+2}\star(vv)\rp^\alpha_m\nn\\
+%&= \frac{2}{3}\tr v^{y}\star(vvv)\lp v^{x+1}\rp^\alpha_{m} + 2\tr v^x \lp v^{y+2}\star(vv)\rp^\alpha_m\nn\\
+%&+ \frac{2}{3}\tr v^{x+y}\star(vvv)v^{\alpha}_{m} - \frac{2}{3}\tr v^x\tr v^{y}\star(vvv)v^{\alpha}_{m} - 4\lp v^{x+y+2}\star(vv)\rp^\alpha_m\nn\\
+= \frac{2}{3}\Big( \tr v^{y}\lp v^{x+1}\rp^\alpha_{m} + \tr v^x \lp v^{y+1}\rp^\alpha_m\nn\\
+&+ \tr v^{x+y}v^{\alpha}_{m} - \tr v^x\tr v^{y}v^{\alpha}_{m} - 2\lp v^{x+y+1}\rp^\alpha_m\Big)\star(vvv)
+\end{align}
+where both $x$ and $y$ are nonnegative even integers.
+Multiplying \eqnref{csolution_S2reduction2} with $\lp v^z\rp_\alpha^m$ and \eqnref{csolution_S2reduction2} with both $\lp v^z\rp_\alpha^m$ and $(v^x\star(vv))_\alpha^m$ gives the remaining 3 needed reduction relations
+\begin{align}
+\eqnlab{csolution_S3reduction2}
+\star((v^x\star(vv))&v^yv^z) %= \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp v^x\rp^m_{m'}\epsilon^{m'n'p'}\varepsilon_{\alpha\beta'\gamma'}v^{\beta'}_{n'}v^{\gamma'}_{p'}\lp v^y\rp^n_\beta\lp v^z\rp^p_\gamma\nn\\
+%&= -12\lp v^x\rp^m_{[m}v^{\beta}_{n}v^{\gamma}_{p]}\lp v^y\rp^n_{[\beta}\lp v^z\rp^p_{\gamma]}\nn\\
+= 2\tr v^{x+y+1}\tr v^{z+1} + 2\tr v^{x+z+1}\tr v^{y+1} + 2\tr v^x\tr v^{y+z+2}\nn\\
+& -2\tr v^x \tr v^{y+1}\tr v^{z+1} - 4\tr v^{x+y+z+2} 
+\end{align}
+where $x$ is an even nonnegative integer and $y$ and $z$ are odd positive integers,
+\begin{align}
+\eqnlab{csolution_S3reduction3}
+\star((v^x\star(vv))&\star((v^y\star(vv))v^z) 
+= \frac{2}{3}\Big( \tr v^{z+1}\tr v^{x+y} + \tr v^x\tr v^{y+z+1} \nn\\
+& + \tr v^{y}\tr v^{x+z+1} - \tr v^x\tr v^{y}\tr v^{z+1} - 2\tr v^{x+z+y+1}\Big)\star(vvv)
+\end{align}
+where $x$ and $y$ are even nonnegative integers and $y$ is odd and positive integer and finally 
+\begin{align}
+\eqnlab{csolution_S3reduction4}
+\star((v^x&\star(vv))(v^y\star(vv))(v^z\star(vv))) 
+= \frac{2}{9}\Big( \tr v^x \tr v^{y+z} + \tr v^{y}\tr v^{x+z}\nn\\
+&+ \tr v^{z}\tr v^{x+y} - \tr v^x\tr v^{y}\tr v^{z} - 2\tr v^{x+y+z}\Big)\lp \star(vvv)\rp^2
+\end{align}
+where all of $x,y$ and $z$ are nonnegative even integers.
+In conclusion we can use \eqnref{csolution_S2reduction1}, \eqnref{csolution_S2reduction2}, \eqnref{csolution_S2reduction3}, \eqnref{csolution_S3reduction1}, \eqnref{csolution_S3reduction2}, \eqnref{csolution_S3reduction3} and \eqnref{csolution_S3reduction4} together with the usual Cayley-Hamilton to reduce all contractions of $\star$ in terms of $v$, $v^3$, $*(v\wedge v)$, $V_2$, $\VS3$ and $V_4$.
+
+\subsection{Ansatz (2)}
+\sseclab{solution_general_ansatz}
+It is now time to create an ansatz in the same fashion as the one in subsection \ssecref{solution_ansatz}. 
+Because of the relation $u=u(v)$ (or expected but not derived relations like \eqnref{csolution_tracecommuterelation}) we will treat $u$ and $v$ as commuting variables inside the traces.
+We note that we, except from $u^2$ and $v^2$, also can consider $uv$ as a matrix, obeying the Cayley-Hamilton equations and the reduction of $\star^2$, so all traces with more than a total of 4 $u$:s and $v$:s can be reduced.  
+%Så, använd ej:
+%\begin{align}
+%\tr\lp u^4v^4\rp &= \tr w^4 = \tr (W_3w+W_2w^2+W_1w^3)\nn\\ 
+%&= \frac{1}{3}\tr w^3 - \half\tr w\tr w^2 + \frac{1}{6}\lp\tr w\rp^3\tr w+\half\lp\tr w^2-\lp\tr w\rp^2\rp\tr w^2+\tr w^3\tr w\nn\\
+%&= \lp\frac{1}{3}\tr w^3 - \half\tr w\tr w^2 + \frac{1}{6}\lp\tr w\rp^3\rp\tr w+\half\lp\tr w^2-\lp\tr w\rp^2\rp\tr w^2+\tr w^3\tr w\nn\\
+%& = \frac{4}{3}\tr w^3\tr w - \tr w^2\lp \tr w\rp + \half\lp\tr w^2\rp^2 + \frac{1}{6}\lp\tr w\rp^4
+%\end{align} 
+Furthermore we can reduce $\star$ acting on different combinations of $u$ and $v$, similar to what we did in the previous section.
+%Reduction of $\star$ on different powers:
+%\begin{align}
+%\star((uxy)vw) &+ \star(u(vxy)w) + \star(uv(wxy)) = \star(uvw)\tr(xy)\nn\\
+%\star(\star(xy)zw) &= \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} z^n_\beta w^p_\gamma \epsilon^{mn'p'}\varepsilon_{\alpha'\beta'\gamma'} x_{n'}^{\beta'} y_{p'}^{\gamma'}\nn\\
+%&= -12\delta_{[\alpha'}^{\alpha} z^n_\beta w^p_{\gamma]} x_{[n}^{\beta} y_{p]}^{\gamma}\nn\\
+%&= 2\delta_{\alpha'}^{\alpha}\tr\lp xyzw\rp + \tr\lp yw\rp xz + \tr\lp xz\rp yw + \tr\lp yz\rp xw + \tr\lp xw\rp yz\nn\\
+%&-\delta_{\alpha'}^{\alpha} \tr\lp xz\rp\tr\lp yw\rp -\delta_{\alpha'}^{\alpha} \tr\lp xw\rp\tr\lp yz\rp - 4xyzw\nn\\
+%\tr\lp\star(\star(xy)zw)\rp &= \delta_{\alpha}^{\alpha'}\star(\star(xy)zw)\nn\\
+%&= 2\tr\lp xyzw\rp - \tr\lp xz\rp\tr\lp yw\rp - \tr\lp xw\rp\tr\lp yz\rp\nn\\
+%\end{align} 
+E.g. the new needed order 4 reductions are
+\begin{align}
+\star(\star(vv)uu) &= \star(\star(uu)vv) = 2\tr\lp u^2v^2\rp - 2\lp\tr\lp uv\rp\rp^2\nn\\
+\star(\star(uv)uv) &= -\lp\tr\lp uv\rp\rp^2 - \tr u^2\tr v^2 + 2\tr\lp u^2v^2\rp
+\end{align} 
+%the order 5 reductions are
+%\begin{align}
+%\star(u^3vv) &= \star(uvv)\tr u^2 - \star(uuv)\tr\lp uv\rp + \frac{1}{3}\star(uuu)\tr v^2\nn\\
+%\star((u^2v)uv) &= \half\star(uuv)\tr\lp uv\rp - \frac{1}{6}\star(uuu)\tr v^2\nn\\
+%\star((uv^2)uu) &= \frac{1}{3}\star(uuu)\tr v^2\nn\\
+%\star((v^2u)uu) &= \frac{1}{3}\star(vvv)\tr\lp uv\rp\nn\\
+%\star((v^3)uv) &= \half\star(uvv)\tr v^2 - \frac{1}{6}\star(vvv)\tr\lp uv\rp
+%\end{align}
+We thus use the following set of polynomial variables  
+\begin{align}
+\phi=\{&\tr u^2, \tr v^2, \tr\lp uv\rp, \tr u^4, \tr\lp u^3v\rp, \tr\lp u^2v^2\rp, \tr\lp uv^3\rp, \tr v^4,\nn\\
+& \star(uuu), \star(uuv), \star(uvv), \star(vvv)\}.
+\end{align}
+to build our ansatz. 
+Note that some combinations of these are still reducible, e.g. the sixth order relation  
+%\paragraph{Reductions containing $(\star)^2$}
+%\begin{align}
+%\star&(uvw)\star(xyz) = -36u_{[m}^{[\alpha} v_n^\beta w_{p]}^{\gamma]} x^m_\alpha y^n_\beta z^p_\gamma \nn\\
+%%& = -6u_{[m}^{\alpha} v_n^\beta w_{p]}^{\gamma} x^m_\alpha y^n_\beta z^p_\gamma \nn\\
+%%&-6u_{[m}^{\beta} v_n^\gamma w_{p]}^{\alpha} x^m_\alpha y^n_\beta z^p_\gamma \nn\\
+%%&-6u_{[m}^{\gamma} v_n^\alpha w_{p]}^{\beta} x^m_\alpha y^n_\beta z^p_\gamma \nn\\
+%%&+6u_{[m}^{\beta} v_n^\alpha w_{p]}^{\gamma} x^m_\alpha y^n_\beta z^p_\gamma \nn\\
+%%&+6u_{[m}^{\alpha} v_n^\gamma w_{p]}^{\beta} x^m_\alpha y^n_\beta z^p_\gamma \nn\\
+%%&+6u_{[m}^{\gamma} v_n^\beta w_{p]}^{\alpha} x^m_\alpha y^n_\beta z^p_\gamma \nn\\
+%& = - \tr\lp ux\rp\tr\lp vy\rp\tr(wz) - \tr\lp ux\rp\tr\lp vz\rp\tr(wy) - \tr\lp uy\rp\tr\lp vx\rp\tr\lp wz\rp\nn\\
+%& - \tr\lp uy\rp\tr\lp vz\rp\tr\lp wx\rp - \tr\lp uz\rp\tr\lp vx\rp\tr\lp wy\rp  - \tr\lp uz\rp\tr\lp vy\rp\tr\lp wx\rp \nn\\
+%&-12\tr\lp uvwxyz\rp \nn + 2\tr\lp uvxy\rp \tr\lp wz\rp + 2\tr\lp vwyz\rp\tr\lp ux\rp +2\tr\lp uwxz\rp\tr\lp vy\rp\nn\\
+%&+2\tr\lp uvxz\rp \tr\lp wy\rp +2\tr\lp vwyx\rp\tr\lp uz\rp +2\tr\lp uwyz\rp\tr\lp vx\rp\nn\\
+%&+2\tr\lp uvyz\rp \tr\lp wx\rp +2\tr\lp vwxz\rp\tr\lp uy\rp +2\tr\lp uwxy\rp\tr\lp vz\rp
+%\end{align} 
+%\begin{align}
+%\star(uuv)\star(vvv)
+%& = - 6\tr v^2\lp\tr\lp uv\rp\rp^2 - 12\tr\lp u^2v^4\rp\nn\\
+%& + 12\tr\lp uv^3\rp \tr\lp uv\rp + 6\tr\lp u^2v^2\rp\tr v^2\nn
+%\end{align}
+%\begin{align}
+%\star(uuv)\star(uuv) 
+%& = - 4\tr u^2\lp\tr\lp uv\rp\rp^2 - 2\tr v^2\lp\tr u^2\rp^2 - 12\tr\lp u^4v^2\rp\nn\\
+%& + 8\tr\lp uuvv\rp \tr\lp uu\rp + 8\tr\lp vuuu\rp\tr\lp uv\rp +2\tr\lp uuuu\rp\tr\lp vv\rp\nn
+%\end{align} 
+%\begin{align}
+%\star(uvv)\star(uvv) 
+%& = -2\tr\lp uu\rp\lp\tr\lp v^2\rp\rp^2 - 4\lp\tr\lp uv\rp\rp^2\tr v^2\nn\\
+%&-12\tr\lp u^2v^4\rp \nn + 8\tr\lp u^2v^2\rp \tr v^2 + 8\tr\lp uv^3\rp\tr\lp uv\rp + 2\tr\lp vvvv\rp\tr\lp uu\rp \nn
+%\end{align} 
+%\begin{align}
+%\star&(uuu)\star(vvu) = - 6\lp\tr\lp uv\rp\rp^2\tr u^2 -12\tr\lp u^4v^2\rp + 6\tr\lp u^2v^2\rp \tr\lp u^2\rp + 12\tr\lp u^3v\rp\tr\lp uv\rp \nn
+%\end{align} 
+%
+%Sann även med både $v$ och $w$:
+\begin{align}
+&-\half\star(vuu)^2 + \half\star(uuu)\star(vvu) + \tr u^2\lp\tr\lp uv\rp\rp^2 - 2\tr\lp uv\rp\tr\lp u^3v\rp\nn\\
+& - \lp\tr u^2\rp^2\tr v^2 + \tr u^4\tr v^2 + \tr u^2\tr\lp u^2v^2\rp = 0
+\end{align}
+%Ej sann med w (eftersom 4 st $w$ i per term $\Rightarrow$ korstermer):
+%\begin{align}
+%&-\half\star(vvu)^2 + \half\star(vuu)\star(vvv) + \lp\tr vu\rp^2\tr vv - \tr uu\lp\tr vv\rp^2\nn\\
+%& + \tr vv\tr vvuu - 2\tr vu\tr vvvu + \tr uu\tr vvvv = 0
+%\end{align}
+can be used to express one of the terms with help of the others.
+Solving $\Phi = 0$ for a general (random) expansion $u=u(v)$ helps us find all dependent ansatz terms which we remove.  
+Of course we could have limited the ansatz to terms with at most one $\star$ per term, but that would force us to introduce traces over all seven sixth order polynomials as ansatz variables.
+
+The last condition on our ansatz is that terms with an odd number of $v$:s are discarded.
+This is because we build the ansatz from contractions of the form $\omega^{rm}\omega_r^n$, which also makes the ansatz in terms of $v$ and $w$ independent of $p$. 
+When $w\ne 0$ it should be added symmetrically to each combination of 2 multiplying $v$:s in the ansatz.
+
+Note that an ansatz built from these polynomial variables in this way is not the most general one, but when varied it produces the terms entering the right hand side of the duality equations.
+Other polynomial variables that could be added are e.g. terms including antisymmetric $SL(2,\rr)$ contractions $\epsilon_{st}\omega^{sn}_\alpha\omega^{tp}_\beta = v_\alpha^nw_\beta^p - w_\alpha^nv_\beta^p$. 
+
+%\paragraph{Linear equations}
+%\begin{align}
+%\tr\lp u\frac{\partial\Phi}{\partial u}\rp &= \frac{4}{3}\sqrt{1+\Phi}\tr\lp uv\rp\nn\\
+%\tr\lp v\frac{\partial\Phi}{\partial u}\rp &= \frac{4}{3}\sqrt{1+\Phi}\tr v^2\nn\\
+%\tr\lp w\frac{\partial\Phi}{\partial u}\rp &= \frac{4}{3}\sqrt{1+\Phi}\tr\lp vw\rp\nn\\
+%\tr\lp u\frac{\partial\Phi}{\partial v}\rp & = \bigg\{-\frac{2}{3}\tr u^2 + \frac{1}{3}\star(uvw)\bigg\}\sqrt{1+\Phi}\nn\\
+%\tr\lp v\frac{\partial\Phi}{\partial v}\rp & = \bigg\{-\frac{2}{3}\tr\lp uv\rp + \frac{1}{3}\star(vvw)\bigg\}\sqrt{1+\Phi}\nn\\
+%\tr\lp w\frac{\partial\Phi}{\partial v}\rp & = \bigg\{-\frac{2}{3}\tr\lp uw\rp + \frac{1}{3}\star(vww)\bigg\}\sqrt{1+\Phi}\nn\\
+%\tr\lp u\frac{\partial\Phi}{\partial w}\rp & = -\frac{1}{3}\star(uvv)\sqrt{1+\Phi}\nn\\
+%\tr\lp v\frac{\partial\Phi}{\partial w}\rp & = -\frac{1}{3}\star(vvv)\sqrt{1+\Phi}\nn\\
+%\tr\lp w\frac{\partial\Phi}{\partial w}\rp & = -\frac{1}{3}\star(vvw)\sqrt{1+\Phi}\nn\\
+%\intertext{}
+%\tr\lp \star(uu)\frac{\partial\Phi}{\partial u}\rp &= \frac{4}{3}\sqrt{1+\Phi}\star(uuv)\nn\\
+%\tr\lp \star(uv)\frac{\partial\Phi}{\partial u}\rp &= \frac{4}{3}\sqrt{1+\Phi}\star(uvv)\nn\\
+%\tr\lp \star(uw)\frac{\partial\Phi}{\partial u}\rp &= \frac{4}{3}\sqrt{1+\Phi}\star(uvw)\nn\\
+%\tr\lp \star(vv)\frac{\partial\Phi}{\partial u}\rp &= \frac{4}{3}\sqrt{1+\Phi}\star(vvv)\nn\\
+%\tr\lp \star(vw)\frac{\partial\Phi}{\partial u}\rp &= \frac{4}{3}\sqrt{1+\Phi}\star(vvw)\nn\\
+%\tr\lp \star(ww)\frac{\partial\Phi}{\partial u}\rp &= \frac{4}{3}\sqrt{1+\Phi}\star(vww)\nn\\
+%\tr\lp \star(uu)\frac{\partial\Phi}{\partial v}\rp & = \bigg\{-\frac{2}{3}\star(uuu) + \frac{1}{3}\lbp 2\tr\lp u^2vw\rp - 2\tr\lp uv\rp\tr\lp uw\rp\rbp\bigg\}\sqrt{1+\Phi}\nn\\
+%\tr\lp \star(uv)\frac{\partial\Phi}{\partial v}\rp & = \bigg\{-\frac{2}{3}\star(uuv) + \frac{1}{3}\lbp 2\tr\lp uv^2w\rp - \tr\lp uv\rp\tr\lp vw\rp - \tr\lp uw\rp\tr v^2\rbp\bigg\}\sqrt{1+\Phi}\nn\\
+%\tr\lp \star(uw)\frac{\partial\Phi}{\partial v}\rp & = \bigg\{-\frac{2}{3}\star(uuw) + \frac{1}{3}\lbp 2\tr\lp uvw^2\rp - \tr\lp uv\rp\tr w^2 - \tr\lp uw\rp\tr\lp vw\rp\rbp\bigg\}\sqrt{1+\Phi}\nn\\
+%\tr\lp \star(vv)\frac{\partial\Phi}{\partial v}\rp & = \bigg\{-\frac{2}{3}\star(uvv) + \frac{1}{3}\lbp 2\tr\lp v^3w\rp - 2\tr v^2\tr\lp vw\rp\rbp\bigg\}\sqrt{1+\Phi}\nn\\
+%\tr\lp \star(vw)\frac{\partial\Phi}{\partial v}\rp & = \bigg\{-\frac{2}{3}\star(uvw) + \frac{1}{3}\lbp 2\tr\lp v^2w^2\rp - \tr v^2\tr w^2 - \lp\tr\lp vw\rp\rp^2\rbp\bigg\}\sqrt{1+\Phi}\nn\\
+%\tr\lp \star(ww)\frac{\partial\Phi}{\partial v}\rp & = \bigg\{-\frac{2}{3}\star(uww) + \frac{1}{3}\lbp 2\tr\lp vw^3\rp - 2\tr\lp vw\rp\tr w^2\rbp\bigg\}\sqrt{1+\Phi}\nn\\
+%\tr\lp \star(uu)\frac{\partial\Phi}{\partial w}\rp & = -\frac{1}{3}\sqrt{1+\Phi}\lbp 2\tr\lp u^2v^2\rp - 2\lp\tr\lp uv\rp\rp^2\rbp\nn\\
+%\tr\lp \star(uv)\frac{\partial\Phi}{\partial w}\rp & = -\frac{1}{3}\sqrt{1+\Phi}\lbp 2\tr\lp uv^3\rp - 2\tr\lp uv\rp\tr v^2\rbp\nn\\
+%\tr\lp \star(uw)\frac{\partial\Phi}{\partial w}\rp & = -\frac{1}{3}\sqrt{1+\Phi}\lbp 2\tr\lp uv^2w\rp - 2\tr\lp uv\rp\tr\lp vw\rp\rbp\nn\\
+%\tr\lp \star(vv)\frac{\partial\Phi}{\partial w}\rp & = -\frac{1}{3}\sqrt{1+\Phi}\lbp 2\tr v^4 - 2\lp\tr v^2\rp^2 \rbp\nn\\
+%\tr\lp \star(vw)\frac{\partial\Phi}{\partial w}\rp & = -\frac{1}{3}\sqrt{1+\Phi}\lbp 2\tr\lp v^3w\rp - 2\tr v^2\tr\lp vw\rp\rbp\nn\\
+%\tr\lp \star(ww)\frac{\partial\Phi}{\partial w}\rp & = -\frac{1}{3}\sqrt{1+\Phi}\lbp 2\tr\lp v^2w^2\rp - 2\lp\tr\lp vw\rp\rp^2\rbp\nn\\
+%\intertext{}
+%\tr\lp \frac{\partial\Phi}{\partial u}\frac{\partial\Phi}{\partial u}\rp &= \frac{16}{9}\tr v^2(1+\Phi)\nn\\
+%\tr\lp \frac{\partial\Phi}{\partial v}\frac{\partial\Phi}{\partial u}\rp &= \bigg\{-\frac{8}{9}\tr\lp uv\rp + \frac{4}{9}\star(vvw)\bigg\}(1+\Phi)\nn\\
+%\tr\lp \frac{\partial\Phi}{\partial w}\frac{\partial\Phi}{\partial u}\rp &= -\frac{4}{9}\star(vvv)(1+\Phi)\nn\\
+%\tr\lp \frac{\partial\Phi}{\partial v}\frac{\partial\Phi}{\partial v}\rp & = \bigg\{\frac{4}{9}\tr u^2 - \frac{4}{9}\star(uvw) + \frac{1}{9}\lbp 2\tr\lp v^2w^2\rp - \tr v^2\tr w^2 - \lp\tr\lp vw\rp\rp^2\rbp\bigg\}(1+\Phi)\nn\\
+%\tr\lp \frac{\partial\Phi}{\partial w}\frac{\partial\Phi}{\partial v}\rp & = \bigg\{\frac{2}{9}\star(vvu) - \frac{1}{9}\lbp 2\tr\lp v^3w\rp + 2\tr v^2\tr\lp vw\rp\rbp\bigg\}(1+\Phi)\nn\\
+%\tr\lp \frac{\partial\Phi}{\partial w}\frac{\partial\Phi}{\partial w}\rp & = \frac{1}{9}\lbp 2\tr v^4 - 2\lp\tr v^2\rp^2 \rbp(1+\Phi)\nn
+%\end{align}
+%
+%
+%Giving the linear equations
+%\begin{align}
+%\tr\lp v\frac{\partial\Phi}{\partial u}\rp\star(vvv) + 4\tr\lp v\frac{\partial\Phi}{\partial w}\rp\tr v^2 = 0
+%\end{align}
+%
+%\begin{align}
+%\tr\lp u\frac{\partial\Phi}{\partial u}\rp + 2\tr\lp v\frac{\partial\Phi}{\partial v}\rp + 2\tr\lp w\frac{\partial\Phi}{\partial w}\rp &= 0 
+%\end{align}
+%A term $\phi_i$ in $\Phi$ of order $n$ consist of $n_u$ $u$:s, $n_v$ $v$:s and $n_w$ $w$:s and $n = n_u + n_v + n_w$. Multiplying it's derivative gives back $\phi_i$ multiplied by the number of that variable in $\phi_i$, i.e. we have   
+%\begin{align}
+%0 &= \sum_i\lbp \tr\lp u\frac{\partial\phi_i}{\partial u}\rp + 2\tr\lp v\frac{\partial\phi_i}{\partial v}\rp + 2\tr\lp w\frac{\partial\phi_i}{\partial w}\rp\rbp\nn\\
+%& = \sum_i\lbp n_u\phi_i + 2n_v\phi_i + 2n_w\phi_i \rbp\nn\\ 
+%& = \sum_i\lbp n_u + 2n_v + 2n_w \rbp\phi_i 
+%\end{align}
+%This must be true to each order in the ansatz $\Phi$. 
+%
+%Why we must take trace:
+%\begin{align}
+%\star(vw)_m^\alpha v^m_{\alpha'} &= \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} v^n_\beta w^p_\gamma v^m_{\alpha'}\nn\\
+%\star(vv)_m^\alpha w^m_{\alpha'} &= \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} v^n_\beta v^p_\gamma w^m_{\alpha'}\nn\\
+%\star(vvw)\M_{mn} &= \epsilon_{m'n'p'}\M_{mn}\varepsilon^{\alpha\beta\gamma}v^{m'}_{\alpha} v^{n'}_{\beta} w^{p'}_{\gamma}\nn\\
+%&= \lp \epsilon_{mn'p'}\M_{m'n} + \epsilon_{m'mp'}\M_{nn'} + \epsilon_{m'n'm}\M_{np'}\rp\varepsilon^{\alpha\beta\gamma}v^{m'}_{\alpha} v^{n'}_{\beta} w^{p'}_{\gamma}\nn\\
+%&= 2\epsilon_{mn'p'}\varepsilon^{\alpha\beta\gamma}v_{\alpha n} v^{n'}_{\beta} w^{p'}_{\gamma} - \epsilon_{mn'p'}\varepsilon^{\alpha\beta\gamma}v^{p'}_{\alpha} v^{n'}_{\beta} w_{\gamma n}\nn\\
+%&= 2*(vw)_m^\alpha v_{\alpha n} + *(vv)_m^\alpha w_{\alpha n}\nn\\
+%\end{align}
+%giving 
+%\begin{align}
+%\frac{\partial\Phi}{\partial u}u + 2\frac{\partial\Phi}{\partial v}v + a\frac{\partial\Phi}{\partial w}w 
+%= \frac{2}{3}\Bigg[\star(vw)v - \star(vv)w \Bigg]\sqrt{1+\Phi}\ne 0\nn\\
+%\end{align}
+%
+%\paragraph{Compare to the solved case}
+%\begin{align}
+%0 &= \sum_i\lbp n_u + n_v\rbp\phi_i 
+%\end{align}
+%
+%\begin{align}
+%\Phi = &+ \frac{1}{2}\tr v^2 - \frac{1}{2}\tr u^2 + \frac{1}{4}\lp\tr\lp uv\rp\rp^2 - \frac{1}{2}\tr\lp u^2v^2\rp - \frac{1}{2}V_3^2\nn\\ 
+%\end{align}
+%
+%Order 2: Ok!
+%
+%Order 4: Ok!
+%
+%Order 6:
+%\begin{align}
+%\tr u^2 &= T_1^6 + 6T_1^4T_2 + 8T_1^2T_2^2 + 8T_1^3T_3 + 16T_1T_2T_3 + 9T_3^2\\  
+%\lp\tr\lp uv\rp\rp^2 &= -(T_1^2 + 2T_2)(T_1^4 + 4T_1^2T_2 + 8T_1T_3)\\
+%& = -T_1^6 - 6T_1^4T_2 - 8T_1^3T_3 - 8T_1^2T_2^2 - 16T_1T_2T_3\\
+%\tr\lp u^2v^2\rp &= -T_1^6 - 6T_1^4T_2 - 8T_1^2T_2^2 - 8T_1^3T_3 - 16T_1T_2T_3 - 6T_3^2\\
+%\end{align}
+%Ok!
+%
+%\paragraph{The linear relation}-\\
+%\begin{align}
+%0 &= \sum_i\lbp n_u + 2n_v + 2n_w \rbp\phi_i 
+%\end{align}
+% 
+% 
+%\begin{align}
+%u &= b_1v + b_2\star(vv) + b_3v\tr v^2 + b_4v^3 \nn\\
+%w &= c_1v + c_2\star(vv) + c_3v\tr v^2 + c_4v^3 \nn\\
+%\end{align}
+%\paragraph{Order 2}
+%\begin{align}
+%\Phi = a_1\tr u^2 + a_2\lp\tr v^2+\tr w^2\rp
+%\end{align}
+%gives
+%\begin{align}
+%0 = 2a_1b_1^2 + 4a_2 + 4a_2c_1^2
+%\end{align}
+%Ok!
+%\paragraph{Order 3}
+%\begin{align}
+%\Phi = a_1\tr u^2 + a_2\tr w^2 + a_3\star(uuu) + a_4\star\lp u\lp vv+ww\rp\rp
+%\end{align}
+%gives
+%\begin{align}
+%0 &= 4a_1b_1b_2 + 8a_2c_1c_2 + 3a_3b_1^3 + 5a_4b_1 + 5a_4b_1c_1^2\\
+%\end{align}
+%Ok!
+%\paragraph{Order 4}
+%\begin{align}
+%\Phi &= a_1\tr u^2 + a_2\tr w^2 + a_3\star u^3 + a_4\star\lp u\lp v^2+w^2\rp\rp\nn\\
+%& + a_5\lp\tr u^2\rp^2 + a_6\lp \lp\tr uv\rp^2 + \lp\tr uw\rp^2\rp + a_7\tr\lp v^2+w^2\rp\tr uu\nn\\
+%& + a_8\lp\tr\lp v^2+w^2\rp\rp^2 + a_9\tr u^4 + a_{10}\tr\lp\lp v^2+w^2\rp u^2\rp + a_{11}\tr\lp v^2+w^2\rp^2
+%\end{align}
+%gives
+%
+%K;r allm'n expansion av u i programmeringen ist'llet...
+%
+%First order: $c_1 = 0$,  $a_1 = \frac{2}{3}\frac{1}{b_1}$ and $a_2 = -\frac{1}{3}b_1$, $b_1\ne 0$\\
+%Second order: $c_2 = \frac{1}{2b_1}$, $a_3 = -\frac{1}{3}\frac{b_2}{b_1^3}$ and $a_4 = -\frac{1}{3}\frac{b_2}{b_1}$ ($b_2$ can be 0)
+%
+%Fler linjära ekvationer?
+%Use the notation $\star(vuw) = \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}v^m_\alpha v^{n}_\beta v^{p}_\gamma$, where the order of the factors $u$, $v$ and $w$ doesn't matter (A hodge star up to the $\epsilon_{mnp}$ and possibly a factor).
+%We get the following scalar equations (kanske ocks[ multiplicera med $*(v\we v)$ o.s.v.)
+%\begin{align}
+%\tr\lp\frac{\partial \Phi}{\partial u}u\rp &= \bigg[d_{11}\tr\lp uv\rp + d_{12}\tr\lp uw\rp\bigg]\sqrt{1+\Phi} = x_1\sqrt{1+\Phi}\nn\\
+%\tr\lp\frac{\partial \Phi}{\partial u}v\rp &= \bigg[d_{11}\tr v^2 + d_{12}\tr\lp vw\rp\bigg]\sqrt{1+\Phi} = x_2\sqrt{1+\Phi}\nn\\
+%\tr\lp\frac{\partial \Phi}{\partial u}w\rp &= \bigg[d_{11}\tr\lp vw\rp + d_{12}\tr w^2\bigg]\sqrt{1+\Phi} = x_3\sqrt{1+\Phi}\nn\\
+%\tr\lp\frac{\partial \Phi}{\partial v}u\rp &= \bigg\{d_{21}\tr u^2 + \star\left[d_{22}uv^2 + d_{23}uvw + d_{24}uw^2\right]\bigg\}\sqrt{1+\Phi} = x_4\sqrt{1+\Phi}\nn\\
+%\tr\lp\frac{\partial \Phi}{\partial v}v\rp &= \bigg\{d_{21}\tr\lp uv\rp + \star\left[d_{22}v^3 + d_{23}v^2w + d_{24}vw^2\right]\bigg\}\sqrt{1+\Phi} = x_5\sqrt{1+\Phi}\nn\\
+%\tr\lp\frac{\partial \Phi}{\partial v}w\rp &= \bigg\{d_{21}\tr\lp uw\rp + \star\left[d_{22}v^2w + d_{23}vw^2 + d_{24}w^3\right]\bigg\}\sqrt{1+\Phi} = x_6\sqrt{1+\Phi}\nn\\
+%\tr\lp\frac{\partial \Phi}{\partial w}u\rp &= \bigg\{d_{31}\tr u^2 + \star\left[d_{32}uv^2 + d_{33}uvw + d_{34}uw^2\right]\bigg\}\sqrt{1+\Phi} = x_7\sqrt{1+\Phi}\nn\\
+%\tr\lp\frac{\partial \Phi}{\partial w}v\rp &= \bigg\{d_{31}\tr\lp uv\rp + \star\left[d_{32}v^3 + d_{33}v^2w + d_{34}vw^2\right]\bigg\}\sqrt{1+\Phi} = x_8\sqrt{1+\Phi}\nn\\
+%\tr\lp\frac{\partial \Phi}{\partial w}w\rp &= \bigg\{d_{31}\tr\lp uw\rp + \star\left[d_{32}v^2w + d_{33}vw^2 + d_{34}w^3\right]\bigg\}\sqrt{1+\Phi} = x_9\sqrt{1+\Phi}
+%\end{align}
+
+\subsection{Result (2)}
+\seclab{solution_result2}
+So far we have found free parameters of different types in the duality equations coming from five sources: the closed forms $\Gamma$ and $\Delta$, from additional gauge invariant terms ($\alpha$, $\beta$ and $\gamma$), from a redefinition of the background potential affecting the gauge transformation and thus the world volume field strength, using $u\rightarrow u+c\star(\omega\omega)$ and last the relation between the pullbacked vielbein $\omega_\circ$, $v$ and $w$ as $\omega_\circ^m=-\qdp{r}\omega^{rm}$.  
+Because of all this arbitrariness it only makes sense to study two cases, either the completely parameterless case or the case with parameters for all terms of the types mentioned above.
+We begin with the parameterless one.
+
+\subsubsection{The equations without parameters}
+If we let all parameters become $0$ and $\omega_\circ=-v$, i.e. the $p=(1,0)$ case, we find the general duality equations \eqnref{solution_8d_duality_general} to become
+\begin{align}
+\eqnlab{csolution_general_duality}
+\frac{\partial\Phi}{\partial u_m} &= \frac{4}{3}v^m\sqrt{1+\Phi}\nn\\
+\frac{\partial\Phi}{\partial v^m} & = \bigg\{-\frac{2}{3}u_m + \frac{1}{3}\star(wv)\bigg\}\sqrt{1+\Phi}\nn\\
+\frac{\partial\Phi}{\partial w^m} & = -\frac{1}{3}\star(vv)\sqrt{1+\Phi}.
+\end{align}
+We do not gain much by adding these equations to make them linear in $\Phi$ since the expansion parameters in $u$ and $v$ will come nonlinear anyway, so we simply try to solve the equations as they are, series expanding the $\sqrt{1+\Phi}$ factors.
+If we let
+\begin{align}
+u &= b_1v + b_2\star(vv) + b_3V_2v + b_4v^3 + b_5\VS{3}v + b_6V_2\star(vv) + \cdots \mbox{ and}\nn\\
+w &= c_1v + c_2\star(vv) + c_3V_2v + c_4v^3 + c_5\VS{3}v + c_6V_2\star(vv) + \cdots
+\end{align}
+be general functions of $v$, the first and last equation will give exactly one equation per expansion coefficient determining it in terms of the ansatz parameters. 
+Thus, the middle equation is left to determine all of the ansatz parameters of $\Phi$, which are too few equations and thus the equations are still underdetermined if we do not chop $\Phi$ off at some order as before.  
+We find that there does not exist any solutions with $\Phi$ of order $4$ or less to these equations with explicit relations $u(v)$ and $w(v)$.
+%$\Phi$ of order 2: General contradiction\\
+%$\Phi$ of order 3: General contradiction\\
+%$\Phi$ of order 4: General contradiction (some paths not taken but highly unlikely that any solutions exists, if a coefficient consist of rows after rows with squareroots and imaginary parts, they cannot turn out to give something simple, right?)\\
+Since the equations get quite complicated at order $4$ we do not expect the same procedure to work for higher orders. 
+%{\huge Note that the true equations are (if any derivatives) the ones expanded to one order lower than the ansatz (Not true for the linear relation, which can be calculated one order higher, since all derivatives becomes multiplied)}
+
+\paragraph{Relation to the $F=0$ equations}
+Since we made a big effort finding the solution \eqnref{csolution_phi_alpha_zero} of the equations \eqnref{csolution_equations_8D_w0_alpha} with $\tilde\alpha_1=-2\tilde\alpha_2=4/3$, we wonder if these equations could be a special case of the more general ones studied in this section.
+
+If we assume $w=0$, the third equation gives that $\star(vv)=0$ with side effects (from the reduction relations) $\VS{3}=0$, $v^3=V_2v$ and $V_4=0$.
+Expanding the equations with these conditions on the expansion variables makes them easier to solve than in the previous case, e.g.
+\begin{align}
+\Phi = -\frac{2}{3}\tr u^2 + \frac{1}{3}\tr v^2 - \frac{2}{9}\lp\tr \lp uv\rp\rp^2
+\end{align}
+with
+\begin{align}
+u(v) = -\sqrt{-\det G}G^{-1}v
+\end{align}
+is one solution. Although it makes correspondence with the solution found before (the coefficients of the first two terms are locked and the third coefficient is chosen to remove other terms), there are many coefficients in trivial solutions left to determine to get \eqnref{csolution_phi_alpha_zero} and thus the $w=0$ condition puts a too restrictive condition on $v$ to be considered an interpretation of the found solution.
+
+Another interpretation is that $w\ne 0$ and instead $\star(vw)=0$, meaning the solution \eqnref{csolution_phi_alpha_zero} should be modified by introducing $w$ symmetric to each $v$ to make $\Phi$ charge independent.
+The equations should thus be expanded with conditions on the expansion variables coming from $\star(vw)=0$.
+Since we do not know anything about $w$ we do not know what these conditions should look like (everything we can know about $w$ comes from the equations which depends on the conditions).
+We have not tried such an approach\footnote{It is quite much work per guess (and we would probably have to do many guesses) on the appearance of $w$ to get all side effects when letting $\star(vw)=0$ but it would be really rewarding to find a relation reproducing \eqnref{csolution_phi_alpha_zero}, because that would mean no need for the introduction of parameters and a big leap toward solving the general case when $\star(vw)\ne 0$.} but instead considered the generalization directly, i.e. we let
+\begin{align}
+u_m^\alpha = -\sqrt{G}G^{\alpha\beta}v_{m\beta} + {u_1}_m^\alpha
+\end{align} 
+where $u_1=0$ when $\star(vw)=0$ and $w$ is a general expansion in $v$.
+Since the first term is $-\frac{\delta\sqrt{G}}{\delta v}$, we find that the variation of an action
+\begin{align}
+S=-\int d^3\xi\sqrt{\det G} + \int v^m\we B_m + S_{corr}(v)
+\end{align}
+w.r.t. the scalar potential of $v$ gives the equation of motion
+\begin{align}
+\eqnlab{csolution_eom_1form}
+0 = d[*u-*u_1] - dB_m + \frac{\delta S_{corr}}{\delta \phi^m}
+\end{align}
+out of which we expect to gain the information of the Bianchi identities \eqnref{solution_8d_bianchi} for $u$ and $w$ and nothing more, i.e.
+\begin{align}
+\eqnlab{csolution_final_bianchi}
+d*u_m &= -df_m = H_m - \frac{1}{2}\epsilon_{mnp}\epsilon_{st}F^{sn}\we\omega^{tp}\nn\\
+& = H_m + \frac{1}{2}\epsilon_{mnp}\lp w^{n}\we F_\parallel^{p} - v^{n}\we F_\perp^{p}\rp\mbox{ and}\nn\\
+dw^m &= -F_\perp^{m}
+\end{align} 
+should follow from this equation of motion.
+Assuming these relations the equations of motion must thus vanquish, so inserting them and using the definition of $H_m$ in \eqnref{csolution_eom_1form} gives 
+\begin{align}
+d[*u_1] &= \frac{1}{2}\epsilon_{mnp}\lp w^{n}\we F_\parallel^{p} - v^{n}\we F_\perp^{p} + A_\parallel^{n}\we F_\perp^{p} - A_\perp^{n}\we F_\parallel^{p}\rp + \frac{\delta S_{corr}}{\delta \phi^m}
+\end{align}
+The $A$ terms must come from $S_{corr}$ and we thus make a guess, using possible 3-forms giving the correct types of terms and assuming no relations $w(v)$ to appear in $S_{corr}$.
+%\begin{align}
+%S_{corr} = \epsilon_{mnp}\lp v^m\we A_!^n\we A_?^p + v^m\we v^n\we A_@^{p} + yv^m\we v^n\we v^{p}\rp  
+%\end{align}
+%
+%\begin{align}
+%\delta \epsilon_{mnp}v^m\we v^n\we v^p = 3\epsilon_{mnp}v^{n}\we v^{p}\we d\delta \phi^{m} = -3\epsilon_{mnp}d[v^{n}\we v^{p}]\delta \phi^{m} = -6\epsilon_{mnp}v^{n}\we F_\parallel^{p}\delta \phi^{m}\nn\\
+%\end{align}
+%
+%\begin{align}
+%\delta \epsilon_{mnp}v^m\we v^n\we A_?^p = 2\epsilon_{mnp}v^{n}\we A_?^{p}\we d\delta \phi^{m} = -2\epsilon_{mnp}d[v^{n}\we A_?^{p}]\delta \phi^{m}\nn\\
+% = 2\epsilon_{mnp}\lp -v^{n}\we F_?^{p} - A_?^{n}\we F_\parallel^{p}\rp \delta\phi^{m}
+%\end{align}
+%
+%\begin{align}
+%\delta \epsilon_{mnp}v^m\we A_!^n\we A_?^p = \epsilon_{mnp}A_!^{n}\we A_?^{p}\we d\delta \phi^{m} = -\epsilon_{mnp}d[A_!^{n}\we A_?^{p}]\delta \phi^{m}\nn\\
+% = \epsilon_{mnp}\lp -A_!^{n}\we F_?^{p} - A_?^{n}\we F_!^{p}\rp \delta\phi^{m}
+%\end{align}
+%giving
+%\begin{align}
+%d[*u_1] &= \frac{1}{2}\epsilon_{mnp}\lp w^{n}\we F_\parallel^{p} - A_\perp^{n}\we F_\parallel^{p} - v^{n}\we F_\perp^{p} + A_\parallel^{n}\we F_\perp^{p}\rp\nn\\
+%& +\epsilon_{mnp}\lp A_!^{n}\we F_?^{p} - F_!^{n}\we A_?^{p}\rp + \epsilon_{mnp}\lp 2v^{n}\we F_?^{p} - 2F_\parallel^{n}\we A_?^{p}\rp - 6y\epsilon_{mnp}v^{n}\we F_\parallel^{p}\nn\\
+%&= \frac{1}{2}\epsilon_{mnp}\lp w^{n}\we F_\parallel^{p} - v^{n}\we F_\perp^{p}  + 4v^{n}\we F_@^{p} - A_\perp^{n}\we F_\parallel^{p} + A_\parallel^{n}\we F_\perp^{p} + 2A_!^{n}\we F_?^{p} + 2A_?^{n}\we F_!^{p} + 4A_@^{n}\we F_\parallel^{p} - 6yv^{n}\we F_\parallel^{p}\rp\nn\\
+%\end{align}
+%Want
+%\begin{align}
+%0 &= - A_\perp^{n}\we F_\parallel^{p} + A_\parallel^{n}\we F_\perp^{p} + 2(!_1A_\parallel^{n} + !_2A_\perp^{n})\we (?_1F_\parallel^{p} + ?_2F_\perp^{p}) + 2(?_1A_\parallel^{n}+?_2A_\perp^{n})\we (!_1F_\parallel^{p}+!_2F_\perp^{p}) + 4(@_1A_\parallel^{n}+@_2A_\perp^{n})\we F_\parallel^{p}\nn\\
+%&= \lp 1 + 2!_1?_2 + 2!_2?_1\rp A_\parallel^{n}\we F_\perp^{p} + \lp -1 + 2!_2?_1 + 2!_1?_2 + 4@_2\rp A_\perp^{n}\we F_\parallel^{p} + \lp 4!_1?_1 + 4@_1\rp A_\parallel^{n}\we F_\parallel^{p} + \lp 4!_2?_2\rp A_\perp^{n}\we F_\perp^{p})\nn\\
+%\end{align}
+%so (use $!_1?_1 = x_1$, $!_2?_1 + !_1?_2 = x_2$, $!_2?_2 = x_3$)
+%\begin{align}
+%x_3 &= 0\nn\\
+%@_1 &= -x_1\nn\\
+%@_2 &= 1/2\nn\\
+%x_2 &= -1/2
+%\end{align}
+We find that the variation of
+\begin{align}
+S_{corr} =& \epsilon_{mnp}\Big( v^m\we (-x A_\parallel^n\we A_\parallel^p + \frac{1}{2}A_\parallel^n\we A_\perp^p )\nn\\
+& + v^m\we v^n\we\lp xA_\parallel^{p}-\frac{1}{2}A_\perp^p\rp - yv^m\we v^n\we v^p\Big)
+\end{align}
+removes all $A$-terms, leaving
+\begin{align}
+d[*u_1] &= \frac{1}{2}\epsilon_{mnp}\lp w^{n}\we F_\parallel^{p} - v^{n}\we F_\perp^{p}  + 4v^{n}\we (\frac{1}{2}F_\perp^{p} -xF_\parallel^{p}) + 12yv^n\we F_\parallel^p \rp \nn\\
+%&= \frac{1}{2}\epsilon_{mnp}\lp w^{n}\we F_\parallel^{p} + v^{n}\we F_\perp^{p} - (4x+6y)v^{n}\we F_\parallel^{p} ) \rp\nn\\
+&= \frac{1}{2}\epsilon_{mnp}d[-w^{n}\we v^{p} + 2(3y-x)v^{n}\we v^{p}] 
+\end{align}
+and thus
+\begin{align}
+u_1 = \frac{1}{2}\star(vw) + (x-3y)\star(vv)
+\end{align}
+for some parameters $x$ and $y$ seems to be a good choice for $u_1$.
+%\begin{align}
+%d[w^n\we v^p] &= -w^n\we F_\parallel^p - v^n\we F_\perp^p\nn\\
+%d[v^n\we v^p] &= -2v^n\we F_\parallel^p 
+%\end{align}
+As a consistency check we see that the variation of the derived action together with the derived $u$ gives the equations of motion
+\begin{align}
+df_m &= -H_m + \half\epsilon_{mnp}\lbp v^n\we dw^p + 2v^n\we F_\perp^p - w^n\we F_\parallel^p \rbp\\
+&= -H_m + \half\epsilon_{mnp}\epsilon_{st}F^{sn}\we \omega^{tp} + \half\epsilon_{mnp}\lbp v^n\we dw^p + v^n\we F_\perp^p\rbp\nn.
+\end{align}
+Acting on this relation with an external derivative gives
+\begin{align}
+0 &= -\half\epsilon_{mnp}F_\parallel^n\we\lbp dw^p + F_\perp^p\rbp,
+\end{align}
+forcing the relations $dw^m=-F_\perp$ and $df_m = -H_m + \half\epsilon_{mnp}\epsilon_{st}F^{sn}\we \omega^{tp}$, which equal the Bianchi identities \eqnref{csolution_final_bianchi} we wanted to gain from the variation.
+
+Another indication that the action should be on this form is that using $u_1$ on the form
+\begin{align}
+u_1 = b_1\star(vw) + b_2\star(vv)
+\end{align}
+and expanding the equations \eqnref{csolution_general_duality} for a general relation $w(v)$, we find that when $b_2\ne 0$ we must have $b_1=1/2$ for a general ansatz order and when $b_2=0$ we must have either $b_1=1/2$ or $b_1=7/8$. 
+It would be a pretty big coincidence if the two derivations of $b_1=1/2$ were unconnected.
+
+Because we are considering a case where $u_1=0$ when $\star(vw)=0$ we let 
+\begin{align}
+\eqnlab{csolution_duality_u_final}
+u = -\sqrt{G}G^{\alpha\beta}v + \half\star(vw)
+\end{align} 
+and try to find a solution to the equations \eqnref{csolution_general_duality} with a general expansion $w(v)$.
+We do not find any solution of ansatz order less than 8 and unfortunately the equations get too complicated for higher ansatz orders. 
+What we find for general expansion order though, is that
+\begin{align}
+\eqnlab{csolution_phi_final}
+\Phi &= -\frac{2}{3}\tr u^2 + \frac{1}{3}\tr v^2 + \mbox{terms of order $\ge 4$ in $u$ and $v$}\nn\\
+w &= -\half\star(vv) + \Ordo(v^4)
+\end{align}
+and we find that the solution \eqnref{csolution_phi_alpha_zero} has to be modified for orders $\ge 4$ in $u$ and $v$.
+
+We have also expanded the equations using
+\begin{align}
+u = -\sqrt{G}G^{\alpha\beta}v + \half\star(vw) + b\star(vv)
+\end{align} 
+to ansatz order 6 but we still fail to find a solution.
+
+As a concluding remark we notice that $u(v) = -\sqrt{-\det G}G^{-1}v$ does not solve the general parameter free equations \eqnref{csolution_general_duality} to any order in $\Phi$ with general $w(v)$.
+% $u=-u0$, general $w$: General contradiction at order 7 
+The relation must thus be modified either by finding a condition for which \eqnref{csolution_phi_alpha_zero} is a special case, giving new possible terms when removing the condition on the expansion variables or by introducing terms dependent on parameters (the term is of course removed for $\beta_2=1/6$ and present for $\beta_2=0$) very much like $\alpha$ enters \eqnref{csolution_dualit_general_alpha}.   
+If the last option is the case, we would expect the equations to be solvable for general parameters $\alpha$ and $\beta$. 
+
+
+
+%\subsubsection{Going from the solved case to the general one}
+%For the solved case, the solution was
+%\begin{align}
+%\Phi &= \frac{1}{3}\lbp \frac{4}{3}\lp\tr\lp uv\rp\rp^2 - 2\tr\lp u^2\lp \id+v^2\rp\rp + V_2 - V_4 + \frac{1}{12}\star(vvv)^2\rbp
+%\end{align}
+%together with
+%\begin{align}
+%u(v) = -\sqrt{\det G}G^{-1}v.
+%\end{align}
+%
+%\paragraph{Introduce $w$}
+%Introduction of $w$ here gives
+%\begin{align}
+%V_2 &\rightarrow V_2 + W_2\nn\\
+%V_4 &\rightarrow V_4 + W_4 + \tr\lp v^2w^2\rp - V_2W_2 \nn\\
+%V_6 &\rightarrow V_6 + W_6 + \tr\lp v^4w^2 \rp + \tr\lp v^2w^4 \rp - V_2W_4 - W_2V_4 - V_2\tr\lp v^2w^2\rp - W_2\tr\lp v^2w^2\rp
+%\end{align}
+%
+%\begin{align}
+%\Phi &= \frac{1}{3}\bigg\{ \frac{4}{3}\lp\tr\lp uv\rp\rp^2 - 2\tr\lp u^2\lp \id+v^2\rp\rp\nn\\
+%&+ V_2 + W_2 - V_4 - W_4 - \tr\lp v^2w^2\rp + V_2W_2\nn\\
+%&-3V_6 -3W_6 -3\tr\lp v^4w^2 \rp -3\tr\lp v^2w^4 \rp +3V_2W_4 +3W_2V_4 +3V_2\tr\lp v^2w^2\rp +3W_2\tr\lp v^2w^2\rp \bigg\}
+%\end{align}
+%
+%\begin{align}
+%\frac{\partial\Phi}{\partial u} &=\frac{8}{9}\tr\lp uv\rp v + \frac{8}{9}\tr\lp uw\rp w - \frac{4}{3} u\lp \id+v^2+w^2\rp\nn\\
+%\frac{\partial\Phi}{\partial v} &=\frac{8}{9}\tr\lp uv\rp u - \frac{4}{3} u^2v\nn\\
+%& + \frac{2}{3}\bigg( \id + V_2 + W_2 + 3V_4 + 3W_4 + 3\tr\lp v^2w^2\rp - 3W_2V_2\nn\\
+%& + \lp -1 + 3V_2 + 3W_2 \rp v^2 + \lp -1 + 3V_2 + 3W_2\rp w^2  - 3v^4 - 3w^4 - 6v^2w^2 \bigg) v \nn\\
+%\frac{\partial\Phi}{\partial w} &=\frac{8}{9}\tr\lp uw\rp u - \frac{4}{3} u^2w\nn\\
+%& + \frac{2}{3}\bigg( \id + V_2 + W_2 + 3V_4 + 3W_4 + 3\tr\lp v^2w^2\rp - 3W_2V_2\nn\\
+%& + \lp -1 + 3V_2 + 3W_2 \rp v^2 + \lp -1 + 3V_2 + 3W_2\rp w^2  - 3v^4 - 3w^4 - 6v^2w^2 \bigg) w \nn\\
+%\end{align}
+%
+
+
+
+\subsubsection{The very general equations}
+Now we turn our attention to the case were all terms coming from different types of parameters are accounted. We make an ansatz for the equations
+\begin{align}
+\eqnlab{csolution_general_duality}
+\frac{\partial\Phi}{\partial u_m} &= \lp d_1v^m + d_2w^m\rp\sqrt{1+\Phi}\nn\\
+\frac{\partial\Phi}{\partial v^m} & = \bigg\{d_3u_m + d_4\star(vv) + d_5\star(vw) + d_6\star(ww)\bigg\}\sqrt{1+\Phi}\nn\\
+\frac{\partial\Phi}{\partial w^m} & = \bigg\{d_7u_m + d_8\star(vv) + d_9\star(vw) + d_{10}\star(ww)\bigg\}\sqrt{1+\Phi}
+\end{align}
+where $d_i$ are parameters.
+As a first test we let $u$ be proportional to the conjugate 1-form as before and $w$ be proportional to $v$. 
+Once again we create an ansatz of order $6$ and we now find that  
+\begin{align}
+u(v) &= \frac{2 d_3}{d_3^2 + d_7^2 - d_1d_3 - d_2d_7}\sqrt{G}G^{-1}v\nn\\
+w(v) &= \frac{d_7}{d_3}v
+\end{align}
+together with the conditions $d_3, d_7$ and $d_3^2 + d_7^2 - d_1d_3 - d_2d_7$ nonzero and
+\begin{align}
+d_4 = -\frac{d_5d_7}{d_3} -\frac{d_6d_7^2}{d_3^2} + \frac{d_3d_8}{d_7} + d_9 + \frac{d_7d_{10}}{d_3} 
+\end{align}
+solves the duality equations with quite a complicated $\Phi$. 
+For instance, looking at the case $w(v)=v$, i.e. when $d_7=d_3$, the solution is
+\begin{align}
+\Phi &= \frac{d^2}{2}\lp\tr\lp uv\rp\rp^2 + d(d_3-d)\tr\lp u^2\lp \id + \half v^2\rp\rp\nn\\ 
+&  + \half\frac{d_3}{d_3-d}V_2 - \frac{1}{4}\frac{d_3+d_1}{d_3-d_1}V_4 -\frac{1}{288}\frac{1}{d_3-d}\lp d_3 - 4d_3\bar d^2 + 2d + 4d\bar d^2  \rp\VS{3}^2\nn\\
+& + \frac{1}{12}\lp d + d_3\rp\bar d\star(vvv)\tr\lp uv\rp + \frac{1}{2}\lp d_3 - d\rp\bar d\star(uvv)\nn\\
+& - \frac{1}{3}\lp d_3 - d\rp^3\bar d\star(uuu) + \mbox{ symmetry }v\leftrightarrow w
+\end{align}
+where $d=\half\lp d_1+d_2\rp$, $\bar d = d_8+d_9+d_{10} = d_4+d_5+d_6$ and all $w$ terms should be added symmetrical between $v$ and $w$, so $v_\alpha^mv_\beta^n$ ought to be replaced by $v_\alpha^mv_\beta^n+w_\alpha^mw_\beta^n$, e.g. $V_4 \rightarrow V_4+W_4+\tr\lp v^2w^2\rp -V_2W_2$. 
+It looks like we are still on track, since when letting $\bar d=0$ we once again obtain the previous found solution \eqnref{csolution_phi_general_alpha} if putting $w=v$ (effectively meaning letting $v\rightarrow \sqrt{2}v$ and removing all $w$), $d_3=\half\tilde\alpha_2$ and $d=\half\tilde\alpha_1$ as we should, using the symmetry of the equations.
+$F^{rm}$ must still be $0$ since acting with an external derivative on the relation between $\omega_\parallel$ and $\omega_\perp$ yields
+\begin{align}
+d\omega_\perp^m - cd\omega_\parallel^m = -\lp\pdo{r} - c\pdp{r}\rp F^r = 0
+\end{align}
+This solution thus solves more or less all equations coming from the different types of parameters. 
+%In particular it solves the equations with parameters $\Gamma$, $\Delta$, $q_1$ and $q_2$, which are the parameters expected when $F=0$.  
+%
+%\begin{align}
+%\frac{\partial\Phi}{\partial u_m} &= \lp \lp\frac{4}{3}q_1-\tilde\Gamma_1\rp v^m + \lp\frac{4}{3}q_2-\tilde\Gamma_2\rp w^m\rp\sqrt{1+\Phi}\nn\\
+%\frac{\partial\Phi}{\partial v^m} & = \frac{1}{3}\bigg\{-2q_1 u_m + \epsilon_{mnp}\Big[ 3\tilde\Delta_1\tilde\Gamma_1^2\star(vv) + \lp q_1 + 6\tilde\Delta_1\tilde\Gamma_1\tilde\Gamma_2 + 1 - 3\frac{\tilde\Gamma_1}{2}\rp\star(vw) + \lp q_2+3\tilde\Delta_1\tilde\Gamma_2^2 - 3\frac{\tilde\Gamma_2}{2}\rp\star(ww)\Big] \bigg\}\sqrt{1+\Phi}\nn\\
+%\frac{\partial\Phi}{\partial w^m} & = \frac{1}{3}\bigg\{-2q_2 u_m - \epsilon_{mnp}\Big[ \lp q_1+3\tilde\Delta_2\tilde\Gamma_1^2 + 3\frac{\tilde\Gamma_1}{2}-1\rp\star(vv) + \lp q_2+6\tilde\Delta_2\tilde\Gamma_1\tilde\Gamma_2 - 3\frac{\tilde\Gamma_2}{2}\rp\star(vw) + 3\tilde\Delta_2\tilde\Gamma_2^2\star(ww) \Big] \bigg\}\sqrt{1+\Phi}\nn\\
+%\end{align}
+%
+%Identify
+%\begin{align}
+%3d_1 &= 4q_1-3\tilde\Gamma_1\nn\\
+%3d_2 &= 4q_2-3\tilde\Gamma_2\nn\\
+%3d_3 &= -2q_1\nn\\
+%3d_4 &= 3\tilde\Delta_1\tilde\Gamma_1^2\nn\\
+%3d_5 &= q_1 + 6\tilde\Delta_1\tilde\Gamma_1\tilde\Gamma_2 + 1 - 3\frac{\tilde\Gamma_1}{2}\nn\\
+%3d_6 &= q_2+3\tilde\Delta_1\tilde\Gamma_2^2 - 3\frac{\tilde\Gamma_2}{2}\nn\\
+%3d_7 &= -2q_2\nn\\
+%3d_8 &= q_1+3\tilde\Delta_2\tilde\Gamma_1^2 + 3\frac{\tilde\Gamma_1}{2}-1\nn\\
+%3d_9 &= q_2+6\tilde\Delta_2\tilde\Gamma_1\tilde\Gamma_2 - 3\frac{\tilde\Gamma_2}{2}\nn\\
+%3d_{10} &= 3\tilde\Delta_2\tilde\Gamma_2^2\nn\\
+%\end{align}
+%
+%\begin{align}
+%0 &= - q_1^2q_2^2d_4 - q_1q_2^3d_5 - q_2^4d_6 + q_1^3q_2d_8 + q_1^2q_2^2d_9 + q_1q_2^3d_{10}\nn\\ 
+%&= - q_1^2q_2^2\tilde\Delta_1\tilde\Gamma_1^2 - q_1q_2^3d_5 - q_2^4d_6 + q_1^3q_2d_8 + q_1^2q_2^2d_9 + q_1q_2^3d_{10}\nn\\
+%\end{align}
+We would also like to try to solve these equations for some different relation $w(v)$ not imposing $F=0$. 
+Letting $w(v)$ proportional to e.g. $\star(vv)$ or $v^3$ does not give any solution of ansatz order 6 and more complicated relations $w(v)$ tends to imply too complicated equations to solve using our method.
+
+\section{Computer solution of the $d=9$ $D1$, $\alpha=\frac{1}{2}$ case}
+\seclab{csolution_9d_const}
+The equations found for the $D_1$-brane in $9$ dimensions
+\begin{align}
+\eqnlab{csolution_9d_general_duality}
+\frac{\partial \Phi}{\partial u} &= 2\alpha_1 v + 2\lp\alpha_2 -1\rp w \sqrt{1+\Phi}\nn\\
+\frac{\partial \Phi}{\partial v} &= - 2 \alpha_1 u\sqrt{1+\Phi}\nn\\
+\frac{\partial \Phi}{\partial w} &= - 2 \alpha_2 u\sqrt{1+\Phi}
+\end{align}
+looks very similar to the $D_2$-brane in $8$ dimensions without the nonlinear terms, meaning they should be easier to solve.  
+We have not tried to solve these equations, but we expect that creating an ansatz $\Phi$ using the polynomial variables
+\begin{align}
+\phi=\{& u^2, u\cdot v, v^2\}
+\end{align}
+with $v$ entering quadratically and symmetry $v\leftrightarrow w$ as usual, would make it if we found the correct duality relations between $u$, $v$ and $w$.  
+
+
+
+
+
+
+

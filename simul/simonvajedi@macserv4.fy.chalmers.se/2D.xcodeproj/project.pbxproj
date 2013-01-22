@@ -1,0 +1,110 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildStyle section */
+		F423A150162444E20082C3D1 /* Development */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Development;
+		};
+		F423A151162444E20082C3D1 /* Deployment */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Deployment;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXFileReference section */
+		F413F5F51622E0E300980530 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		F413F5F61622E0E300980530 /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
+		F413F5F71622E11B00980530 /* main.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		F413F670162308AF00980530 /* random.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
+		F413F671162308BF00980530 /* random.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
+		F413F69116230CB000980530 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		F413F69B1623254400980530 /* ScalarCorr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScalarCorr.h; sourceTree = "<group>"; };
+		F413F69C1623254400980530 /* ScalarCorr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ScalarCorr.c; sourceTree = "<group>"; };
+		F413F7371623742E00980530 /* simulate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simulate.h; sourceTree = "<group>"; };
+		F413F7381623742E00980530 /* simulate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = simulate.c; sourceTree = "<group>"; };
+		F448F2301625F2E8008823C0 /* anorm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anorm.h; sourceTree = "<group>"; };
+		F448F2311625F2E8008823C0 /* anorm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = anorm.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		F413F5CD1622DDB300980530 = {
+			isa = PBXGroup;
+			children = (
+				F448F2301625F2E8008823C0 /* anorm.h */,
+				F448F2311625F2E8008823C0 /* anorm.c */,
+				F413F7371623742E00980530 /* simulate.h */,
+				F413F7381623742E00980530 /* simulate.c */,
+				F413F69B1623254400980530 /* ScalarCorr.h */,
+				F413F69C1623254400980530 /* ScalarCorr.c */,
+				F413F69116230CB000980530 /* Makefile */,
+				F413F671162308BF00980530 /* random.h */,
+				F413F670162308AF00980530 /* random.c */,
+				F413F5F71622E11B00980530 /* main.c */,
+				F413F5F51622E0E300980530 /* utils.h */,
+				F413F5F61622E0E300980530 /* utils.c */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		F413F5CF1622DDB400980530 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = F413F5D01622DDB400980530 /* Build configuration list for PBXProject "2D" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				F423A150162444E20082C3D1 /* Development */,
+				F423A151162444E20082C3D1 /* Deployment */,
+			);
+			hasScannedForEncodings = 0;
+			mainGroup = F413F5CD1622DDB300980530;
+			projectDirPath = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		F413F5D11622DDB400980530 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		F413F5D21622DDB400980530 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F413F5D01622DDB400980530 /* Build configuration list for PBXProject "2D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F413F5D11622DDB400980530 /* Debug */,
+				F413F5D21622DDB400980530 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F413F5CF1622DDB400980530 /* Project object */;
+}

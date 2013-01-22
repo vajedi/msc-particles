@@ -1,0 +1,554 @@
+\chapter{Lengthy calculations}
+\chlab{lengthy}
+\section{Reduction and scaling of the Ricci scalar}
+\seclab{ricci}
+We will use the tangent space formalism to dimensionally reduce the Ricci scalar and transform the metric to the Einstein frame. 
+
+\subsection{Locally flat geometry}
+\sseclab{ricci_local_geom}
+\paragraph{Locally flat frames}
+To each point in a curved space with metric $g_{MN}$, we can assign a locally flat coordinate system with metric $\eta_{AB}$, tangent to the curved one. To transform between the two coordinate systems we use vielbeins $e{_M}^A$, defined to move between different metrics as
+\begin{equation}
+g_{MN} = e{_M}^A \eta_{AB} e{^B}{_N} 
+\end{equation}
+Since the n-dimensional covariant metric (without gauge conditions) has $n(n+1)/2$ degrees of freedom, there are $n^2-n(n+1)/2=n(n-1)/2$ undetermined components in the vielbeins.
+These are related to the $n(n-1)/2$ degrees of freedom of a local SO($\hat D$) rotation, or a SO($\hat D$-1,1) local Lorentz transformation in our case where we have one timelike coordinate.  
+This symmetry comes from the fact that the vielbeins form a scalar in the local indices $e{_M}^Ae{_A}{_N}$ and the metric is thus invariant under local Lorentz transformations
+\begin{align}
+e{_M}^A &\rightarrow e{_M}^B(\Lambda^{-1}){_B}^A\hspace{1cm} \nonumber\\ 
+e{_A}^M &\rightarrow \Lambda{_A}^Be{_B}^M,\hspace{1cm} \Lambda = \Lambda(x)\in \mbox{SO}(\hat D-1,1)
+\eqnlab{sugra_viel_rot}
+\end{align}
+This symmetry can be used to set $n(n-1)/2$ of the components in $e{_M}^A$ to whatever you want. 
+
+\paragraph{Covariant derivative}
+The exterior derivative acting on a tensor or form with m upper and n lower SO($\hat D$-1,1) Lorentz indices, transforms as
+\begin{align}
+dT\bb{A_1\cdots A_m}{C_1\cdots C_n} \rightarrow& d \lp\Lambda\od{C_1}\ou{D_1}\cdots \Lambda\od{C_n}\ou{D_n}\Lambda\ou{A_1}\od{B_1}\cdots \Lambda\ou{A_n}\od{B_n}T\bb{B_1\cdots B_m}{D_1\cdots D_n}\rp\nn\\ 
+ =& \Lambda\cdots\Lambda dT + \Lambda\cdots\Lambda Td\Lambda\od{C_1}\ou{D_1}+\cdots+\Lambda\cdots\Lambda Td\Lambda\od{C_n}\ou{D_n}\nn\\
+&+\Lambda\cdots\Lambda Td\Lambda\ou{A_1}\od{B_1}+\Lambda\cdots\Lambda Td\Lambda\ou{A_m}\od{B_m}
+\end{align}
+The $d\Lambda$ terms prevents this from being a Lorentz tensor. We thus introduce a covariant derivative
+\begin{align}
+DT\bb{A_1\cdots A_m}{C_1\cdots C_n} &= dT\bb{A_1\cdots A_m}{C_1\cdots C_n} + T\bb{B_1A_2\cdots A_m}{C_1\phantom{A_2}\cdots C_n}\omega\ou{A_1}\od{B_1} + \cdots + T\bb{A_1\cdots B_m}{C_1\cdots C_n}\omega\ou{A_m}\od{B_m}\nn\\
+& + T\bb{A_1\phantom{C_2}\cdots A_m}{D_1C_2\cdots C_n}\omega\od{C_1}\ou{D_1} + \cdots + T\bb{A_1\cdots B_m}{C_1\cdots D_n}\omega\od{C_m}\ou{D_m} 
+\end{align}
+and demand $DT$ to transform as a Lorentz-tensor, i.e. $DT\rightarrow \Lambda\cdots\Lambda DT$, by assigning the correct transformation properties on the 1-form spin connection $\omega\ou{A}\od{B}$.
+Since the transformation properties of $\omega$ are independent of n, we can look at the case m=1, n=0 with requirement $DT'^A \equiv \Lambda{^A}_B DT^B$, giving
+\begin{align}
+DT^A \rightarrow DT'^A &= dT'^A + T^B\omega'\ou{A}\od{B} = \Lambda\ou{A}\od{B}dT^{B} + T^{B}d\Lambda\ou{A}\od{B} + \Lambda\ou{B}\od{C}T^C\omega'\ou{A}\od{B} \nonumber\\
+& \equiv \Lambda\ou{A}\od{B}DT^B = \Lambda\ou{A}\od{B}\lp dT^B + T^C\omega\ou{B}\od{C}\rp
+\end{align}
+after removing $T^C$ and multiplying by $\Lambda\od{B}\ou{C}$ we get
+\begin{equation}
+\omega'\ou{A}\od{B} = \Lambda\ou{A}\od{D}\omega\ou{D}\od{C}(\Lambda^{-1})\ou{C}\od{B} -  d\Lambda\ou{A}\od{C}(\Lambda^{-1})\ou{C}\od{B}
+\end{equation}
+which is the transformation $\omega$ must obey.
+By calculating the covariant derivative in the coordinate basis, using the affine connection $\Gamma$ and comparing this to the covariant derivative in a mixed basis, using the spin connection $\omega$, we can find a relation between the two connections\cite{carroll}. 
+The relation becomes
+\begin{align}
+\omega{{_M}^A}_B = e{_N}^A e{_B}^P\Gamma^N_{MP} - e{_B}^P\partial_M e{_P}^A
+\eqnlab{ricci_spin_affine}
+\end{align}
+Using spin connections rather than the regular affine connections in the covariant derivative allows the descriptions of spinors in space time and it allows taking covariant derivatives of spinors (hence the name). Furthermore spin connection lets us describe the torsion and curvature as vector and (1,1)-tensor valued 2-forms as we shall see next.    
+%
+\paragraph{Torsion}
+Now consider the 2-form $T^A = De^A$, which components can, by using \eqnref{ricci_spin_affine}, be identified as the torsion tensor
+\begin{equation}
+T{_{MN}}^Ae{_A}^P = T{_{MN}}^P = 2\Gamma^P_{[MN]},
+\end{equation}
+which becomes 0 for the standard Riemannian general relativity Christoffel connection $\Gamma^P_{(MN)}$. 
+This constraint and the metricity condition $D_Mg_{NP}=0$ (also used in Riemannian geometry) uniquely defines $\omega$ by
+\begin{equation}
+T^A = De^A = de^A + e^B\we\omega\ou{A}\od{B} = de^A - 2\Omega^A = 0, 
+\eqnlab{conven_torsion}
+\end{equation}
+which defines the 2-form $\Omega^A$ by
+\begin{equation}
+\Omega^A = \frac{1}{2!}e^B\we e^C\Omega\od{CB}\ou{A} = -\frac{1}{2}e^B\we\omega\ou{A}\od{B} = \frac{1}{2}e^B\we e^C\omega\od{CB}\ou{A}.
+\eqnlab{conven_Omega}
+\end{equation}
+We can thus read of the components of $\Omega\ou{A}$ as
+\begin{equation} 
+\Omega\od{CBA} = \omega\od{[CB]A} = \frac{1}{2}\left(\omega_{CBA}-\omega_{BCA}\right)
+\eqnlab{conven_Omega_comp}
+\end{equation}
+which gives
+\begin{align}
+\Omega{_{CBA}}+\Omega{_{ACB}}-\Omega{_{BAC}} = \frac{1}{2}&\left( \omega_{CBA}-\omega_{BCA} + \omega_{ACB}-\omega_{CAB}\right.\nonumber\\ 
+&\left.- \omega_{BAC}+\omega_{ABC} \right)= \omega_{CBA},
+\end{align}
+where we have used the antisymmetry of the spin connection $\omega_{CBA}=-\omega_{CAB}$.
+This antisymmetry is obvious if one considers the metricity condition of the Lorentz metric $D\eta_{AB}=0$, giving 
+\begin{equation}
+D\eta\od{AB} = d\eta\od{AB} + \eta\od{CA}\omega\od{B}\ou{C} + \eta\od{CB}\omega\od{A}\ou{C} = \omega\od{BA} + \omega\od{AB} = 0 
+\end{equation}
+
+\paragraph{Curvature}
+Form the 2-form\footnote{Usually $\Theta$ is defined with a plus sign, but for the Bianchi identity $d\Theta$ to imply $D\Theta = 0$, we need the minus sign with our superspace convention of external derivatives acting from the right.}
+\begin{align}
+\Theta{^A}_{B} = d\omega{^A}_B-\omega{^A}_C\omega{^C}_B
+\eqnlab{conven_theta_omegadef}
+\end{align}
+which transforms as (use \eqnref{conven_parinv} to cancel the terms)
+\begin{align} 
+\Theta\rightarrow&\Theta' =  d\omega'-\omega'\omega'\nn\\
+& =  d\lp \Lambda\omega\Lambda^{-1} - d\Lambda\Lambda^{-1}\rp - \lp \Lambda\omega\Lambda^{-1} - d\Lambda\Lambda^{-1}\rp\lp \Lambda\omega\Lambda^{-1} - d\Lambda\Lambda^{-1}\rp\nn\\
+& = \Lambda\omega d\Lambda^{-1} + \Lambda d\omega\Lambda^{-1} -  d\Lambda\omega\Lambda^{-1} - d\Lambda d \Lambda^{-1}\nn\\ 
+& - \Lambda\omega\omega\Lambda^{-1} + \Lambda\omega\Lambda^{-1}d \Lambda\Lambda^{-1} + d\Lambda\omega\Lambda^{-1} - d\Lambda \Lambda^{-1}d\Lambda \Lambda^{-1}\nn\\
+& = \Lambda\lp  d\omega - \omega\omega \rp\Lambda^{-1} = \Lambda \Theta \Lambda^{-1} 
+\end{align} 
+under Lorentz transformations i.e. $\Theta{^B}_A$ is a Lorentz tensor.
+The antisymmetry of $\omega_{AB}$ makes $\Theta_{BA}$ antisymmetric in $A\leftrightarrow B$.
+The definitions of $T^A$ \eqnref{conven_torsion} and $\Theta^B_A$ \eqnref{conven_theta_omegadef} are usually denoted as the Maurer Cartan structure equations (c.f. \Secref{maurer}).
+Since $\Theta$ is a 2-form it can also be written on the form
+\begin{align}
+\Theta{^B}_A = \half  e^C\we e^D \Theta{{_{DC}}^B}_A = \half dx^P\we dx^Q e{_N}^Be{_A}^M R\od{QP}\ou{N}\od{M}
+\eqnlab{conven_theta2}
+\end{align} 
+where $\Theta{{_{DC}}^B}_A$ is identified to be the Riemann tensor with flat indices (use \eqnref{ricci_spin_affine}). 
+
+\subsection{Reduction of the Ricci scalar}
+Here we will calculate the Ricci scalar after Kaluza-Klein compactification on $T^n$, for a general n.
+%
+From the Kaluza-Klein Ansatz made in \eqnref{reduct_kk_ansatz} we found that the vielbeins can be decomposed \eqnref{reduct_viel_red} as 
+\begin{equation}
+{\hat e}^A = (\hat e^a,\hat e^i) = (e^a,A^{1i} + e^i)
+\end{equation}
+and in our Kaluza-Klein analysis in \Secref{sugra_kk} we found that, for our considerations, we can set all fields to be independent on the compactified coordinates $x^m$.
+This effectively means that all derivatives $\partial_m$ with respect to $x^m$ will be zero and we get the exterior derivative in $\hat D$ dimensions  
+\begin{equation}
+\hat d = d = dx^\mu\partial_\mu = e^a\partial_a 
+\end{equation}
+%
+The torsion \eqnref{conven_torsion} of pure gravity is zero, which gives
+\begin{equation}
+\hat d \hat e^A = \hat e^B\we \hat e^C \Omh{CB}{A}
+\eqnlab{ricci_torsion}
+\end{equation}
+Note that inverting $e^i = dx^me{_m}^i$ gives $dx^m = e^i e{_i}^m$ 
+and calculate both left and right hand side of \eqnref{ricci_torsion} (use \eqnref{reduct_f1def} as definition of $F^1$)
+\begin{align}
+\mbox{LHS: }\hat d \hat e^A &= \partial_\mu\lp e^a,\hat e^i\rp\we dx^\mu = \lp de^a,\partial_\mu\lp A^{1i} + e^i\rp\we dx^\mu\rp\nonumber\\
+& = \lp e^b\we e^c \Om{cb}{a},\partial\od{b}\lp A^{1i} + e^i\rp\we e^b\rp \nonumber\\ 
+& = \lp \Omega^a,\partial\bd{b}\lp e\od{m}\ou{i}A\bb{1}{c}\bu{m}\rp e^c\we e^b + \partial_be^i\we e^b \rp\nonumber\\  
+& = \lp \Omega^a,\frac{1}{2}e\od{m}\ou{i}F\bb{1}{cb}\bu{m}e^b\we e^c + \partial\bd{b}e\od{m}\ou{i}A\bb{1}{c}\bu{m} e^c\we e^b + \partial_be{_m}^idx^m\we e^b \rp \nonumber\\  
+& = \lp \Omega^a,F^{1i} + A\ou{1m}de\od{m}\ou{i} + \partial_be{_m}^i e{_j}^m e^j\we e^b \rp\nn\\
+& = \lp \Omega^a,F^{1i} + A\ou{1m}de\od{m}\ou{i} + \partial_be{_m}^i e{_j}^m \hat e^j\we e^b - \partial_be{_m}^i e{_j}^m A^{1j}\we e^b \rp\nn\\
+& = \lp \Omega^a,F^{1i} + \partial_be{_m}^i e{_j}^m \hat e^j\we e^b\rp
+\eqnlab{ricci_deA}
+\\
+\mbox{RHS: }\hat e^B\we&\hat e^C \Omega{_{CB}}^A = \left(e^b,\hat e^j\right)\we\left(e^c,\hat e^k\right)\Omega{_{CB}}^A\nonumber\\
+%& = e^b\we e^c\Omh{cb}{A} + e^b\we\lp A^{1k} + e^k\rp\Omh{kb}{A} + \lp A^{1j} + e^j\rp\we e^c\Omh{cj}{A} + \lp A^{1j} + e^j\rp\we\lp A^{1k} + e^k\rp\Omh{kj}{A}\\
+& = e^b\we e^c\Omh{cb}{A} + e^b\we\hat e^k\Omh{kb}{A} + \hat e^j\we e^c\Omh{cj}{A} + \hat e^j\we\hat e^k\Omh{kj}{A}\nonumber\\
+& = e^b\we e^c\Omh{cb}{A} + 2e^b\we\hat e^k\Omh{kb}{A} + \hat e^j\we\hat e^k\Omh{kj}{A}
+\end{align}
+Comparing the two sides, starting with A=a
+\begin{align}
+e^b\we e^c \Om{cb}{a} = e^b\we e^c\Omh{cb}{a} + 2e^b\we\hat e^k\Omh{kb}{a} + \hat e^j\we\hat e^k\Omh{kj}{a}
+\end{align}
+and then with A=i
+\begin{align}
+\frac{1}{2}F\bb{1}{cb}\bu{i}e^b\we e^c & - \partial_be{_m}^i e{_k}^m e^b\we\hat e^k = e^b\we e^c\Omh{cb}{i} + 2e^b\we\hat e^k\Omh{kb}{i} + \hat e^j\we\hat e^k\Omh{kj}{i}
+\end{align}
+gives the following components of $\hat\Omega^A$
+\begin{align}
+&\Omh{cb}{a}=\Om{cb}{a},\hspace{0.5cm}
+&&\Omh{cb}{i}=\frac{1}{2}F\bb{1}{cb}\bu{i},\hspace{0.5cm}\nonumber\\
+&\Omh{kb}{a}=-\Omh{bk}{a}=0,\hspace{0.5cm}
+&&\Omh{kb}{i}=-\Omh{bk}{i}=-\frac{1}{2}\partial_be{_m}^i e{_k}^m,\hspace{0.5cm}\nonumber\\
+&\Omh{kj}{a}=0,
+&&\Omh{kj}{i}=0
+\end{align}
+%
+Thus the components of $\hat\omega$ becomes, using \eqnref{conven_Omega_comp}
+\begin{align}
+\hat\omega_{cba} &= \Omega_{cba} + \Omega_{acb} - \Omega_{bac} = \omega_{cba}\nonumber\\
+\hat\omega_{cbi} &= - \hat\omega_{cib} = \half F^1_{cbi}+0+0 = \half F^1_{cbi}\nonumber\\ 
+\hat\omega_{iba} &= 0+0-\half F^1_{bai} = -\half F^1_{bai}\nonumber\\ 
+\hat\omega_{cji} &= \half \partial_ce_{mi}e{_j}^m - \half \partial_ce_{mj}e{_i}^m - 0 = \partial_ce_{m[i}e{_{j]}}^m\nonumber\\ 
+\hat\omega_{jbi} &= - \hat\omega_{jib} = - \half \partial_be_{mi}e{_j}^m + 0 - \half \partial_be_{mj}e{_i}^m = - \partial_be_{m(j}e{_{i)}}^m \nonumber\\ 
+\hat\omega_{kji} &= 0+0-0 = 0 
+\end{align}
+where we have used that flat indices can be raised and lowered inside the partial derivatives.
+The components of $\hat\omega$ as a 1-form 
+\begin{equation}
+\hat\omega_{BA}=\hat e^C\hat\omega_{CBA} = \hat e^c\hat\omega_{cBA} + \hat e^i\hat\omega_{iBA} 
+\end{equation}
+becomes
+\begin{align}
+\hat\omega_{ba} &= \hat e^c\omega_{cba} - \half\hat e^i F^1_{bai} = \omega_{ba} - \half\hat e^i F^1_{bai}\nonumber\\ 
+\hat\omega_{ja} &= -\hat\omega_{aj} = \half \hat e^c F^1_{acj} + \hat e^i\partial_a e_{m(j}e{_{i)}}^m\nonumber\\
+\hat\omega_{kj} &= \hat e^c\partial_ce_{m[j}e{_{k]}}^m + 0 = \hat e^c\partial_ce_{m[j}e{_{k]}}^m.
+\end{align}
+%
+From \eqnref{conven_theta2} we have
+\begin{align}
+\hat\Theta_{BA} &= \half\hat e^C\we\hat e^D\hat R_{DCBA}\nonumber\\ 
+&= \half\hat e^c\we\hat e^d\hat R_{dcBA} + \hat e^c\we\hat e^i\hat R_{icBA} + \half\hat e^i\we\hat e^j\hat R_{jiBA}
+\end{align}
+where we have used the antisymmetry in the first two indices of the Riemann tensor $R_{DCBA} = -R_{CDBA}$ to put the cross terms together.
+%
+To calculate the Ricci scalar from the Riemann tensor
+\begin{equation}
+\hat R = \hat R{_{BA}}^{BA} = \hat R{_{ba}}^{ba} + 2\hat R{_{ja}}^{ja} + \hat R{_{ji}}^{ji}
+\eqnlab{ricci_ricci}
+\end{equation}
+we need the $\hat R_{dcba}$, $\hat R_{lcja}$ and $R_{lkji}$ components of $\hat R_{DCBA}$.
+These can be obtained from the definition of the 2-form $\hat\Theta_{BA}$, \eqnref{conven_theta_omegadef} (remember that we have already calculated $d\hat e^i$ in \eqnref{ricci_deA}) 
+\begin{align}
+&\hat\Theta_{ba} = d\hat\omega_{ba} - \hat\omega{_b}^c\we\hat\omega_{ca} - \hat\omega{_b}^i\we\hat\omega_{ia}=\nonumber\\
+&= d\omega_{ba} - \half d\lp\hat e^i F^1_{bai}\rp - \lp\omega{_b}^c - \half\hat e^i F\bb{1}{b}\bu{c}\bd{i}\rp\we\lp\omega_{ca} - \half\hat e^j F^1_{caj}\rp\nonumber\\
+&- \lp\half \hat e^c F\bb{1}{cb}\bu{i} - \hat e^{(k}\partial_b e{_n}^{i)}e{_{k}}^n\rp\we\lp\half \hat e^d F^1_{adi} + \hat e^j\partial_a e_{m(i}e{_{j)}}^m\rp\nonumber\\
+&= d\omega_{ba} + \omega{_b}^c\omega_{ca} - \half d\hat e^i F^1_{bai} - \half \hat e^i d F^1_{bai} + \half\omega{_b}^c\we\hat e^j F^1_{caj} + \half\hat e^i F\bb{1}{b}\bu{c}\bd{i}\we\omega\bd{ca}\nonumber\\
+&- \half\hat e^i F\bb{1}{b}\bu{c}\bd{i}\we\half\hat e^j F^1_{caj} - \half \hat e^c F\bb{1}{cb}\bu{i}\we\half \hat e^d F^1_{adi} + \hat e^{(k}\partial_b e{_n}^{i)}e{_{k}}^n\we\half \hat e^d F^1_{adi}\nonumber\\
+&- \half \hat e^c F\bb{1}{cb}\bu{i}\we\hat e\bu{j}\partial\bd{a} e\bd{m(i}e\bd{j)}\bu{m} + \hat e^{(k}\partial_b e{_n}^{i)}e{_{k}}^n\we\hat e^j\partial_a e_{m(i}e{_{j)}}^m\nonumber\\
+&=\Theta_{ba} - \half\lp \half F\bb{1}{dc}\bu{i}\hat e\bu{c}\we\hat e\bu{d} + \partial_c(e{_m}^i) e{_j}^m\hat e^j\we\hat e^c\rp F^1_{bai} - \frac{1}{4}\hat e\bu{i}\we\hat e\bu{j} F\bb{1}{b}\bu{c}\bd{i} F^1_{caj}\nonumber\\
+&- \half \hat e^i \we \lp dF^1_{bai} + \omega\bd{b}\bu{c}F\bb{1}{cai} - F\bb{1}{bci}\omega\bu{c}\bd{a}\rp - \frac{1}{4} \hat e\bu{c}\we \hat e\bu{d} F\bb{1}{cb}\bu{i}F^1_{adi}\nonumber\\
+&- \half \hat e\bu{d}\we\hat e\bu{(k}\partial\bd{b} e\bd{n}\bu{i)}e\bd{k}\bu{n} F^1_{adi} - \half \hat e\bu{c}\we\hat e\bu{j} F\bb{1}{cb}\bu{i}\partial\bd{a} e\bd{m(i}e\bd{j)}\bu{m} + 0\nonumber\\
+%&=\frac{1}{4}e^c\we e^d\lbp 2R_{dcba} - F{^{1}_{dc}}^iF^1_{bai} + F^1{_{cb}}^iF^1_{adi} \rbp+\frac{1}{4} \hat e^i\we \hat e^j\lbp F^1{{_b}^c}_iF^1_{caj} \rbp\nn\\
+%&+\half e^c\we \hat e^j\lbp \partial_ce{_m}^i e{_j}^mF^1_{bai} + D_cF^1_{baj} + \partial_b e{_m}^{i} F^1_{ac(i} e{_{j)}}^m + F^1{_{cb}}^i\partial_a e_{m(i}e{_{j)}}^m\rbp
+\end{align}
+For our purposes, we only need $\hat\Theta_{dcba}=\hat R_{dcba}$, which can be read off from what is multiplying $\half\hat e^c\we\hat e^d$ in $\hat\Theta_{ba}$, i.e.
+\begin{equation}
+\hat R_{dcba} = R_{dcba} - \half F\bb{1}{dc}\bu{i}F^1_{bai} - \half F\bb{1}{a[d}\bu{i}F^1_{c]bi}. 
+\end{equation}
+%
+Next we attack
+\begin{align}
+\hat\Theta_{ja} &= d\hat\omega_{ja} - \hat\omega{_j}^b\we\hat\omega_{ba} - \hat\omega{_j}^i\we\hat\omega_{ia} \nonumber\\
+& = d\lp\half \hat e^cF^1_{acj} + \hat e^i\partial_a e_{m(j}e{_{i)}}^m\rp\nn\\
+& - \lp\half \hat e^cF{^{1b}}_{cj} + \hat e^i\partial^b e_{m(j}e{_{i)}}^m\rp\we\lp\omega_{ba} - \half\hat e^kF^1_{bak}\rp\nn\\
+& - \lp \hat e^c\partial_c e_{m[k} e{_{j]}}^m\delta^{ik} \rp\we\lp \half \hat e^dF^1_{adi} + \hat e^l\partial_a e_{n(i}e{_{l)}}^n \rp\nn\\
+\intertext{}
+& = \half \partial\bd{d}\lp\hat e^cF^1_{acj}\rp\we\hat e^d + \lp\frac{1}{2}F\bb{1}{cb}\bu{i}\hat e^b\we\hat e^c + \partial_be{_n}^i e{_k}^n\hat e^k\we\hat e^b\rp\partial_a e_{m(j}e{_{i)}}^m\nn\\
+& + \partial_c\lp\partial_a e_{m(j}e{_{i)}}^m\rp\hat e^i \we\hat e^c - \half F\bu{1b}\bd{cj}\hat e^c\we\omega\bd{ba} - \partial^b e_{m(j}e{_{i)}}^m\hat e^i\we\omega_{ba}\nn\\
+& + \frac{1}{4}F\bu{1b}\bd{cj}F^1_{bak}\hat e\bu{c}\we\hat e\bu{k} + \half\partial^b e\bd{m(j}e\bd{i)}\bu{m}F^1_{bak}\hat e^i\we\hat e^k\nn\\
+& - \half\partial\bd{c} e\bd{m[k} e\bd{j]}\bu{m}F\bb{1}{ad}\bu{k}\hat e^c\we \hat e^d - \partial_c e_{m[k} e{_{j]}}^m\delta^{ik} \partial_a e_{n(i}e{_{l)}}^n\hat e^c\we \hat e^l
+\end{align}
+%
+Use $T_a = \partial_a e_{m(j}e{_{i)}}^m$ and note that 
+\begin{align}
+DT_a = dT_a + T_b\we\omega\od{a}\ou{b} = \partial_c&\lp\partial_a e_{m(j}e{_{i)}}^m\rp\hat e^c + \partial_b e_{m(j}e{_{i)}}^m\omega\od{a}\ou{b},
+\end{align}
+so we can rewrite term 3 and term 5 as
+\begin{equation}
+\partial_c\lp\partial_a e_{m(j}e{_{i)}}^m\rp\hat e^i \we\hat e^c - \partial^b e_{m(j}e{_{i)}}^m\hat e^i\we\omega_{ba} = D_c\lp\partial_a e_{m(j}e{_{i)}}^m\rp\hat e^i \we\hat e^c. 
+\end{equation}
+%
+We only need $\hat\Theta_{lcja}=\hat R_{lcja}=-\hat R_{clja}$, which can be read off from what is multiplying $\hat e^c\we\hat e^l$ in $\hat\Theta_{ja}$ (no factor $\half$ for the crossterm), i.e.
+\begin{align}
+\hat R_{lcja} &= -e{_{l}}^n\partial_{c}e{_n}^i\partial_a e_{m(j}e{_{i)}}^m  
+- D_{c}\lp\partial_{|a} e_{m|(l}e{_{j)}}^m\rp\nn\\
+& + \frac{1}{4}F^1_{bal}F{^{1b}}_{cj}
+- \partial_a e_{m(i}e{_{l)}}^m\partial_{c} e_{n[k} e{_{j]}}^n\delta^{ik}. 
+\end{align}
+%
+Next
+\begin{align}
+&\hat\Theta_{ji} = d\hat\omega_{ji} - \hat\omega{_j}^b\we\hat\omega_{bi} - \hat\omega{_j}^k\we\hat\omega_{ki}=\nonumber\\
+& = d\lp\hat e^c\partial_ce_{m[i}e{_{j]}}^m\rp
+ - \hat e^c\partial_ce_{m[l}e{_{j]}}^m\delta^{kl}\we\hat e^d\partial_de_{m[i}e{_{k]}}^m\nn\\ 
+& - \lp\half\hat e^cF{^{1b}}_{cj} + \hat e^k\partial^b e_{m(j}e{_{k)}}^m\rp\we\lp \half \hat e^cF^1_{cbi} - \hat e^l\partial_b e_{n(i}e{_{l)}}^n\rp.
+\end{align}
+
+
+Now we only need $\hat\Theta_{lkji}=\hat R_{lkji}$, which can be read off from what is multiplying $\half\hat e^k\we\hat e^l$ in $\hat\Theta_{ji}$, i.e.
+\begin{align}
+\hat R_{lkji} &= -2\partial_{b} e_{n(i}e{_{l)}}^n\partial^b e_{m(j}e{_{k)}}^m\nn\\
+%& = -\half\lbp \partial_{b} e_{ni}e{_{l}}^n\partial^b e_{mj}e{_{k}}^m
+%+\partial_{b} e_{ni}e{_{l}}^n\partial^b e_{mk}e{_{j}}^m\right.\nn\\
+%& \hspace{.7cm}\left.+\partial_{b} e_{nl}e{_{i}}^n\partial^b e_{mj}e{_{k}}^m
+%+\partial_{b} e_{nl}e{_{i}}^n\partial^b e_{mk}e{_{j}}^m\rbp\nn\\ 
+\end{align}
+where we use our heads to remember the antisymmetry in $l\leftrightarrow k$ and $j\leftrightarrow i$. 
+
+And at last we can happily calculate the Ricci scalar as a contraction of the Riemann tensor
+\begin{align}
+\hat R &= \hat R{_{BA}}^{BA} = \hat R{_{ba}}^{ba} + 2\hat R{_{ja}}^{ja} + \hat R{_{ji}}^{ji}\nn\\
+&= R - \half F\bb{1}{bai}F\bu{1bai} - \frac{1}{4}\lp F\bu{1a}\bd{b}\bu{i}F\bb{1}{a}\bu{b}\bd{i} - F\bu{1a}\bd{a}\bu{i}F\bb{1}{b}\bu{b}\bd{i} \rp\nn\\
+& +2\bigg\{ 
+-e{_{j}}^n\partial_{a}e{_n}^{(i}\partial^{|a|} e\od{m}\ou{j)}e\od{i}\ou{m}  
+- D_{a}\lp\partial^{a} e_{|m|(j}e\od{k)}\ou{m}\delta^{jk}\rp\nn\\
+& + \frac{1}{4} F\bb{1}{b}\bu{a}\bd{j}F\bu{1b}\bd{a}\bu{j} 
+- \partial^a e_{m(i}e{_{j)}}^m\partial_{a} e\od{n}\ou{[i} e^{j]n}
+\bigg\}\nn\\
+&-2\partial_{b} e_{n(i'}e{_{[j)}}^n\partial^b e_{|m|(i]}e{_{j')}}^m\delta^{j[j'}\delta^{i']i}\nn\\
+&= R + F\bb{1}{bai}F\bu{1bai}\lbp - \half - \frac{1}{4} + \half\rbp\nn\\
+& -2e{_{j}}^n\partial_{a}e{_n}^{(i}\partial^{|a|} e\od{m}\ou{j)}e\od{i}\ou{m} - 2D_{a}\lp e\od{i}\ou{m}\partial^{a} e_{mi}\rp-0\nn\\
+& - \lp \partial_{a} e_{n(j}e{_{j')}}^n\partial^a e_{m(i'}e{_{i)}}^m - \partial_{a} e_{n(j}e{_{i')}}^n\partial^a e_{m(j'}e{_{i)}}^m\rp\delta^{jj'}\delta^{i'i}\nn\\
+&= R - \frac{1}{4} G_{mn}F\bb{1}{ba}\bu{m}F\bu{1ban} -\partial_{a}e{_n}^{(i}e\ou{j)n} e\od{i}\ou{m}\partial^{a} e\od{m}\od{j}\nn\\
+&- 2D_{a}\lp e\od{i}\ou{m}\partial^{a} e\od{m}\ou{i}\rp
+- \partial_{a} e\od{n}\ou{j}e\od{j}\ou{n}\partial^a e\od{m}\ou{i}e\od{i}\ou{m}
+\eqnlab{ricci_reduced_scalar}
+\end{align}
+
+\subsection{The Ricci scalar in the Einstein frame}
+
+%Vielbeinen 'r det som transformerar?\\
+%Anv'nd inte affine connection?\\
+
+Consider the Ricci scalar (use \eqnref{conven_theta_omegadef} to get $R\od{NM}\ou{B}\od{A}$)
+\begin{align}
+R(e,\omega) &= e{_B}^Ne^{AM}R\od{NM}\ou{B}\od{A} = \eta^{DB}\eta^{CA}\Theta_{DCBA} \nonumber \\
+&= \eta^{DB}\eta^{CA}\lbp 2\partial_{[D}\omega_{C]BA} + 2\omega{_{[D|B|}}^E\omega_{C]EA} \rbp,
+\end{align}
+under a metric scaling
+\begin{align}
+e{_{M}}^A &= e^{-s\varphi}\tilde e{_{M}}^A,\hspace{2cm}e{_{A}}^M = e^{s\varphi}\tilde e{_{A}}^M\nn\\
+g{_{MN}} &= e^{-2s\varphi}\tilde g_{MN},\hspace{1.75cm}g{^{MN}} = e^{2s\varphi}\tilde g^{MN}\nn\\
+A_{(P)}^2 &= g^{M_1N_1}\dots g^{M_pN_p}A_{M_p\dots M_1}A_{N_p\dots N_1} = e^{2sp\varphi} \tilde A_{(P)}^2
+\end{align}
+where the indices of p-forms $A_{(p)}$ will be naturally downstairs curved and raised using the transformed metric $\tilde g^{MN}$. In particular we should be careful not moving around the indices on the derivatives too much.  
+We can use \eqnref{ricci_spin_affine} to express the spin connection $\omega\od{M}\ou{A}\od{B}$ in terms of the Christoffel connection.
+After some work we get R as
+
+%The transformed affine connection becomes
+%\begin{align}
+%\Gamma^N_{MP} &= \half e^{2s\varphi}\tilde g^{NS}\lbp \partial_P\lp e^{-2s\varphi}\tilde g_{MS}\rp + \partial_M\lp e^{-2s\varphi}\tilde g_{PS}\rp - \partial_S\lp e^{-2s\varphi}\tilde g_{MP}\rp\rbp\nn\\
+%& = \tilde\Gamma^N_{MP}+\frac{-2s}{2}\tilde g^{NS}\lbp \partial_P\varphi\tilde g_{MS} + \partial_M\varphi\tilde g_{PS} - \partial_S\varphi\tilde g_{MP}\rbp\nn\\
+%& = \tilde\Gamma^N_{MP} - s\lbp \partial\bd{P}\varphi\delta\bb{N}{M} + \partial\bd{M}\varphi\delta\bb{N}{P} - \partial\od{S}\varphi\tilde g^{NS}\tilde g_{MP}\rbp
+%\end{align}
+%where $\tilde\Gamma^N_{MP}$ is the connection constructed using the transformed metric.
+%Note that the vielbeins of the partial derivatives $\partial_M = e\od{M}\ou{A}\partial_A$ should not be transformed. 
+%Thus the transformed spin connection becomes 
+%\begin{align}
+%\omega\od{M}\ou{A}\od{B} &= \tilde e{_N}^A\tilde e{_B}^P\lbp\tilde\Gamma^N_{MP} - s\lbp\partial\bd{P}\varphi\delta\bb{N}{M} + \partial\bd{M}\varphi\delta\bb{N}{P} - \partial\od{S}\varphi\tilde g^{NS}\tilde g_{MP}\rbp\rbp\nn\\
+%& - e^{s\varphi}\tilde e{_{B}}^P\partial_M\lp e^{-s\varphi}\tilde e{_{P}}^A\rp\nn\\
+%& = \tilde\omega\od{M}\ou{A}\od{B}-s\lbp\tilde e{_M}^A\tilde e{_B}^P\partial_P\varphi + \delta\bb{A}{B}\partial\bd{M}\varphi - \tilde e^{SA}\tilde e_{BM}\partial\od{S}\varphi \rbp + s\delta\bb{A}{B}\partial\bd{M}\varphi\nn\\
+%& = \tilde\omega\od{M}\ou{A}\od{B}-2s\eta_{BC}\tilde e{_M}^{[A}\tilde e^{C]P}\partial_P\varphi
+%\end{align}
+%where $\omega$ of course is created with the transformed metric.
+%\lbp \partial_{[D}\omega_{C]BA} + \omega{_{[D|B|}}^E\omega_{C]EA} \rbp
+
+\begin{align}
+%R &= e\od{[B}\ou{N}e\od{A]}\ou{M}\bigg\{ 2\partial\od{N}\lbp \tilde\omega\od{M}\ou{B}\ou{A}-2s \tilde e\od{M}\ou{B}\tilde e^{AP}\partial_P\varphi \rbp\nn\\ 
+%& + 2\eta_{EF}\lbp\tilde\omega\od{N}\ou{B}\ou{F}-2s \tilde e\od{N}\ou{[B}\tilde e\ou{F]P} \partial\od{P}\varphi\rbp \lbp\tilde\omega\od{M}\ou{E}\ou{A}-2s \tilde e\od{M}\ou{[E}\tilde e\ou{A]P}\partial\od{P}\varphi\rbp\bigg\}\nn\\
+%& = 2\tilde e\od{[B}\ou{N}\tilde e\od{A]}\ou{M}e^{2s\varphi}\bigg\{
+% d omega
+%\partial\od{N}\tilde\omega\od{M}\ou{B}\ou{A}
+%-2s \partial\od{N}\tilde e\od{M}\ou{B}\tilde e^{AP}\partial_P\varphi
+%-2s \tilde e\od{M}\ou{B}\partial\od{N}\tilde e^{AP}\partial_P\varphi
+%-2s \tilde e\od{M}\ou{B}\tilde e^{AP}\partial\od{N}\partial_P\varphi
+%\nn\\&
+% omega*omega
+%\tilde\omega\od{N}\ou{B}\od{E}\tilde\omega\od{M}\ou{E}\ou{A}
+%-2s\tilde\omega\od{N}\ou{B}\od{E}\tilde e\od{M}\ou{[E}\tilde e\ou{A]P} \partial\od{P}\varphi
+%-2s\tilde e\od{N}\ou{[B}\tilde e\ou{E]P}\partial\od{P}\varphi\tilde\omega\od{M}\od{E}\ou{A}
+%+4s^2\eta_{EF}\tilde e\od{N}\ou{[B}\tilde e\ou{F]P}\partial\od{P}\varphi \tilde e\od{M}\ou{[E}\tilde e\ou{A]Q}\partial\od{Q}\varphi
+%\bigg\}\nn\\
+%
+%
+%& = e^{2s\varphi}\bigg\{ \tilde R 
+% d omega
+%-4s \tilde e\od{[B}\ou{N}\tilde e\od{A]}\ou{M}\partial\od{N}\tilde e\od{M}\ou{B}\tilde e^{AP}\partial_P\varphi
+%-4s \tilde e\od{[B}\ou{N}\tilde e\od{A]}\ou{M}\tilde e\od{M}\ou{B}\partial\od{N}\tilde e^{AP}\partial_P\varphi
+%-4s \tilde e\od{[B}\ou{N}\delta\bb{B}{A]}\tilde e^{AP}\partial\od{N}\partial_P\varphi
+%\nn\\&
+% omega*omega
+%
+%-4s\lbp
+%\tilde e\bd{[B}\bu{N}\delta\bb{[E}{A]}\tilde e\bu{A]P}\partial\bd{P}\varphi\tilde\omega\bd{N}\bu{B}\bd{E}
+%+\delta\bb{[B}{[B}\tilde e\bd{A]}\bu{|M|}\tilde e\bu{E]P}\partial\bd{P}\varphi\tilde\omega\bd{M}\bd{E}\bu{A}
+%\rbp\nn\\&
+%+8s^2\delta\bb{[B}{[B}\tilde e\bu{F]P}\partial\bd{P}\varphi \delta\bb{[E}{A]}\tilde e\bu{A]Q}\partial\bd{Q}\varphi \eta\bd{EF}
+%\bigg\}\nn\\
+%& = e^{2s\varphi}\bigg\{ \tilde R
+%-2s^2\lp 1 - \delta\bb{B}{B}\rp\partial\bu{P}\varphi\partial\bd{P}\varphi
+%-2s\lp 1 - \delta\bb{B}{B}\rp\partial\bu{P}\partial\bd{P}\varphi
+%\nn\\&
+%+s^2\lp \delta\bb{B}{B}-1-1+1-\delta\bb{B}{B}\delta\bb{A}{A}+\delta\bb{A}{B}\delta\bb{B}{A}-\delta\bb{A}{A}+1\rp \partial\bu{P}\varphi\partial\bd{P}\varphi
+%\bigg\}\nn\\
+%& = e^{2s\varphi}\bigg\{
+%\tilde R
+%+ 2s\lp d-1\rp\Box\varphi
+%+ s^2\lp d-d^2+d-d- 2\lp 1 - d\rp\rp\lp\partial\varphi^2\rp
+%\bigg\}\nn\\
+&R = e^{2s\varphi}\bigg\{\tilde R + 2s\lp d-1\rp\Box\varphi + s^2(d-1)(d-2)\partial\varphi^2\bigg\}
+\eqnlab{RicciE}
+\end{align}
+Note that by using \eqnref{conven_divergence} and that s is chosen to cancel the prefactor of $\tilde R= R_E$ in the Einstein frame, the second term disappears when integrating
+\begin{equation}      
+\int d^dx \sqrt{|g_E|} 2s(d-1)D_\mu D^\mu\varphi = 2s(d-1)\int d^dx \partial_\mu\lp\frac{1}{\sqrt{|g_E|}}D^\mu\varphi\rp = 0   
+\end{equation}
+
+
+%\begin{align}
+%R\od{M}\ou{A} &= e\od{B}\ou{N}\bigg\{ 2\partial\od{[N}\lbp \tilde\omega\od{M]}\ou{B}\ou{A}-2s \tilde e\od{M]}\ou{[B}\tilde e^{A]P}\partial_P\varphi \rbp\nn\\ 
+%& + 2\eta_{EF}\lbp\tilde\omega\od{[N}\ou{B}\ou{F}-2s \tilde e\od{[N}\ou{[B}\tilde e\ou{F]P} \partial\od{P}\varphi\rbp \lbp\tilde\omega\od{M]}\ou{E}\ou{A}-2s \tilde e\od{M]}\ou{[E}\tilde e\ou{A]P}\partial\od{P}\varphi\rbp\bigg\}\nn\\
+%& = 2\tilde e\od{B}\ou{N}e^{2s\varphi}\bigg\{
+%% d omega
+%\partial\od{[N}\tilde\omega\od{M]}\ou{B}\ou{A}
+%-2s \partial\od{[N}\tilde e\od{M]}\ou{[B}\tilde e^{A]P}\partial_P\varphi
+%+2s \partial\od{[N}\tilde e^{[A|P|}\tilde e\od{M]}\ou{B]}\partial_P\varphi
+%+2s \tilde e\od{[M}\ou{[B}\tilde e^{A]P}\partial\od{N]}\partial_P\varphi
+%\nn\\&
+%% omega*omega
+%\tilde\omega\od{[N}\ou{B}\od{|E|}\tilde\omega\od{M]}\ou{E}\ou{A}
+%-2s\tilde\omega\od{[N}\ou{B}\od{|E|}\tilde e\od{M]}\ou{[E}\tilde e\ou{A]P} \partial\od{P}\varphi
+%-2s\tilde e\od{[N}\ou{[B}\tilde e\ou{E]P}\partial\od{|P|}\varphi\tilde\omega\od{M]}\od{E}\ou{A}
+%+4s^2\eta_{EF}\tilde e\od{[N}\ou{[B}\tilde e\ou{F]P}\partial\od{|P|}\varphi \tilde e\od{M]}\ou{[E}\tilde e\ou{A]Q}\partial\od{Q}\varphi
+%\bigg\}\nn\\
+%%
+%%
+%& = e^{2s\varphi}\bigg\{ \tilde R 
+%% d omega
+%-4s \tilde e\od{B}\ou{N}\partial\od{[N}\tilde e\od{M]}\ou{[B}\tilde e^{A]P}\partial_P\varphi
+%+4s \tilde e\od{B}\ou{N}\partial\od{[N}\tilde e^{[A|P|}\tilde e\od{M]}\ou{B]}\partial_P\varphi
+%+4s \tilde e\od{B}\ou{N}\tilde e\od{[M}\ou{[B}\tilde e^{A]P}\partial\od{N]}\partial_P\varphi
+%\nn\\&
+%% omega*omega
+%%
+%-4s\tilde e\od{B}\ou{N}\tilde\omega\od{[N}\ou{B}\od{|E|}\tilde e\od{M]}\ou{[E}\tilde e\ou{A]P} \partial\od{P}\varphi
+%-4s\tilde e\od{B}\ou{N}\tilde e\od{[N}\ou{[B}\tilde e\ou{E]P}\partial\od{|P|}\varphi\tilde\omega\od{M]}\od{E}\ou{A}
+%+8s^2\tilde e\od{B}\ou{N}\eta_{EF}\tilde e\od{[N}\ou{[B}\tilde e\ou{F]P}\partial\od{|P|}\varphi \tilde e\od{M]}\ou{[E}\tilde e\ou{A]Q}\partial\od{Q}\varphi
+%\bigg\}\nn\\
+%& = e^{2s\varphi}\bigg\{ \tilde R 
+%% d omega
+%-4s \tilde e\od{B}\ou{N}\partial\od{[N}\tilde e\od{M]}\ou{[B}\tilde e^{A]P}\partial_P\varphi
+%+4s \tilde e\od{B}\ou{N}\partial\od{[N}\tilde e^{[A|P|}\tilde e\od{M]}\ou{B]}\partial_P\varphi\nn\\&
+%+s\big(
+%\tilde e^{AP}\partial\od{M}\partial_P\varphi
+%-\tilde e\od{M}\ou{A}\partial\ou{P}\partial_P\varphi
+%-d\tilde e^{AP}\partial\od{M}\partial_P\varphi
+%+\tilde e^{AP}\partial\od{M}\partial_P\varphi
+%\big)
+%\nn\\&
+%% omega*omega
+%%
+%-4s\tilde e\od{B}\ou{N}\tilde\omega\od{[N}\ou{B}\od{|E|}\tilde e\od{M]}\ou{[E}\tilde e\ou{A]P} \partial\od{P}\varphi
+%-4s\tilde e\od{B}\ou{N}\tilde e\od{[N}\ou{[B}\tilde e\ou{E]P}\partial\od{|P|}\varphi\tilde\omega\od{M]}\od{E}\ou{A}\nn\\&
+%+s^2\big(
+%d\tilde e\ou{AP}\partial\od{M}\varphi\partial\od{P}\varphi
+%-d \tilde e\od{M}\ou{A}\partial\ou{P}\varphi\partial\od{P}\varphi
+%-\tilde e\ou{AP}\partial\od{M}\varphi\partial\od{P}\varphi
+%+\tilde e\od{M}\ou{A}\partial\ou{P}\varphi\partial\od{P}\varphi\nn\\&
+%-\tilde e\ou{AP}\partial\od{M}\varphi\partial\od{P}\varphi
+%+\tilde e\od{M}\ou{A}\partial\od{P}\varphi\partial\ou{P}\varphi
+%+\tilde e\ou{AP}\partial\od{M}\varphi\partial\od{P}\varphi
+%-\tilde e\ou{AP}\partial\od{M}\varphi\partial\od{P}\varphi 
+%\big)
+%\bigg\}\nn\\
+%& = e^{2s\varphi}\bigg\{ \tilde R
+%\bigg\}\nn\\
+%\end{align}
+
+
+
+%\begin{align}
+%R &= 2e^{s\varphi}\partial\bu{[B}\lbp e^{s\varphi}\lbp\tilde\omega\bu{A]}\bd{BA}-2s \delta\bb{A]}{B}\partial\bd{A}\varphi \rbp\rbp\nn\\ 
+%& + 2e^{2s\varphi}\lbp\tilde\omega\bu{[B}\bd{B}\bu{|E|}-2s\eta\bu{EF}\delta\bb{[B}{[B}\partial\bd{F]}\varphi\rbp \lbp\tilde\omega\bu{A]}\bd{EA}-2s\delta\bb{A]}{[E}\partial\bd{A]}\varphi\rbp\nn\\
+%& = 2e^{2s\varphi}\bigg\{
+%\half\tilde R
+%% d omega
+%+ s\partial\bu{[B}\varphi\tilde\omega\bu{A]}\bd{BA}
+%- 2s^2\partial\bu{[B}\varphi\delta\bb{A]}{B}\partial\bd{A}\varphi
+%- 2s\delta\bb{A}{[B}\partial\bu{B}\partial\bd{A]}\varphi
+%\nn\\&
+%% omega*omega
+%-2s\tilde\omega\bu{[B}\bd{B}\bu{|E|}\delta\bb{A]}{[E}\partial\bd{A]}\varphi
+%-2s\eta\bu{EF}\delta\bb{[B}{[B}\partial\bd{F]}\varphi\tilde\omega\bu{A]}\bd{EA}
+%+4s^2\eta\bu{EF}\delta\bb{[B}{[B}\partial\bd{F]}\varphi\delta\bb{A]}{[E}\partial\bd{A]}\varphi
+%\bigg\}\nn\\
+%& = e^{2s\varphi}\bigg\{
+%\tilde R
+%+ 2s\partial\bu{[B}\varphi\tilde\omega\bu{A]}\bd{BA}
+%- 4s\delta\bb{A}{[B}\partial\bu{B}\partial\bd{A]}\varphi
+%\nn\\&
+%+4s^2\lp 
+%2\eta\bu{EF}\delta\bb{[B}{[B}\partial\bd{F]}\varphi\delta\bb{A]}{[E}\partial\bd{A]}\varphi
+%- \partial\bu{[B}\varphi\delta\bb{A]}{B}\partial\bd{A}\varphi\rp
+%\bigg\}\nn\\
+%& = e^{2s\varphi}\bigg\{
+%\tilde R
+%+ 2s\partial\bu{[B}\varphi\tilde\omega\bu{A]}\bd{BA}
+%- 2s\lp 1-\delta\bb{B}{B}\rp\partial\bu{A}\partial\bd{A}\varphi
+%\nn\\&
+%+s^2\lp \delta\bb{B}{B}-1-1+1-\delta\bb{B}{B}\delta\bb{A}{A}+\delta\bb{A}{B}\delta\bb{B}{A}-\delta\bb{A}{A}+1- 2\lp 1 - \delta\bb{B}{B}\rp\rp\partial\bu{A}\varphi\partial\bd{A}\varphi
+%\bigg\}\nn\\
+%& = e^{2s\varphi}\bigg\{
+%\tilde R
+%+ 2s\partial\bu{[B}\varphi\tilde\omega\bu{A]}\bd{BA}
+%+ 2s\lp d-1\rp\partial\bu{A}\partial\bd{A}\varphi
+%\nn\\&
+%+s^2\lp d-d^2+ d - d -2 + 2d\rp\lp\partial\phi\rp^2
+%\bigg\}\nn\\
+%& = e^{2s\varphi}\bigg\{
+%\tilde R
+%+ 2s\partial\bu{[B}\varphi\tilde\omega\bu{A]}\bd{BA}
+%+ 2s\lp d-1\rp\partial\bu{A}\partial\bd{A}\varphi
+%+s^2(d-1)(d-2)\lp\partial\phi\rp^2
+%\bigg\}
+%\end{align}
+
+
+%\begin{align}
+%R &= 2\eta^{DB}\eta^{CA}\big[e^{s\varphi}\partial_{[D}\lbp e^{s\varphi}\lbp\tilde\omega_{C]BA}-s\lp \eta_{C]B}\partial_A\varphi - \eta_{C]A}\partial_B\varphi \rp\rbp\rbp\big]\nn\\ 
+%& + 2e^{2s\varphi}\lbp\tilde\omega{_{[D}}^{DE}-s\lp \delta_{[D}^D\partial^E\varphi - \partial^{D}\varphi\delta_{[D}^E \rp\rbp \lbp\tilde\omega{_{C]E}}^C-s\lp \eta_{C]E}\partial^C\varphi - \delta_{C]}^C\partial_E\varphi \rp\rbp\nn\\
+%& = 2e^{2s\varphi}\bigg\{
+%\half\tilde R
+%% d omega
+%+ s\partial_{[D}\varphi\tilde\omega{_{C]}}^{DC}
+%- s^2\partial_{[D}\varphi\delta_{C]}^D\partial^C\varphi
+%+ s^2\partial_{[D}\varphi\delta_{C]}^C\partial^D\varphi
+%\nn\\&
+%-s\partial_{[D}\partial^C\varphi\delta_{C]}^D
+%+s\partial_{[D}\partial^D\varphi\delta_{C]}^C
+%% omega*omega
+%-s\tilde\omega{_{[D}}^{DE}\eta_{C]E}\partial^C\varphi
+%+s\tilde\omega{_{[D}}^{DE}\delta_{C]}^C\partial_E\varphi
+%\nn\\&
+%-s\delta_{[D}^D\partial^E\varphi\tilde\omega{_{C]E}}^C
+%+s^2\delta_{[D}^D\partial^E\varphi\eta_{C]E}\partial^C\varphi
+%-s^2\delta_{[D}^D\partial^E\varphi\delta_{C]}^C\partial_E\varphi
+%\nn\\&
+%+s\partial^{D}\varphi\delta_{[D}^E\tilde\omega{_{C]E}}^C
+%-s^2\partial^{D}\varphi\delta_{[D}^E\eta_{C]E}\partial^C\varphi
+%+s^2\partial^{D}\varphi\delta_{[D}^E\delta_{C]}^C\partial_E\varphi
+%\bigg\}\nn\\
+%%
+%& = e^{2s\varphi}\bigg\{
+%\tilde R
+%+ 2s\lp
+%% d omega
+%\tilde\omega{_{[C}}^{CD}\partial_{D]}\varphi
+%%+\partial_{[D}\partial^D\varphi\delta_{C]}^C
+%+2\partial_{[D}\partial^D\varphi\delta_{C]}^C
+%% omega*omega
+%-\tilde\omega{_{[C}}^{CE}\eta_{D]E}\partial^D\varphi
+%\right.\nn\\&\left.
+%+\tilde\omega{_{[C}}^{CE}\delta_{D]}^D\partial_E\varphi
+%-\tilde\omega{_{[C}}^{CE}\delta_{D]}^D\partial_E\varphi
+%+\tilde\omega{_{[C}}^{CD}\partial_{D]}\varphi\rp\nn\\
+%&+2s^2\lp
+%% d omega
+%+\partial_{[D}\varphi\partial^D\varphi\delta_{C]}^C
+%+\partial_{[D}\varphi\partial^D\varphi\delta_{C]}^C
+%% omega*omega
+%-\partial_{[D}\varphi\partial^D\varphi\delta_{C]}^C
+%-\delta_{[D}^D\delta_{C]}^C(\partial\varphi)^2
+%-0
+%+\partial_{[D}\varphi\partial^{D}\varphi\delta_{C]}^C\rp
+%\bigg\}\nn\\
+%& = e^{2s\varphi}\lbp 
+%\tilde R
+%+ 2s\lp \delta\bb{C}{C}-1\rp\Box\varphi
+%-s^2\lp 2(\delta\bb{C}{C}-1) - (\delta\bb{D}{D}\delta\bb{C}{C}-\delta\bb{D}{C}\delta\bb{C}{D}) \rp(\partial\varphi)^2
+%\rbp\nn\\
+%& = e^{2s\varphi}\lbp 
+%\tilde R
+%+ 2s (d-1)\Box\varphi
+%+s^2 (2d-2-d^2+d)(\partial\varphi)^2
+%\rbp\nn\\
+%& = e^{2s\varphi}\lbp \tilde R+2s(d-1)\Box\varphi -s^2(d-1)(d-2)(\partial \varphi)^2 \rbp
+%\eqnlab{RicciE}
+%\end{align}
+%%
+%Note that by using \Eqnref{conven_divergence} and that s is chosen to cancel the prefactor of $\tilde R= R_E$ in the Einstein frame, the second term disappears when integrating
+%\begin{equation}      
+%\int d^dx \sqrt{|g_E|} 2s(d-1)D_\mu D^\mu\varphi = 2s(d-1)\int d^dx \partial_\mu\lp\frac{1}{\sqrt{|g_E|}}D^\mu\varphi\rp = 0   
+%\end{equation}
+
+
+
+

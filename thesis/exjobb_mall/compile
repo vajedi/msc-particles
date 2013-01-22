@@ -1,0 +1,6 @@
+latex thesis
+bibtex thesis
+latex thesis
+latex thesis
+dvipdfm -p a4 thesis.dvi
+dvips thesis.dvi

@@ -1,0 +1,1592 @@
+\chapter{The equations of motion}
+\chlab{solutions}
+\section{World-volume field strengths and the equations of motion}
+Now it is finally time to write down the world-volume field strengths and calculate the equations of motion. As has been 
+mentioned several times by now the field strengths will be of the form $da-A$, but we will soon see that extra terms need 
+to be added in order to make them gauge invariant. Starting with a $D_1$-brane in 9-dimensional supergravity, 
+the potentials $A^{1m}$, $A^2$, and $B_m$ 
+%\footnote{All dilaton factors will be suppressed during these calculations, they can be reinstated at any time with exponent factors determined using $\kappa$ symmetry, c.f. \cite{}.}
+will give rise to three field strengths according to
+\begin{align}
+\eqnlab{solution_9d_fieldstrengths}
+\omega^{1m} &= d\phi^{1m}-A^{1m}, \nonumber \\
+\omega^{2} &= d\phi^2 - A^2, \nonumber \\
+f'_m &=da_m - B_m,
+\end{align}
+where $\phi^{1m}$ and $\phi^2$ are scalars and $a_m$ is a 1-form. It is easy to see that 
+$\omega^{1m}$ and $\omega^{2}$ are gauge invariant if $\phi^{1m}$ and $\phi^2$ are invariant under the gauge transformations 
+$\chi^{1m}$ and $\chi^2$ respectively. For $f'_m$ we get
+\begin{align}
+\delta f'_m &= d \delta a_m -\delta B_m = d \delta a_m - (d{\chi}_m + {\epsilon}_{mn}{\chi}^2 \wedge F^{1n}) \nonumber \\
+&= d(\delta a_m -\chi_m) - \delta({\epsilon}_{mn}{\phi}^2 \wedge F^{1n}),
+\end{align}
+which implies $\delta a_m = \chi_m$ and that the field strength
+\begin{equation}
+\eqnlab{solution_9d_fm}
+f'_m + {\epsilon}_{mn}{\phi}^2 \wedge F^{1n}= da_m - B_m + {\epsilon}_{mn}{\phi}^2 \wedge F^{1n}
+\end{equation}
+is gauge invariant. The corrected world volume 2-form field strength is thus 
+\begin{equation}
+\eqnlab{solution_9d_h}
+f_m=da_m - B_m + {\epsilon}_{mn}{\phi}^2 \wedge F^{1n} + \bar f_m,
+\end{equation}
+where we have introduced an additional 2-form $\bar f_m(\omega^{1m},\omega^2)$, which is gauge invariant since it depends only on field strengths.
+To be able to vary this term when deriving the equations of motion we let
+% Ingen *\beta_m term kan skapas p.g.a bara en typ av index
+\begin{align}
+\bar f_m = \alpha_{mn}\omega^{1n} \wedge \omega^2
+\end{align}
+where $\alpha_{mn}$ is on the form $\alpha_1\W_{mn}+\alpha_2\epsilon_{mn}$ and $\alpha_1$ and $\alpha_2$ are scalar functions of $\omega^1$ and $\omega^2$, which seems to be the most general expression for $\bar f_m$ if we do not include dualities of the field strengths.
+The significance of this term is not clear yet and although it may turn out to be meaningless we include it because we can.
+We also note there to be an ambiguity related to redefinitions of the background potentials. 
+The Bianchi identities for the background field strengths was previously found to be
+\begin{align}
+dF^{1m} = 0,\;\;\;\;\; dF^{2} = 0\;\;\;\;\;\mbox{ and } \;\;\;\;\;\; dH_{m} = -\epsilon_{mn}F^{1n}\we A^2.
+\end{align}  
+The first $2$ are closed forms, so $F$ can be written $F=dA$. The third is invariant under field redefinitions, e.g. $B_m = \tilde B_m + \beta\epsilon_{mn}A^{1n}\we A^2$, because $B_m$ enters the identity as $dH_m = d^2B_m + \cdots$.
+The new potential $\tilde B_m$ must have a different gauge transformation
+\begin{align}
+\delta \tilde B_{m} &= d\tilde\chi_{m} + \lp\beta+1\rp\epsilon_{mn}\chi^2\we F^{1n} - \beta\epsilon_{mn}\chi^{1n}\we F^2,
+\end{align}
+leaving $H_m$ invariant.
+Using $\tilde B_m$ to create our world volume field strengths as before, we find
+\begin{align}
+f_m &=da_m - \tilde B_m + \lp\beta+1\rp\epsilon_{mn}{\phi}^2 \wedge F^{1n} - \beta\epsilon_{mn}\phi^{1n}\we F^2
+\end{align}
+which cannot be taken back to the form in \eqnref{solution_9d_h} by a field redefinition of $a_m$.  
+% (use $a_1=-a_2=-\beta$)
+%\begin{align}
+%a_m &= \tilde a_m + a_1\epsilon_{mn}A^{1n}\phi^2 + a_2\epsilon_{mn}\phi^{1n}A^2\nn\\
+%da_m &= \tilde da_m + a_1\epsilon_{mn}A^{1n} (\omega^2 + A^2) + a_1\epsilon_{mn}F^{1n} \phi^2 + a_2\epsilon_{mn}A^2(\omega^{1n} + A^{1n}) + a_2\epsilon_{mn}\phi^{1n}F^2\nn\\
+%&= \tilde da_m  - \beta\epsilon_{mn}A^{1n}\omega^2 + \beta\epsilon_{mn}A^2\omega^{1n} - \beta\epsilon_{mn}F^{1n} \phi^2 + \beta\epsilon_{mn}\phi^{1n}F^2\nn\\
+%\end{align}
+The $\beta$ terms will enter the equations of motion in a way very similar to a $\alpha_{mn}=\alpha\epsilon_{mn}$ term (proportional to $F$ when varied w.r.t. $\phi$).  
+We will not consider terms of this type from now on and focus on artificially introduced terms such as the $\alpha$ term but we note that the two different types of term do not enter the equations of motion in the exact same way and thus some results found using parameters of $\alpha$ type may be incomplete or erroneous.
+
+The first two lines in \eqnref{solution_9d_fieldstrengths} and \eqnref{solution_9d_h} thus gives the field strengths 
+for a $D_1$-brane in 9-dimensional supergravity, obeying the following Bianchi identities 
+\begin{align}
+\eqnlab{solution_9d_bianchi}
+d \omega^{1m}&=-F^{1m} \\
+d \omega^{2}&=-F^2\\
+d f_m &= - H_m + \epsilon_{mn}\lp\omega^{2}+2A^{2}\rp \wedge F^{1n} + d\bar f_m.
+\end{align}
+Doing the same calculations for a $D_2$-brane in 8-dimensional supergravity yields the field strengths
+\begin{align}
+\eqnlab{solution_8d_field_strengths}
+\omega^{rm} &= d\phi^{rm} - A^{rm}, \nonumber \\
+f_m &= da_m - B_m + {1 \over 2} \epsilon_{mnp} \epsilon_{rs} \phi^{rn} F^{sp}, \nonumber \\
+h^r &= db^r - C^r - {1 \over 3} \phi^{rm}H_m - {2 \over 3}a_m \wedge F^{rm} + \bar h^r 
+\end{align}
+where $\bar h^r$ is a gauge invariant 3-form. We will expand it as
+\begin{align}
+\bar h^r = \alpha\ou{r}\od{s}\omega^{sm}\wedge f_m + \beta\ou{r}\od{s}\epsilon_{mnp}\W_{uv} \omega^{sm} \wedge \omega^{un} \wedge \omega^{vp} + *\gamma^r,
+\end{align}
+where $\alpha\ou{r}\od{s} = \alpha_1\delta^r_s + \alpha_2\epsilon\ou{r}\od{s}$, $\beta\ou{r}\od{s} = \beta_1\delta^r_s + \beta_2\epsilon\ou{r}\od{s}$ and $\alpha_1,\alpha_2,\beta_1$ and $\beta_2$ are constants. The last world volume scalar function $\gamma^r$ is dependent on $\omega^{rm}$ and $f_m$ and corresponds to the remaining gauge invariant 3-forms with one free $SL(2,\rr)$ index, e.g. forms like the $\alpha$ and $\beta$ terms, using $\alpha$ or $\beta$ as scalar functions of the field strengths or such terms with the $SL(3)$ indices contracted to arbitrary functions of the field strengths.
+If we series expand $\gamma^r$ to third order in the fields $\omega^{rm}_\alpha$, $\lp*\omega^{rm}\rp^{\beta\alpha}$, $f_{\beta\alpha}^m$ and $\lp*f^m\rp^\alpha$ we find the following different nonzero components
+\begin{align}
+\eqnlab{solution_gamma_expand}
+\gamma^r &= (\delta^r_{r'} + \epsilon\ou{r}\od{r'}) \omega^{r'm}_\alpha\lp \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\omega^{sn}_\beta \omega^{p}_{s\gamma} + \lp*f_m\rp^\alpha + \epsilon_{mnp}\lp*f^n\rp_\beta f^{p\beta\alpha} \rp \nn\\
+\end{align}
+giving
+\begin{align}
+*\gamma^r =& \frac{1}{6}d\xi^\delta\we d\xi^\epsilon\we d\xi^\phi\varepsilon_{\delta\epsilon\phi}\gamma^r\\
+% =& \frac{1}{6}d\xi^\delta\we d\xi^\epsilon\we d\xi^\phi\varepsilon_{\delta\epsilon\phi}\varepsilon^{\alpha\beta\gamma}\lp \epsilon_{mnp}\omega^{rm}_\alpha\omega^{sn}_\beta \omega^{p}_{s\gamma} + \frac{1}{2}\omega^{rm}_\alpha f_{m\gamma\beta}   + \frac{1}{2}\epsilon_{mnp}\omega^{rm}_{\alpha'} f^{n}_{\gamma\beta}f\ou{p}\od{\alpha}\ou{\alpha'}\rp\nn\\  
+% =& -d\xi^\delta\we d\xi^\epsilon\we d\xi^\phi \lp \epsilon_{mnp}\omega^{rm}_{[\delta}\omega^{sn}_\epsilon \omega^{p}_{s\phi]} + \frac{1}{2}\omega^{rm}_{[\delta} f_{m\phi\epsilon]}   + \frac{1}{2}\epsilon_{mnp}\omega^{rm}_{\alpha} f^{n}_{\phi\epsilon}f\ou{p}\od{\delta}\ou{\alpha}\rp\nn\\  
+=& -(\delta^r_{r'} + \epsilon\ou{r}\od{r'})\lp\epsilon_{mnp}\omega^{r'm}\we\omega^{sn}\we\omega^{p}_{s} + \omega^{r'm}\we f_{m} + \epsilon_{mnp} f^{n}\we d\xi^\beta f^{p}_{\beta\alpha}\omega^{r'm\alpha}\rp\nn  
+\end{align}
+i.e. the two first terms are already accounted for in the $\alpha$ and $\beta$ terms and thus $\gamma^r$ has order 3 of its lowest order term.
+
+
+The field strengths are invariant under the gauge transformations
+\begin{align}
+\delta \phi^{rm} &= \chi^{rm}, \nonumber \\
+\delta a_m &= \chi_m - {1 \over 2}\epsilon_{mnp}\epsilon_{rs}A^{rn}\chi^{sp}, \nonumber \\
+\delta b^r &= \chi^r - {2 \over 3}A^{rm} \wedge \chi_m + {1 \over 3}B_m \chi^{rm} + {1 \over 6}\epsilon_{mnp}\epsilon_{st}A^{rm} \wedge A^{sn} \chi^{tp},
+\end{align}
+and the Bianchi identities becomes
+\begin{align}
+\eqnlab{solution_8d_bianchi}
+&d \omega^{rm}=-F^{rm}, \\
+&d f_m=-H_m + {1 \over 2} \epsilon_{mnp} \epsilon_{rs} F^{rn} \wedge \omega^{sp}.
+\end{align}
+
+Finally for a $D_3$-brane in 7-dimensional supergravity we get the world-volume field strengths
+\begin{align}
+\omega^{rs} &= d\phi^{rs} - A^{rs}, \nonumber \\
+f_v &= da_v - B_v - {1 \over 2} \epsilon_{rstuv} \phi^{rs} F^{tu}, \nonumber \\
+h^r &= db^r - C^r - \phi^{rs}H_s - a_s \wedge F^{rs}, 
+\end{align}
+which are invariant under the transformations
+\begin{align}
+\delta \phi^{rs} &= \chi^{rs}, \nonumber \\
+\delta a_v &= \chi_v + {1 \over 2}\epsilon_{rstuv}A^{rs}\chi^{tu}, \nonumber \\
+\delta b^{r'} &= \chi^{r'} - A^{r's} \wedge \chi_s + B_s \chi^{r's} - {1 \over 2}\epsilon_{rstuv}A^{r'r} \wedge A^{st} \chi^{uv},
+\end{align}
+We will not consider this case any more in this thesis.
+
+\subsubsection{Variations of the actions}
+Turning the attention to the action derived in chapter 4 we see that for a $D_1$-brane we get
+\begin{equation}
+S=\int d^2 \xi \sqrt{-g} \lambda [1 + \Phi(\omega^{1m},\omega^{2}) - *f_m*f_n\M^{mn}].
+\end{equation} 
+We will now continue with deriving the equations of motion from this action. Since we do not know the form of $\Phi$ 
+yet, the equations will be implicit to begin with. Especially easy is the e.o.m. coming from $\lambda$,
+\begin{equation}
+1 + \Phi - *f_m*f_n\M^{mn}=0,
+\end{equation}
+which of course cannot be inserted back into the action. Varying with respect to $a_m$ gives
+\begin{align}
+\delta_{a_m}S=& \int * { \delta \Lagr\lp a_{m}\rp \over \delta (a_m) } \wedge \delta (a_m)=-\int 2\lambda *{\partial *f_{m'} \over \partial da_m} *f_n \M^{m'n} \wedge d\delta a_m \nonumber \\
+=& -\int 2\lambda *f_n \M^{mn} \wedge d\delta a_m =0\nonumber \\
+\Rightarrow& \hspace{0.3cm} d \Big{[}\lambda \M^{mn}*f_n\Big{]}=0,
+\end{align}
+where we have used \eqnref{conven_hodge_variation} and \eqnref{conven_deltaS}. Using the same formulas also gives
+\begin{align}
+\delta_{\phi^{1m}}S =& \int * { \delta \Lagr\lp \phi^{1m}\rp \over \delta (\phi^{1m}) } \wedge \delta \phi^{1m} \nonumber \\
+=& \int (\lambda * {\partial \Phi \over \partial \omega^{1m}} - 2 \lambda * {\partial *f_{m'} \over \partial \omega^{1m}} *f_n \M^{m'n}) \wedge d \delta \phi^{1m} \nonumber \\
+=&\int [\lambda *j_{1m} + 2 \lambda {\{} \alpha_{mm'} \omega^2 - *{\partial \alpha_{m'n} \over \partial \omega^{1m}}*(\omega^{1n} \wedge \omega^2){\}}*f_{n'} \M^{m'n'}] \nonumber \\
+& \wedge d\delta \phi^{1m}=0 \nonumber \\
+\Rightarrow \hspace{0.3cm}d&\Big{[}\lambda *j_{1m} + 2 \lambda {\{} \alpha_{mm'} \omega^2 - {\partial \alpha_{m'n} \over \partial \omega^{1m}}*(\omega^{1n} \wedge \omega^2){\}}*f_{n'} \M^{m'n'}\Big{]}=0,
+\end{align}
+where we have defined
+\begin{equation}
+{\partial \Phi \over \partial \omega^{1m}}=j_{1m}.
+\end{equation}
+Varying with respect to $\phi^2$ gives the last e.o.m. as
+\begin{align}
+\delta_{\phi^{2}}S &= \nonumber \\ 
+=& \int * { \delta \Lagr\lp \phi^{2} \rp \over \delta (\phi^{2}) } \wedge \delta \phi^{2} =\int (\lambda * { \partial \Phi \over \partial \omega^2} -2\lambda*{\partial *f_m \over \partial \omega^2 } *f_n \M^{mn}) \wedge d \delta \phi^2 \nonumber \\
+& -\int 2\lambda*{\partial *f_m \over \partial \phi^2 }*f_n \M^{mn} \wedge \delta \phi^2 \nonumber \\
+=& \int[\lambda*j_2 - 2\lambda {\{}\alpha_{mn} \omega^{1n} + *{\partial \alpha_{mn} \over \partial \omega^2 }*(\omega^{1n} \wedge \omega^2){\}}*f_{n'}\M^{mn'}] \wedge d \delta \phi^2 \nonumber \\
+&+\int 2\lambda \epsilon_{mn} F^{1n}*f_{n'}\M^{mn'} \wedge \delta \phi^2=0 \nonumber \\
+\Rightarrow& \hspace{0.3cm} d\Big{[}\lambda*j_2 - 2\lambda {\{}\alpha_{mn} \omega^{1n} + *{\partial \alpha_{mn} \over \partial \omega^2 }*(\omega^{1n} \wedge \omega^2){\}}*f_{n'}\M^{mn'}\Big{]} \nonumber \\
+& \hspace{0.3cm} -2\lambda \epsilon_{mn} F^{1n}*f_{n'}\M^{mn'}=0,
+\end{align}
+with
+\begin{equation}
+{\partial \Phi \over \partial \omega^{2}} =j_2.
+\end{equation}
+Repeating all this for the $D_2$-brane we get the following equations of motion
+%\begin{align}
+%\lambda:& \hspace{0.2cm} 1+\Phi-*h^r*h^s\W_{rs}=0 \\
+%b^r:& \hspace{0.2cm} d \Big{[}\lambda \W_{rs}*h^s\Big{]}=0 \\
+%a_m:& \hspace{0.2cm} d \Big{[}\lambda*k^m+2\lambda \Big{\{} \alpha\ou{r}\od{s} \omega^{sm} + *{\partial \alpha\ou{r}\od{s} \over \partial f_m} *(\omega^{sn} \wedge f_n) - *\frac{\partial\gamma^r}{\partial f_m}\nonumber \\
+%& \hspace{0.2cm} + *{\partial \beta\ou{r}\od{t} \over \partial f_m} *(\epsilon_{m'np}\W_{uv} \omega^{tm'} \wedge \omega^{un} \wedge \omega^{vp}) \Big{\}} *h^s \W_{rs} \Big{]} \nonumber \\
+%& \hspace{0.2cm} -{4 \over 3} \lambda F^{rm} *h^s \W_{rs} =0 \\
+%\phi^{rm}:& \hspace{0.2cm} d \Big{[}\lambda *j_{rm} + 2\lambda \Big{\{} \alpha\ou{r'}\od{r} f_m - *{\partial \alpha\ou{r'}\od{t} \over \partial \omega^{rm}}*(\omega^{tn} \wedge f_n)  \nonumber \\
+%& \hspace{0.2cm} - *{\partial \beta\ou{r'}\od{t} \over \partial \omega^{rm}} *(\epsilon_{m'np}\W_{uv} \omega^{tm'} \wedge \omega^{un} \wedge \omega^{vp}) + *\frac{\partial\gamma^{r'}}{\partial\omega^{rm}}\nonumber \\
+%& \hspace{0.2cm} + \epsilon_{mnp}(\beta\ou{r'}\od{r}\W_{ut}+ 2\beta\ou{r'}\od{t}\W_{ur})\omega^{un} \wedge \omega^{tp} \Big{\}}*h^{s} \W_{r's} \Big{]} \nonumber \\
+%& \hspace{0.2cm} + \lambda \Big{[}{1 \over 2}\epsilon_{mnp}\epsilon_{rs} *k^n \wedge F^{sp} +{2 \over 3} H_m*h^s\W_{sr} \nonumber \\
+%& \hspace{0.2cm} + \epsilon_{mnp}\epsilon_{rs} *h^t \W_{r't} F^{sp} \wedge \Big{\{} \alpha\ou{r'}\od{u} \omega^{un} - *{\partial \alpha\ou{r'}\od{u} \over \partial f_n}*(\omega^{um'} \wedge f_{m'}) \nonumber \\
+%& \hspace{0.2cm} - *{\partial \beta\ou{r'}\od{t'} \over \partial f_n} *(\epsilon_{m'n'p'}\W_{uv} \omega^{t'm'} \wedge \omega^{un'} \wedge \omega^{vp'}) \Big{\}}\Big{]}=0,
+%\eqnlab{solution_8d_eom}
+%\end{align}
+\begin{align}
+\eqnlab{solution_8d_eom}
+\lambda:& \hspace{0.2cm} 1+\Phi-*h^r*h^s\W_{rs}=0 \\
+b^r:& \hspace{0.2cm} d \Big{[}\lambda \W_{rs}*h^s\Big{]}=0 \\
+a_m:& \hspace{0.2cm} d \Big{[}\lambda*k^m - 2\lambda*\frac{\partial *\bar h^r}{\partial f_m}*h^s \W_{rs} \Big{]} -{4 \over 3} \lambda F^{rm} *h^s \W_{rs} =0 \\
+\phi^{rm}:& \hspace{0.2cm} d \Big{[}\lambda *j_{rm} - 2\lambda *\frac{\partial*\bar h^{r'}}{\partial\omega^{rm}}*h^{s} \W_{r's} \Big{]} + \lambda \Big{[}{1 \over 2}\epsilon_{mnp}\epsilon_{rs} *k^n \wedge F^{sp}\nn\\
+& \hspace{0.2cm} +{2 \over 3} H_m*h^s\W_{sr} - \epsilon_{mnp}\epsilon_{rs} *h^t \W_{r't} F^{sp} \wedge *{\partial *\bar h^{r'} \over \partial f_n}\Big{]}=0,
+\end{align}
+where
+\begin{equation}
+k^{m} = {\partial \Phi \over \partial f_m}, \hspace{0.5cm} j_{rm} = {\partial \Phi \over \partial \omega^{rm}}.
+\end{equation}
+
+We can use the Bianchi identity \eqnref{solution_8d_bianchi} to move in all terms under the exterior derivative in the equation of motion for $a^m$
+%\begin{align}
+%d& \Big{[}\lambda*k^m +2\lambda \Big{\{} \alpha\ou{r}\od{s}\omega^{sm}+\frac{2}{3}\omega^{rm} + *{\partial \alpha\ou{r}\od{s} \over \partial f_m} *(\omega^{sn} \wedge f_n) \\
+%& + *{\partial \beta\ou{r}\od{t} \over \partial f_m} *(\epsilon_{m'np}\W_{uv} \omega^{tm'} \wedge \omega^{un} \wedge \omega^{vp}) - *\frac{\partial\gamma^r}{\partial f_m}
+%\Big{\}} *h^s \W_{rs} \Big{]}=0 \nn
+%\eqnlab{solution_8d_eom_a}
+%\end{align}
+\begin{align}
+\eqnlab{solution_8d_eom_a}
+d& \Big{[}\lambda*k^m +2\lambda \Big{\{} \frac{2}{3}\omega^{rm} - *\frac{\partial*\bar h^r}{\partial f_m} \Big{\}} *h^s \W_{rs} \Big{]}=0 
+\end{align}
+If we act with an external derivative on the equation of motion for $\phi^{rm}$, use the equation of motion for $a^m$ to eliminate the $k^n$ term, use the Bianchi identities for $F^{rm}$, $H_m$ and $\omega^{rm}$ and at last \eqnref{conven_2d_epsilon_rel} we get
+%\begin{align}
+%d&\Big{[} {\lambda \over 2}\epsilon_{mnp}\epsilon_{rs} *k^n \wedge F^{sp} +\lambda{2 \over 3} H_m*h^s\W_{sr} \nn \\
+%& +\lambda\epsilon_{mnp}\epsilon_{rs} *h^t \W_{r't} F^{sp} \wedge \Big{\{} \alpha\ou{r'}\od{s'} \omega^{s'n} - *{\partial \alpha\ou{r'}\od{s'} \over \partial f_n}*(\omega^{s'm'} \wedge f_{m'}) \nn \\
+%& - *{\partial \beta\ou{r'}\od{s'} \over \partial f_n} *(\epsilon_{m'n'p'}\W_{uv} \omega^{s'm'} \wedge \omega^{un'} \wedge \omega^{vp'}) + *\frac{\partial\gamma^{r'}}{\partial f_n}\Big{\}}\Big{]}\nn\\
+%& = d\Big{[} 
+%\lambda{2 \over 3} H_m*h^s\W_{sr} \nonumber \\
+%& +\lambda\epsilon_{mnp}\epsilon_{rs} *h^t \W_{r't} F^{sp} \wedge \Big{\{} -\frac{2}{3}\omega^{rn} - 2*{\partial \alpha\ou{r'}\od{s'} \over \partial f_n}*(\omega^{s'm'} \wedge f_{m'}) \nn\\
+%& - 2*{\partial\ou{r'}\od{s'} \beta \over \partial f_n} *(\epsilon_{m'n'p'}\W_{uv} \omega^{s'm'} \wedge \omega^{un'} \wedge \omega^{vp'}) + 2*\frac{\partial\gamma^{r'}}{\partial f_n}\Big{\}}\Big{]}\nn\\
+%& = -2\lambda\epsilon_{mnp}\epsilon_{rs} *h^t \W_{r't}F^{sp} \wedge d\Big{[}  *{\partial \alpha\ou{r'}\od{s'} \over \partial f_n}*(\omega^{s'm'} \wedge f_{m'}) \nonumber \\
+%& + *{\partial \beta\ou{r'}\od{s'} \over \partial f_n} *(\epsilon_{m'n'p'}\W_{uv} \omega^{s'm'} \wedge \omega^{un'} \wedge \omega^{vp'}) -*\frac{\partial\gamma^{r'}}{\partial f_n}\Big{]} = 0,
+%\eqnlab{solution_abc_constraint}
+%\end{align}
+\begin{align}
+d&\Big{[} {\lambda \over 2}\epsilon_{mnp}\epsilon_{rs} *k^n \wedge F^{sp} +\lambda{2 \over 3} H_m*h^s\W_{sr} - \lambda\epsilon_{mnp}\epsilon_{rs} *h^t \W_{r't} F^{sp} \wedge *\frac{\partial*\bar h^{r'}}{\partial f_n}\Big{]}\nn\\
+&= d\Big{[} \lambda{2 \over 3} H_m*h^s\W_{sr} - \frac{2}{3}\lambda\epsilon_{mnp}\epsilon_{rs} *h^t \W_{r't} F^{sp} \wedge\omega^{r'n}\Big{]} = 0,
+\end{align}
+meaning we can put all terms under an external derivative, making the equations integrable for general $\bar h^r$.
+So, the equation of motion for $\phi^{rm}$ can be written 
+\begin{align}
+\eqnlab{solution_8d_eom_phi}
+d&\Big{[}\lambda *j_{rm} - \lambda{2 \over 3}f_m *h^{s} \W_{rs} - 2\lambda*\frac{\partial*\bar h^{r'}}{\partial\omega^{rm}}*h^{s} \W_{r's}\nn\\
+& + \lambda\frac{1}{3}*h^u\epsilon_{mnp}\W_{tu}\epsilon_{rs} \omega^{sn}\we\omega^{tp} \Big{]}=0,
+\end{align}
+where we have omitted a closed form $\Gamma^m$ coming from the integration of \eqnref{solution_8d_eom_a}, which will be included in the next section.
+
+We will now try to solve the previously derived equations of motion for some particular cases.
+We begin with the 8-dimensional $D_2$-membrane, because we can compare the result to the results found in \cite{artikeln,pioline}. 
+
+\section{Duality equations of the $d=8$ $D2$ case}
+The second equation of motion tells us that the 2 scalars $p_r = \lambda \W_{rs}*h^s$ are constants. These has been identified with charges earlier in section \secref{dynamics_charge}. 
+Together with the first equation of motion we get the following relations
+\begin{align}
+\eqnlab{solution_lambda_identities}
+*h^r &= \frac{1}{\lambda}\W^{rs}p_s = \frac{1}{\lambda}p^r\nn\\
+\frac{1}{\lambda} &= \frac{|*h|}{|p|}, \hspace{1cm}\mbox{where }|*h|=\sqrt{*h^r\W_{rs}*h^s}\mbox{, }|p| = {\sqrt{p_mp^m}}\nn\\
+|*h| &= \sqrt{1+\Phi}
+\end{align}
+which allows us to rewrite all $\lambda$ and $*h$ dependence in terms of $\Phi$ and $p$ in the third and fourth equations.
+The equation of motion \eqnref{solution_8d_eom_a} for $a^m$ becomes (we will from now on insert $\bar h$ in terms of $\alpha$ and $\beta$ in the equations and use $\gamma^r=0$)  
+\begin{align}
+d& \Big{[}\frac{|p|}{\sqrt{1+\Phi}}*k^m + 2\lp\alpha_1 +\frac{2}{3}\rp\ou{r}\od{s} \omega^{sm} p_r + 2\alpha_2p^r\epsilon_{rs}\omega^{sm}\Big{]} = 0.
+\end{align}
+Next we define the unit vectors
+\begin{align}
+\hat p_\parallel &= \hat p = \frac{p_r}{|p|}\\ 
+\hat p_\perp &= \frac{p^s\epsilon_{sr}}{|p|} 
+\end{align}
+forming an orthonormal $SL(2,\rr)$ basis since $\hat p_\perp\cdot\hat p_\parallel = p^s\epsilon_{sr}p^r/|p|^2 = 0$. 
+We will also use the shorthand notation for the contraction of $\hat p_\parallel$ and $\hat p_\perp$ with an $SL(2,\rr)$ tensor $T^r$ as
+\begin{align}
+T_\parallel &= \hat p_\parallel\cdot T = p_rT^r/|p|\\
+T_\perp &= \hat p_\perp\cdot T = p^s\epsilon_{sr}T^r/|p|.
+\end{align}
+Integrate the equations of motion to get
+\begin{align}
+\eqnlab{solution_8d_km_orig}
+*k^m = \bigg[\Gamma^m - 2\lp\alpha_1+\frac{2}{3}\rp\omega_\parallel^m - 2\alpha_2\omega_\perp^m\bigg]\sqrt{1+\Phi}
+\end{align}
+where $\Gamma^m$ is a closed 1-form such that $d\Gamma^m = 0$.
+The equation of motion for $\phi^{rm}$ becomes (including $\Gamma^m$) 
+\begin{align}
+d \Big{[}&\frac{|p|}{\sqrt{1+\Phi}}*j_{rm} + 2\alpha\ou{r'}\od{r} f_m p_{r'} + 2 \epsilon_{mnp}(\beta\ou{s}\od{r}\W_{ut} + 2\beta\ou{s}\od{t}\W_{ur})\omega^{un} \wedge \omega^{tp}p_{s}\Big{]}\nn\\
+& + \half\epsilon_{mnp}\epsilon_{rs} *k^n \wedge F^{sp} +\frac{2}{3} H_m p_r + \alpha\ou{t}\od{t'} \epsilon_{mnp}\epsilon_{rs} p_{t} F^{sp} \wedge \omega^{t'n}\nn\\
+=& d \Big{[}\frac{|p|}{\sqrt{1+\Phi}}*j_{rm} + 2\alpha\ou{r'}\od{r} f_m p_{r'} + 2 \epsilon_{mnp}(\beta\ou{s}\od{r}\W_{ut} + 2\beta\ou{s}\od{t}\W_{ur})\omega^{un} \wedge \omega^{tp}p_{s}\Big{]}\nn\\
+& + \epsilon_{mnp}\epsilon_{rs} \Big[\frac{\Gamma^n}{2} -\frac{2}{3} p_t\omega^{tn}\Big] \wedge F^{sp} +\frac{2}{3}\lp -df_m + \frac{1}{2}\epsilon_{mnp}\epsilon_{ts}\omega^{sp}\wedge F^{tn}\rp p_r \nn\\
+=& d \Big{[}\frac{|p|}{\sqrt{1+\Phi}}*j_{rm} + 2\lp\alpha_1-\frac{1}{3}\rp f_m p_r + 2\alpha_2f_m p^s\epsilon_{sr} - \half\epsilon_{mnp}\epsilon_{rs}\Gamma^n\wedge \omega^{sp}\nn\\
+& + \epsilon_{mnp}\omega^{sn} \wedge \omega^{tp}\Big\{ 2\beta_1\W_{st}p_r + 4\beta_1\W_{sr}p_{t} + \lp -2\beta_2 + \frac{1}{3}\rp \epsilon_{rs}p_t\nn\\
+&\hspace{3cm} + 6\beta_2\epsilon_{ut}p^{u}\W_{sr}\Big\}\Big{]} = 0
+\end{align}
+where we have used \eqnref{solution_8d_km_orig} to replace $*k^m$, the Bianchi identities \eqnref{solution_8d_bianchi} and equation $\eqnref{conven_2d_epsilon_rel}$ to move $SL(2,\rr)$-indices.
+Integration and hodge dualisation gives
+\begin{align}
+\eqnlab{solution_8d_jrm_orig}
+j_{rm} =& \bigg\{ 
+2\lp\alpha_1-\frac{1}{3}\rp *f_m \hat p_{\parallel r} + 2\alpha_2*f_m \hat p_{\perp r} - \frac{1}{2|p|}\epsilon_{mnp}\epsilon_{rs}*\lp\Gamma^n\wedge \omega^{sp}\rp\nn\\
+&+ \frac{1}{|p|}*\Delta_{rm} + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ 2\beta_1\W_{st}\hat p_{\parallel r} + 4\beta_1\W_{sr}\hat p_{\parallel t}\nn\\
+&\hspace{2cm} + \lp -2\beta_2 + \frac{1}{3}\rp \epsilon_{rs}\hat p_{\parallel t} + 6\beta_2\W_{sr}\hat p_{\perp t}\bigg]\bigg\}\sqrt{1+\Phi}
+\end{align}
+where $\Delta_{rm}$ is a 2-form such that $d\Delta_{rm} = 0$.
+
+\subsection{Series expansion of the duality equations}
+\sseclab{solution_general_serie}
+We will later see that we can create closed forms $\Gamma$ and $\Delta$ by imposing constraints on the background fields.
+For now we will let them be zero and make a general expansion of the duality equations \eqnref{solution_8d_km_orig} and \eqnref{solution_8d_jrm_orig} to second order.
+The $\gamma^r$ parameter function which was previously removed will not enter to these low orders\footnote{Actually, according to \eqnref{solution_gamma_expand} there is one third order term which will be of order 2 when varied w.r.t. $\omega$ and $f$ but its character is different from the other terms entering the equations, meaning it must most likely be zero anyway (alternatively we must use a different ansatz for $\Phi$ including terms of this type).}.
+The first thing we note about the equations \eqnref{solution_8d_km_orig} and \eqnref{solution_8d_jrm_orig} is that if we multiply the latter equation with one of the two charge vectors $\hat p_\parallel$ or $\hat p_\perp$, all of the $\omega$:s, in the equations will be contracted on the forms $\omega_\parallel^m$, which is the projection of $\omega^m$ in the $\hat p$ direction or $\omega_\perp^m$, which is the projection of $\omega^m$ in the direction orthogonal to $\hat p$.
+To rewrite $*(\omega\we\omega)$ in terms of $*(\omega_\parallel\we\omega_\parallel)$ and $*(\omega_\perp\we\omega_\perp)$ you can use the Pythagorean relation 
+\begin{align}
+\eqnlab{solution_pythgoras}
+\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma} = \hat p^{r'}\epsilon_{r'r}\omega^{rn}_{\beta}p_{s'}\epsilon^{s's}\omega^{p}_{\gamma s} = \omega^{rn}_{\beta}\omega^{p}_{\gamma r} - \omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma}.  
+\end{align}
+Hence, we will decompose the equation $e_r=\eqnref{solution_8d_jrm_orig}$ as 
+\begin{align}
+e_r = (e\cdot\hat p_\parallel)\hat p_\parallel + (e\cdot\hat p_\perp)\hat p_\perp,   
+\end{align}  
+which will give the 2 $SL(2,\rr)$ scalar equations $(e\cdot\hat p_\parallel)$ and $(e\cdot\hat p_\perp)$ (these must be fulfilled independent of each other since the multiplying vectors $\pup{{}}$ and $\puo{{}}$ points in different directions).
+First we do the projection of $e_r$ in the $\hat p_\parallel$ direction
+\begin{align}
+\eqnlab{solution_8d_jrm_parallel}
+e\cdot\hat p_\parallel &= 
+\pup{r}j_{rm} = \bigg\{ 
+2\lp\alpha_1-\frac{1}{3}\rp *f_m + \epsilon_{mnp}\bigg[ 2\beta_1*\lp\omega^{n}_\perp \wedge \omega^{p}_\perp\rp\nn\\
+& + 6\beta_1*\lp\omega_\parallel^{n} \wedge \omega_\parallel^{p}\rp + \lp 4\beta_2 + \frac{1}{3}\rp*\lp\omega_\perp^{n} \wedge \omega_\parallel^{p}\rp\bigg]\bigg\}\sqrt{1+\Phi}
+\end{align}
+and then the projection of $e_r$ in the $\hat p_\perp$ direction
+\begin{align}
+\eqnlab{solution_8d_jrm_perp}
+e\cdot\hat p_\perp &= 
+\puo{r}j_{rm} = \bigg\{ 
+2\alpha_2*f_m + \epsilon_{mnp}\bigg[ 4\beta_1*\lp\omega_\perp^{n} \wedge \omega_\parallel^{p}\rp\nn\\
+& - \lp -2\beta_2 + \frac{1}{3}\rp*\lp\omega_\parallel^{n} \wedge \omega_\parallel^{p}\rp + 6\beta_2*\lp\omega_\perp^{n} \wedge \omega_\perp^{p}\rp\bigg]\bigg\}\sqrt{1+\Phi}
+\end{align} 
+Now we will series expand $\Phi$ to third order in $\omega$ and $*f$
+\begin{align}
+\Phi =& a_1\omega_{\alpha rm}\omega^{\alpha rm} + a_2 *f_{\alpha m}*f^{\alpha m}\nn\\
+&+ a_3\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}\omega^{rm}_\alpha\omega^{n}_{\beta r}*f^{p}_\gamma + a_4\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}*f^{m}_\alpha*f^{n}_\beta*f^{p}_\gamma,
+\end{align}
+where $a_i$ are constant expansion coefficients. Note that we have omitted the constant term, we expect this to be zero to get the duality relations on the manifested form.
+The variations becomes
+\begin{align}
+\frac{\partial\Phi}{\partial*f^m_\alpha} &= 2a_2 *f_m^\alpha + a_3\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}\omega^{rn}_{\beta}\omega^{p}_{\gamma r} + 3a_4\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}*f^{n}_\beta*f^{p}_\gamma\nn\\
+\frac{\partial\Phi}{\partial\omega^{rm}_\alpha} &= 2a_1\omega^\alpha_{rm} + 2a_3\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}\omega^{n}_{\beta r}*f^{p}_\gamma,
+\end{align}
+giving (together with $\sqrt{1+\Phi}\approx 1 + \Ordo(\omega^2,*f^2)$) the equations \eqnref{solution_8d_km_orig}, \eqnref{solution_8d_jrm_parallel} and \eqnref{solution_8d_jrm_perp} to second order in the fields (with all terms moved to the same side the equality sign) 
+\begin{align}
+*k_m^\alpha: & 2a_2 *f_m^\alpha + a_3\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}\lp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma} + \omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma}\rp + 3a_4\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}*f^{n}_\beta*f^{p}_\gamma\nn\\
+& - 2\lp\alpha_1+\frac{2}{3}\rp\omega_{\parallel}^{m\alpha} - 2\alpha_2\omega_{\perp}^{m\alpha} = 0\nn\\
+%
+\pup{r}j_{rm}^\alpha: & -2a_1\omega^\alpha_{\parallel m} - 2a_3\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}\omega^{n}_{\parallel\beta}*f^{p}_\gamma + 2\lp\alpha_1-\frac{1}{3}\rp *f_m^\alpha\nn\\
+& + \varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}\bigg[ 2\beta_1\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma} + 6\beta_1\omega_{\parallel\beta}^{n}\omega_{\parallel\gamma}^{p} + \lp 4\beta_2 + \frac{1}{3}\rp\omega_{\perp\beta}^{n}\omega_{\parallel\gamma}^{p}\bigg] = 0\nn\\
+%
+\puo{r}j_{rm}^\alpha: & -2a_1\omega^\alpha_{\perp m} - 2a_3\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}\omega^{n}_{\perp\beta}*f^{p}_\gamma +2\alpha_2*f_m^\alpha\nn\\
+& + \varepsilon^{\alpha\beta\gamma}\epsilon_{mnp}\bigg[ 4\beta_1\omega_{\perp\beta}^{n}\omega_{\parallel\gamma}^{p} - \lp -2\beta_2 + \frac{1}{3}\rp\omega_{\parallel\beta}^{n}\omega_{\parallel\gamma}^{p} + 6\beta_2\omega_{\perp\beta}^{n}\omega_{\perp\gamma}^{p}\bigg] = 0
+%
+\end{align}
+If we read off the coefficients to each order in $\omega_\parallel$, $\omega_\perp$ and $*f$ it is easy to see that the equations are inconsistent unless we have some relation between the fields entering them. 
+We let $*f = *f(\omega_\parallel,\omega_\perp)$ and expand it to second order in these fields
+\begin{align}
+*f_m^\alpha = b_1\omega^\alpha_{\parallel m} + b_2\omega^\alpha_{\perp m} +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp b_3\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma} + b_4\omega^{n}_{\perp\beta}\omega^{p}_{\parallel\gamma} + b_5\omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma} \rp
+\end{align}
+where $b_i$ are expansion coefficients with a possible $p$-dependence.
+The expanded duality equations now becomes
+\begin{align}
+*k_m^\alpha: & 2\lp a_2b_1 - \alpha_1 -\frac{2}{3} \rp\omega^\alpha_{\parallel m} + 2\lp a_2b_2 - \alpha_2\rp\omega^\alpha_{\perp m}\nn\\
+& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp 2a_2b_3 + 3a_4b_2^2 + a_3\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma}\nn\\
+& + \lp 2a_2b_4 + 6a_4b_1b_2\rp\omega^{n}_{\perp\beta}\omega^{p}_{\parallel\gamma} + \lp 2a_2b_5 + 3a_4b_1^2 + a_3\rp\omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma} \Big] = 0\nn\\
+%
+\pup{r}j_{rm}^\alpha: & 2\lp -a_1 + \alpha_1b_1 - \frac{1}{3}b_1\rp\omega^\alpha_{\parallel m} + 2\lp\alpha_1-\frac{1}{3}\rp b_2\omega^\alpha_{\perp m} \nn\\
+& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp 2\lp\alpha_1-\frac{1}{3}\rp b_3 + 2\beta_1\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma} \nn\\
+& + \lp -2a_3b_2 + 2\lp\alpha_1-\frac{1}{3}\rp b_4 + 4\beta_2 + \frac{1}{3}\rp\omega^{n}_{\perp\beta}\omega^{p}_{\parallel\gamma}\nn\\
+& + \lp -2a_3b_1 + 2\lp\alpha_1-\frac{1}{3}\rp b_5 + 6\beta_1\rp\omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma} \Big] = 0\nn\\
+%
+\intertext{}
+\puo{r}&j_{rm}^\alpha: 0 = 2\alpha_2b_1\omega^\alpha_{\parallel m} + 2\lp -a_1 + \alpha_2b_2\rp\omega^\alpha_{\perp m} \\
+& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp - 2a_3b_2 + 2\alpha_2b_3 + 6\beta_2\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma}\nn\\
+& + \lp - 2a_3b_1 + 2\alpha_2b_4 + 4\beta_1\rp\omega^{n}_{\perp\beta}\omega^{p}_{\parallel\gamma}  + \lp 2\alpha_2b_5 + 2\beta_2 - \frac{1}{3}\rp\omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma}\Big].\nn
+\end{align}
+For a general $\omega$, the two projections $\omega_\parallel$ and $\omega_\perp$ must be treated as independent variables and to second order we thus have 5 independent combinations of $\omega$. 
+Reading off the factors multiplying each of the coefficients in the equations above and setting them to zero still yields contradictious values on the parameters. 
+We are therefore also forced to assume there to be a relation between $\omega_\parallel$ and $\omega_\perp$ (or that one of them is zero but such an analysis will not be the general case).
+
+The fact that the equations are contradictious could also point in the direction that they are wrong.
+One reason to explain this is although trying to do things as general as possible, the analysis hasn't been general enough and something important has been excluded. 
+Another reason could be that the starting action \eqnref{dynamics_final_action}, which was an ansatz, is not on the right form.
+Moreover, nothing tells us that there should be an explicit relation between $*f$ and $\omega$, it could be more complicated.
+Although these possibilities, the relations between the 1-form fields are nothing strange but rather what we would expect. 
+As was seen in the previous chapter we expect the theory to have $3$ scalar degrees of freedom instead of the $9$ entering the potentials to $\omega^{rm}$ and $f_m$.
+
+%\subsection{General series expansion with $\pdg{r}F^{rm} = 0$}
+%Impose the constraint that the projection of $F$ in one specific direction $\pdg{{}}$ vanishes, i.e.
+%\begin{align}
+%\pdg{r}F^{rm} = \lp\tilde\gamma_1\pdp{r}+\tilde\gamma_2\pdo{r}\rp F^{rm} = 0
+%\end{align} 
+%implying the closed forms of integration 
+%\begin{align}
+%\gamma^m &= |p|\pdg{r}\omega^{rm}\nn\\
+%\delta_{rm} &= |p|\lp\tilde\delta_1\pdp{r}+\tilde\delta_2\pdo{r}\rp\epsilon_{mnp}\pdg{s}\omega^{sn}\we\pdg{t}\omega^{tp} 
+%\end{align}
+%giving, once again, the series expansion of the duality equations to second order
+%\begin{align}
+%*k_m^\alpha: & \lp \tilde\gamma_1 + 2a_2b_1 - 2\alpha_1 -\frac{4}{3} \rp\omega^\alpha_{\parallel m} + \lp \tilde\gamma_2 + 2a_2b_2 - 2\alpha_2\rp\omega^\alpha_{\perp m}\nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp 2a_2b_3 + 3a_4b_2^2 + a_3\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma} + \lp 2a_2b_4 + 6a_4b_1b_2\rp\omega^{n}_{\perp\beta}\omega^{p}_{\parallel\gamma}\nn\\
+%& + \lp 2a_2b_5 + 3a_4b_1^2 + a_3\rp\omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma} \Big] = 0\nn\\
+%%
+%\pup{r}j_{rm}^\alpha: & 2\lp -a_1 + \alpha_1b_1 - \frac{1}{3}b_1\rp\omega^\alpha_{\parallel m} + 2\lp\alpha_1-\frac{1}{3}\rp b_2\omega^\alpha_{\perp m} \nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp \tilde\delta_1\tilde\gamma_2^2 - \frac{1}{2}\tilde\gamma_2 + 2\lp\alpha_1-\frac{1}{3}\rp b_3 + 2\beta_1\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma} \nn\\
+%& + \lp 2\tilde\delta_1\tilde\gamma_1\tilde\gamma_2 - \frac{1}{2}\tilde\gamma_1 -2a_3b_2 + 2\lp\alpha_1-\frac{1}{3}\rp b_4 + 4\beta_2 + \frac{1}{3}\rp\omega^{n}_{\perp\beta}\omega^{p}_{\parallel\gamma}\nn\\
+%& + \lp \tilde\delta_1\tilde\gamma_1^2 -2a_3b_1 + 2\lp\alpha_1-\frac{1}{3}\rp b_5 + 6\beta_1\rp\omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma} \Big] = 0\nn\\
+%%
+%\puo{r}j_{rm}^\alpha: & 2\alpha_2b_1\omega^\alpha_{\parallel m} + 2\lp -a_1 + \alpha_2b_2\rp\omega^\alpha_{\perp m} \nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp \tilde\delta_2\tilde\gamma_2^2 - 2a_3b_2 + 2\alpha_2b_3 + 6\beta_2\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma}\nn\\
+%& + \lp 2\tilde\delta_2\tilde\gamma_1\tilde\gamma_2 + \frac{1}{2}\tilde\gamma_2 - 2a_3b_1 + 2\alpha_2b_4 + 4\beta_1\rp\omega^{n}_{\perp\beta}\omega^{p}_{\parallel\gamma}\nn\\
+%& + \lp \tilde\delta_2\tilde\gamma_1^2 + \frac{1}{2}\tilde\gamma_1 + 2\alpha_2b_5 + 2\beta_2 - \frac{1}{3}\rp\omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma} \Big] = 0
+%%
+%\end{align}
+%which can be solved by
+%% Equations of the series expansion
+%\begin{align}
+%0 =&\tilde\gamma_1 + 2a_2b_1 - 2\alpha_1 -\frac{4}{3}\nn\\
+%0 =&\tilde\gamma_2 + 2a_2b_2 - 2\alpha_2\nn\\
+%0 =& 2a_2b_3 + 3a_4b_2^2 + a_3\nn\\
+%0 =& 2a_2b_4 + 6a_4b_1b_2\nn\\
+%0 =& 2a_2b_5 + 3a_4b_1^2 + a_3\nn\\
+%0 =& -a_1 + \alpha_1b_1 - \frac{1}{3}b_1\nn\\
+%0 =& \lp\alpha_1-\frac{1}{3}\rp b_2\nn\\
+%0 =& \tilde\delta_1\tilde\gamma_2^2 - \frac{1}{2}\tilde\gamma_2 + 2\lp\alpha_1-\frac{1}{3}\rp b_3 + 2\beta_1\nn\\
+%0 =& 2\tilde\delta_1\tilde\gamma_1\tilde\gamma_2 - \frac{1}{2}\tilde\gamma_1 -2a_3b_2 + 2\lp\alpha_1-\frac{1}{3}\rp b_4 + 4\beta_2 + \frac{1}{3}\nn\\
+%0 =& \tilde\delta_1\tilde\gamma_1^2 -2a_3b_1 + 2\lp\alpha_1-\frac{1}{3}\rp b_5 + 6\beta_1\nn\\
+%0 =& 2\alpha_2b_1\nn\\
+%0 =& \lp -a_1 + \alpha_2b_2\rp\nn\\
+%0 =& \tilde\delta_2\tilde\gamma_2^2 - 2a_3b_2 + 2\alpha_2b_3 + 6\beta_2\nn\\
+%0 =& 2\tilde\delta_2\tilde\gamma_1\tilde\gamma_2 + \frac{1}{2}\tilde\gamma_2 - 2a_3b_1 + 2\alpha_2b_4 + 4\beta_1\nn\\
+%0 =& \tilde\delta_2\tilde\gamma_1^2 + \frac{1}{2}\tilde\gamma_1 + 2\alpha_2b_5 + 2\beta_2 - \frac{1}{3}
+%\end{align}
+%\newpage
+%\begin{align}
+%0 =&\tilde\gamma_1 + 2a_2b_1 - 2\alpha_1 -\frac{4}{3}\nn\\
+%0 =&\tilde\gamma_2 + 2a_2b_2 - 2\alpha_2\nn\\
+%0 =& a_4(b_2^2 -b_1^2)\nn\\
+%0 =& a_4b_1b_2\nn\\
+%a_3 =& -3a_4b_1^2\nn\\
+%0 =& -\alpha_2b_2 + \alpha_1b_1 - \frac{1}{3}b_1\nn\\
+%0 =& \lp\alpha_1-\frac{1}{3}\rp b_2\nn\\
+%2\beta_1 =& -\frac{1}{3}\tilde\delta_1\tilde\gamma_1^2\nn\\
+%0 =& 2\alpha_2b_1\nn\\
+%a_1 =& \alpha_2b_2\nn\\
+%2\beta_2 =& -\frac{1}{3}\tilde\delta_2\tilde\gamma_2^2\nn\\
+%0 =& \tilde\delta_1\tilde\gamma_2^2 - \frac{1}{2}\tilde\gamma_2 -\frac{1}{3}\tilde\delta_1\tilde\gamma_1^2\nn\\
+%0 =& 2\tilde\delta_1\tilde\gamma_1\tilde\gamma_2 - \frac{1}{2}\tilde\gamma_1 -\frac{2}{3}\tilde\delta_2\tilde\gamma_2^2 + \frac{1}{3}\nn\\
+%0 =& 2\tilde\delta_2\tilde\gamma_1\tilde\gamma_2 + \frac{1}{2}\tilde\gamma_2 -\frac{2}{3}\tilde\delta_1\tilde\gamma_1^2\nn\\
+%0 =& \tilde\delta_2\tilde\gamma_1^2 + \frac{1}{2}\tilde\gamma_1 -\frac{1}{3}\tilde\delta_2\tilde\gamma_2^2 - \frac{1}{3}\nn\\
+%\tilde\delta_2(\tilde\gamma_2^2 - \tilde\gamma_1^2) =& 2\tilde\delta_1\tilde\gamma_1\tilde\gamma_2 \nn\\
+%\tilde\delta_1(\tilde\gamma_2^2 -\tilde\gamma_1^2) =& - 2\tilde\delta_2\tilde\gamma_1\tilde\gamma_2 \nn\\
+%\tilde\delta_2/\tilde\delta_1 = -\tilde\delta_1/\tilde\delta_2
+%\end{align}
+%Solutions:\\
+%$b_3=b_4=b_5=0$, $\gamma_2 = 0$, $\gamma_1 = 2/3$, $\delta_1 = 0$, $\delta_2 = 0$, $\beta_1 = 0$, $\beta_2 = 0$, $b_1 = b_2 =0$, $\alpha_1=-1/3$, $\alpha_2=0$, $a_1 =0$, $a_3 = 0$, $a_2 = a_4 = ?$\nn\\
+%$b_3=b_4=b_5=0$, $\gamma_2 = 0$, $\gamma_1 = 2/3$, $\delta_1 = 0$, $\delta_2 = 0$, $\beta_1 = 0$, $\beta_2 = 0$, $a_4 = 0$, $a_3 = 0$, $b_2=0$, $a_1=0$, $\alpha_2=0$, $\alpha_1=1/3$, $a_2 = \frac{2}{3b_1}$, $b_1=?$\nn\\
+%Kan inte återskapa papperslösningen eftersom denna kräver $\omega_\perp = 0$ (Antingen genom att sätta den till 0 direkt eller genom att kräva attt ansatzen inte ska innehålla några laddningar $w=0$)
+%
+%$\gamma_2\ne 0$, $\gamma_1\ne 0$, $\delta_1\ne 0$
+%
+%\begin{align}
+%0 =&a_2b_1 - \alpha_1 -\frac{1}{3}\nn\\
+%0 =&a_2b_2 - \alpha_2\nn\\
+%0 =& -\alpha_2b_2 + \alpha_1b_1 - \frac{1}{3}b_1\nn\\
+%0 =& \lp\alpha_1-\frac{1}{3}\rp b_2\nn\\
+%0 =& 2\alpha_2b_1\nn\\
+%a_1 =& \alpha_2b_2\nn\\
+%\end{align}
+%
+%\begin{align}
+%\Phi = a_1 v^2 + a_2 u^2 + a_3uv\nn\\ 
+%\partial_v\Phi = 2 a_1 v + a_3 u = 2/3v\nn\\ 
+%\partial_u\Phi = 2 a_2 u + a_3 v = -2/3u\nn\\ 
+%\partial_v\Phi = 2 a_1 v + a_3 b_1v = 2/3v\nn\\ 
+%\partial_u\Phi = 2 a_2 b_1v + a_3 v = -2/3b_1v\nn\\ 
+%\end{align}
+%
+%\newpage
+%\subsubsection{case $\alpha_1=1/3$, $\alpha_2=0$}
+%\begin{align}
+%\tilde\gamma_1 =& 2(1 - a_2b_1)\nn\\
+%\tilde\gamma_2 =& - 2a_2b_2 \nn\\
+%0 =& 2a_2b_3 + 3a_4b_2^2 + a_3\nn\\
+%0 =& a_2b_4 + 3a_4b_1b_2\nn\\
+%0 =& 2a_2b_5 + 3a_4b_1^2 + a_3\nn\\
+%0 =& 4\tilde\delta_1a_2^2b_2^2 + a_2b_2 + 2\beta_1\nn\\
+%0 =& -8\tilde\delta_1(1 - a_2b_1)a_2b_2 - 1 + a_2b_1 -2a_3b_2 + 4\beta_2 + \frac{1}{3}\nn\\
+%0 =& 2\tilde\delta_1(1 - a_2b_1)^2 -a_3b_1 + 3\beta_1\nn\\
+%0 =& -\tilde\delta_2a_2b_2 - a_3b_2 + 3\beta_2\nn\\
+%0 =& -8\tilde\delta_2(1 - a_2b_1) - a_2b_2 - 2a_3b_1 + 4\beta_1\nn\\
+%0 =& 4\tilde\delta_2(1 - a_2b_1)^2 + 1 - a_2b_1 + 2\beta_2 - \frac{1}{3}
+%\end{align}
+%$a_1=0$
+%\newpage
+%\subsubsection{case $b_2=0$, $\alpha_2=0$}
+%\begin{align}
+%0 =&\tilde\gamma_1 + 2a_2b_1 - 2\alpha_1 -\frac{4}{3}\nn\\
+%0 =&\tilde\gamma_2 + 2a_2b_2 - 2\alpha_2\nn\\
+%0 =& 2a_2b_3 + 3a_4b_2^2 + a_3\nn\\
+%0 =& 2a_2b_4 + 6a_4b_1b_2\nn\\
+%0 =& 2a_2b_5 + 3a_4b_1^2 + a_3\nn\\
+%0 =& -a_1 + \alpha_1b_1 - \frac{1}{3}b_1\nn\\
+%0 =& \lp\alpha_1-\frac{1}{3}\rp b_2\nn\\
+%0 =& \tilde\delta_1\tilde\gamma_2^2 - \frac{1}{2}\tilde\gamma_2 + 2\lp\alpha_1-\frac{1}{3}\rp b_3 + 2\beta_1\nn\\
+%0 =& 2\tilde\delta_1\tilde\gamma_1\tilde\gamma_2 - \frac{1}{2}\tilde\gamma_1 -2a_3b_2 + 2\lp\alpha_1-\frac{1}{3}\rp b_4 + 4\beta_2 + \frac{1}{3}\nn\\
+%0 =& \tilde\delta_1\tilde\gamma_1^2 -2a_3b_1 + 2\lp\alpha_1-\frac{1}{3}\rp b_5 + 6\beta_1\nn\\
+%0 =& 2\alpha_2b_1\nn\\
+%0 =& \lp -a_1 + \alpha_2b_2\rp\nn\\
+%0 =& \tilde\delta_2\tilde\gamma_2^2 - 2a_3b_2 + 2\alpha_2b_3 + 6\beta_2\nn\\
+%0 =& 2\tilde\delta_2\tilde\gamma_1\tilde\gamma_2 + \frac{1}{2}\tilde\gamma_2 - 2a_3b_1 + 2\alpha_2b_4 + 4\beta_1\nn\\
+%0 =& \tilde\delta_2\tilde\gamma_1^2 + \frac{1}{2}\tilde\gamma_1 + 2\alpha_2b_5 + 2\beta_2 - \frac{1}{3}
+%\end{align}
+%
+%\newpage
+%\subsubsection{case $\alpha_1=1/3$, $b_1=0$}
+%\begin{align}
+%0 =&\tilde\gamma_2 + 2a_2b_2 - 2\alpha_2\nn\\
+%0 =& 2a_2b_3 + 3a_4b_2^2 -2a_2b_5\nn\\
+%0 =& 2a_2b_4\nn\\
+%a_3 =& -2a_2b_5\nn\\
+%0 =& \tilde\delta_1\tilde\gamma_2^2 - \frac{1}{2}\tilde\gamma_2 + 2\beta_1\nn\\
+%0 =& 4\tilde\delta_1\tilde\gamma_2 +4a_2b_5b_2 + 4\beta_2 - \frac{2}{3}\nn\\
+%0 =& 2\tilde\delta_1 + 3\beta_1\nn\\
+%0 =& \alpha_2b_2\nn\\
+%0 =& \tilde\delta_2\tilde\gamma_2^2 +4a_2b_5b_2 + 2\alpha_2b_3 + 6\beta_2\nn\\
+%0 =& 4\tilde\delta_2\tilde\gamma_2 + \frac{1}{2}\tilde\gamma_2 + 2\alpha_2b_4 + 4\beta_1\nn\\
+%0 =& 4\tilde\delta_2 + 2\alpha_2b_5 + 2\beta_2 + \frac{2}{3}
+%\end{align}
+%$a_1=0, \tilde\gamma_1 = 2$
+%\subsubsection{subcase $\alpha_2=0$}
+%\begin{align}
+%\tilde\gamma_2 =&- 2a_2b_2\nn\\
+%0 =& 2a_2b_3 + 3a_4b_2^2 -2a_2b_5\nn\\
+%a_3 =& -2a_2b_5\nn\\
+%0 =& 4\tilde\delta_1a_2^2b_2^2 + a_2b_2 -\frac{4}{3}\tilde\delta_1\nn\\
+%\tilde\delta_1  =& -\frac{a_2b_2}{4( a_2^2b_2^2 -\frac{1}{3})} \nn\\
+%a_2b_2b_5 =& - \frac{1}{4}\nn\\
+%\beta_1 =& -\frac{2}{3}\tilde\delta_1\nn\\
+%0 =& a_2^4b_2^4 + 2a_2^2b_2^2 +1\nn\\
+%0 =& 8(\tilde\delta_1a_2b_2 + \frac{3}{8})a_2b_2 -a_2b_2 -\frac{8}{3}\tilde\delta_1\nn\\
+%\beta_2 =& -2\tilde\delta_2 - \frac{1}{3}\nn\\
+%\tilde\delta_2 =& -\tilde\delta_1a_2b_2 - \frac{3}{8}  
+%\end{align}
+%$a_2\ne 0$, $b_4=0$, $b_2\ne 0$, $b_5\ne 0$
+%
+%\subsubsection{subcase $b_2=0$}
+%\begin{align}
+%0 =&\tilde\gamma_2 - 2\alpha_2\nn\\
+%0 =& 2a_2b_3 + a_3\nn\\
+%0 =& 2a_2b_4\nn\\
+%0 =& 2a_2b_5 + a_3\nn\\
+%0 =& \tilde\delta_1\tilde\gamma_2^2 - \frac{1}{2}\tilde\gamma_2 + 2\beta_1\nn\\
+%0 =& 4\tilde\delta_1\tilde\gamma_2 + 4\beta_2 - \frac{2}{3}\nn\\
+%3\beta_1 =& -2\tilde\delta_1\nn\\
+%0 =& \tilde\delta_2\tilde\gamma_2^2 + 2\alpha_2b_3 + 6\beta_2\nn\\
+%0 =& 4\tilde\delta_2\tilde\gamma_2 + \frac{1}{2}\tilde\gamma_2 + 2\alpha_2b_4 + 4\beta_1\nn\\
+%0 =& 4\tilde\delta_2 + 2\alpha_2b_5 + 2\beta_2 + \frac{2}{3}
+%\end{align}
+%
+%\newpage
+%\subsubsection{case $b_2=0$, $b_1=0$}
+%\begin{align}
+%\tilde\gamma_1 =& 2\lp\alpha_1 + \frac{2}{3}\rp\nn\\
+%\tilde\gamma_2 =& 2\alpha_2\nn\\
+%a_3 =& -2a_2b_3\nn\\
+%0 =& a_2b_4\nn\\
+%0 =& a_2(b_5 - b_3)\nn\\
+%6\beta_1 =& -12\tilde\delta_1\alpha_2^2 + 3\alpha_2 - 6\alpha_1b_3 + b_3\nn\\
+%0 =& 24\tilde\delta_1\alpha_1\alpha_2 + 16\tilde\delta_1\alpha_2 - 3\alpha_1 - 1 + 6\alpha_1b_4-b_4 -8\tilde\delta_2\tilde\alpha_2^2 - 4\alpha_2b_3\nn\\
+%0 =& 4\tilde\delta_1\lp 3\alpha_1 + 2\rp^2 + 18\alpha_1b_5 - 6b_5 -108\tilde\delta_1\alpha_2^2 + 27\alpha_2 - 54\alpha_1b_3 + 9b_3\nn\\
+%3\beta_2 =& -2\tilde\delta_2\tilde\alpha_2^2 - \alpha_2b_3\nn\\
+%0 =& 24\tilde\delta_2\alpha_1\alpha_2 + 16\tilde\delta_2\alpha_2 + 3\alpha_2 + 6\alpha_2b_4 -24\tilde\delta_1\alpha_2^2 + 6\alpha_2 - 12\alpha_1b_3 + 2b_3\nn\\
+%0 =& 4\tilde\delta_2\lp 3\alpha_1 + 2\rp^2 + 9\alpha_1 + 3 + 18\alpha_2b_5 -12\tilde\delta_2\tilde\alpha_2^2 - 6\alpha_2b_3
+%\end{align}
+%$a_1=0$
+%
+%
+%\newpage
+%If we assume the relation between $\omega_\perp$ and $\omega_\parallel$ to be linear
+%\begin{align}
+%\omega_\perp^m = c\omega_\parallel^m
+%\end{align}
+%we  get the series expansion of the duality equations to second order (note that this condition let us set $b_2 = b_3 = b_4 = 0$, if $\omega_\parallel\ne 0$)
+%\begin{align}
+%*k_m^\alpha: & 2\lp a_2b_1 - \alpha_1 -\frac{2}{3} - c\alpha_2\rp\omega^\alpha_{\parallel m} \nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ c^2\lp 2a_2b_5 + a_3\rp  + 3a_4b_1^2 + a_3 \Big]\omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma} = 0\nn\\
+%%
+%\pup{r}j_{rm}^\alpha: & 2\lp -a_1 + \alpha_1b_1 - \frac{1}{3}b_1 \rp\omega^\alpha_{\parallel m} \nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ -2a_3b_1 + 6\beta_1 + c\lp + 4\beta_2 + \frac{1}{3}\rp + c^2\lp 2\lp\alpha_1-\frac{1}{3}\rp b_5 + 2\beta_1\rp\Big]\omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma} = 0\nn\\
+%%
+%\puo{r}j_{rm}^\alpha: & 2\lp\alpha_2b_1 - ca_1\rp\omega^\alpha_{\parallel m} \nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ 2\beta_2 - \frac{1}{3} + c\lp - 2a_3b_1 + 4\beta_1\rp + c^2\lp  + 2\alpha_2b_5 + 6\beta_2\rp \Big]\omega^{n}_{\parallel\beta}\omega^{p}_{\parallel\gamma} = 0
+%%
+%\end{align}
+%For the case $\omega_\parallel = 0$ ($b_1=b_4=b_5 = 0$) we instead get
+%\begin{align}
+%*k_m^\alpha: & 2\lp a_2b_2 - \alpha_2\rp\omega^\alpha_{\perp m}\nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp 2a_2b_3 + 3a_4b_2^2 + a_3\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma}\Big] = 0\nn\\
+%%
+%\pup{r}j_{rm}^\alpha: & 2\lp\alpha_1-\frac{1}{3}\rp b_2\omega^\alpha_{\perp m} \nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp 2\lp\alpha_1-\frac{1}{3}\rp b_3 + 2\beta_1\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma}\Big] = 0\nn\\
+%%
+%\puo{r}j_{rm}^\alpha: & 2\lp -a_1 + \alpha_2b_2\rp\omega^\alpha_{\perp m} \nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp - 2a_3b_2 + 2\alpha_2b_3 + 6\beta_2\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma}\Big] = 0
+%%
+%\end{align}
+%This relation will force $F=0$ since the action with an external derivative on the relation between $\omega_\parallel$ and $\omega_\perp$ yields
+%\begin{align}
+%d\omega_\perp^m - cd\omega_\parallel^m = -\lp\pdo{r} - c\pdp{r}\rp F^r = 0
+%\end{align}
+%
+%\subsubsection{case $\omega_\parallel = 0$, $b_2=1$, $b_3=0$}
+%\begin{align}
+%*k_m^\alpha: & 2\lp a_2 - \alpha_2\rp\omega^\alpha_{\perp m}\nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp 3a_4 + a_3\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma}\Big] = 0\nn\\
+%%
+%\pup{r}j_{rm}^\alpha: & 2\lp\alpha_1-\frac{1}{3}\rp \omega^\alpha_{\perp m} \nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp 2\beta_1\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma}\Big] = 0\nn\\
+%%
+%\puo{r}j_{rm}^\alpha: & 2\lp -a_1 + \alpha_2\rp\omega^\alpha_{\perp m} \nn\\
+%& +\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\Big[ \lp - 2a_3 + 6\beta_2\rp\omega^{n}_{\perp\beta}\omega^{p}_{\perp\gamma}\Big] = 0
+%%
+%\end{align}
+%The conditions are
+%\begin{align}
+%\beta_1=0\nn\\
+%\alpha_1=\frac{1}{3}\nn\\
+%a_1 = \alpha_2\nn\\
+%a_2 = \alpha_2\nn\\
+%\end{align}
+
+\subsection{The equations of the $F = 0$ ($\omega_\perp = 0$) case}
+We have seen that we must have relations between all the fields $\omega_\parallel$, $\omega_\perp$ and $*f$ for the equations to be consistent.
+In \cite{artikeln} the parameters like $\alpha_1$ and $\beta_2$ were introduced to gain consistency in the special case $\omega_\perp = 0$, but as we shall see in this section this is not necessary. The equations can still be solved with the use the closed forms $\Gamma$ and $\Delta$.
+Thus we reintroduce the closed forms $\Gamma$ and $\Delta$ and deintroduce the parameters $\alpha$, $\beta$ and $\gamma$, i.e. putting them to zero. 
+One way to get a useful integration form $\Gamma$ is to put a restriction on the background fields, e.g. letting the projection of $F^{rm}$ disappear in some direction $\pdg{{}}$, i.e. 
+\begin{align}
+\pdg{r}F^{rm} = \lp\tilde\Gamma_1\pdp{r}+\tilde\Gamma_2\pdo{r}\rp F^{rm} = 0.
+\end{align}
+As was shown in \cite{artikeln} such an assumption does not lead to a U-duality invariant formulation due to the $p$-dependence of the constraint and we should therefore rather use the stronger condition $F^{rm} = 0$.
+In such a background we can introduce the closed forms 
+\begin{align}
+\Gamma^m &= |p|\pdg{r}\omega^{rm}\mbox{ and }\nn\\
+\Delta_{rm} &= |p|\epsilon_{mnp}\lp\tilde\Delta_1\pdp{r}+\tilde\Delta_2\pdo{r}\rp\Gamma^n\we\Gamma^p
+\end{align}
+to get the integrated equations of motion
+\begin{align}
+*k^m =& -\bigg[\lp\frac{4}{3} - \tilde\Gamma_1\rp \omega_\parallel^m - \tilde\Gamma_2\omega_\perp^m\bigg]\sqrt{1+\Phi}\\
+j_{rm} =& \bigg\{ 
+-\frac{2}{3}*f_m \hat p_{\parallel r} + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\Big[\lp \frac{1}{3} - \frac{\tilde\Gamma_1}{2}\rp \epsilon_{rs}\pdp{t} - \frac{\tilde\Gamma_2}{2}\epsilon_{rs}\pdo{t}\nn\\
+& + \lp\tilde\Delta_1\pdp{r}+\tilde\Delta_2\pdo{r}\rp\lp\tilde\Gamma_1^2\pdp{s}\pdp{t} + 2\tilde\Gamma_1\tilde\Gamma_2\pdp{s}\pdo{t} + \tilde\Gamma_2^2\pdo{s}\pdo{t}\rp\Big]
+\bigg\}\sqrt{1+\Phi}.\nn
+\end{align}
+We will now make the variable substitutions 
+\begin{align}
+\eqnlab{solution_8d_vartrans}
+u^m & =*f^m\nn\\ 
+v^m & =\omega_{\parallel}^m = \pdp{r}\omega^{rm}\nn\\
+w^m & =\omega_{\perp}^m = \pdo{r}\omega^{rm}.
+\end{align}
+Using this variable transformation we note that all solutions $\Phi(u,v,w)$ with non-vanishing $v$ or $w$-dependence  must also have a $p$-dependence, which is not allowed, since at the level of deriving the equations of motion we must treat $p$ as $p^r=\lambda*h^r$.
+The solution to this problem is of course that all $\omega$:s enters the action with the $SL(2,\rr)$-index contracted (using $\W_{rs}$ or $\epsilon_{rs}$) with another $\omega$ and thus all $v$ and $w$ must enter $\Phi$ (using the Pythagorean theorem \eqnref{solution_pythgoras}) either squared symmetric $v_\alpha^mv_\beta^n + w_\alpha^mw_\beta^n$ or mixed antisymmetric $v_\alpha^mw_\beta^n-w_\alpha^mv_\beta^n$, which is $p$-independent.
+The variations in the new variables becomes
+\begin{align}
+*k^m &= *\frac{\partial \Phi}{\partial f_m} = *\lp\frac{\partial \Phi}{\partial u_{\alpha n}}\frac{\partial u_{\alpha n}}{\partial f_m}\rp = \half d\xi^\delta\varepsilon_{\delta\gamma\beta}\lp \frac{\partial \Phi}{\partial u_m^{\alpha}} \frac{1}{2}2\varepsilon^{\alpha\beta\gamma}\rp = -\frac{\partial \Phi}{\partial u_m}\nn\\
+j_{rm} &= \frac{\partial \Phi}{\partial \omega^{rm}} = \frac{\partial \Phi}{\partial v^n_\alpha}\frac{\partial v^n_\alpha}{\partial \omega^{rm}} + \frac{\partial \Phi}{\partial w^n_\alpha}\frac{\partial w^n_\alpha}{\partial \omega^{rm}} = \frac{\partial \Phi}{\partial v^m}\pdp{r} + \frac{\partial \Phi}{\partial w^m}\pdo{r}.
+\end{align}
+
+Taking out the parallel and orthogonal projections of the latter duality equation we get
+\begin{align}
+\frac{\partial\Phi}{\partial u_m} =& \bigg[\lp\frac{4}{3} - \tilde\Gamma_1\rp v^m - \tilde\Gamma_2w^m\bigg]\sqrt{1+\Phi}\nn\\
+\frac{\partial\Phi}{\partial v^m} =& \bigg\{-\frac{2}{3}u_m + \epsilon_{mnp}\bigg[\lp\tilde\Delta_1\tilde\Gamma_1^2 \rp*\lp v^n \wedge v^p\rp + \lp\tilde\Delta_1\tilde\Gamma_2^2 - \frac{\tilde\Gamma_2}{2}\rp*\lp w^n \wedge w^p\rp\nn\\
+&+\lp 2\tilde\Delta_1\tilde\Gamma_1\tilde\Gamma_2 + \frac{1}{3} - \frac{\tilde\Gamma_1}{2}\rp*\lp w^n \wedge v^p\rp \bigg]\bigg\}\sqrt{1+\Phi}\nn\\
+\frac{\partial\Phi}{\partial w^m} =& \epsilon_{mnp}\bigg[\lp\tilde\Delta_2\tilde\Gamma_1^2 + \frac{\tilde\Gamma_1}{2}-\frac{1}{3}\rp*\lp v^n \wedge v^p\rp + \lp\tilde\Delta_2\tilde\Gamma_2^2 \rp*\lp w^n \wedge w^p\rp\nn\\
+&+\lp 2\tilde\Delta_2\tilde\Gamma_1\tilde\Gamma_2 - \frac{\tilde\Gamma_2}{2}\rp*\lp w^n \wedge v^p\rp\bigg]\sqrt{1+\Phi}.
+\end{align}
+There exists one set of parameters $\tilde\Gamma_2 = 0, \tilde\Gamma_1 = \frac{2}{3}, \tilde\Delta_1 = 0, \tilde\Delta_2 = 0$ to remove all the $*\omega\we\omega$ terms\footnote{It is not obvious at all that the $*\omega\we\omega$ terms should be removed. The only reason we do this is that it makes the equations easier to solve, because $\Phi$ need only contain even order terms when the right hand side is proportional to the field strengths and since it removes one variable $w$.}.   
+The remaining duality equations are
+\begin{align}
+\eqnlab{solution_8d_duality_paper}
+\frac{\partial\Phi}{\partial u_m} &= \frac{2}{3} v^{m}\sqrt{1+\Phi}\nn\\
+\frac{\partial\Phi}{\partial v^m} & = -\frac{2}{3}u_m \sqrt{1+\Phi}\nn\\
+\frac{\partial\Phi}{\partial w^m} & = 0
+\end{align}
+which, if $w=0$, are the same equations (up to a variable rescaling) obtained in \cite{artikeln} with $\alpha_1 = -1/6$, $\alpha_2 = 0$, $\beta_1 = 0$ and $\beta_2 = 1/6$ and $F=0$ which was derived from the condition that $\hat p$ and $\omega$ are aligned, i.e. $\omega_\perp = 0$.
+Actually, this condition is not trivially given by the above equations. Indeed $w=0$ implies $\frac{\partial\Phi}{\partial w}=0$ when $w$ enters $\Phi$ quadratically as it must, but the contrary is not true (c.f. the trivial solutions in section \secref{solution_result}). 
+
+In conclusion we note that the equations in \cite{artikeln} was derived under the conditions $\omega_\perp = 0$, implying $F_\perp^m = 0$, implying $F^{rm} = 0$, while ours were derived under the somewhat weaker condition $F^{rm} = 0$.
+Another difference is that we have not been forced to include the $\alpha$ and $\beta$ parameters. 
+Introducing $\alpha_1$ now would just mean changing the multiplying factor $2/3$ to $(-2\alpha_1+2/3)$ in the first equation and $-2/3$ to $(-2\alpha_1-2/3)$ in the second equation. Unless we find a constraint on $\alpha_1$ we can thus choose the 2 factors multiplying each of the duality equations arbitrary with the help of a field rescaling. 
+With the condition $\omega_\perp=0$ the introduction of $\beta_2$ would add such an $\omega\we\omega$ term we removed with our choice of $\Gamma$ and $\Delta$ and would thus not serve any purpose. 
+These were the parameters considered in \cite{artikeln}. The introduction of $\beta_1$ works more or less like the $\beta_2$ parameter and the introduction of $\alpha_2$ would give the constraint $f\propto \omega_\parallel\we\omega_\parallel$, which is too restrictive because it put a constraint on $H_m$ from the Bianchi identity of $f_m$. 
+So, for the $\omega_\perp = 0$ case the introduction of constant $\alpha$ and $\beta$ parameters does not contribute anything at all.
+
+We will try to solve these equations later on in \secref{csolution_8d_const_old}.
+
+\subsection{The equations of the general parameter free case}
+%The dualities of $v\we v$ and $v\we v\we v$:\\
+%Let $B_{\beta\alpha} = 2v^n_\alpha\we v^p_\beta$ and $C_{\gamma\beta\alpha} = 6v^m_\alpha\we v^n_\beta\we v^p_\gamma$, which gives
+%\begin{align}
+%*B_{(2)} &= \frac{1}{2}d\xi^\gamma\varepsilon_{\gamma\alpha\beta}B^{\beta\alpha} = d\xi^\gamma\varepsilon_{\gamma\alpha\beta}v^{\alpha n}\we v^{\beta p} = *(v^n\we v^p)\\ 
+%*C_{(3)} &= \frac{1}{6}\varepsilon_{\alpha\beta\gamma}C^{\gamma\beta\alpha} = \varepsilon_{\alpha\beta\gamma}v^{\alpha m}\we v^{\beta n}\we v^{\gamma p} = *(v^m\we v^n\we v^p)
+%\end{align} 
+We now consider the variable substitution
+\begin{align}
+u_m & =*f_m\nn\\ 
+v^m & =\qdp{r}\omega^{rm}\nn\\
+w^m & =\qdo{r}\omega^{rm},
+\end{align}
+where $\qdp{r} = q_1\pdp{r} + q_2\pdo{r}$ and $\qdo{r} = q_2\pdp{r} - q_1\pdo{r}$ with normalization $q_1^2+q_2^2=1$.
+In the general case, without $\alpha$, $\beta$ and $\gamma$ terms, the duality equations then becomes
+\begin{align}
+\eqnlab{solution_8d_duality_general}
+\frac{\partial\Phi}{\partial u_m} &= \frac{4}{3}\lp q_1 v^m + q_2 w^m\rp\sqrt{1+\Phi}\\
+\frac{\partial\Phi}{\partial v^m} & = \frac{1}{3}\bigg\{-2q_1 u_m + \epsilon_{mnp}\Big[ q_1*\lp w^n \wedge v^p\rp + q_2*\lp w^n \wedge w^p\rp\Big] \bigg\}\sqrt{1+\Phi}\nn\\
+\frac{\partial\Phi}{\partial w^m} & = \frac{1}{3}\bigg\{-2q_2 u_m - \epsilon_{mnp}\Big[ q_2*\lp w^n \wedge v^p\rp + q_1*\lp v^n \wedge v^p\rp\Big] \bigg\}\sqrt{1+\Phi}\nn
+\end{align}
+These equations will be exposed for a solve attempt in section \secref{csolution_8d_general}.
+
+
+%\subsubsection{Bengts bad term 2}
+%It would be nice to make a variable substitution such that the dependence of the new variables on $\omega$ is either it's parallel or orthogonal projection on $p$, so that the $r$ and $m$ indices in \eqnref{solution_8d_jrm_orig} decouple, letting us project the equation on $\hat p$ and $\hat p_\perp$ to get conditions on the parameters $\alpha$ and $\beta$. 
+%We try the following substitution according to the combinations of $p$, $\omega$ and $f$ entering the equations 
+%\begin{align}
+%u_m &= *f_m + c_{(st)}\epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\nn\\
+%v^m &= \qdp{r}\omega^{rm}\nn\\
+%w^m &= \qdo{r}\omega^{rm}\nn\\
+%\end{align}
+%where 
+%\begin{align}
+%c_{(st)} = c_1\qdp{s}\qdp{t} + c_2\qdo{s}\qdo{t} + c_3\qdp{{(s}}\qdo{{t)}}
+%\end{align}
+%and $c_i$ are constants to be determined later.
+%The variations of $\Phi(u(\omega,f),v(\omega))$ becomes
+%\begin{align}
+%*k^m &= -\frac{\partial \Phi}{\partial u_m}\nn\\
+%j_{rm} &= \frac{\partial \Phi}{\partial \omega^{rm}} = \frac{\partial \Phi}{\partial u_{\alpha n}}\frac{\partial u_{\alpha n}}{\partial \omega^{rm}} + \frac{\partial \Phi}{\partial v^n_\alpha}\frac{\partial v^n_\alpha}{\partial \omega^{rm}} + \frac{\partial \Phi}{\partial w^n_\alpha}\frac{\partial w^n_\alpha}{\partial \omega^{rm}}\nn\\
+%& = \frac{\partial \Phi}{\partial u_{n\alpha}}\frac{\partial}{\partial \omega^{rm}}\lp c_{(st)}\epsilon_{nn'p}\varepsilon_{\alpha\beta\gamma}\omega^{\beta sn'}\omega^{\gamma tp}\rp + \frac{\partial \Phi}{\partial v^m}\qdp{r} + \frac{\partial \Phi}{\partial w^m}\qdo{r}\nn\\
+%& = -2c_{(rt)}\epsilon_{mnp}\varepsilon_{\alpha\beta\gamma}\frac{\partial \Phi}{\partial u_{n\alpha}}\omega^{\gamma tp}d\xi^\beta + \frac{\partial \Phi}{\partial v^m}\qdp{r} + \frac{\partial \Phi}{\partial w^m}\qdo{r}
+%\end{align}
+%and the duality relations are
+%\begin{align}
+%\frac{\partial \Phi}{\partial u_m} = \frac{4}{3}\lp q_1v^m + q_2w^m\rp\sqrt{1+\Phi},
+%\eqnlab{solution_8d_km_trans}
+%\end{align}
+%\begin{align}
+%\frac{\partial\Phi}{\partial v^m} 
+%& = \frac{1}{3}\bigg\{-2q_1u_m + \epsilon_{mnp}\Big[ 2q_1c_1*(v^n\we v^p) + 2q_1c_2*(w^n\we w^p) + 2q_1c_3*(v^n\we w^p) + q_1*\lp w^n \wedge v^p\rp + q_2*\lp w^n \wedge w^p\rp\Big] \bigg\}\sqrt{1+\Phi}\nn\\
+%& -\frac{8}{3}\epsilon_{mnp}*\lp\lp q_1v^{n} + q_2w^{n}\rp\we \lp c_1v^{p} + \half c_3w^p \rp\rp\sqrt{1+\Phi}\nn\\
+%& = \frac{1}{3}\bigg\{-2q_1u_m + \epsilon_{mnp}\Big[ 2c_1q_1\lp 1  -4\rp*(v^n\we v^p) \nn\\
+%& + \lp 2q_1c_2 + q_2 - 4q_2c_3\rp*(w^n\we w^p) + \lp 2q_1c_3 + q_1 - 4q_1c_3 - 8q_2c_1\rp*\lp v^n \wedge w^p\rp  
+%\Big]\bigg\}\sqrt{1+\Phi}\nn\\
+%\end{align}
+%and
+%\begin{align}
+%\frac{\partial\Phi}{\partial w^m} 
+%& = \frac{1}{3}\bigg\{-2q_2u_m + \epsilon_{mnp}\Big[ 2q_2c_1 *(v^n\we v^p) + 2q_2c_2 *(w^n\we w^p) + 2q_2c_3 *(v^n\we w^p) - q_2*\lp w^n \wedge v^p\rp - q_1*\lp v^n \wedge v^p\rp\Big] \bigg\}\sqrt{1+\Phi}\nn\\
+%& -\frac{8}{3}\epsilon_{mnp}*\lp\lp q_1v^{n} + q_2w^{n}\rp\we \lp c_2w^{p}+\half c_3v^{p}\rp\rp\sqrt{1+\Phi}\nn\\
+%& = \frac{1}{3}\bigg\{-2q_2u_m + \epsilon_{mnp}\Big[ \lp 2q_2c_1  - q_1 - 4c_3q_1\rp*(v^n\we v^p)\nn\\
+%& + 2q_2c_2\lp 1 - 4 \rp*(w^n\we w^p) + \lp 2q_2c_3 -q_2 - 8q_1c_2 - 4q_2c_3\rp*\lp v^n \wedge w^p\rp
+%\Big] \bigg\}\sqrt{1+\Phi}\nn\\
+%\end{align}
+%where we have used $\frac{\partial \Phi}{\partial u_m}$ from \eqnref{solution_8d_km_trans} to get
+%\begin{align}
+%c_{(rt)}\epsilon_{mnp}\varepsilon_{\alpha\beta\gamma}\frac{\partial \Phi}{\partial u_{n\alpha}}\omega^{\gamma tp}d\xi^\beta = -\frac{4}{3}c_{(rt)}\epsilon_{mnp}*\lp\lp q_1 v^{n} + q_2 w^{n}\rp\we\omega^{tp}\rp\sqrt{1+\Phi}
+%\end{align}
+
+
+
+
+
+
+
+
+
+% -----------------------------------------------------------------------------------------------------------------------------------
+%\paragraph{Expansion of the duality equations (REMOVE!)}
+%To third order, let
+%\begin{align}
+%\Phi = a_1\tr u^2 + a_2\lp \tr v^2 + \tr w^2\rp + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp a_3u^m_\alpha u^n_\beta u^p_\gamma + a_4u^m_\alpha\lp v^n_\beta v^p_\gamma + w^n_\beta w^p_\gamma\rp\rp
+%\end{align}
+%gives 
+%
+%\begin{align}
+%2a_1 u^m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp 3a_3u^n_\beta u^p_\gamma + a_4\lp v^n_\beta v^p_\gamma + w^n_\beta w^p_\gamma\rp\rp &= \frac{4}{3}v^m\nn\\
+%2a_2 v_m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} 2a_4u^n_\beta v^p_\gamma &= -\frac{2}{3}u_m + \frac{1}{3}\epsilon_{mnp}*\lp w^n \wedge v^p\rp\nn\\
+%2a_2 w_m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} 2a_4u^n_\beta w^p_\gamma & = -\frac{1}{3}\epsilon_{mnp}*\lp v^n \wedge v^p\rp
+%\end{align}
+%To second order let
+%\begin{align}
+%u_m &= b_1v_m + b_2\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}v^n_\beta v^p_\gamma\nn\\
+%w_m &= c_1v_m + c_2\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}v^n_\beta v^p_\gamma\nn\\
+%\end{align}
+%giving
+%\begin{align}
+%\lp 2a_1 b_1 - \frac{4}{3}\rp v_m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp 2a_1b_2 + 3a_3b_1^2 + a_4 + a_4c_1^2\rp v^n_\beta v^p_\gamma &= 0\nn\\
+%\lp\frac{2}{3}b_1 + 2a_2\rp v_m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp \frac{2}{3}b_2 + 2a_4b_1 - \frac{1}{3}c_1\rp v^n_\beta v^p_\gamma &= 0\nn\\
+%2a_2c_1v_m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp 2a_2c_2 + 2a_4b_1c_1 + \frac{1}{3}\rp v^n_\beta v^p_\gamma & = 0
+%\end{align}
+%i.e.\\ 
+%First order: $c_1 = 0$,  $a_1 = \frac{2}{3}\frac{1}{b_1}$ and $a_2 = -\frac{1}{3}b_1$, $b_1\ne 0$\\
+%Second order: $c_2 = \frac{1}{2b_1}$, $a_3 = -\frac{1}{3}\frac{b_2}{b_1^3}$ and $a_4 = -\frac{1}{3}\frac{b_2}{b_1}$ ($b_2$ can be 0)
+%
+%(v och w som funktioner av u ist'llet:)
+%\begin{align}
+%2a_1 u^m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp 3a_3u^n_\beta u^p_\gamma + a_4\lp b_1^2u^n_\beta u^p_\gamma + c_1^2u^n_\beta u^p_\gamma\rp\rp &= \frac{4}{3}b_1u^m + \frac{4}{3}b_2\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}u^n_\beta u^p_\gamma\nn\\
+%2a_2 b_1u_m + 2a_2b_2\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}u^n_\beta u^p_\gamma + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} 2a_4b_1u^n_\beta u^p_\gamma &= -\frac{2}{3}u_m\nn\\
+%2a_2 c_1u_m + 2a_2c_2\epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}u^n_\beta u^p_\gamma + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma} 2a_4c_1u^n_\beta u^p_\gamma & = 0
+%\end{align}
+%i.e.\\ 
+%First order: $c_1 = 0$,  $a_1 = \frac{2}{3}b_1$ and $a_2 = -\frac{1}{3b_1}$, $b_1\ne 0$\\
+%Second order: $c_2 = 0$, $a_3 = \frac{1}{3}b_2$ and $a_4 = \frac{1}{3}\frac{b_2}{b_1^2}$ ($b_2$ can be 0)
+%
+%To fourth order, let
+%\begin{align}
+%\Phi &= a_1\tr u^2 + a_2\lp \tr v^2 + \tr w^2\rp + a_3\star(uuu) + a_4\lp\star(uvv)+\star(uww)\rp\nn\\
+%&+a_5\lp\lp\tr\lp uv\rp\rp^2+\lp\tr\lp uw\rp\rp^2\rp + a_6\lp\tr u^2\rp^2 + a_7\tr u^2\tr\lp v^2+w^2\rp\nn\\
+%&+a_8\lp\tr\lp v^2 + w^2\rp\rp^2 + a_9\tr u^4 + a_{10}\tr \lp u^2\lp v^2+w^2\rp\rp + a_{11}\tr\lp\lp v^2+w^2\rp^2\rp
+%\end{align}
+%with variations 
+%\begin{align}
+%\frac{\partial\Phi}{\partial u} &= 2a_1u + 3a_3\star(uu) + a_4\lp\star(vv)+\star(ww)\rp+2a_5\lp v\tr\lp uv\rp+w\tr\lp uw\rp\rp\nn\\
+%& + 4a_6u\tr u^2 + 2a_7u\tr\lp v^2+w^2\rp + 4a_9u^3 + 2a_{10}u\lp v^2+w^2\rp
+%\end{align}
+%\begin{align}
+%\frac{\partial\Phi}{\partial v} &= 2a_2v + 2a_4\star(uv) + 2a_5u\tr\lp uv\rp + 2a_7v\tr u^2\nn\\
+%&+4a_8v\lp\tr\lp v^2 + w^2\rp\rp + 2a_{10}vu^2 + 4a_{11}v\lp v^2+w^2\rp
+%\end{align}
+%\begin{align}
+%\frac{\partial\Phi}{\partial w} &= 2a_2w + 2a_4\star(uw) + 2a_5u\tr\lp uw\rp + 2a_7w\tr u^2\nn\\
+%&+4a_8w\lp\tr\lp v^2 + w^2\rp\rp + 2a_{10}wu^2 + 4a_{11}w\lp v^2+w^2\rp
+%\end{align}
+%\begin{align}
+%\sqrt{1+\Phi} = 1+\half\Phi = 1 + \half a_1\tr u^2 + \half a_2\lp \tr v^2 + \tr w^2\rp + \half a_3\star(uuu) + \half a_4\lp\star(uvv)+\star(uww)\rp
+%\end{align}
+%gives (third order equations) 
+%\begin{align}
+%\frac{\partial\Phi}{\partial u_m} &= v\Bigg[\frac{4}{3} + \frac{2}{3} a_1\tr u^2 + \frac{2}{3} a_2\lp \tr v^2 + \tr w^2\rp \Bigg]\nn\\
+%\frac{\partial\Phi}{\partial v^m} & = u_m\Bigg[-\frac{2}{3} -\frac{1}{3}a_1\tr u^2 -\frac{1}{3}a_2\lp \tr v^2 + \tr w^2\rp \Bigg] + \frac{1}{3}\star(vw)\nn\\
+%\frac{\partial\Phi}{\partial w^m} & = -\frac{1}{3}\star(vv)
+%\end{align}
+%
+%To third order let
+%\begin{align}
+%u &= b_1v + b_2\star(vv) + b_3T_2v + b_4v^3\nn\\
+%w &= c_1v + c_2\star(vv) + c_3T_2v + c_4v^3\nn\\
+%u^2 &= b_1^2v^2 + \frac{2}{3}b_1b_2\star(vvv)\nn\\  
+%w^2 &= c_1^2v^2 + \frac{2}{3}c_1c_2\star(vvv)\nn\\  
+%uw &= b_1c_1v^2 + \frac{1}{3}(b_1c_2+c_1b_2)\star(vvv)  \nn\\
+%uw^2 &= b_1c_1^2v^3\nn\\
+%\star(uu) &= -4b_1b_2T_2v + b_1^2S_2 +4b_1b_2v^3\nn\\ 
+%\star(uv) &= -2b_2T2v + b_1S2 + 2b_2v^3\nn\\
+%\star(vw) &= -2c_2T2v + c_1S2 + 2c_2v^3\nn\\
+%\star(uw) &= -2b_1c_2T_2v - 2b_2c_1T_2v + b_1c_1S_2 + 2b_1c_2v^3 + 2b_2c_1v^3 \nn\\
+%\star(ww) & = -4c_1c_2T_2v + c_1^2S_2 + 4c_1c_2v^3\nn\\
+%\end{align}
+%The variations becomes (to third order)
+%\begin{align}
+%\frac{\partial\Phi}{\partial u} &= \lp 2a_1b_3 - 12a_3b_1b_2 - 4a_4c_1c_2 + 2a_5b_1(1+c_1^2) + 4a_6b_1^3 + 2a_7b_1(1+c_1^2)\rp T_2v\nn\\
+%& + \lp 2a_1b_4 + 12a_3b_1b_2 + 4a_4c_1c_2 + 4a_9b_1^3 + 2a_{10}b_1(1+c_1^2) \rp v^3 \nn\\
+%\end{align}
+%\begin{align}
+%\frac{\partial\Phi}{\partial v} &= \lp -4a_4b_2 + 2a_5b_1^2 + 2a_7b_1^2 + 4a_8(1+c_1^2)\rp T2v + \lp 4a_4b_2 + 2a_{10}b_1^2 + 4a_{11}(1+c_1^2)\rp v^3\nn\\
+%\end{align}
+%\begin{align}
+%\frac{\partial\Phi}{\partial w} &= \lp 2a_2c_3 - 4a_4b_1c_2 - 4a_4b_2c_1 + 2a_5b_1^2c_1 + 2a_7b_1^2c_1 + 4a_8c_1(1+c_1^2)\rp T_2v\nn\\
+%& + \lp 2a_2c_4 + 4a_4b_1c_2 + 4a_4b_2c_1 + 2a_{10}c_1b_1^2 + 4a_{11}c_1(1+c_1^2)\rp v^3\nn\\
+%\end{align}
+%\begin{align}
+%\sqrt{1+\Phi} = 1 + \half a_1b_1T_2 + \half a_2(1+c_1^2)T_2
+%\end{align}
+%The equations becomes
+%\begin{align}
+%0 &= a_1b_3 - 6a_3b_1b_2 - 2a_4c_1c_2 + a_5b_1(1+c_1^2) + 2a_6b_1^3 + a_7b_1(1+c_1^2) - \frac{1}{3}a_1b_1 - \frac{1}{3}a_2(1+c_1^2)\nn\\
+%0 &= a_1b_4 + 6a_3b_1b_2 + 2a_4c_1c_2 + 2a_9b_1^3 + a_{10}b_1(1+c_1^2)\nn\\
+%0 &= -4a_4b_2 + 2a_5b_1^2 + 2a_7b_1^2 + 4a_8(1+c_1^2) + \frac{2}{3}b_3 + \frac{1}{3}a_1b_1^3 + \frac{1}{3}a_2b_1(1+c_1^2) + \frac{2}{3}c_2\nn\\
+%0 &= 4a_4b_2 + 2a_{10}b_1^2 + 4a_{11}(1+c_1^2) + \frac{2}{3}b_4 - \frac{2}{3}c_2\nn\\
+%0 &= 2a_2c_3 - 4a_4b_1c_2 - 4a_4b_2c_1 + 2a_5b_1^2c_1 + 2a_7b_1^2c_1 + 4a_8c_1(1+c_1^2)\nn\\
+%0 &= 2a_2c_4 + 4a_4b_1c_2 + 4a_4b_2c_1 + 2a_{10}c_1b_1^2 + 4a_{11}c_1(1+c_1^2)\nn\\
+%\end{align}
+%The linear relation (to fourth order)
+%\begin{align}
+%\frac{\partial\Phi}{\partial u}u &= 2a_1u^2 + 3a_3u\star(uu) + a_4u\lp\star(vv)+\star(ww)\rp+2a_5\lp uv\tr\lp uv\rp+uw\tr\lp uw\rp\rp\nn\\
+%& + 4a_6u^2\tr u^2 + 2a_7u^2\tr\lp v^2+w^2\rp + 4a_9u^4 + 2a_{10}u^2\lp v^2+w^2\rp\nn\\
+%&= \lp 8a_1b_2^2 + 12a_3b_1^2b_2 + 4a_4b_2(1+c_1^2)\rp T_4\nn\\
+%& + \lp 4a_1b_1b_3 + 8a_1b_2^2 + 12a_3b_1^2b_2 - 4a_4b_1c_1c_2 + 4a_4b_2(1+c_1^2) + 2a_5b_1^2(1+c_1^2) + 4a_6b_1^4 + 2a_7b_1^2(1+c_1^2)\rp T_2v^2 \nn\\
+%& + \lp 4a_1b_1b_4 - 8a_1b_2^2 + 4a_4b_1c_1c_2 - 4a_4b_2(1+c_1^2) + 4a_9b_1^4 + 2a_{10}b_1^2(1+c^2)\rp v^4 \nn\\
+%\end{align}
+%\begin{align}
+%\frac{\partial\Phi}{\partial v}v &= 2a_2v^2 + 2a_4v\star(uv) + 2a_5uv\tr\lp uv\rp + 2a_7v^2\tr u^2\nn\\
+%&+4a_8v^2\lp\tr\lp v^2 + w^2\rp\rp + 2a_{10}v^2u^2 + 4a_{11}v^2\lp v^2+w^2\rp\nn\\
+%&= 2a_2v^2 + 2a_4v\star(uv) + 2a_5uv\tr\lp uv\rp + 2a_7v^2\tr u^2\nn\\
+%&+4a_8v^2\lp\tr\lp v^2 + w^2\rp\rp + 2a_{10}v^2u^2 + 4a_{11}v^2\lp v^2+w^2\rp\nn\\
+%\end{align}
+%\begin{align}
+%\frac{\partial\Phi}{\partial w} &= 2a_2w^2 + 2a_4w\star(uw) + 2a_5uw\tr\lp uw\rp + 2a_7w^2\tr u^2\nn\\
+%&+4a_8w^2\lp\tr\lp v^2 + w^2\rp\rp + 2a_{10}w^2u^2 + 4a_{11}w^2\lp v^2+w^2\rp\nn\\
+%&= 2a_2w^2 + 2a_4w\star(uw) + 2a_5uw\tr\lp uw\rp + 2a_7w^2\tr u^2\nn\\
+%&+4a_8w^2\lp\tr\lp v^2 + w^2\rp\rp + 2a_{10}w^2u^2 + 4a_{11}w^2\lp v^2+w^2\rp\nn\\
+%\end{align}
+
+
+% -----------------------------------------------------------------------------------------------------------------------------------
+%\subsubsection{General case, $\gamma=\delta=0$}
+%The equations to solve
+%\begin{align}
+%*k^m = \bigg[ - 2\lp\alpha_1+\frac{2}{3}\rp\omega_\parallel^m - 2\alpha_2\omega_\perp^m\bigg]\sqrt{1+\Phi}
+%\end{align}
+%\begin{align}
+%j_{rm} & = \bigg\{ 
+%2\lp\alpha_1-\frac{1}{3}\rp *f_m \hat p_{\parallel r} + 2\alpha_2*f_m \hat p_{\perp r} \nn\\
+%& + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ 2\beta_1\W_{st}\hat p_{\parallel r} + 4\beta_1\W_{sr}\hat p_{\parallel t}\nn\\
+%&\hspace{2cm} + \lp -2\beta_2 + \frac{1}{3}\rp \epsilon_{rs}\hat p_{\parallel t} + 6\beta_2\W_{sr}\hat p_{\perp t}\bigg]\bigg\}\sqrt{1+\Phi}
+%\end{align}
+%Letting
+%\begin{align}
+%u^m &= ?\nn\\
+%v^m &= 2\lp\alpha_1+\frac{2}{3}\rp\omega_\parallel^m + 2\alpha_2\omega_\perp^m\nn\\
+%w^m &= -2\alpha_2\omega_\parallel^m + 2\lp\alpha_1+\frac{2}{3}\rp\omega_\perp^m
+%\end{align}
+%gives
+%\begin{align}
+%*k^m = v^m\sqrt{1+\Phi}
+%\end{align}
+%\begin{align}
+%j_{rm} & = \frac{\partial \Phi}{\partial \omega^{rm}} = \frac{\partial \Phi}{\partial u_{\alpha n}}\frac{\partial u_{\alpha n}}{\partial \omega^{rm}} + \frac{\partial \Phi}{\partial v^n_\alpha}\frac{\partial v^n_\alpha}{\partial \omega^{rm}} + \frac{\partial \Phi}{\partial w^n_\alpha}\frac{\partial w^n_\alpha}{\partial \omega^{rm}}\nn\\ 
+%& = v^n\sqrt{1+\Phi}\frac{\partial u_{\alpha n}}{\partial \omega^{rm}} + \frac{\partial \Phi}{\partial v^n_\alpha}2\lbp \lp\alpha_1+\frac{2}{3}\rp\pdp{r} + \alpha_2\pdo{r}\rbp + \frac{\partial \Phi}{\partial w^n_\alpha}2\lbp -\alpha_2\pdp{r} + \lp\alpha_1+\frac{2}{3}\rp\pdo{r}\rbp\nn\\ 
+%& = \bigg\{ 
+%2\lp\alpha_1-\frac{1}{3}\rp *f_m \hat p_{\parallel r} + 2\alpha_2*f_m \hat p_{\perp r} \nn\\
+%& + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ 2\beta_1\W_{st}\hat p_{\parallel r} + 4\beta_1\W_{sr}\hat p_{\parallel t}\nn\\
+%&\hspace{2cm} + \lp -2\beta_2 + \frac{1}{3}\rp \epsilon_{rs}\hat p_{\parallel t} + 6\beta_2\W_{sr}\hat p_{\perp t}\bigg]\bigg\}\sqrt{1+\Phi}
+%\end{align}
+%The projection in the $\lp\alpha_1+\frac{2}{3}\rp\pdp{{}} + \alpha_2\pdo{{}}$ direction 
+%\begin{align}
+%\frac{\partial \Phi}{\partial v^n_\alpha} & = \lbp\lp\alpha_1+\frac{2}{3}\rp^2 + \alpha_2^2\rbp^{-1}\bigg\{ 
+%- \half v^n\frac{\partial u_{\alpha n}}{\partial \omega^{rm}} + \lp\alpha_1-\frac{1}{3}\rp *f_m \hat p_{\parallel r} + \alpha_2*f_m \hat p_{\perp r} \nn\\
+%& + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ \beta_1\W_{st}\hat p_{\parallel r} + 2\beta_1\W_{sr}\hat p_{\parallel t}\nn\\
+%&\hspace{2cm} + \lp -\beta_2 + \frac{1}{6}\rp \epsilon_{rs}\hat p_{\parallel t} + 3\beta_2\W_{sr}\hat p_{\perp t}\bigg]\bigg\}\sqrt{1+\Phi}\lbp\lp\alpha_1+\frac{2}{3}\rp\pup{r} + \alpha_2\puo{r}\rbp\nn\\
+%& = \lbp\lp\alpha_1+\frac{2}{3}\rp^2 + \alpha_2^2\rbp^{-1}\bigg\{ 
+%- \half v^n\frac{\partial u_{\alpha n}}{\partial \omega^{rm}}\lbp\lp\alpha_1+\frac{2}{3}\rp\pup{r} + \alpha_2\puo{r}\rbp + \lp\alpha_1-\frac{1}{3}\rp\lp\alpha_1+\frac{2}{3}\rp *f_m + \alpha_2^2*f_m \nn\\
+%& + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ \beta_1\lp\alpha_1+\frac{2}{3}\rp\W_{st} + 2\beta_1\hat p_{\parallel t}\lbp\lp\alpha_1+\frac{2}{3}\rp\pdp{s} + \alpha_2\pdo{s}\rbp\nn\\
+%&\hspace{2cm} + \lp -\beta_2 + \frac{1}{6}\rp \hat p_{\parallel t}\lbp\lp\alpha_1+\frac{2}{3}\rp\pdo{s} - \alpha_2\pdp{s}\rbp + 3\beta_2\hat p_{\perp t}\lbp\lp\alpha_1+\frac{2}{3}\rp\pdp{s} + \alpha_2\pdo{s}\rbp\bigg]\bigg\}\sqrt{1+\Phi}\nn\\
+%\end{align}
+%The projection in the $-\alpha_2\pdp{{}} + \lp\alpha_1+\frac{2}{3}\rp\pdo{{}}$ direction 
+%\begin{align}
+%\frac{\partial \Phi}{\partial w^n_\alpha} & = \lbp\lp\alpha_1+\frac{2}{3}\rp^2 + \alpha_2^2\rbp^{-1}\bigg\{ 
+%- \half v^n\frac{\partial u_{\alpha n}}{\partial \omega^{rm}} + \lp\alpha_1-\frac{1}{3}\rp *f_m \hat p_{\parallel r} + \alpha_2*f_m \hat p_{\perp r} \nn\\
+%& + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ \beta_1\W_{st}\hat p_{\parallel r} + 2\beta_1\W_{sr}\hat p_{\parallel t}\nn\\
+%&\hspace{2cm} + \lp -\beta_2 + \frac{1}{6}\rp \epsilon_{rs}\hat p_{\parallel t} + 3\beta_2\W_{sr}\hat p_{\perp t}\bigg]\bigg\}\sqrt{1+\Phi}\lbp -\alpha_2\pup{r} + \lp\alpha_1+\frac{2}{3}\rp\puo{r}\rbp\nn\\
+%& = \lbp\lp\alpha_1+\frac{2}{3}\rp^2 + \alpha_2^2\rbp^{-1}\bigg\{ 
+%- \half v^n\frac{\partial u_{\alpha n}}{\partial \omega^{rm}}\lbp -\alpha_2\pup{r} + \lp\alpha_1+\frac{2}{3}\rp\puo{r}\rbp - \alpha_2\lp\alpha_1-\frac{1}{3}\rp *f_m + \alpha_2\lp\alpha_1+\frac{2}{3}\rp*f_m \nn\\
+%& + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ - \beta_1\alpha_2\W_{st} + 2\beta_1\hat p_{\parallel t}\lbp -\alpha_2\pdp{s} + \lp\alpha_1+\frac{2}{3}\rp\pdo{s}\rbp\nn\\
+%&\hspace{2cm} + \lp -\beta_2 + \frac{1}{6}\rp \hat p_{\parallel t}\lbp -\alpha_2\pdo{s} - \lp\alpha_1+\frac{2}{3}\rp\pdp{s}\rbp + 3\beta_2\hat p_{\perp t}\lbp -\alpha_2\pdp{s} + \lp\alpha_1+\frac{2}{3}\rp\pdo{s}\rbp\bigg]\bigg\}\sqrt{1+\Phi}\nn\\ 
+%\end{align}
+
+% -----------------------------------------------------------------------------------------------------------------------------------
+%\subsubsection{General variable substitution}
+%The equations to solve
+%\begin{align}
+%*k^m = \bigg[ - 2\lp\alpha_1+\frac{2}{3}\rp\omega_\parallel^m - 2\alpha_2\omega_\perp^m\bigg]\sqrt{1+\Phi}
+%\end{align}
+%\begin{align}
+%j_{rm} & = \bigg\{ 
+%2\lp\alpha_1-\frac{1}{3}\rp *f_m \hat p_{\parallel r} + 2\alpha_2*f_m \hat p_{\perp r} \nn\\
+%& + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ 2\beta_1\W_{st}\hat p_{\parallel r} + 4\beta_1\W_{sr}\hat p_{\parallel t}\nn\\
+%&\hspace{2cm} + \lp -2\beta_2 + \frac{1}{3}\rp \epsilon_{rs}\hat p_{\parallel t} + 6\beta_2\W_{sr}\hat p_{\perp t}\bigg]\bigg\}\sqrt{1+\Phi}
+%\end{align}
+%We have the 1-forms $\omega_\parallel^m, \omega_\perp^m, *f^m, \epsilon_{mnp}*(\omega_\parallel^n\we\omega_\parallel^p), \epsilon_{mnp}*(\omega_\parallel^n\we\omega_\perp^p), \epsilon_{mnp}*(\omega_\perp^n\we\omega_\perp^p)$.
+%Let
+%\begin{align}
+%u^m &= d_{11}*f^m + \lbp d_{12}\pdp{r} + d_{13}\pdo{r}\rbp\omega^{rm} + \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\lbp d_{14}\pdp{s}\pdp{t} + d_{15}\pdp{s}\pdo{t} + d_{16}\pdo{s}\pdo{t}\rbp\nn\\
+%v^m &= d_{21}*f^m + \lbp d_{22}\pdp{r} + d_{23}\pdo{r}\rbp\omega^{rm} + \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\lbp d_{24}\pdp{s}\pdp{t} + d_{25}\pdp{s}\pdo{t} + d_{26}\pdo{s}\pdo{t}\rbp\nn\\
+%w^m &= d_{31}*f^m + \lbp d_{32}\pdp{r} + d_{33}\pdo{r}\rbp\omega^{rm} + \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\lbp d_{34}\pdp{s}\pdp{t} + d_{35}\pdp{s}\pdo{t} + d_{36}\pdo{s}\pdo{t}\rbp\nn\\
+%\end{align}
+%The variations becomes
+%\begin{align}
+%*k^m &= *\frac{\partial \Phi}{\partial f_m} = - \frac{\partial \Phi}{\partial *f_m} = -d_{11}\frac{\partial \Phi}{\partial u_m} - d_{21}\frac{\partial \Phi}{\partial v_m} - d_{31}\frac{\partial \Phi}{\partial w_m}\nn\\
+%j_{rm} &= \frac{\partial \Phi}{\partial \omega^{rm}} = \frac{\partial \Phi}{\partial u_{\alpha n}}\frac{\partial u_{\alpha n}}{\partial \omega^{rm}} + \frac{\partial \Phi}{\partial v^n_\alpha}\frac{\partial v^n_\alpha}{\partial \omega^{rm}} + \frac{\partial \Phi}{\partial v^n_\alpha}\frac{\partial w^n_\alpha}{\partial \omega^{rm}}\nn\\
+%& = \frac{\partial \Phi}{\partial u^m}\lbp d_{12}\pdp{r} + d_{13}\pdo{r}\rbp + \frac{\partial \Phi}{\partial v^m}\lbp d_{22}\pdp{r} + d_{23}\pdo{r}\rbp + \frac{\partial \Phi}{\partial w^m}\lbp d_{32}\pdp{r} + d_{33}\pdo{r}\rbp\nn\\
+%& -2\epsilon_{mnp}\varepsilon_{\alpha\beta\gamma}\frac{\partial \Phi}{\partial u_{n\alpha}}\omega^{\gamma tp}d\xi^\beta\lbp d_{14}\pdp{r}\pdp{t} + d_{15}\pdp{r}\pdo{t} + d_{16}\pdo{r}\pdo{t}\rbp\nn\\
+%& -2\epsilon_{mnp}\varepsilon_{\alpha\beta\gamma}\frac{\partial \Phi}{\partial v_{n\alpha}}\omega^{\gamma tp}d\xi^\beta\lbp d_{24}\pdp{r}\pdp{t} + d_{25}\pdp{r}\pdo{t} + d_{26}\pdo{r}\pdo{t}\rbp\nn\\
+%& -2\epsilon_{mnp}\varepsilon_{\alpha\beta\gamma}\frac{\partial \Phi}{\partial w_{n\alpha}}\omega^{\gamma tp}d\xi^\beta\lbp d_{34}\pdp{r}\pdp{t} + d_{35}\pdp{r}\pdo{t} + d_{36}\pdo{r}\pdo{t}\rbp
+%\end{align}
+%
+%We choose $v^m$ to correspond to the vielbein (c.f. \cite{artikeln}) (......... Lite mer text om det funkar! .........)
+%\begin{align}
+%G_{\alpha\beta}=g_{\alpha\beta} + \tilde\omega^m_\alpha\tilde\omega_{m\beta}
+%\end{align}
+%$v$ will be the 1-form coming from the other side, i.e. $u$ and $w$ are functions of $v$ and we create the action
+%\begin{align}
+%S = \int d^3\xi\lbp f(v)\rbp + S_{s.c.}
+%\end{align}
+%The Bianchi identities of the defined forms are
+%\begin{align}
+%du^m &= d_{11}d*f^m + \lbp d_{12}\pdp{r} + d_{13}\pdo{r}\rbp d\omega^{rm} + \epsilon_{mnp}d*(\omega^{sn}\we\omega^{tp})\lbp d_{14}\pdp{s}\pdp{t} + d_{15}\pdp{s}\pdo{t} + d_{16}\pdo{s}\pdo{t}\rbp\nn\\
+%v^m &= d_{21}*f^m + \lbp d_{22}\pdp{r} + d_{23}\pdo{r}\rbp\omega^{rm} + \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\lbp d_{24}\pdp{s}\pdp{t} + d_{25}\pdp{s}\pdo{t} + d_{26}\pdo{s}\pdo{t}\rbp\nn\\
+%w^m &= d_{31}*f^m + \lbp d_{32}\pdp{r} + d_{33}\pdo{r}\rbp\omega^{rm} + \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\lbp d_{34}\pdp{s}\pdp{t} + d_{35}\pdp{s}\pdo{t} + d_{36}\pdo{s}\pdo{t}\rbp\nn\\
+%\end{align}
+%
+%At this level we should only have one 1-form with known Bianchi identity
+%such that the equations of motion coming from the variation gives the Bianchi identities
+%\begin{align}
+%\qdp{r}d\omega^{rm} &= -\qdp{r}F^{rm}\nn\\
+%df_m &= -H_m + \half\epsilon_{mnp}\epsilon_{st}F^{sn}\we\omega^{tp}
+%\end{align}
+%
+%Try
+%\begin{align}
+%u^m &= d_{11}*f^m + \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\lbp d_{14}\pdp{s}\pdp{t} + d_{15}\pdp{s}\pdo{t} + d_{16}\pdo{s}\pdo{t}\rbp\nn\\
+%\end{align}
+%Let $H_m=0$ (comes from other side).
+%We want
+%\begin{align}
+%d*u_m &= -d\left[d_{11}f_m + \epsilon_{mnp}\omega^{sn}\we\omega^{tp}\lbp d_{14}\pdp{s}\pdp{t} + d_{15}\pdp{s}\pdo{t} + d_{16}\pdo{s}\pdo{t}\rbp\right]\nn\\
+%& = \epsilon_{mnp}F^{sn}\we\omega^{tp}\left[ -\half d_{11}\epsilon_{st} + 2\lbp d_{14}\pdp{s}\pdp{t} + d_{15}\pdp{s}\pdo{t} + d_{16}\pdo{s}\pdo{t}\rbp \right]
+%\end{align}
+%If we don't know $d\tilde\omega^m = -\tilde F^m$, we cannot get such terms from the other side (because we vary with respect to $\phi$ and don;t know what $d\tilde\omega^m$ is), we are forced to use $d_{15}=0$ and $d_{14} = d_{16} = \frac{1}{4}$.
+
+% -----------------------------------------------------------------------------------------------------------------------------------
+%\subsubsection{Bengts bad term}
+%It would be nice to make a variable substitution such that the dependence of the new variables on $\omega$ is either it's parallel or orthogonal projection on $p$, so that the $r$ and $m$ indices in \eqnref{solution_8d_jrm_orig} decouple, letting us project the equation on $\hat p$ and $\hat p_\perp$ to get conditions on the parameters $\alpha$ and $\beta$. 
+%We try the following substitution according to the combinations of $p$, $\omega$ and $f$ entering the equations 
+%\begin{align}
+%u_m &= b*f_m + c_{(st)}\epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\nn\\
+%v^m &= a\lbp\lp\alpha_1+\frac{2}{3}\rp\omega_\parallel^m + \alpha_2\omega_\perp^m\rbp = \qdp{r}\omega^{rm}\nn\\
+%%\eqnlab{solution_8d_vartrans}
+%\end{align}
+%where $a$, $b$ and $c_{(st)}$ are constants constructed using combinations of $p_r$ and $\epsilon_{rs}$ and $\qdp{{}}\cdot\qdp{{}} = 1$, giving $a=\lbp\lp\alpha_1+\frac{2}{3}\rp^2 + \alpha_2^2\rbp^{-1/2}$.
+%The variations of $\Phi(u(\omega,f),v(\omega))$ becomes
+%\begin{align}
+%*k^m &= *\frac{\partial \Phi}{\partial f_m} = *\lp\frac{\partial \Phi}{\partial u_{\alpha n}}\frac{\partial u_{\alpha n}}{\partial f_m}\rp = \half d\xi^\delta\varepsilon_{\delta\gamma\beta}\lp \frac{\partial \Phi}{\partial u_m^{\alpha}} \frac{b}{2}2\varepsilon^{\alpha\beta\gamma}\rp = -b\frac{\partial \Phi}{\partial u_m}\nn\\
+%j_{rm} &= \frac{\partial \Phi}{\partial \omega^{rm}} = \frac{\partial \Phi}{\partial u_{\alpha n}}\frac{\partial u_{\alpha n}}{\partial \omega^{rm}} + \frac{\partial \Phi}{\partial v^n_\alpha}\frac{\partial v^n_\alpha}{\partial \omega^{rm}}\nn\\
+%& = \frac{\partial \Phi}{\partial u_{n\alpha}}\frac{\partial}{\partial \omega^{rm}}\lp c_{(st)}\epsilon_{nn'p}\varepsilon_{\alpha\beta\gamma}\omega^{\beta sn'}\omega^{\gamma tp}\rp + \frac{\partial \Phi}{\partial v^m}\qdp{r}\nn\\
+%& = -2c_{(rt)}\epsilon_{mnp}\varepsilon_{\alpha\beta\gamma}\frac{\partial \Phi}{\partial u_{n\alpha}}\omega^{\gamma tp}d\xi^\beta + \frac{\partial \Phi}{\partial v^m}\qdp{r}
+%\end{align}
+%and thus the duality relations are
+%\begin{align}
+%\frac{\partial \Phi}{\partial u_m} = bv^m\sqrt{1+\Phi}
+%\eqnlab{solution_8d_km_trans}
+%\end{align}
+%and
+%\begin{align}
+%\qdp{r}&\frac{\partial \Phi}{\partial v^m} 
+%= \bigg\{
+%\frac{2}{b}\left[\lp\alpha_1-\frac{1}{3}\rp\pdp{r} + \alpha_2\pdo{r}\right]\lp u_m - c_{(st)}\epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\rp\nn\\
+%& + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ 2\beta_1\W_{st}\hat p_{\parallel r} + 4\beta_1\W_{sr}\hat p_{\parallel t} + \lp -2\beta_2 + \frac{1}{3}\rp \epsilon_{rs}\pdp{t} + 6\beta_2\pdo{t}\W_{sr}\bigg]\nn\\
+%& + \frac{2}{b}c_{(rt)}\epsilon_{mnp}\varepsilon_{\alpha\beta\gamma}\qdp{s}\omega^{\alpha sn}\omega^{\gamma tp}d\xi^{\beta} 
+%\bigg\}\sqrt{1+\Phi}\nn\\
+%&= \bigg\{
+%\frac{2}{b}\left[\lp\alpha_1-\frac{1}{3}\rp\pdp{r} + \alpha_2\pdo{r}\right] u_m
+%+ \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\bigg[- \frac{2}{b}\left[\lp\alpha_1-\frac{1}{3}\rp\pdp{r} + \alpha_2\pdo{r}\right] c_{(st)}\nn\\
+%& - 2b c_{(rt)}\qdp{s} + 2\beta_1\W_{st}\hat p_{\parallel r} + 4\beta_1\W_{sr}\hat p_{\parallel t} + \lp - 2\beta_2 + \frac{1}{3}\rp \epsilon_{rs}\pdp{t} + 6\beta_2 \pdo{t}\W_{sr}   
+%\bigg]\bigg\}\sqrt{1+\Phi}
+%\end{align}
+%where we have used $\frac{\partial \Phi}{\partial u_m}$ from \eqnref{solution_8d_km_trans}.
+%
+%We now decompose the equation $e_r$ as 
+%\begin{align}
+%e_r = (e\cdot\qdp{{}})\qdp{{}} + (e\cdot\qdo{{}})\qdo{{}},   
+%\end{align}  
+%where $\qdo{{}}$ is defined from $\qdp{{}}\cdot\qdo{{}} = 0$ and $\qdo{{}}\cdot\qdo{{}}=1$ as 
+%%\begin{align}
+%%\qdp{{}} = \lbp\lp\alpha_1+\frac{2}{3}\rp^2 + \alpha_2^2\rbp^{-1/2}\lbp\lp\alpha_1+\frac{2}{3}\rp\pdp{{}} + \alpha_2\pdo{{}}\rbp
+%%\end{align}
+%%\begin{align}
+%%\qdo{{}} = \lbp\lp\alpha_1+\frac{2}{3}\rp^2+\alpha_2^2\rbp^{-1/2}\lbp\alpha_2\pdp{{}} -\lp\alpha_1+\frac{2}{3}\rp\pdo{{}}\rbp
+%%\end{align}
+%\begin{align}
+%\qdo{{}} = a\lbp\alpha_2\pdp{{}} -\lp\alpha_1+\frac{2}{3}\rp\pdo{{}}\rbp.
+%\end{align}
+%Multiplying the equation $e_r$ with $\qdo{{}}$ gives it's projection along the $\qdo{{}}$ direction 
+%\begin{align}
+%0 &= \bigg\{
+%-\frac{2}{b}a\alpha_2u_m
+%+ \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\bigg[ \frac{2}{b}a\alpha_2c_{(st)}\nn\\
+%& - 2b \quo{r}c_{(rt)}\qdp{s} + 2\beta_1a\alpha_2\W_{st} + 4\beta_1\qdo{s}\hat p_{\parallel t} - \lp - 2\beta_2 + \frac{1}{3}\rp \qdp{s}\pdp{t} + 6\beta_2 \pdo{t}\qdo{s}   
+%\bigg]\bigg\}\sqrt{1+\Phi}\nn\\
+%&= \bigg\{
+%-\frac{2}{b}a\alpha_2u_m
+%+ \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\bigg[ \frac{2}{b}a\alpha_2c_{(st)}\nn\\
+%& - 2ab\lbp\alpha_2\pup{r} -\lp\alpha_1+\frac{2}{3}\rp\puo{r}\rbp c_{(rt)}a\lbp\lp\alpha_1+\frac{2}{3}\rp\pdp{s} + \alpha_2\pdo{s}\rbp + 2\beta_1a\alpha_2\W_{st} + 4\beta_1a\lbp\alpha_2\pdp{s} -\lp\alpha_1+\frac{2}{3}\rp\pdo{s}\rbp\hat p_{\parallel t}\nn\\
+%& - \lp - 2\beta_2 + \frac{1}{3}\rp a\lbp\lp\alpha_1+\frac{2}{3}\rp\pdp{s} + \alpha_2\pdo{s}\rbp\pdp{t} + 6\beta_2 \pdo{t}a\lbp\alpha_2\pdp{s} -\lp\alpha_1+\frac{2}{3}\rp\pdo{s}\rbp   
+%\bigg]\bigg\}\sqrt{1+\Phi}
+%\end{align}
+%When $w=0$ we must have $\alpha_2 = 0$.
+%For this equation to hold the factor multiplying $*(\omega\we\omega)$ must be zero and gives conditions for $c$ and $\beta$. The only symmetric combinations we can come up with for $c_{rs}$ are $p^u\epsilon_{u(r}p_{s)}$, $\W_{rs}$ and $p_rp_s$. The only term that cancels the $\epsilon$ is the first so we let
+%\begin{align}
+%c_{(rs)}=c_1\pdp{r}\pdp{s} + c_2\pdo{(r}\pdp{s)} + c_3\pdo{r}\pdo{s}
+%\end{align}
+%and get
+%\begin{align}
+%0 &= 2ab \lp\alpha_1+\frac{2}{3}\rp\lbp \half c_2\pdp{t} + c_3\pdo{t} \rbp\pdp{s} - 4\beta_1\pdo{s}\pdp{t}\nn\\
+%& - \lp - 2\beta_2 + \frac{1}{3}\rp\pdp{s}\pdp{t} - 6\beta_2 \pdo{s}\pdo{t}   
+%\end{align}
+%$\qdp{{}}\ne 0$ implies $\alpha_1\ne-\frac{2}{3}$ and thus $\beta_2 = 0$,
+%\begin{align}
+%c_2 &= \frac{1}{3ab}\lp\alpha_1+\frac{2}{3}\rp^{-1} = \frac{1}{3b}\mbox{ and}\nn\\
+%c_3 &= 2\beta_1\lp\alpha_1+\frac{2}{3}\rp^{-1}    
+%\end{align}
+%
+%Multiplying the equation $e_r$ with $\qdp{{}}$ gives it's projection along the $\qdp{{}}$ direction 
+%\begin{align}
+%\frac{\partial \Phi}{\partial v^m} 
+%&= \bigg\{
+%\frac{2a}{b}\left[\lp\alpha_1-\frac{1}{3}\rp\lp\alpha_1+\frac{2}{3}\rp + \alpha_2^2\right] u_m
+%+ \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\bigg[- \frac{2a}{b}\left[\lp\alpha_1-\frac{1}{3}\rp\lp\alpha_1+\frac{2}{3}\rp + \alpha_2^2\right]c_{(st)}\nn\\
+%& - 2b\qup{r}c_{(rt)}\qdp{s} + 2\beta_1\W_{st} + 4\beta_1\qdp{s}\hat p_{\parallel t} + \lp - 2\beta_2 + \frac{1}{3}\rp \qdo{s}\pdp{t} + 6\beta_2 \pdo{t}\qdp{s}   
+%\bigg]\bigg\}\sqrt{1+\Phi}
+%\end{align}
+%which with the conditions found above becomes
+%\begin{align}
+%%\qdp{{}} &= a\lp\alpha_1+\frac{2}{3}\rp\pdp{{}}\nn\\
+%%c_{(rs)} & =\lbp c_1\pdp{r}\pdp{s} + \frac{b}{3a}\lp\alpha_1+\frac{2}{3}\rp^{-1}\pdo{(r}\pdp{s)} + 2\beta_1\lp\alpha_1+\frac{2}{3}\rp^{-1}\pdo{r}\pdo{s}\rbp\nn\\
+%\frac{\partial \Phi}{\partial v^m} 
+%&= \bigg\{
+%\frac{2a}{b}\lp\alpha_1-\frac{1}{3}\rp\lp\alpha_1+\frac{2}{3}\rp u_m\nn\\
+%& + \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\bigg[- \frac{2a}{b}\lp\alpha_1-\frac{1}{3}\rp\lp\alpha_1+\frac{2}{3}\rp \lbp c_1\pdp{s}\pdp{t} + \frac{b}{3a}\lp\alpha_1+\frac{2}{3}\rp^{-1}\pdo{(s}\pdp{t)} + 2\beta_1\lp\alpha_1+\frac{2}{3}\rp^{-1}\pdo{s}\pdo{t}\rbp\nn\\
+%& - 2ba^2\lp\alpha_1+\frac{2}{3}\rp^2\lbp c_1\pdp{t} + \frac{b}{6a}\lp\alpha_1+\frac{2}{3}\rp^{-1}\pdo{t}\rbp\pdp{s} + 2\beta_1\W_{st} + 4\beta_1a\lp\alpha_1+\frac{2}{3}\rp\pdp{s}\hat p_{\parallel t} - \frac{1}{3}a\lp\alpha_1+\frac{2}{3}\rp\pdo{s}\pdp{t}   
+%\bigg]\bigg\}\sqrt{1+\Phi}\nn\\
+%& = \bigg\{
+%\frac{2a}{b}\lp\alpha_1-\frac{1}{3}\rp\lp\alpha_1+\frac{2}{3}\rp u_m\nn\\
+%& + \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\bigg[\pdp{s}\pdp{t}\left[- \frac{2a}{b}\lp\alpha_1-\frac{1}{3}\rp\lp\alpha_1+\frac{2}{3}\rp c_1 - 2ba^2\lp\alpha_1+\frac{2}{3}\rp^2c_1 + 2\beta_1 + 4\beta_1a\lp\alpha_1+\frac{2}{3}\rp\right]\nn\\
+%& + \pdp{(s}\pdo{t)}\left[- \frac{2}{3}\lp\alpha_1-\frac{1}{3}\rp - \frac{ab^2}{3}\lp\alpha_1+\frac{2}{3}\rp - \frac{1}{3}a\lp\alpha_1+\frac{2}{3}\rp\right]\nn\\
+%& + \pdo{s}\pdo{t}\left[- \frac{2a}{b}2\beta_1\lp\alpha_1-\frac{1}{3}\rp + 2\beta_1\right]
+%\bigg]\bigg\}\sqrt{1+\Phi}
+%\end{align}
+%We have assumed the orthogonal projection $w^m$ doesn't enter the right hand side, so $\Phi$ independent on $w^m$. This means the factors multiplying $\pdp{(s}\pdo{t)}$ and $\pdo{s}\pdo{t}$ must be $0$. 
+%We get (using $a$ as it is defined)
+%\begin{align}
+%0 &= \alpha_1-\frac{1}{3} + \alpha_1+\frac{2}{3}\nn\\
+%0 &= \beta_1\lbp\frac{2}{b}\lp\alpha_1-\frac{1}{3}\rp - 1\rbp 
+%\end{align}
+%giving $\alpha_1=-\frac{1}{6}$ and $b=-1$.
+%
+%The factor multiplying $\pdp{s}\pdp{t}$
+%\begin{align}
+%c_1 + 6\beta_1
+%\end{align}
+%which can be chosen to be 0, we let $c_1=\beta_1 = 0$.
+%
+%%The paper equations with the given parameter values becomes
+%\begin{align}
+%j_{rm} & = \bigg\{ 
+%2\lp\alpha_1-\frac{1}{3}\rp *f_m \hat p_{\parallel r} + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ \lp -2\beta_2 + \frac{1}{3}\rp \epsilon_{rs}\pdp{t} + 6\beta_2\W_{sr}\pdo{t}\bigg]\bigg\}\sqrt{1+\Phi}\nn\\
+%& = \bigg\{-*f_m \pdp{r} + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ \frac{1}{3}\epsilon_{rs}\pdp{t} \bigg]\bigg\}\sqrt{1+\Phi}
+%\end{align}
+%We have
+%\begin{align}
+%*f_m &= bu_m + c\pdo{(s}\pdp{t)}\epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\nn\\
+%\end{align}
+%and
+%\begin{align}
+%j_{rm} &= -2c\pdo{(r}\pdp{t)}\epsilon_{mnp}\varepsilon_{\alpha\beta\gamma}\frac{\partial \Phi}{\partial u_{n\alpha}}\omega^{\gamma tp}d\xi^\beta + \frac{\partial \Phi}{\partial v^m}\pdp{r}\nn\\
+%& = -2c\pdo{(r}\pdp{t)}\epsilon_{mnp}\varepsilon_{\alpha\beta\gamma}\lp\pdp{s}\omega^{\alpha sn}\rp\omega^{\gamma tp}d\xi^\beta\sqrt{1+\Phi} + \frac{\partial \Phi}{\partial v^m}\pdp{r}\nn\\
+%& = 2c\pdo{(r}\pdp{t)}\pdp{s}\epsilon_{mnp}*\lp\omega^{sn}\we\omega^{tp}\rp\sqrt{1+\Phi} + \frac{\partial \Phi}{\partial v^m}\pdp{r}
+%\end{align}
+%giving
+%\begin{align}
+%\frac{\partial \Phi}{\partial v^m}\pdp{r} &=\bigg\{ 
+%-*f_m \pdp{r} + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[ \frac{1}{3}\epsilon_{rs}\pdp{t} - 2c\pdo{(r}\pdp{t)}\pdp{s}\bigg]\bigg\}\sqrt{1+\Phi}\nn\\ 
+%& = -bu_m\pdp{r} + \epsilon_{mnp}*\lp\omega^{sn} \wedge \omega^{tp}\rp\bigg[- c\pdo{(s}\pdp{t)}\pdp{r} + \frac{1}{3}\epsilon_{rs}\pdp{t} - 2c\pdo{(r}\pdp{t)}\pdp{s}\bigg]\bigg\}\sqrt{1+\Phi} 
+%\end{align}
+%(Fel! Ska nog vara en extra faktor 2 i $c_2$, g[r iaf att l;sa vilket inneb'r att det som gjorts i pappret kan vara specialvallet av denna l;sningen med $\omega_\perp = 0$, s[ inga laddningar i $\Phi$). D.v.s. denna l;sningen som kommer fr[n att man plockar bort $w^m$ fr[n ekvationerna har vara den l;sningen utan laddningar och pappersl;sningen beh;ver inte vara ett specialfall av den allm'nna l;sningen (eftersom den 'r ett specialfall av denna l;sningen!).
+
+%\begin{align}
+%- c\pdo{(s}\pdp{t)} + \frac{1}{3}\pdo{s}\pdp{t} - c\pdo{t}\pdp{s} = 0\\
+%\frac{1}{3}\pdp{s}\pdp{t} - c\pdp{t}\pdp{s} = 0\\
+%\end{align}
+%
+%\begin{align}
+%a|p|\frac{\partial \Phi}{\partial v^m} 
+%&= \bigg\{
+%\frac{2}{b}\lp\alpha_1-\frac{1}{3}\rp u_m
+%+ \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\bigg[- \frac{2}{b}\lp\alpha_1-\frac{1}{3}\rp \lp c_1\pdp{s}\pdp{t} -\frac{b}{6|p|^2}\lp\alpha+\frac{2}{3}\rp^{-1}\pdo{(s}\pdp{t)}\rp\nn\\
+%& - \frac{2}{b} \lp c_1\pdp{t} -\frac{b}{12|p|^2}\lp\alpha+\frac{2}{3}\rp^{-1}\pdo{t}\rp\lp\alpha+\frac{2}{3}\rp\pdp{s} + \frac{1}{3}\pdo{s}\pdp{t}    
+%\bigg]\bigg\}\sqrt{1+\Phi}
+%\end{align}
+%
+%\begin{align}
+%a|p|\frac{\partial \Phi}{\partial v^m} 
+%&= \bigg\{
+%\frac{2}{b}\lp\alpha-\frac{1}{3}\rp u_m 
+%+ \epsilon_{mnp}*(\omega^{sn}\we\omega^{tp})\bigg[\nn\\
+%& \frac{1}{3}\bigg\{ \lp\alpha-\frac{1}{3}\rp\lp\alpha+\frac{2}{3}\rp^{-1} + 2  
+%\bigg\}p^u\epsilon_{us}p_{t} \bigg]\bigg\}\sqrt{1+\Phi}
+%\end{align}
+%This $SL(2,\rr)$ scalar equation $(e\cdot\hat p_\parallel)$ is the same for the two values of $r$ in $\hat p_\parallel$ meaning the starting $2\cdot 3 + 3 = 9$ equations in the $SL(2,\rr)$ and $SL(3,\rr)$ indices has come down to $1\cdot 3+3=6$ equations. 
+%According to (.........  ..........) there should only be three scalar fields in the theory so we are left with what appears to be 6 equations of motion for 3 scalars.
+%To completely remove the $p$ dependence in the duality relations we first choose $a=1/|p|$ meaning $v^m = \omega_\parallel^m$, i.e. $v^m$ is the projection of $\omega^m$ along the constant $\hat p_\parallel$ direction.
+%Since there could be no $p_sp_t = |p|^2\hat p_\parallel\otimes \hat p_\parallel$ term in $c_{(rs)}$ we cannot rewrite both the $\omega$:s in terms of $v$ and thus we have to choose $\alpha = -1/3$ so the $*(\omega\we\omega)$ term becomes zero. 
+%We also choose $b = 1$.
+%The duality relations thus becomes
+%\begin{align}
+%\frac{\partial \Phi}{\partial u_m} &= \frac{2}{3} v^m\sqrt{1+\Phi}\nn\\
+%\frac{\partial \Phi}{\partial v^m} &= -\frac{4}{3} u_m \sqrt{1+\Phi}
+%\eqnlab{solution_equations_8d_final}
+%\end{align}
+%which is our final form of the duality relations for the $d=8$ $D2$ case with $\alpha$ and $\beta$ constant. We will try and solve these in \secref{csolution_8d_const}.
+%
+%To see whether these equations are reasonable or not we series expand $\Phi$ to third order
+%\begin{align}
+%\Phi &= a_0 u_\alpha^mu^\alpha_m + a_1 u_\alpha^mv^\alpha_m + a_2 v_\alpha^mv^\alpha_m\nn\\
+%& + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp a_3u_\alpha^mu_\beta^nu_\gamma^p + a_4u_\alpha^mu_\beta^nv_\gamma^p + a_5u_\alpha^mv_\beta^nv_\gamma^p + a_6v_\alpha^mv_\beta^nv_\gamma^p \rp.
+%\end{align}
+%Since there should only be 3 scalars in the theory and we have 6 scalars in the 1-forms $u$ and $v$, there must be a relation $u = u(v)$ such that as to get the indices right 
+%\begin{align}
+%u_\alpha^m = b_1v_\alpha^m + b_2\varepsilon_{\alpha\beta\gamma}\epsilon^{mnp} v^\beta_nv^\gamma_p + \Ordo(v^3). 
+%\end{align}
+%The series expansion of the duality equations to second order in $u$ and $v$ thus becomes
+%\begin{align}
+%2 a_0 u^\alpha_m + a_1 v^\alpha_m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp 3 a_3u_\beta^nu_\gamma^p + 2a_4u_\beta^nv_\gamma^p + a_5v_\beta^nv_\gamma^p \rp &= \frac{2}{3} v_m^\alpha\nn\\
+% a_1 v^\alpha_m + a_2 v^\alpha_m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp a_4u_\beta^nu_\gamma^p + 2a_5u_\beta^nv_\gamma^p + 3a_6v_\beta^nv_\gamma^p \rp &= -\frac{4}{3} u_m^\alpha
+%\end{align}
+%and using $u = u(v)$ to second order in $v$
+%\begin{align}
+%0 &= 2a_0b_1v^\alpha_m + 2a_0b_2\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp} v_\beta^nv_\gamma^p + a_1v^\alpha_m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp 3 a_3b_1^2v^\beta_nv^\gamma_p + 2a_4b_1v^\beta_nv_\gamma^p + a_5v_\beta^nv_\gamma^p \rp - \frac{2}{3} v_m^\alpha \nn\\
+%0 &= a_1 v^\alpha_m + a_2 v^\alpha_m + \epsilon_{mnp}\varepsilon^{\alpha\beta\gamma}\lp a_4b_1^2v^\beta_nv^\gamma_p + 2a_5b_1v^\beta_nv_\gamma^p + 3a_6v_\beta^nv_\gamma^p \rp + \frac{4}{3}b_1v^\alpha_m + \frac{4}{3}b_2\varepsilon^{\alpha\beta\gamma}\epsilon_{mnp} v_\beta^nv_\gamma^p
+%\end{align}
+%from which we can read of
+%\begin{align}
+%0 &= 2a_0b_1 + a_1 - \frac{2}{3}\nn\\
+%0 &= 2a_0b_2 + 3a_3b_1^2 + 2a_4b_1 + a_5
+%\end{align}
+%from the first equation and
+%\begin{align}
+%0 &= a_1 + a_2 + \frac{4}{3}b_1\nn\\
+%0 &= a_4b_1^2 + 2a_5b_1 + 3a_6 + \frac{4}{3}b_2
+%\end{align}
+%from the second equation.
+%Demanding the equations to be equal and thus contain the same information we (......... Ja, vadå? Det kommer ju alltid vara mycket fler coefficienter än villkor, vilket gör att vi inte kan säga något om högre ordningars expansioner .........)
+%
+
+\section{Duality equations of the $d=9$ $D1$, const $\alpha$ case}
+We restate the equations of motion found earlier with $\alpha$ constant
+\begin{align}
+&1 + \Phi - *f_m*f_n\M^{mn}=0\\
+&d \Big{[}\lambda \M^{mn}*f_n\Big{]}=0\\
+&d\Big{[}\lambda *j_{1m} - 2 \lambda \alpha_{m'm} \omega^2 *f_{n'} \M^{m'n'}\Big{]}=0\\
+&d\Big{[}\lambda*j_2 - 2\alpha_{mn}\omega^{1n} *f_{n'}\M^{mn'}\Big{]} - 2\lambda \epsilon_{mn} F^{1n}*f_{n'}\M^{mn'}=0,
+\end{align}
+As in the $d=8$ $D2$ case we can identify the charges $p^m=\lambda \M^{mn}*f_n$ and together with the Bianchi identity $d\omega^{1m}=-F^{1m}$ we can rewrite the last two equations as
+\begin{align}
+&d\Big{[}\frac{|p|}{\sqrt{1+\Phi}}*j_{1m} - 2 \alpha_{m'm} \alpha \omega^2 p^{m'}\Big{]}=0\nn\\
+&d\Big{[}\frac{|p|}{\sqrt{1+\Phi}}*j_2 + 2\lp -\alpha_{mn} + \epsilon_{mn}\rp\omega^{1n} p^m \Big{]}=0
+\end{align}
+We will let $\alpha_{mn} = \alpha_1\M_{mn} + \alpha_2\epsilon_{mn}$.
+Integration gives 
+\begin{align}
+&*j_{1m} = \lbp 2\alpha_1\hat p_{\parallel m}\omega^2 + 2\alpha_2\hat p_{\perp m}\omega^2 + \frac{\Gamma_{1m}}{|p|} \rbp\sqrt{1+\Phi}\nn\\
+&*j_2 = \lbp 2\lp\alpha_2 -1\rp\omega_\perp^{1} + 2\alpha_1\omega_\parallel^{1} + \frac{\Gamma_{2}}{|p|} \rbp\sqrt{1+\Phi}
+\end{align}
+where $\Gamma$ are 1-forms such that $d\Gamma=0$. We will use $\Gamma = 0$. 
+\\
+Similar to before, we make the variable substitution
+\begin{align}
+u &= *\omega^2\nn\\
+v &= \omega^1_\parallel\nn\\
+w &= \omega^1_\perp
+\end{align}
+giving the variations
+\begin{align}
+j_{1m} &= \frac{\partial \Phi}{\partial \omega^{1m}} = \frac{\partial \Phi}{\partial v_\alpha}\frac{\partial v_\alpha}{\partial \omega^{1m}} + \frac{\partial \Phi}{\partial w_\alpha}\frac{\partial w_\alpha}{\partial \omega^{1m}}= \frac{\partial \Phi}{\partial v}p_{\parallel m} + \frac{\partial \Phi}{\partial w}p_{\perp m}\nn\\
+*j_2 &= *\frac{\partial \Phi}{\partial \omega^2} = *\lp\frac{\partial \Phi}{\partial u_{\alpha}}\frac{\partial u_{\alpha}}{\partial \omega^2}\rp = d\xi^\gamma\varepsilon_{\gamma\beta}\lp \frac{\partial \Phi}{\partial u^{\alpha}} \varepsilon^{\alpha\beta}\rp = \frac{\partial \Phi}{\partial u}
+\end{align}
+which in turn gives the duality relations
+\begin{align}
+\frac{\partial \Phi}{\partial u} &= 2\alpha_1 v + 2\lp\alpha_2 -1\rp w \sqrt{1+\Phi}\\
+\frac{\partial \Phi}{\partial v} &= - 2 \alpha_1 u\sqrt{1+\Phi}\\
+\frac{\partial \Phi}{\partial w} &= - 2 \alpha_2 u\sqrt{1+\Phi}
+\end{align}
+There should only be one scalar degree of freedom in the theory, but we have 3 equations for scalar field strengths, so the field strengths should be related by some duality relations.  
+We will discuss these equations some more in section \secref{csolution_9d_const}.
+
+
+%\paragraph{General case, series expansion, no parameters}
+%The equations we are about to solve are
+%\begin{align}
+%*j_2 &= -2\omega_\perp^{1}\sqrt{1+\Phi}\nn\\
+%j_{1m} &= 0
+%\end{align}
+%
+%Use the shorthand notation
+%\begin{align}
+%u & =*\omega^2,\mbox{ and }u^2 = *\omega^2_\alpha*\omega^{2\alpha}\nn\\
+%v & = \pdp{m}\omega^{1m}\nn\\
+%w & = \pdo{m}\omega^{1m}\nn\\
+%\end{align} 
+%to get the equations
+%\begin{align}
+%\frac{\partial\Phi}{\partial u} &= -2w\sqrt{1+\Phi}\nn\\
+%\frac{\partial\Phi}{\partial v} &= 0\nn\\
+%\frac{\partial\Phi}{\partial w} &= 0\nn\\
+%\end{align}
+%
+%To second order, let 
+%\begin{align}
+%\Phi = a_1u^2 + a_2\lp v^2+w^2\rp
+%\end{align}
+%with variations
+%\begin{align}
+%\frac{\partial\Phi}{\partial u}= 2a_1u\nn\\
+%\frac{\partial\Phi}{\partial v} = 2a_2v\nn\\
+%\frac{\partial\Phi}{\partial w} = 2a_2w
+%\end{align}
+%The equations to second order
+%\begin{align}
+%2a_1u &= -2w\nn\\
+%2a_2v &= 0\nn\\
+%2a_2w &= 0
+%\end{align}
+%Let
+%\begin{align}
+%u = b_1 v\nn\\
+%w = c_1 v
+%\end{align} 
+%gives
+%\begin{align}
+%a_1b_1v &= -c_1v\nn\\
+%a_2v &= 0\nn\\
+%a_2c_1v &= 0
+%\end{align}
+%with solutions\\
+%$a_2 = 0, c_1 = -a_1b_1$\\
+%
+%Next we examine the order 4 expansion of $\Phi$
+%\begin{align}
+%\Phi = a_1u^2 + a_3\lp u^2\rp^2 + a_4u^2\lp v^2+w^2\rp + a_5\lp(uv)^2+(uw)^2\rp + a_6\lp v^2+w^2\rp^2 
+%\end{align}
+%with variations
+%\begin{align}
+%\frac{\partial\Phi}{\partial u} &= 2a_1u + 4a_3uu^2 + 2a_4u\lp v^2+w^2\rp + 2a_5\lp v(uv)+w(uw)\rp\nn\\
+%\frac{\partial\Phi}{\partial v} &= 2a_4u^2v + 2a_5u(uv) + 4a_6v\lp v^2+w^2\rp\nn\\
+%\frac{\partial\Phi}{\partial w} &= 2a_4u^2w + 2a_5u(uw) + 4a_6w\lp v^2+w^2\rp\nn\\
+%\end{align}
+%We insert this into the duality equations, using $\sqrt{1+\Phi} = 1 + \frac{\Phi}{2} + \Ordo{(u^4,v^4)}$
+%\begin{align}
+%2a_1u + 4a_3uu^2 + 2a_4u\lp v^2+w^2\rp + 2a_5\lp v(uv)+w(uw)\rp = -w(2+a_1u^2)\nn\\
+%2a_4u^2v + 2a_5u(uv) + 4a_6v\lp v^2+w^2\rp = 0\nn\\
+%2a_4u^2w + 2a_5u(uw) + 4a_6w\lp v^2+w^2\rp = 0\nn\\
+%\end{align}
+%We use (no dualities) 
+%\begin{align}
+%u &= b_1v + b_2vv^2\nn\\
+%w &= -a_1b_1v + c_2vv^2\nn\\
+%\end{align}
+%to get the equations
+%\begin{align}
+%2a_1b_2vv^2 + 4a_3b_1^3vv^2 + 2a_4b_1v\lp 1+a_1^2b_1^2\rp v^2 + 2a_5\lp b_1+a_1^2b_1^3\rp v(vv) = 2c_2vv^2+a_1b_1^3a_1vv^2\nn\\
+%2a_4b_1^2v^2v + 2a_5b_1^2vv^2 + 4a_6\lp 1+a_1^2b_1^2\rp vv^2 = 0\nn\\
+%2a_4b_1^2c_1v^2v + 2a_5b_1^2c_1vv^2 + 4a_6c_1\lp 1+a_1^2b_1^2\rp vv^2 = 0\nn\\
+%\end{align}
+%
+%A general term $\phi_{ij}$ of order $2(i+j)+4k$ in the ansatz will be on the form
+%\begin{align}
+%\phi_{ijk} = a_{ijk}u^{2i}(v^2+w^2)^{j}((uv)^{2}+(uw)^{2})^k  
+%\end{align}
+%i.e. all terms in $\Phi$ of order $2n$ are given by
+%\begin{align}
+%\Phi^{(n)} = \sum_{k=0}^{[n/2]}\sum_{j=0}^{n-2k}\sum_{i=0}^{n-2k-j} a_{ijk}u^{2i}(v+w)^{2j}((uv)^{2}+(uw)^{2})^k
+%\end{align}
+%with variations
+%\begin{align}
+%\frac{\partial\Phi^{(n)}}{\partial u} &= \sum_{k=0}^{[n/2]}\sum_{j=0}^{n-2k}\sum_{i=0}^{n-2k-j} a_{ijk} \lbp 2iuu^{2(i-1)}(v^2+w^2)^{j}((uv)^{2}+(uw)^{2})^k + 2k(v(uv)+w(uw)) u^{2i}(v^2+w^2)^{j}((uv)^{2}+(uw)^{2})^{k-1}\rbp\nn\\
+%\frac{\partial\Phi^{(n)}}{\partial v} &= \sum_{k=0}^{[n/2]}\sum_{j=0}^{n-2k}\sum_{i=0}^{n-2k-j} a_{ijk} \lbp 2jvu^{2i}(v^2+w^2)^{j-1}((uv)^{2}+(uw)^{2})^k + 2ku(uv)u^{2i}(v^2+w^2)^{j}((uv)^{2}+(uw)^{2})^{k-1}\rbp\nn\\
+%\frac{\partial\Phi^{(n)}}{\partial w} &= \sum_{k=0}^{[n/2]}\sum_{j=0}^{n-2k}\sum_{i=0}^{n-2k-j} a_{ijk} \lbp 2jwu^{2i}(v^2+w^2)^{j-1}((uv)^{2}+(uw)^{2})^k + 2ku(uw)u^{2i}(v^2+w^2)^{j}((uv)^{2}+(uw)^{2})^{k-1}\rbp\nn\\
+%\end{align}
+
+%\paragraph{General case, series expansion}
+%Flytta kanske till efter computer solutions
+%
+%The equations we are about to solve are
+%\begin{align}
+%*j_2 &= \lbp 2\lp\alpha_2 -1\rp\omega_\perp^{1} + 2\alpha_1\omega_\parallel^{1} \rbp\sqrt{1+\Phi}\nn\\
+%j_{1m} &= \lbp 2\alpha_1\hat p_{\parallel m}*\omega^2 + 2\alpha_2\hat p_{\perp m}*\omega^2 \rbp\sqrt{1+\Phi}
+%\end{align}
+%
+%When $\alpha$ is constant the right hand side of the equations is independent of variations of $\epsilon_{mn}*(\omega^{1m}\we\omega^{1n})$ and similar terms, so we construct $\Phi$ from contractions of $\omega^{1m}$ and $\omega^{2}$ only.
+%Use the shorthand notation
+%\begin{align}
+%u & =*\omega^2,\mbox{ and }u^2 = *\omega^2_\alpha*\omega^{2\alpha}\nn\\
+%v^m & = \omega^{1m},\mbox{ }v^2 = \omega^{1m}_\alpha\omega^{1\beta}_m,\mbox{ and }\tr v^2 = \omega^{1m}_\alpha\omega^{1\alpha}_m,
+%\end{align} 
+%i.e. we consider $v^2$ as $2\times 2$-matrices.
+%To second order, let 
+%\begin{align}
+%\Phi = a_1u^2 + a_2\tr v^2
+%\end{align}
+%with variations
+%\begin{align}
+%*\frac{\partial\Phi}{\partial\omega^2} &= \frac{\partial\Phi}{\partial*\omega^2} = \frac{\partial\Phi}{\partial u}= 2a_1u\nn\\
+%\frac{\partial\Phi}{\partial\omega^{1m}_\alpha} &= \frac{\partial\Phi}{\partial v^m_\alpha} = 2a_2v_m^\alpha
+%\end{align}
+%The equations to second order
+%\begin{align}
+%2a_1u &= 2\lp\alpha_2 -1\rp v_\perp + 2\alpha_1 v_\parallel\nn\\
+%2a_2v_m &= 2\alpha_1\hat p_{\parallel m}u + 2\alpha_2\hat p_{\perp m}u
+%\end{align}
+%Let $u = b_1 v_\parallel + b_2 v_\perp + b_3*v_\parallel + b_4*v_\perp$
+%gives
+%\begin{align}
+%2a_1\lp b_1v_\parallel + b_2v_\perp + b_3*v_\parallel + b_4*v_\perp\rp &= \lbp 2\lp\alpha_2 -1\rp v_\perp + 2\alpha_1v_\parallel \rbp\nn\\
+%a_2v_\parallel &= \alpha_1\lp b_1v_\parallel + b_2v_\perp + b_3*v_\parallel + b_4*v_\perp\rp\nn\\
+%a_2v_\perp &= \alpha_2\lp b_1v_\parallel + b_2v_\perp + b_3*v_\parallel + b_4*v_\perp\rp
+%\end{align}
+%giving the equations
+%\begin{align}
+%a_1b_1 = \alpha_1\nn\\
+%a_1b_2 = \alpha_2 -1\nn\\
+%a_1b_3 = 0\nn\\
+%a_1b_4 = 0\nn\\
+%a_2 = \alpha_1 b_1\nn\\
+%0 = \alpha_1b_4\nn\\
+%\alpha_1b_2 = 0\nn\\
+%\alpha_1b_3 = 0\nn\\
+%a_2 = \alpha_2b_2\nn\\
+%0 = \alpha_2b_3\nn\\
+%\alpha_2b_1 = 0\nn\\
+%\alpha_2b_4 = 0
+%\end{align}
+%with solutions\\
+%$a_1 \ne 0, \alpha_1=0, a_2 = 0, \alpha_2 = 1, b_1= b_2=b_3=b_4=0$\\
+%$a_1 \ne 0, \alpha_1 = 0, b_3 = 0, b_4 = 0, a_2=0, b_1 = 0, a_1b_2 = \alpha_2-1$\\
+%The first relation ($\alpha_2 = 1$) removes the $u$ dependence (The $a_1$ terms is still there since the relations is $u = 0 + \Ordo{(v^3)}$). 
+%We therefore use the second solution set, giving the equation system
+%\begin{align}
+%\frac{\partial\Phi}{\partial u} &= 2\lp\alpha_2 -1\rp v_\perp\sqrt{1+\Phi}\nn\\
+%\frac{\partial\Phi}{\partial v^m} &= 2\alpha_2\hat p_{\perp m}u \sqrt{1+\Phi}
+%\end{align}
+%with 
+%\begin{align}
+%\Phi &= \frac{\alpha_2-1}{b_2}u^2+ \Ordo{\lp v^4,u^4\rp}\nn\\
+%u &= b_2v_\perp + \Ordo{\lp v^3\rp}
+%\end{align}
+%Next we examine the order 4 expansion of $\Phi$
+%\begin{align}
+%\Phi = \frac{\alpha_2-1}{b_2}u^2 + a_3u^4 + a_4u^2\tr v^2 + a_5(uv)^2 + a_6\lp\tr v^2\rp^2 + a_7\tr v^4 
+%\end{align}
+%with variations
+%\begin{align}
+%\frac{\partial\Phi}{\partial u} &= 2\frac{\alpha_2-1}{b_2}u + 4a_3u^3 + 2a_4u\tr v^2 + 2a_5v^mu_\alpha v^\alpha_m\nn\\
+%\frac{\partial\Phi}{\partial v^m} &= 2a_4u^2v_m + 2a_5uu_\alpha v^\alpha_m + 4a_6v\tr v^2 + 4a_7v_nv^n_\alpha v^\alpha_m
+%\end{align}
+%We insert this into the duality equations, using $\sqrt{1+\Phi} = 1 + \frac{\Phi}{2} + \Ordo{(u^4,v^4)}$
+%\begin{align}
+%2\frac{\alpha_2-1}{b_2}u + 4a_3u^3 + 2a_4u\tr v^2 + 2a_5v^mu_\alpha v^\alpha_m &= 2\lp\alpha_2 -1\rp v_\perp \lp 1 + \frac{\alpha_2-1}{2b_2}u^2 \rp\nn\\
+%2a_4u^2v_m + 2a_5uu_\alpha v^\alpha_m + 4a_6v_m\tr v^2 + 4a_7v_nv^n_\alpha v^\alpha_m &= 2\alpha_2\hat p_{\perp m}u \lp 1 + \frac{\alpha_2-1}{2b_2}u^2 \rp
+%\end{align}
+%We use (no dualities) 
+%\begin{align}
+%u &= b_2v_\perp + b_5v_\perp^3 + b_6v_\perp v^\alpha_\parallel v_{\perp\alpha} + b_7v_\perp v_\parallel^2 + b_8v_\parallel v_\perp^2 + b_9v_\parallel v^\alpha_\parallel v_{\perp\alpha} + b_{10}v_\parallel^3
+%\end{align}
+%to get the equations
+%\begin{align}
+%2\frac{\alpha_2-1}{b_2}\lp b_5v_\perp^3 + b_6v_\perp v^\alpha_\parallel v_{\perp\alpha} + b_7v_\perp v_\parallel^2 + b_8v_\parallel v_\perp^2 + b_9v_\parallel v^\alpha_\parallel v_{\perp\alpha} + b_{10}v_\parallel^3\rp\nn\\
+%+ 4a_3b_2^3v_\perp^3 + 2a_4b_2v_\perp\lp v_\perp^2 + v_\parallel^2\rp + 2a_5b_2v_{\perp\alpha} \lp v^\alpha_\perp v_\perp + v^\alpha_\parallel v_\parallel\rp = \lp\alpha_2 -1\rp^2 b_2v_\perp^3 \nn\\
+%2a_4b_2^2v_\perp^2v_\parallel + 2a_5b_2^2v_\perp v_{\perp\alpha}v_\parallel^{\alpha} + 4a_6v_\parallel\lp v_\perp^2 + v_\parallel^2\rp + 4a_7\lp v_\perp v_{\perp\alpha} + v_\parallel v_{\parallel\alpha} \rp v^\alpha_\parallel = 0\nn\\
+%2a_4b_2^2v_\perp^2v_\perp + 2a_5b_2^2v_\perp v_{\perp\alpha}v_\perp^{\alpha} + 4a_6v_\perp\lp v_\perp^2 + v_\parallel^2\rp + 4a_7\lp v_\perp v_{\perp\alpha} + v_\parallel v_{\parallel\alpha} \rp v^\alpha_\perp = \alpha_2\lp\alpha_2-1\rp b_2^2v_\perp^3
+%\end{align}
+%giving
+%\begin{align}
+%2\frac{\alpha_2-1}{b_2}b_5 + 4a_3b_2 + 2a_4b_2 + 2a_5b_2 = \lp\alpha_2 -1\rp^2 b_2\nn\\
+%2\frac{\alpha_2-1}{b_2}b_6 = 0\nn\\
+%2\frac{\alpha_2-1}{b_2}b_7 + 2a_4b_2 = 0\nn\\
+%2\frac{\alpha_2-1}{b_2}b_8 = 0\nn\\
+%2\frac{\alpha_2-1}{b_2}b_9 + 2a_5b_2 = 0\nn\\
+%2\frac{\alpha_2-1}{b_2}b_{10} = 0\nn\\
+%0 = 0\nn\\
+%a_5b_2^2 + 2a_7 = 0\nn\\
+%0 = 0\nn\\
+%2a_4b_2^2 + 4a_6 = 0\nn\\
+%0 = 0\nn\\
+%a_6 + a_7 = 0\nn\\
+%2a_4b_2^2 + 2a_5b_2^2 + 4a_6 + 4a_7 = \alpha_2\lp\alpha_2-1\rp b_2^2\nn\\ 
+%0 = 0\nn\\
+%4a_6 = 0\nn\\
+%0 = 0\nn\\
+%4a_7 = 0\nn\\
+%0 =0\nn\\
+%\end{align}
+%with solution
+%$a_ 4 = a_5 = a_6 = a_7 = 0$
+%
+%\begin{align}
+%\frac{\alpha_2-1}{b_2}b_5 + 4a_3b_2 = \lp\alpha_2 -1\rp^2 b_2\nn\\
+%\frac{\alpha_2-1}{b_2}b_6 = 0\nn\\
+%\frac{\alpha_2-1}{b_2}b_7 = 0\nn\\
+%\frac{\alpha_2-1}{b_2}b_8 = 0\nn\\
+%\frac{\alpha_2-1}{b_2}b_9 = 0\nn\\
+%\frac{\alpha_2-1}{b_2}b_{10} = 0\nn\\
+%0 = \alpha_2\lp\alpha_2-1\rp b_2^2\nn\\ 
+%\end{align}
+%
+%\paragraph{General case, series expansion after substitution}
+%The equations we are about to solve are
+%\begin{align}
+%*j_2 &= \lbp 2\lp\alpha_2 -1\rp\omega_\perp^{1} + 2\alpha_1\omega_\parallel^{1} \rbp\sqrt{1+\Phi}\nn\\
+%j_{1m} &= \lbp 2\alpha_1\hat p_{\parallel m}*\omega^2 + 2\alpha_2\hat p_{\perp m}*\omega^2 \rbp\sqrt{1+\Phi}
+%\end{align}
+%
+%Letting
+%\begin{align}
+%u &= *\omega^2\nn\\
+%v &= 2\lp\alpha_2 -1\rp\omega_\perp^{1} + 2\alpha_1\omega_\parallel^{1}\nn\\
+%w &= -2\alpha_1\omega_\perp^{1} + 2\lp\alpha_2 -1\rp\omega_\parallel^{1}\nn\\
+%\end{align}
+%gives
+%\begin{align}
+%\frac{\partial\Phi}{\partial u} &= v\sqrt{1+\Phi}\nn\\
+%\frac{\partial\Phi}{\partial v} &\lbp \lp\alpha_2 -1\rp\pdo{m} + \alpha_1\pdp{m}\rbp + \frac{\partial\Phi}{\partial v}\lbp -\alpha_1\pdo{m} + \lp\alpha_2 -1\rp\pdp{m}\rbp\nn\\
+%& = \lbp \alpha_1\hat p_{\parallel m}u + \alpha_2\hat p_{\perp m}u \rbp\sqrt{1+\Phi}
+%\end{align}
+%where the projection of the last equation gives
+%\begin{align}
+%\frac{\partial\Phi}{\partial v} & = \lbp \alpha_1^2 + \alpha_2^2 - \alpha_2 \rbp\lbp \lp\alpha_2 -1\rp^2 + \alpha_1^2\rbp^{-1} u\sqrt{1+\Phi}\nn\\
+%\frac{\partial\Phi}{\partial w} & = -\alpha_1\lbp \lp\alpha_2 -1\rp^2 + \alpha_1^2\rbp^{-1} u\sqrt{1+\Phi}
+%\end{align}
+%Series expand
+%\begin{align}
+%\Phi(u,v,w) = a_1u^2 + a_2v^2 + a_3w^2 + a_4uv + a_5uw + a_6vw 
+%\end{align} 
+%with variations
+%\begin{align}
+%\frac{\partial\Phi}{\partial u} &= 2a_1u + a_4v + a_5w\nn\\ 
+%\frac{\partial\Phi}{\partial v} &= 2a_2v + a_4u + a_6w\nn\\
+%\frac{\partial\Phi}{\partial w} &= 2a_3w + a_5u + a_6v
+%\end{align} 
+%Try $a_2=a_3$ and $a_4 = a_5 = a_6 = 0$ gives
+%\begin{align}
+%2a_1u &= v\nn\\
+%2a_2v & = \lbp \alpha_1^2 + \alpha_2^2 - \alpha_2 \rbp\lbp \lp\alpha_2 -1\rp^2 + \alpha_1^2\rbp^{-1} u\nn\\
+%2a_2w & = -\alpha_1\lbp \lp\alpha_2 -1\rp^2 + \alpha_1^2\rbp^{-1} u
+%\end{align}
+%Let $u = b_1v + b_2w$ gives
+%\begin{align}
+%2a_1\lp b_1v + b_2w\rp &= v\nn\\
+%2a_2v & = \lbp \alpha_1^2 + \alpha_2^2 - \alpha_2 \rbp\lbp \lp\alpha_2 -1\rp^2 + \alpha_1^2\rbp^{-1} \lp b_1v + b_2w\rp\nn\\
+%2a_2w & = -\alpha_1\lbp \lp\alpha_2 -1\rp^2 + \alpha_1^2\rbp^{-1} \lp b_1v + b_2w\rp
+%\end{align}
+%giving the equations
+%\begin{align}
+%a_1b_2 = 0\nn\\
+%2a_1b_1 = 1\nn\\
+%\lbp \alpha_1^2 + \alpha_2^2 - \alpha_2 \rbp\lbp \lp\alpha_2 -1\rp^2 + \alpha_1^2\rbp^{-1}b_2 = 0\nn\\
+%2a_2 = \lbp \alpha_1^2 + \alpha_2^2 - \alpha_2 \rbp\lbp \lp\alpha_2 -1\rp^2 + \alpha_1^2\rbp^{-1}b_1\nn\\
+%-\alpha_1\lbp \lp\alpha_2 -1\rp^2 + \alpha_1^2\rbp^{-1}b_1 = 0\nn\\
+%2a_2 = -\alpha_1\lbp \lp\alpha_2 -1\rp^2 + \alpha_1^2\rbp^{-1}b_2
+%\end{align}
+%$b_2 = 0, a_2 = 0, \alpha_1 = 0, \alpha_2 = 0$
+%\begin{align}
+%2a_1b_1 = 1\nn\\
+%\end{align}
+
+
+%\paragraph{General case, series expansion after substitution}
+%We consider the same equations as in the previous section for $\alpha$ a nonconstant function of $\omega^{1m}$ and $\omega^2$.
+%The new equations are
+%\begin{align}
+%&d\Big{[}\lambda *j_{1m} + 2 \lambda {\{} \epsilon_{mm'} \alpha \omega^2 - \epsilon_{m'n}*{\partial \alpha \over \partial \omega^{1m}}*(\omega^{1n} \wedge \omega^2){\}}*f_{n'} \M^{m'n'}\Big{]}=0\nn\\
+%&d\Big{[}\lambda*j_2 - 2\lambda \epsilon_{mn}{\{}\lp\alpha -1\rp\omega^{1n} + *{\partial \alpha \over \partial \omega^2 }*(\omega^{1n} \wedge \omega^2){\}}*f_{n'}\M^{mn'}\Big{]}=0,
+%\end{align}
+%or after integration and with $p$ (without integration forms)
+%\begin{align}
+%*j_{1m} &= 2 {\{} \alpha \hat p_{\perp m} \omega^2 + *{\partial \alpha \over \partial \omega^{1m}}*(\omega^{1}_\perp \wedge \omega^2){\}}\sqrt{1+\Phi}\nn\\
+%*j_2 &= 2{\{}\lp\alpha -1\rp\omega^{1}_\perp + *{\partial \alpha \over \partial \omega^2 }*(\omega^{1}_\perp \wedge \omega^2){\}}\sqrt{1+\Phi}.
+%\end{align}
+%Hum, gör nåt smart nu då...
+
+%To get a nicer expression without hodge dualities and $p$ we define
+%\begin{align}
+%v^m &= \omega^{1m}\nn\\
+%u^m &= q^m*\omega^2,\hspace{1cm}\Rightarrow\omega^2=\frac{q_m}{q^2}*u^m 
+%\end{align}
+%where $q^m$ is introduced to get an $SL(2,\rr)$-index on $u$ and is constructed by some combination of the constant charges $p^m$ to remove them from the equations.
+%\begin{align}
+%\frac{\partial\Phi}{\partial v^m} &= - 2\epsilon_{mn}{\{}\alpha \frac{q_p}{q^2}u^p  + \frac{\partial \alpha}{\partial v^{n'}}\frac{q_p}{q^2} v_\alpha^{n'}u^{\alpha p}) + *\gamma{\}}\frac{p^{n}}{|p|}\sqrt{1+\Phi}\\
+%\frac{\partial\Phi}{\partial u^m}q_m &= 2\epsilon_{mn}{\{}\lp\alpha-1\rp v^{n} + \frac{\partial\alpha}{\partial u^p}q_p\frac{q_{n'}}{q^2} v_\alpha^{n}u^{\alpha {n'}}) + \delta^n{\}}\frac{p^m}{|p|}\sqrt{1+\Phi}
+%\end{align}
+%thus we see that we should choose
+%\begin{align}
+%q_m =  
+%\end{align}
+%to get
+%\begin{align}
+%\frac{\partial\Phi}{\partial v^m} &= - 2\epsilon_{mn}{\{}\alpha \frac{q_p}{q^2}u^p  + \frac{\partial \alpha}{\partial v^{n'}}\frac{q_p}{q^2} v_\alpha^{n'}u^{\alpha p}) + *\gamma{\}}\frac{p^{n}}{|p|}\sqrt{1+\Phi}\\
+%\frac{\partial\Phi}{\partial u^m}q_m &= 2\epsilon_{mn}{\{}\lp\alpha-1\rp v^{n} + \frac{\partial\alpha}{\partial u^p}q_p\frac{q_{n'}}{q^2} v_\alpha^{n}u^{\alpha {n'}}) + \delta^n{\}}\frac{p^m}{|p|}\sqrt{1+\Phi}
+%\end{align}
+
+%The theory should only contain 2 scalars (.......... ????? ........).
+%There are 2 scalars in $\omega^{1m}$ and one scalar in $\omega^2$. We must therefore relate $\omega^2$ to $\omega^{1m}$ somehow.  
+
+
+%Dualize and multiply the first relation by $*\omega^{2\alpha}$
+%\begin{align}
+%*\omega^{2\alpha}j_{1\alpha m} &= - 2 *\omega^{2\alpha}{\{}\alpha *\omega_\alpha^2 + {\partial \alpha \over \partial \omega^{1\alpha n'}}*(\omega^{1n'} \wedge \omega^2) + *\gamma{\}}\epsilon_{mn}*f_{m'} \M^{m'n}
+%\end{align}
+%which means we can express $\epsilon_{mn}*f_{m'} \M^{m'n}$ explicitly as a function of $\omega^2$ and $\omega^{1m}$ and inserting it in the second relation we get 
+%\begin{align}
+%*j_{2\alpha } *\omega^{2\alpha}{\{}\alpha *\omega_\alpha^2 + {\partial \alpha \over \partial \omega^{1\alpha n'}}*(\omega^{1n'} \wedge \omega^2) + *\gamma_{\alpha m}{\}} &= - {\{}\lp\alpha-1\rp \omega_\alpha ^{1n} + *{\partial \alpha \over \partial \omega^{2\alpha}}*(\omega^{1n} \wedge \omega^2) + \delta^n{\}}*\omega^{2\alpha}j_{1\alpha m} 
+%\end{align}
+
+%We want to express $\omega^2_\alpha$ as a function of $\omega^{1m}_\alpha$. Since $\omega^2_\alpha$ does not have an $SL(2,\rr)$ index it must be contracted somehow in the construction.  

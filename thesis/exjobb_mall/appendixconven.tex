@@ -1,0 +1,388 @@
+\chapter{Conventions and some basic formulae}
+\chlab{conven}
+Sometimes, we suspect that the authors of physical articles ignore to state their conventions on purpose, so that any weird minus signs or misprints in the text will be virtually impossible to check. 
+Here we are brave enough to introduce the conventions we have used in this thesis. So if you find something weird in this thesis, it is a result of our own failure and not of some brilliant convention the world has never seen before.  
+We also introduce some "good-to-know" formulas.
+
+\section{Index conventions}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{l l l l}
+Space & Index & Signature & Range\\
+11-dim curved & M,N,P,... &$\lp-+++\cdots+\rp$ & 1 ... $\hat D$\\
+11-dim flat & A,B,C,...&$\lp-+++\cdots+\rp$ & 1 ... $\hat D$\\
+Compactified curved & m,n,p,...&$\lp++++\cdots+\rp$ & 1 ... $D$\\
+Compactified flat & a,b,c,...&$\lp++++\cdots+\rp$ & 1 ... $D$\\
+Uncompactified curved & $\mu,\nu,\rho$,...&$\lp-+++\cdots+\rp$ & 1 ... $d$\\
+Uncompactified flat & i,j,k,...&$\lp-+++\cdots+\rp$ & 1 ... $d$\\
+World volume& $\alpha,\beta,\gamma$,... &$\lp-+++\cdots+\rp$ & 1 ... $p$\\
+\end{tabular}
+\caption{Index conventions and signature for different spaces}
+\end{center}
+\end{table}
+Uncompactified tensors are denoted with a hat, like $\hat g_{MN}, \hat C_{PMN}$ etc.
+When compactifying, we denote the dimension of the starting theory with $\hat D$, the number of compactified dimensions $D$ and the number of uncompactified dimensions $d$.\\
+
+Throughout this thesis we set the Newton constant in 11 dimensions to $\kappa^2_{11}=\frac{1}{2}$.
+\paragraph{Symmetrisation and antisymmetrisation} are denoted by
+\begin{align}
+A_{(M_1\cdots M_p)} &= \frac{1}{p!}\lp A_{M_1\cdots M_p} + \mbox{symmetric permutations} \rp,\nn\\
+A_{[M_1\cdots M_p]} &= \frac{1}{p!}\lp A_{M_1\cdots M_p} + \mbox{antisymmetric permutations} \rp.
+\end{align}
+  
+
+\section{Antisymmetric tensor and p-forms}
+Define the Levi-Civita symbol with lower indices as $\epsilon_{A_1A_2\cdots A_n}$, antisymmetric in all indices and $\epsilon_{12\cdots n}=+1$.
+Define further the Levi-Civita symbol with upper indices as $\epsilon^{A_1A_2\cdots A_n} = \lp-1\rp^s\epsilon_{A_1A_2\cdots A_n}$, where s is the number of timelike coordinates in the metric. 
+In flat spacetime this symbol acts like a tensor.
+In curved spacetime the Levi-Civita symbol transforms as
+\begin{equation}
+\epsilon^{M_1M_2\cdots M_n} \rightarrow \epsilon^{M'_1M'_2\cdots M'_n} 
+\eqnlab{conven_epsilon_transform}
+\end{equation}
+under a general coordinate transformation $x\rightarrow x'$. 
+Using that the determinant of some matrix A obeys the relation
+\begin{equation}
+\epsilon^{M_1M_2\cdots M_n}|A| = \epsilon^{N_1N_2\cdots N_n}A{_{N_1}}^{M_1}A{_{N_2}}^{M_2}\cdots A{_{N_n}}^{M_n},
+\end{equation}
+we find that (using A=$\partial x'^{M'_i}/\partial x^{M_j}$)
+\begin{equation}
+\epsilon^{M'_1M'_2\cdots M'_n} = \left|\frac{\partial x'}{\partial x}\right|^{-1}\frac{\partial x'^{M'_1}}{\partial x^{M_1}}\frac{\partial x'^{M'_2}}{\partial x^{M_2}}\cdots\frac{\partial x'^{M'_n}}{\partial x^{M_n}}\epsilon^{M_1M_2\cdots M_n}.\\
+\eqnlab{conven_epsilon_prim}
+\end{equation}
+Compare this to the square root of the determinant of the metric $\sqrt{|g|}$ that transforms as (consider $\partial x^{N_i}/\partial x'^{M_j}$ as matrices) 
+\begin{equation}
+\sqrt{|g|}\rightarrow \sqrt{|g|'}=\sqrt{\left|\det\lp\frac{\partial x^{P}}{\partial x'^{M}}g_{PQ}\frac{\partial x^{Q}}{\partial x'^{N}}\rp\right|}=\left|\left|\frac{\partial x}{\partial x'}\right|\right|\sqrt{|g|}.
+\eqnlab{conven_meric_transform}
+\end{equation}
+Combining equations \eqnref{conven_epsilon_prim} and \eqnref{conven_meric_transform} gives
+\begin{equation}
+\frac{1}{\sqrt{|g|}}\epsilon^{M_1\cdots M_n}\rightarrow \frac{1}{\sqrt{|g|'}}\epsilon'^{M_1\cdots M_n} = \frac{1}{\sqrt{|g|}}\frac{\partial x'^{M'_1}}{\partial x^{M_1}}\frac{\partial x'^{M'_2}}{\partial x^{M_2}}\cdots\frac{\partial x'^{M'_n}}{\partial x^{M_n}}\epsilon^{M_1M_2\cdots M_n}, 
+\end{equation} 
+which transforms as a four tensor. Thus one can form an antisymmetric covariant tensor in curved space $\varepsilon^{M_1M_2\cdots M_n}$ as 
+\begin{equation}
+\varepsilon^{M_1M_2\cdots M_n}=\frac{1}{\sqrt{|g|}}\epsilon^{M_1M_2\cdots M_n}.
+\end{equation}
+Define the antisymmetric tensor with lower indices as
+\begin{equation}
+\varepsilon_{M_1M_2\cdots M_n} = g_{M_1N_1}g_{M_2N_2}\cdots g_{M_nN_n} \varepsilon^{N_1N_2\cdots N_n} = \sqrt{|g|}\epsilon_{M_1M_2\cdots M_n},
+\end{equation}
+which transforms as a covariant tensor. 
+\\
+\paragraph{Contraction of two antisymmetric tensors}
+\begin{equation}
+\varepsilon^{M_1\cdots M_pN_{p+1}\cdots N_n}\varepsilon_{M_1\cdots M_pP_{p+1}\cdots P_n} = \lp-1\rp^s p!\lp n-p\rp!\delta_{[P_{p+1}\cdots P_n]}^{N_{p+1}\cdots N_n},
+\end{equation}
+where $\delta_{[P_{p+1}\cdots P_n]}^{N_{p+1}\cdots N_n}=\delta_{[P_{p+1}}^{N_{p+1}}\cdots \delta_{P_{n}]}^{N_{n}}$ is the generalized Kronecker delta with the nice property $\delta_{[M_{1}\cdots M_p]}^{N_{1}\cdots N_p}A^{M_{p}\cdots M_1} = A^{N_{p}\cdots N_1}$ for a $p$-form $A^{(p)}$.
+\paragraph{In two dimensions}
+By using contraction of antisymmetric tensors one can show the useful identities
+\begin{equation}
+\varepsilon_{MN}g^{NP}\varepsilon_{PQ} = (-1)^{s+1}g_{MQ}
+\end{equation}
+and
+\begin{equation}
+\varepsilon_{MN}g_{PQ} = \varepsilon_{MQ}g_{PN}+\varepsilon_{QN}g_{PM} = \varepsilon_{MP}g_{NQ}+\varepsilon_{PN}g_{MQ}.
+\eqnlab{conven_2d_epsilon_rel}
+\end{equation}
+
+\paragraph{In three dimensions}
+We get the corresponding relations to \eqnref{conven_2d_epsilon_rel}
+\begin{align}
+\varepsilon_{MNP}g_{S[Q}g_{R]T} &= \varepsilon_{STP} g_{M[Q}g_{R]N} - \varepsilon_{SNT}g_{P[Q}g_{R]M} + \varepsilon_{MST}g_{N[Q}g_{R]P}\nn\\
+\varepsilon_{MNP}g_{QR} &= \varepsilon_{RNP}g_{MQ} + \varepsilon_{MRP}g_{QN} + \varepsilon_{MNR}g_{QP} 
+\eqnlab{conven_3d_epsilon_rel}
+\end{align}
+
+% Derivation
+%Try to find an equivalent to the 2-dimensional relations
+%\begin{equation}
+%\varepsilon_{MN}g^{NP}\varepsilon_{PQ} = (-1)^{s+1}g_{MQ}
+%\end{equation}
+%\begin{equation}
+%\varepsilon_{MN}g_{PQ} = \varepsilon_{MQ}g_{PN}+\varepsilon_{QN}g_{PM} = \varepsilon_{MP}g_{NQ}+\varepsilon_{PN}g_{MQ}
+%\end{equation}
+%derived from
+%\begin{align}
+%\varepsilon_{MN}\varepsilon_{PQ} = (-1)^{s}2g_{M[P}g_{Q]N}\Rightarrow\nn\\
+%\varepsilon_{RS}g^{SM}\varepsilon_{MN}\varepsilon_{PQ} = (-1)^{s+1}g_{RN}\varepsilon_{PQ} = (-1)^{s}2\varepsilon_{R[P}g_{Q]N}  
+%\end{align}
+%We have
+%\begin{align}
+%\varepsilon^{MNP}\varepsilon_{MNP} &= \lp-1\rp^s 6\nn\\
+%\varepsilon^{MNP}\varepsilon_{MNP'} &= \lp-1\rp^s 2\delta_{P}^{P'}\nn\\
+%\varepsilon^{MNP}\varepsilon_{MN'P'} &= \lp-1\rp^s 2\delta_{[NP]}^{N'P'}\nn\\
+%\varepsilon^{MNP}\varepsilon_{M'N'P'} &= \lp-1\rp^s 6\delta_{[MNP]}^{M'N'P'}
+%\end{align} 
+%\begin{align}
+%\varepsilon_{MNP}\varepsilon_{QRS} = \varepsilon_{MNP}\varepsilon^{PR'S'}g_{RR'}g_{SS'} = \lp-1\rp^s 6g_{Q[M}g_{N|R|}g_{P]S}\nn\\ 
+%\varepsilon_{MNP}g^{PQ}\varepsilon_{QRS} = \varepsilon_{MNP}\varepsilon^{PR'S'}g_{RR'}g_{SS'} = \lp-1\rp^s 2g_{R[M}g_{N]S}\nn\\ 
+%\varepsilon_{MNP}g^{NQ}g^{PR}\varepsilon_{QRS} = \varepsilon_{MNP}\varepsilon^{NPS'}g_{SS'} = \lp-1\rp^s 2g_{MS} 
+%\end{align}
+%\begin{align}
+%\varepsilon_{MNP}g^{PQ}\varepsilon_{QRS}\varepsilon_{TUV} &= \lp-1\rp^s 6g^{PQ}\varepsilon_{QRS}g_{T[M}g_{N|U|}g_{P]V}\nn\\
+%\varepsilon_{MNP}g^{NQ}g^{PR}\varepsilon_{QRS}\varepsilon_{TUV} &= \lp-1\rp^s 6g^{NQ}g^{PR}\varepsilon_{QRS}g_{T[M}g_{N|U|}g_{P]V}\nn\\
+%&\Leftrightarrow\nn\\
+%g_{R[M}g_{N]S}\varepsilon_{TUV} &= 3g^{PQ}\varepsilon_{QRS}g_{T[M}g_{N|U|}g_{P]V}\nn\\
+%g_{MS}\varepsilon_{TUV} &= 3g^{NQ}g^{PR}\varepsilon_{QRS}g_{T[M}g_{N|U|}g_{P]V}\nn\\
+%&\Leftrightarrow\nn\\
+%g_{R[M}g_{N]S}\varepsilon_{TUV} &= \varepsilon_{VRS} g_{T[M}g_{N]U} + \varepsilon_{URS}g_{V[M}g_{N]T} + \varepsilon_{TRS}g_{U[M}g_{N]V}\nn\\
+%g_{MS}\varepsilon_{TUV} &= -\half \varepsilon_{QRS}\lp \delta^Q_V\delta^R_U g_{TM} + \delta^Q_U\delta^R_T g_{MV} + \delta^Q_T\delta^R_V g_{MU} - \delta^Q_V\delta^R_T g_{MU} - \delta^Q_U\delta^R_V g_{TM} - \delta^Q_T\delta^R_U g_{MV}\rp\nn\\
+%&= \varepsilon_{SUV}g_{TM} + \varepsilon_{TUS}g_{MV} + \varepsilon_{TSV}g_{MU}\nn\\
+%\end{align} 
+
+
+\paragraph{Forms}
+We use the superspace convention of differential forms:
+\begin{align}
+A_{(p)} &= \frac{1}{p!}dx^{M_1}\wedge dx^{M_2}\cdots \wedge
+dx^{M_{p-1}}\wedge dx^{M_p}A_{M_pM_{p-1}\cdots M_2M_1}\nn\\
+& = \frac{1}{p!}e^{A_1}\wedge e^{A_2}\cdots \wedge e^{A_{p-1}}\wedge e^{A_p}A_{A_pA_{p-1}\cdots A_2A_1}
+\end{align}
+where $e^A = dx^Me{_M}^A$ and $A_{M_pM_{p-1}\cdots M_2M_1}$ is antisymmetric in all indices and the wedge products have the characteristic property $dx^M\we dx^N=-dx^N\we dx^M$. 
+Whenever we use a form without form-index, its type is given according to table \tabref{conven_forms}. 
+\begin{table}[h]
+\tablab{conven_forms}
+\begin{center}
+\begin{tabular}{l|l l}
+Type & p & notation\\\hline
+Background gauge potentials & 1, 2, 3,... & A, B, C, D,...\\
+Background field strengths & 2, 3, 4,... & F, H, G, I,...\\
+World volume gauge potentials & 0, 1, 2, 3,... & $\phi$, a, b, c, d,...\\
+World volume field strengths & 1, 2, 3, 4,... & $\omega$, f, h, g, i,...\\
+\end{tabular}
+\caption{P-form conventions.}
+\end{center}
+\end{table}
+%
+\paragraph{Exterior derivative} $d=dx^M\partial_M$ acting from right:
+\begin{equation}
+dA_{(p)} = \partial_{M_{p+1}} A_{(p)}\wedge dx^{M_{p+1}} = 
+\frac{1}{p!}dx^{M_1}\wedge\cdots\wedge dx^{M_p}\wedge
+dx^{M_{p+1}}\partial_{M_{p+1}} A_{M_p\cdots M_1}
+\eqnlab{conven_extder}
+\end{equation}
+giving the wedge product derivation law
+\begin{equation}
+d\lp A_{(p)}\wedge B_{(q)}\rp=A_{(p)}\wedge dB_{(q)}+(-1)^qdA_{(p)}\wedge B_{(q)}.
+\eqnlab{conven_extder_product}
+\end{equation}
+Note that, for well behaved functions, two derivatives commute so 
+\begin{equation}
+d^2A_{(p)} = \partial_{(M}\partial_{N)}A_{(p)}\we dx^{[N}\we dx^{M]} = 0.
+\end{equation}
+%
+\paragraph{Hodge duality of a $p$-form}
+%
+Map from a $p$-form to an ($n-p$)-form defined as 
+\begin{equation}
+*A_{(p)} =
+ \frac{1}{p!(n-p)!}dx^{M_{p+1}}\wedge\cdots\wedge dx^{M_n}\varepsilon_{M_{p+1}\cdots  M_{n}N_1\cdots N_p}A^{N_p\cdots N_1}, 
+\eqnlab{conven_hodge_form}
+\end{equation}
+which in component form becomes
+\begin{equation}
+(*A)_{M_{n}\cdots M_{p+1}} = \frac{1}{p!}\varepsilon_{M_{p+1}\cdots M_{n}N_1\cdots N_p}A^{N_p\cdots N_1}  
+\eqnlab{conven_hodge_comp}
+\end{equation}
+or looking only at the differentials
+\begin{equation}
+*\lp dx^{M_{1}}\wedge\cdots\wedge dx^{M_p}\rp = \frac{1}{(n-p)!}dx^{N_{p+1}}\wedge\cdots\wedge dx^{N_n}\varepsilon{_{N_{p+1}\cdots  N_{n}}}^{M_1\cdots M_p}.
+\end{equation}
+%
+Using \eqnref{conven_hodge_comp} and swapping order of n with n-p antisymmetric indices, one sees that two hodge dualities performed after each other gives back the starting form with a possible additional minus sign
+\begin{equation}
+*\lp*A_{(p)}\rp = (-1)^{s+p(n-p)}A_{(p)},
+\end{equation}
+where $s=0$ for Riemannian space and $s=1$ for Minkowski space.
+%
+One can also rewrite an arbitrary $p$-form in terms of its Hodge duality by
+\begin{align}
+A_{(p)} &= (-1)^{s+p(n-p)}*(*A_{(p)})\\ 
+& = \frac{(-1)^{s+p(n-p)}}{(n-p)!p!}dx^{M_{1}}\wedge\cdots\wedge dx^{M_p}\varepsilon_{M_1\cdots  M_{p}N_{p+1}\cdots N_{n}}\lp*A_{(p)}\rp^{N_{n}\cdots N_{p+1}}\nonumber
+\end{align}
+or in component form
+\begin{equation}
+A_{M_p\cdots M_1} = \frac{(-1)^{s+p(n-p)}}{(n-p)!}\varepsilon_{M_1\cdots M_{p}N_{p+1}\cdots N_n}(*A)^{N_{n}\cdots N_{p+1}}.
+\eqnlab{conven_hodge_inverse_comp}
+\end{equation}
+
+\paragraph{Volume form}
+The volume form is
+\begin{align}
+\sigma & = *1 = \frac{1}{n!}dx^{M_1}\we\cdots\we dx^{M_n}\varepsilon_{M_1\cdots M_n}\nonumber\\
+& = \frac{(-1)^s}{n!}\sqrt{|g|}d^nx\varepsilon^{M_1\cdots M_n}\varepsilon_{M_1\cdots M_n} = +\sqrt{|g|}d^nx,
+\eqnlab{conven_volume}
+\end{align}
+where we have used
+\begin{equation}
+dx^{M_1}\we\cdots\we dx^{M_n} = (-1)^sd^nx\epsilon^{M_1\cdots M_n} = (-1)^s\sqrt{|g|}d^nx\varepsilon^{M_1\cdots M_n}.
+\eqnlab{conven_wedge_volume}
+\end{equation}
+
+\paragraph{Inner product}
+If one has 2 forms $A$ and $B$ of equal length $p$ one can form an inner
+product $<A,B>=\frac{1}{p!}A\cdot B$ from
+\begin{align}
+*A\wedge & B = \frac{\varepsilon_{M_{p+1}\cdots M_nN_1\cdots N_p}}{(n-p)!p!^2}A^{N_p\cdots N_1}B_{M_p\cdots M_1}dx^{M_{p+1}}\cdots dx^{M_n} dx^{M_{1}}\cdots dx^{M_p}\nonumber\\
+& = \frac{(-1)^s}{(n-p)!p!^2}\sqrt{g}\epsilon_{M_{p+1}\cdots M_nN_1\cdots N_p}A^{N_p\cdots N_1}B_{M_p\cdots M_1}d^nx\epsilon^{M_{p+1}\cdots M_nM_1\cdots M_p}\nonumber\\
+& = d^nx\sqrt{|g|}\frac{1}{(n-p)!p!^2}(n-p)!p!\delta_{[N_1\cdots N_p]}^{M_1\cdots M_p}A^{N_p\cdots N_1}B_{M_p\cdots M_1}\nonumber\\
+& = \sigma\frac{1}{p!}A^{M_p\cdots M_1}B_{M_p\cdots M_1} = \sigma <A,B>,
+\eqnlab{conven_inner}
+\end{align}
+where the inner product is $<A,B> = \frac{1}{p!}A^{M_p\cdots M_1}B_{M_p\cdots M_1}$.
+Note that we never used that the hodge star was acting on the $A$ form. We could as well have acted on the $B$ form, so
+\begin{equation}
+\sigma<A,B> = *A\wedge B = A\wedge *B = p!\sigma<*A,*B>.
+\end{equation}
+
+\paragraph{Differentiation of forms}
+The differentiation of the components of a $p$-form $A_{(p)}$ with respect to the components of another $p$-form of the same type is
+\begin{equation}
+\frac{\delta A_{M_p\cdots M_1}}{\delta A_{N_p\cdots N_1}} =\delta_{M_p}^{N_p}\cdots\delta_{M_2}^{N_2}\delta_{M_1}^{N_1} - \delta_{M_p}^{N_p}\cdots\delta_{M_1}^{N_1}\delta_{M_2}^{N_2} + \cdots  
+= p!\delta_{[M_p\cdots M_1]}^{N_p\cdots N_1}.
+\end{equation}
+Now suppose a $p$-form $A_{(p)}$ constructed by 3 different forms $A^1_{(q)}$,
+$A^2_{(r)}$ and $A^3_{(s)}$ of orders $q$, $r$ and $s$, with
+$q+r+s=p$. I.e. $A_{(p)}=A^1_{(q)}\we A^2_{(r)}\we
+A^3_{(s)}$.
+%
+Differentiate with respect to $A^2_{(r)}$ in component form
+\begin{align}
+\frac{\delta A_{M_p\cdots M_1}}{\delta A^2_{N_r\cdots N_1}} & = 
+\frac{p!}{q!r!s!}A^1_{M_q\cdots M_1}\frac{\delta A^2_{M_{q+r}\cdots M_{q+1}}}{\delta
+  A^2_{N_r\cdots N_1}} A^3_{M_{p}\cdots M_{q+r+1}}\nonumber\\
+& =  \frac{p!}{q!r!s!}A^1_{M_q\cdots M_1}r!\delta_{[M_{q+r}M_{q+r-1}\cdots M_{q+1}]}^{N_rN_{r-1}\cdots\cdots\cdots\cdots\cdots N_1} A^3_{M_{p}\cdots M_{q+r+1}}.
+\end{align}
+Let $B_{(t)}=\frac{\delta A_{(p)}}{\delta A^2_{(r)}}$ be a $t$-form and multiply both sides from the right with $dx^{N_1}\wedge\cdots\wedge dx^{N_r}/r!$, so
+\begin{align}
+&B_{(t)}\wedge\frac{1}{r!}dx^{N_1}\wedge\cdots\wedge dx^{N_r} = 
+\frac{1}{r!p!}\frac{\delta A_{M_p\cdots M_1}}{\delta A^2_{N_{r}\cdots N_{1}}}dx^{M_1}\we\cdots \we dx^{M_p}\nonumber\\
+& = \frac{1}{q!r!s!}A^1_{M_q\cdots M_1}A^3_{M_{p}\cdots M_{q+r+1}}dx^{M_1}\cdots dx^{M_q}dx^{N_1}\cdots dx^{N_r}dx^{M_{q+r+1}}\cdots dx^{M_p}\nonumber\\
+& = \frac{1}{r!}A^1_{(q)}\we dx^{N_1}\we\cdots\we dx^{N_r} \we A^3_{(s)}.\\
+\end{align}
+We can now identify $B_{(t)}$ as
+\begin{equation}
+B_{(t)} = B_{(p-r)} = \frac{\delta A_{(p)}}{\delta A^2_{(r)}}=(-1)^{rs}A^1_{(q)}\we A^3_{(s)},
+\end{equation}
+which we use as a definition of derivation of a form with respect to a form. The reason we put $dx^{N_1}\wedge\cdots\wedge dx^{N_r}/r!$ to the right of $B_{(t)}$ and not to the left, which would have given $B_{(t)}=(-1)^{qr}A^1_{(q)}\we A^3_{(s)}$, is that we put all variations of forms $\delta A^2_{(r)}$ to the right.   
+
+To differentiate a scalar function $\Phi\lp A_{M_p\cdots M_1}\rp$, which depends only on the components of $A_{(p)}$, we just do a component differentiation
+\begin{align}
+B^{N_{p}\cdots N_{1}} = \frac{\delta \Phi\lp A_{M_p\cdots M_1}\rp}{\delta A_{N_{p}\cdots N_{1}}}  
+\end{align}
+and contract the free indices with $dx^{N_1}\wedge\cdots\wedge dx^{N_p}/p!$ to get a $p$-form 
+\begin{equation}
+B^{(p)} = \frac{\delta \Phi\lp A_{M_p\cdots M_1}\rp}{\delta A_{(p)}} = \frac{1}{p!}\frac{\delta \Phi\lp A_{M_p\cdots M_1}\rp}{\delta A_{N_{p}\cdots N_{1}}}dx^{N_1}\wedge\cdots\wedge dx^{N_p}.
+\end{equation}
+
+With the tools collected so far one easily obtains the differentiation with respect to a $p$-form $A_{(p)}$ of the hodge dual of a max-form $B_{(n)}$, such that $B_{(n)} = B^2_{(n-p)}\we A_{(p)}$ as
+\begin{align}
+*&\frac{\delta *B_{(n)}}{\delta A_{(p)}} = \frac{1}{p!(n-p)!}\varepsilon_{M_1\cdots M_n}B^{2M_n\cdots M_{p+1}}*\lp dx^{M_1}\we\cdots\we dx^{M_p}\rp\nonumber\\ 
+& = \frac{(-1)^{s+p(n-p)}}{(n-p)!}B^2_{M_n\cdots M_{p+1}}dx^{M_{p+1}}\we\cdots\we dx^{M_{n}} = (-1)^{s+p(n-p)}B^2_{(n-p)}.  
+\eqnlab{conven_hodge_variation}
+\end{align}
+
+\paragraph{Variation of an action with respect to forms}
+Consider a scalar Lagrangian density $\Lagr\lp A_{(p)}\rp$ that is a function of some $p$-form $A_{(p)}$.
+The variation of the action with respect to the components of $A_{(p)}$ is 
+\begin{align}
+\delta_{A} S&=\delta_{A}\left[\int d^nx\sqrt{|g|}\Lagr\lp A_{(p)}\rp\right] = \int d^nx\sqrt{|g|}\frac{\delta\Lagr\lp A_{(p)}\rp}{\delta A_{M_p\cdots M_1}}\delta A_{M_p\cdots M_1}.\nonumber\\
+\end{align}
+Consider 
+\begin{equation}
+B^{M_p\cdots M_1} = \frac{\delta\Lagr\lp A_{(p)}\rp}{\delta A_{M_p\cdots M_1}} 
+\end{equation}
+as the components of a $p$-form $B_{(p)}$ and use the definition of the inner product \eqnref{conven_inner} between $B_{(p)}$ and $\delta A_{(p)}$ to get 
+\begin{align}
+\delta_{A} S&= p!\int \sigma \left<\frac{\delta\Lagr\lp A_{(p)}\rp}{\delta A_{M_p\cdots M_1}},\delta A_{M_p\cdots M_1}\right>\nonumber\\
+&=p! \int * \frac{\delta\Lagr\lp A_{(p)}\rp}{\delta A_{(p)}}\wedge\delta A_{(p)}.
+\eqnlab{conven_deltaS}
+\end{align}
+
+\section{General relativity}
+\paragraph{Covariant divergence}
+of a general covariant vector $V^M$ is \cite{weinberg}  
+\begin{align}
+D_M V^M &= {1 \over \sqrt{|g|}} {\partial}_M\lp\sqrt{|g|}V^M\rp\nn\\
+&\Rightarrow \int d^Dx\sqrt{|g|}D_M V^M = 0,\;\;\mbox{if $V^M=0$ at $\infty$}.
+\eqnlab{conven_divergence}
+\end{align}
+\paragraph{Variation of $g=\det g_{MN}$ and pure gravity with respect to $g_{MN}$}
+\begin{align}
+\delta g = g g^{MN}\delta g_{MN},
+\eqnlab{conven_gvar}
+\end{align}
+\begin{align}
+\delta\lp\sqrt{g}R\rp=\lp R^{MN} - \half g^{MN}R\rp\delta g_{MN}. 
+\eqnlab{conven_rvar}
+\end{align}
+
+\section{Matrix identities}
+Consider a matrix $\M$ and calculate
+\begin{equation}
+0 = \partial\id = \partial\lp \M^{-1}\M\rp = \partial \M^{-1}\M + \M^{-1}\partial \M,
+\eqnlab{conven_parinv}
+\end{equation}
+giving the identity
+\begin{align}
+\partial \M^{-1} &= - \M^{-1}\partial \M \M^{-1},\nn\\
+\partial \M^{-1}\partial \M &= -\lp\M^{-1}\partial \M\rp^2.  
+\eqnlab{conven_kinetic}
+\end{align}
+
+\paragraph{Determinant conditions}
+% Använder p 75 i Fields istället
+%Assume real matrix $\M$ of full rank, diagonalized by some diagonal matrix $D=T^{-1}\M T$ with eigenvalues $\lambda_i$. The determinant can then be written as 
+%\begin{align}
+%\det \M & = \det(TDT^{-1}) = \det D = \prod_i\lambda_i = \exp\left(\sum_i\ln\lambda_i\right) = \exp\left(\tr(\ln D)\right)\nonumber\\
+%& = \exp\left(\tr(\ln T)-\tr(\ln T)+\tr(\ln D)\right) = \exp\left(\tr(\ln\M))\right)
+%\eqnlab{conven_trlog}
+%\end{align}
+%\\
+For an arbitrary matrix $\M$ we have 
+\begin{equation}
+\delta\ln\det(\M) = \tr\lp \M^{-1}\delta \M\rp  
+\eqnlab{conven_trlog}
+\end{equation}
+from p. 106 in Weinberg\cite{weinberg}. Letting $\M=\exp(\N)$ gives
+\begin{equation}
+\delta\ln\det\exp(\N) = \tr\lp \exp(-\N)\delta \exp{\N}\rp = \tr\lp\delta \N\rp = \delta\tr\lp\N\rp,  
+\end{equation}
+giving
+\begin{equation}
+\det\M = \exp\lp\tr\lp\ln\M\rp\rp
+\end{equation}
+which will have many applications when dealing with determinants.
+
+\paragraph{Determinant of block matrix}
+Consider an $n\times n$-matrix and divide the rows and columns in two, forming a 4 piece block matrix.
+
+\begin{equation}
+\M = \toto{A}{B}{C}{D} = 
+\setlength{\unitlength}{.4mm}
+\left(\begin{array}{l}\cr\mbox{}\end{array}\right.
+\begin{picture}(18,30)(8,12)% (size)(offset)
+\put(0,0){
+\path(0,12)(18,12)(18,30)(0,30)(0,12) % A (0,12) -> (18,30)
+\path(0,0)(18,0)(18,10)(0,10)(0,0) % C (0,0) -> (18,10)
+\path(20,12)(33,12)(33,30)(20,30)(20,12) % B
+\path(20,0)(33,0)(33,10)(20,10)(20,0) % D
+\put(9,21.5){\makebox(0,0){A}}
+\put(9,5.5){\makebox(0,0){C}}
+\put(27,21.5){\makebox(0,0){B}}
+\put(27,5.5){\makebox(0,0){D}}
+}
+\end{picture}
+\left.\begin{array}{l}\cr\mbox{}\end{array}\right)
+\end{equation}
+Note that we can decompose $\M$ as (proof by calculating backwards)
+\begin{align}
+\M = \toto{\id}{BD^{-1}}{0}{\id}\toto{A-BD^{-1}C}{0}{0}{D} \toto{\id}{D^{-1}C}{0}{\id}.
+\end{align}
+Take the determinant of $\M$ and expand along rows or columns consisting of only one 1 and zeroes to get two relations of the determinant
+\begin{equation}
+\det \M = \det\lp A-BD^{-1}C\rp \det D = \det A \det\lp D-CA^{-1}B\rp, 
+\end{equation}
+where the second relation comes from a similar decomposition of $\M$ into Lower-Diagonal-Upper-form.
+

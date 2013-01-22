@@ -1,0 +1,135 @@
+\chapter{Comparison to the automorphic membrane}
+\chlab{compare}
+
+
+Antagligen
+\begin{align}
+u = u0 + b\star(vw)
+\end{align}
+tillsammans med termer
+\begin{align}
+c_1\star(vvF) + c_2\star(vw(v)F) + c_3\star(w(v)w(v)F)
+\end{align}
+fr[n andra sidan.
+
+
+Consider the 1-form in the direction $\qdp{r} = q_1\pdp{r} + q_2\pdo{r}$, where $q_1^2 + q_2^2 = 1$.
+Let $\tilde\phi^m = |q|\qdp{r}\tilde\phi^{rm}$ be the scalar potential to the 1-form $\tilde\omega^m=|q|\qdp{r}\omega^{rm} = |q|\lp q_1v^m + q_2w^m\rp$, i.e. $\tilde\phi$ corresponds to the 3 scalar degrees of freedom of the theory.
+The metric becomes
+\begin{align}
+G_{\alpha\beta}=g_{\alpha\beta} + \tilde\omega^m_\alpha\tilde\omega_{m\beta} 
+\end{align}
+giving the conjugate variable 
+\begin{align}
+u_0 = \frac{\partial \mathcal{L}}{\partial \tilde\omega} = -\sqrt{-\det G}(G^{-1}\tilde\omega)
+\end{align}
+If we use 
+\begin{align}
+G_{\alpha\beta} = \id + |q|^2\lp q_1^2\lp v^2\rp_{\alpha\beta} + q_1q_2\lp vw\rp_{\alpha\beta} + q_2^2\lp w^2\rp_{\alpha\beta}\rp
+\end{align}
+
+
+The Bianchi identity for $f_m$ gives the equation of motion for $\tilde\phi^m$ 
+\begin{align}
+df_m & = - d\big[*u_m\big]\nn\\  
+& = -H_m +\half\epsilon_{mnp}\epsilon_{st}F^{sn}\we\omega^{tp}
+\end{align}
+
+We also have $S_{(p,q)}$ such that the variation of $S_{(p,q)}$ with respect to $\tilde\phi^{m}$ gives its equations of motion.
+We make the following attempt for $S_{(p,q)}$ and show that its variation indeed gives the equations of motion for $\tilde\phi$. 
+\begin{align}
+S_{(p,q)}^{(0)} = -\int d^3\xi|p|\sqrt{-\det G}
+\end{align}
+gives the equation of motion
+\begin{align}
+d\left[-*u_0\right] = 0
+\end{align}
+If we let $u = u_0 + u_1 + b_3*(vv) + b_4*(vw) + b_5*(ww)$ we get the equation of motion 
+\begin{align}
+d\left[-*u_0\right] &= d\left[*(-u + u_1 + b_3*(\tilde\omega\tilde\omega) + b_4*(\tilde\omega w(\tilde\omega)) + b_5*(w(\tilde\omega)w(\tilde\omega)))\right]\nn\\
+&= d\left[f + *u_1 - b_3v \we v - b_4v \we w - b_5w \we w\right] = 0
+\end{align}
+giving
+\begin{align}
+df_m &=  - d[*u_{1m}] + \epsilon_{mnp}\lbp  2b_3v^n \we dv^p + b_4v^n \we dw^p  + b_4w^n \we dv^p + 2b_5w^n \we dw^p \rbp\nn\\
+&= - d[*u_{1m}] + \epsilon_{mnp}\lbp -2b_3\omega_\parallel^n \we F_\parallel^p - b_4\omega_\parallel^n \we F_\perp^p  - b_4\omega_\perp^n \we F_\parallel^p - 2b_5\omega_\perp^n \we F_\perp^p \rbp
+\end{align}
+
+
+\begin{align}
+\epsilon_{mnp}\epsilon_{st}\omega^{sn}\we F^{tp} &= \pup{r}\pdp{r}\epsilon_{mnp}\epsilon_{st}\omega^{sn}\we F^{tp}\nn\\
+& = \epsilon_{mnp}( -\omega_\perp^{n}\we F_\parallel^{p} + \omega_\parallel^{n}\we F_\perp^{p})\nn\\
+\end{align}
+
+\begin{align}
+\epsilon_{mnp}v^n \we dv^p &= -\epsilon_{mnp}\qdp{s}\qdp{t}\omega^{sn}\we F^{tp}\nn\\
+&= -\epsilon_{mnp}(q_1^2\omega_\parallel^{n}\we F_\parallel^{p}+q_1q_2\omega_\parallel^{n}\we F_\perp^{p}+q_1q_2\omega_\perp^{n}\we F_\parallel^{p}+q_2^2\omega_\perp^{n}\we F_\perp^{p})
+\end{align}
+where $q_1^2+q_2^2 = 1$ and not enough to fulfill the Bianchi identities.
+Let $w = -q_2\omega_\parallel + q_1\omega_\perp$, which gives
+\begin{align}
+\epsilon_{mnp}w^n \we dw^p &= -\epsilon_{mnp}(q_2^2\omega_\parallel^{n}\we F_\parallel^{p} - q_1q_2\omega_\parallel^{n}\we F_\perp^{p} - q_1q_2\omega_\perp^{n}\we F_\parallel^{p}+q_1^2\omega_\perp^{n}\we F_\perp^{p})
+\end{align}
+and
+\begin{align}
+\epsilon_{mnp}v^n \we dw^p &= -\epsilon_{mnp}(-q_1q_2\omega_\parallel^{n}\we F_\parallel^{p} + q_1^2\omega_\parallel^{n}\we F_\perp^{p} - q_2^2\omega_\perp^{n}\we F_\parallel^{p}+q_1q_2\omega_\perp^{n}\we F_\perp^{p})\nn\\
+\epsilon_{mnp}w^n \we dv^p &= -\epsilon_{mnp}(-q_1q_2\omega_\parallel^{n}\we F_\parallel^{p} - q_2^2\omega_\parallel^{n}\we F_\perp^{p} + q_1^2\omega_\perp^{n}\we F_\parallel^{p}+q_1q_2\omega_\perp^{n}\we F_\perp^{p})\nn\\
+\end{align}
+giving
+\begin{align}
+\epsilon_{mnp}d[v^n \we w^p] &= \epsilon_{mnp}\lp v^n \we dw^p + w^n\we dv^p\rp\nn\\
+&= -\epsilon_{mnp}(-2q_1q_2\omega_\parallel^{n}\we F_\parallel^{p} + \lp q_1^2-q_2^2\rp\lp\omega_\parallel^{n}\we F_\perp^{p} + \omega_\perp^{n}\we F_\parallel^{p}\rp+2q_1q_2\omega_\perp^{n}\we F_\perp^{p})
+\end{align}
+and
+\begin{align}
+\epsilon_{mnp}\lp v^n \we dw^p - w^n \we dv^p\rp = \epsilon_{mnp}\lbp -\omega_\parallel^{n}\we F_\perp^{p} + \omega_\perp^{n}\we F_\parallel^{p}\rbp = -\epsilon_{mnp}\epsilon_{st}\omega^{sn}\we F^{tp}
+\end{align}
+
+If $q_1=1, q_2=0$
+\begin{align}
+\epsilon_{mnp}v^n \we dv^p &= -\epsilon_{mnp}(\omega_\parallel^{n}\we F_\parallel^{p})\nn\\
+\epsilon_{mnp}w^n \we dw^p &= -\epsilon_{mnp}(\omega_\perp^{n}\we F_\perp^{p})\nn\\
+\epsilon_{mnp}d[v^n \we w^p] &= -\epsilon_{mnp}(\omega_\parallel^{n}\we F_\perp^{p} + \omega_\perp^{n}\we F_\parallel^{p})
+\end{align}
+
+
+Other possible terms in $S_{(p,q)}$
+\begin{align}
+S_{(p,q)}^{(1)} = \int\lp B_m\we \tilde\omega^m \rp
+\end{align}
+\begin{align}
+\delta_{\tilde\phi^m} S_{(p,q)}^{(1)} &= \int\lp - dB_m \rp\delta\tilde\phi^m \nn\\
+&= \int\lp - H_m + \half\epsilon_{mnp}\epsilon_{st}F^{sn}\we A^{tp} \rp\delta\tilde\phi^m 
+\end{align}
+
+\begin{align}
+S_{(p,q)}^{(2)} = \int\frac{1}{|p|^2}\lp \epsilon_{mnp}\tilde\omega^m\we\tilde\omega^n\we\tilde\omega^p \rp
+\end{align}
+\begin{align}
+\delta_{\tilde\phi^m} S_{(p,q)}^{(2)} &= \int\lp \frac{3}{|p|^2}\epsilon_{mnp}\tilde\omega^m\we\tilde\omega^n\we d\delta\tilde\phi^m \rp\nn\\
+& = \int\lp -\frac{3}{|p|^2}\epsilon_{mnp}d\left[\tilde\omega^n\we\tilde\omega^p\right] \rp\delta\tilde\phi^m\nn\\
+& = \int\lp \frac{6}{|p|^2}\epsilon_{mnp}\tilde\omega^n\we \tilde F^p \rp\delta\tilde\phi^m
+\end{align}
+
+\begin{align}
+S_{(p,q)}^{(3)} = \int\lp \epsilon_{mnp}\W_{st}A^{sn}\we A^{tp}\we \tilde\omega^m \rp
+\end{align}
+\begin{align}
+\delta_{\tilde\phi^m} S_{(p,q)}^{(3)} &= \int\lp \epsilon_{mnp}\W_{st}A^{sn}\we A^{tp}\we d\delta\tilde\phi^m \rp\nn\\
+& = \int\lp -\epsilon_{mnp}d\left[\W_{st}A^{sn}\we A^{tp}\right] \rp\delta\tilde\phi^m\nn\\
+& = \int\lp -2\epsilon_{mnp}\W_{st}A^{sn}\we F^{tp} \rp\delta\tilde\phi^m
+\end{align}
+
+
+
+
+Nåt konstigt jag hittade i kapitel 5...
+\begin{align}
+S_1 &= \frac{\sqrt{\det\left[ZZ^T+\lp y^2+x_0^2\rp\id\right]}}{y^2+x_0^2}\nn\\
+S_2 &= -\frac{x_0\det Z}{y\lp y^2+x_0^2\rp}
+\end{align}
+Thus
+\begin{align}
+S_1 + S_2 &= \frac{\sqrt{\det\left[ZZ^T+\lp y^2+x_0^2\rp\id\right]}}{y^2+x_0^2} -\frac{x_0\det Z}{y\lp y^2+x_0^2\rp}
+\end{align}
+

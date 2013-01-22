@@ -1,0 +1,41 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {\sffamily \bfseries 1}\sffamily \bfseries Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Outline}{1}{section.1.1}
+\contentsline {part}{\sffamily I\hspace {1em}Dimensional Reduction}{3}{part.1}
+\contentsline {chapter}{\numberline {\sffamily \bfseries 2}\sffamily \bfseries Nan}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}The Maxey-Riley equation}{5}{section.2.1}
+\contentsline {chapter}{\numberline {\sffamily \bfseries A}\sffamily \bfseries Conventions and some basic formulae}{7}{appendix.A}
+\contentsline {section}{\numberline {A.1}Index conventions}{7}{section.A.1}
+\contentsline {paragraph}{Symmetrisation and antisymmetrisation}{8}{section*.2}
+\contentsline {section}{\numberline {A.2}Antisymmetric tensor and p-forms}{8}{section.A.2}
+\contentsline {paragraph}{Contraction of two antisymmetric tensors}{9}{section*.3}
+\contentsline {paragraph}{In two dimensions}{9}{section*.4}
+\contentsline {paragraph}{In three dimensions}{9}{section*.5}
+\contentsline {paragraph}{Forms}{9}{section*.6}
+\contentsline {paragraph}{Exterior derivative}{10}{section*.7}
+\contentsline {paragraph}{Hodge duality of a $p$-form}{10}{section*.8}
+\contentsline {paragraph}{Volume form}{11}{section*.9}
+\contentsline {paragraph}{Inner product}{11}{section*.10}
+\contentsline {paragraph}{Differentiation of forms}{11}{section*.11}
+\contentsline {paragraph}{Variation of an action with respect to forms}{12}{section*.12}
+\contentsline {section}{\numberline {A.3}General relativity}{13}{section.A.3}
+\contentsline {paragraph}{Covariant divergence}{13}{section*.13}
+\contentsline {paragraph}{Variation of $g=\qopname \relax m{det}g_{MN}$ and pure gravity with respect to $g_{MN}$}{13}{section*.14}
+\contentsline {section}{\numberline {A.4}Matrix identities}{13}{section.A.4}
+\contentsline {paragraph}{Determinant conditions}{14}{section*.15}
+\contentsline {paragraph}{Determinant of block matrix}{14}{section*.16}
+\contentsline {chapter}{\numberline {\sffamily \bfseries B}\sffamily \bfseries Lengthy calculations}{15}{appendix.B}
+\contentsline {section}{\numberline {B.1}Reduction and scaling of the Ricci scalar}{15}{section.B.1}
+\contentsline {subsection}{\numberline {B.1.1}Locally flat geometry}{15}{subsection.B.1.1}
+\contentsline {paragraph}{Locally flat frames}{15}{section*.17}
+\contentsline {paragraph}{Covariant derivative}{16}{section*.18}
+\contentsline {paragraph}{Torsion}{16}{section*.19}
+\contentsline {paragraph}{Curvature}{17}{section*.20}
+\contentsline {subsection}{\numberline {B.1.2}Reduction of the Ricci scalar}{18}{subsection.B.1.2}
+\contentsline {subsection}{\numberline {B.1.3}The Ricci scalar in the Einstein frame}{22}{subsection.B.1.3}
+\contentsline {chapter}{\numberline {\sffamily \bfseries C}\sffamily \bfseries 128 bit integer arithmetics}{25}{appendix.C}
+\contentsline {section}{\numberline {C.1}General assembler guidelines}{25}{section.C.1}
+\contentsline {section}{\numberline {C.2}The Int128 type}{26}{section.C.2}
+\contentsline {subsection}{\numberline {C.2.1}Quotient reduction}{29}{subsection.C.2.1}
+\contentsline {subsubsection}{Division without remainder}{30}{section*.21}
+\contentsline {chapter}{\sffamily \bfseries Bibliography}{35}{equation.C.2.7}
