@@ -64,7 +64,8 @@ void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma)
 	
     FILE *file = fopen("scalarcorr", "w");
     
-	double sumScalar = 0.0;
+    double sumUx = 0.0; // Test u_x (d_y phi)
+    double sumUy = 0.0;
 	
 	int n = 10000;
 	
@@ -82,9 +83,9 @@ void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma)
 	
 	double percent = -dx/L;
 	p2.x = 0.2;
-	// for (p2.x = -L/2.0; p2.x <= L/2.0; p2.x += dx)
+	for (p2.x = -L/2.0; p2.x <= L/2.0; p2.x += dx)
 	//for (p2.x = 0.0; p2.x <= L; p2.x += dx)
-	// {
+	{
 		for (p2.y = -L/2.0; p2.y <= L/2.0; p2.y += dx)
 		//for (p2.y = 0.0; p2.y <= L; p2.y += dx)
 		{
@@ -95,8 +96,9 @@ void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma)
 				struct Vector2* u2;
 				flowVel(&p1, a, nTerms, u1, mid, sigma);
 				flowVel(&p2, a, nTerms, u2, mid, sigma);
-		
-				sumScalar += s1*s2 / n;
+		        
+                sumUx += u1.x * u2.x / n;
+                sumUy += u1.y * u2.y / n;
 			}
 			
 			double expon = exp(-((p1.x-p2.x)*(p1.x-p2.x)+
@@ -110,7 +112,7 @@ void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma)
 			    
 			
             fprintf(file, "%.3f\t%.3f\t%.15f\t%.15f\n", 
-                        p2.x, p2.y, sumScalar, expon);
+                        p2.x, p2.y, sumUx, sumUy, expon);
 			printf("x = %f,  y = %f\n", p2.x, p2.y);
 			printf("<psi*psi'> = %.10f\t", sumScalar);
 			printf("e... = %.10f\n\n", expon);
@@ -118,6 +120,6 @@ void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma)
 		}
 		percent += dx / L;
 		printf("%.2f %%\n", 100*percent);
-	// }
+	}
     fclose( file );
 }
