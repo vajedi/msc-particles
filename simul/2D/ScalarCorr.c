@@ -60,9 +60,9 @@ void testScalarCorr(struct Complex** a, int nTerms, int mid, double sigma)
 void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma)
 {
 
-	printf("\n*********************************************************\nTest correlation of scalar field.\n*********************************************************\n");
+	printf("\n*********************************************************\nTest correlation of velocity field.\n*********************************************************\n");
 	
-    FILE *file = fopen("scalarcorr", "w");
+    FILE *file = fopen("velcorr", "w");
     
     double sumUx = 0.0; // Test u_x (d_y phi)
     double sumUy = 0.0;
@@ -101,8 +101,11 @@ void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma)
                 sumUy += u1.y * u2.y / n;
 			}
 			
-			double expon = exp(-((p1.x-p2.x)*(p1.x-p2.x)+
-								(p1.y-p2.y)*(p1.y-p2.y))/2.0/CORR_LENGTH2);
+            double Rx = p1.x - p2.x;
+            double Ry = p1.y - p2.y;
+			double expon = exp(-(Rx*Rx + Ry*Ry)/2.0/CORR_LENGTH2);
+            double cffx = 1.0/CORR_LENGTH/CORR_LENGTH - 1.0/pow(CORR_LENGTH,4)*Ry*Ry;
+            double cffy = 1.0/CORR_LENGTH/CORR_LENGTH - 1.0/pow(CORR_LENGTH,4)*Rx*Rx;
 
 			for (i = 0; i < 2; i++) // 2 because of 2 dimensions
 			{
@@ -111,12 +114,13 @@ void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma)
 			    //for (pind = 0; pind < 
 			    
 			
-            fprintf(file, "%.3f\t%.3f\t%.15f\t%.15f\n", 
-                        p2.x, p2.y, sumUx, sumUy, expon);
+            fprintf(file, "%.3f\t%.3f\t%.15f\t%.15f\t%.15f\t%.15f\n", 
+                        p2.x, p2.y, sumUx, sumUy, expon*cffx, expon*cffy);
 			printf("x = %f,  y = %f\n", p2.x, p2.y);
-			printf("<psi*psi'> = %.10f\t", sumScalar);
+			printf("<psi*psi'> = %.10f\t", sumUx);
 			printf("e... = %.10f\n\n", expon);
-			sumScalar = 0.0;
+			sumUx = 0.0;
+            sumUy = 0.0;
 		}
 		percent += dx / L;
 		printf("%.2f %%\n", 100*percent);
