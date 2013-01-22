@@ -128,8 +128,8 @@ void flowVel(struct Vector2* pos, struct Complex** a,
 }
 
 // A should be an array of length 4, [u_xx, u_xy; u_yx, u_yy]
-void accMatrix(struct Vector2* pos, double* A, struct Complex** a, 
-        int nTerms, struct Vector2* u, int mid, double sigma, double dx)
+void accMatrix(struct Vector2* pos, double A[], struct Complex** a, 
+        int nTerms, int mid, double sigma)
 {
 	double sum = 0.0;
     double coeff = SQRT_2PI * CORR_LENGTH * SQRT_C0;

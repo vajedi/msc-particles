@@ -42,7 +42,9 @@ int main(int argc, char* argv[])
 	
 	//simulateParticles(a, nTerms, mid, SIGMA, 0.1);
 	//testANorm(a, nTerms, mid);
-	testScalarCorr(a, nTerms, mid, SIGMA);
+	//testScalarCorr(a, nTerms, mid, SIGMA);
+    //testVelCorr(a, nTerms, mid, SIGMA);
+    testAccCorr(a, nTerms, mid, SIGMA);
 	
     
     /*

@@ -24,8 +24,8 @@ void computeA(struct Complex** a, int nTerms, int mid);
 double scalarField(struct Vector2* pos, struct Complex** a, int nTerms, int mid, double sigma);
 void flowVel(struct Vector2* pos, struct Complex** a, 
 	int nTerms, struct Vector2* u, int mid, double sigma);
-void accMatrix(struct Vector2* pos, double* A, struct Complex** a, 
-        int nTerms, struct Vector2* u, int mid, double sigma, double dx);
+void accMatrix(struct Vector2* pos, double A[], struct Complex** a, 
+        int nTerms, int mid, double sigma);
 
 struct Complex
 {

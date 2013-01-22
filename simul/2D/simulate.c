@@ -69,7 +69,7 @@ void updateVel(struct Particle* p, double dt)
 void updateAcc(struct Particle* p, struct Complex** a, double dt, 
 			struct Vector2* u, int nTerms, int mid, double sigma, double dx)
 {
-	flowVel(&(p->pos), a, nTerms, u, mid, sigma, dx);
+	flowVel(&(p->pos), a, nTerms, u, mid, sigma);
 	
 	p->acc.x += DAMP_RATE * (u->x - p->vel.x);
 	p->acc.y += DAMP_RATE * (u->y - p->vel.y);
