@@ -7,4 +7,7 @@
 
 void testScalarCorr(struct Complex** a, int nTerms, int mid, double sigma);
 
+void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma);
+void testAccCorr(struct Complex** a, int nTerms, int mid, double sigma);
+void testTimeCorr(struct Complex** a, int nTerms, int mid, double sigma);
 #endif

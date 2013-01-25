@@ -40,7 +40,7 @@ void testScalarCorr(struct Complex** a, int nTerms, int mid, double sigma)
 				sumScalar += s1*s2 / n;
 			}
 			double expon = exp(-((p1.x-p2.x)*(p1.x-p2.x)+
-								(p1.y-p2.y)*(p1.y-p2.y))/2.0/CORR_LENGTH2);
+								(p1.y-p2.y)*(p1.y-p2.y))/2.0/CORRL2);
 			
             fprintf(file, "%.3f\t%.3f\t%.15f\t%.15f\n", 
                         p2.x, p2.y, sumScalar, expon);
@@ -103,9 +103,9 @@ void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma)
 			
             double Rx = p1.x - p2.x;
             double Ry = p1.y - p2.y;
-			double expon = exp(-(Rx*Rx + Ry*Ry)/2.0/CORR_LENGTH2);
-            double cffx = 1.0/CORR_LENGTH/CORR_LENGTH - 1.0/pow(CORR_LENGTH,4)*Ry*Ry;
-            double cffy = 1.0/CORR_LENGTH/CORR_LENGTH - 1.0/pow(CORR_LENGTH,4)*Rx*Rx;
+			double expon = exp(-(Rx*Rx + Ry*Ry)/2.0/CORRL2);
+            double cffx = 1.0/CORR_LEN/CORR_LEN - 1.0/pow(CORR_LEN,4)*Ry*Ry;
+            double cffy = 1.0/CORR_LEN/CORR_LEN - 1.0/pow(CORR_LEN,4)*Rx*Rx;
 
 			    
 			
@@ -130,8 +130,8 @@ void testAccCorr(struct Complex** a, int nTerms, int mid, double sigma)
 	
     FILE *file = fopen("acccorr", "w");
     
-    double sumUx = 0.0; // Test u_x (d_y phi)
-    double sumUy = 0.0;
+    double axx = 0.0, ayx = 0.0, axy = 0.0;
+    double a12 = 0.0, a34 = 0.0, a14 = 0.0, a23 = 0.0;
 	
 	int n = 10000;
 	
@@ -147,41 +147,130 @@ void testAccCorr(struct Complex** a, int nTerms, int mid, double sigma)
 	double L = 1.0;
 	double dx = 0.1;
 	
-	double percent = -dx/L;
+	double percent = 0.0;
 
 	for (p2.x = -L/2.0; p2.x <= L/2.0; p2.x += dx)
 	//for (p2.x = 0.0; p2.x <= L; p2.x += dx)
-	{
-		for (p2.y = -L/2.0; p2.y <= L/2.0; p2.y += dx)
+	{ 
+	    for (p2.y = -L/2.0; p2.y <= L/2.0; p2.y += dx)
 		//for (p2.y = 0.0; p2.y <= L; p2.y += dx)
 		{
-			for (i = 0; i < n; i++)
+            			for (i = 0; i < n; i++)
 			{
 				computeA(a, nTerms, mid);
                 double A[] = { 0.0, 0.0, 0.0, 0.0 };
-				accMatrix(&p2, A, a, nTerms, mid, sigma);
-                sumUx += A[0]*A[1] / n;
-                sumUy += A[2]*A[3] / n;
+                double B[] = { 0.0, 0.0, 0.0, 0.0 };
+                accMatrix(&p1, A, a, nTerms, mid, sigma);
+				accMatrix(&p2, B, a, nTerms, mid, sigma);
+                axx += A[0]*B[0] / n; ayx += A[2]*B[2] / n; axy += A[1]*B[1] / n;
+                a12 += A[0]*B[1] / n; a34 += A[2]*B[3] / n; a14 += A[0]*B[3] / n; a23 += A[1]*B[2] / n;
 			}
 			
             double Rx = p1.x - p2.x;
             double Ry = p1.y - p2.y;
-			double expon = exp(-(Rx*Rx + Ry*Ry)/2.0/CORR_LENGTH2);
-            double cffx = Rx/CORR_LENGTH/CORR_LENGTH*(Ry*Ry*Ry/pow(CORR_LENGTH,6) - 3.0*Ry/pow(CORR_LENGTH,4));
-            double cffy = -Ry/CORR_LENGTH/CORR_LENGTH*(-Rx*Rx*Rx/pow(CORR_LENGTH,6) + 3.0*Rx/pow(CORR_LENGTH,4));
-
-			    
+            double Rx2 = Rx*Rx, Ry2 = Ry*Ry;
+			double expon = exp(-(Rx2 + Ry2)/2.0/CORRL2);
+            double cA12 = expon * Rx/CORRL2*(Ry2*Ry/pow(CORRL2,3) - 3.0*Ry/pow(CORR_LEN,4));
+            double cA34 = expon * (-Ry/CORRL2)*(-Rx2*Rx/pow(CORR_LEN,6) + 3.0*Rx/pow(CORR_LEN,4));
+            double cA14 = expon * (Ry2/CORRL2-1.0) * (1.0-Rx2/CORRL2) / CORRL2 / CORRL2;
+            double cA23 = expon * (Rx2/CORRL2-1.0) * (1.0-Ry2/CORRL2) / CORRL2 / CORRL2;
+            double cAxx = expon * (1.0 - Rx2/CORRL2) * (1.0 - Ry2/CORRL2) / CORRL2 / CORRL2;
+            double cAxy = expon * (pow(Ry,4)/pow(CORR_LEN,4)-3.0*Ry2/CORRL2+3.0)/pow(CORR_LEN,4);
+            double cAyx = expon * (pow(Rx,4)/pow(CORR_LEN,4)-3.0*Rx2/CORRL2+3.0)/pow(CORR_LEN,4);
 			
-            fprintf(file, "%.3f\t%.3f\t%.30f\t%.30f\t%.30f\t%.30f\n", 
-                        p2.x, p2.y, sumUx, sumUy, expon*cffx, expon*cffy);
-			printf("x = %f,  y = %f\n", p2.x, p2.y);
-			printf("<psi*psi'> = %.10f\t", sumUx);
-			printf("e... = %.10f\n\n", expon*cffx);
-			sumUx = 0.0;
-            sumUy = 0.0;
-		}
-		percent += dx / L;
-		printf("%.2f %%\n", 100*percent);
+            fprintf(file, "%.3f\t%.3f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\n", 
+                        p2.x, p2.y, axx, cAxx, axy, cAxy, ayx, cAyx, a12, cA12, a34, cA34, a14, cA14, a23, cA23);
+            axx = 0.0; axy = 0.0; ayx = 0.0;
+            a12 = 0.0; a34 = 0.0; a14 = 0.0; a23 = 0.0;
+	    }
+   		printf("%.2f %%\n", 100*percent);
+        percent += dx / L;
 	}
     fclose( file );
+}
+
+/** Test time correlation using <a(t1)a(t2)> = exp(-|t2-t1|/tau) **/
+void testTimeCorr(struct Complex** a, int nTerms, int mid, double sigma)
+{
+	printf("\n*********************************************************\nTest time correlation.\n*********************************************************\n");
+	
+    FILE *file = fopen("timecorr", "w");
+
+	int numAvgs = 100000;
+    int numTimeSteps = 100;
+
+    computeA(a, nTerms, mid);
+
+	int i, iAvg;
+	struct Complex** a0 = malloc( nTerms*sizeof(struct Complex*) );
+    double** sr = (double**) malloc( nTerms*sizeof(double*) );
+    double** si = (double**) malloc( nTerms*sizeof(double*) );
+    double* tvecr = (double*) malloc( numTimeSteps*sizeof(double) );
+    double* tveci = (double*) malloc( numTimeSteps*sizeof(double) );
+    double* et = (double*) malloc( numTimeSteps*sizeof(double) );
+    for (i = 0; i < numTimeSteps; i++)
+    {
+        tvecr[i] = 0.0; tveci[i] = 0.0; et[i] = 0.0;
+    }
+	for (i = 0; i < nTerms; i++)
+	{
+		a0[i] = (struct Complex*) malloc( nTerms*sizeof(struct Complex) );
+        sr[i]  = (double*) malloc( nTerms*sizeof(double*) );
+        si[i]  = (double*) malloc( nTerms*sizeof(double*) );
+        int j = 0;
+        for (j = 0; j < nTerms; j++)
+        {
+            sr[i][j] = 0.0; si[i][j] = 0.0;
+            a0[i][j].real = a[i][j].real;
+            a0[i][j].imag = a[i][j].imag;
+        }
+    }
+
+    for (i = 0; i < numTimeSteps; i++)
+    {
+        int ix = 3, iy = 4;
+        for (iAvg = 0; iAvg < numAvgs; iAvg++)
+        {
+            int n = 0;
+            while (n < i+1)
+            {
+                computeA(a, nTerms, mid);
+                n += 1;
+            }
+            //             for (ix = 0; ix < nTerms; ix++)
+            //             {
+            //                 for (iy = 0; iy < nTerms; iy++)
+            //                 {
+            sr[ix][iy] += (a[ix][iy].real*a0[ix][iy].real) / numAvgs;
+            si[ix][iy] += (a[ix][iy].imag*a0[ix][iy].imag) / numAvgs;
+            a0[ix][iy].real = a[ix][iy].real;
+            a0[ix][iy].imag = a[ix][iy].imag;
+            //                 }
+            //             }
+        }
+        tvecr[i] = sr[ix][iy];
+        tveci[i] = si[ix][iy];
+        et[i] = exp(-dt*(i+1)/CORR_TIME);
+        printf("%.1f %%\n", (double)(i+1)*100.0/numTimeSteps);
+    }
+
+    for (i = 0; i < numTimeSteps; i++)
+    {
+        fprintf(file, "%.30f\t%.30f%.30f\n", tvecr[i], tveci[i], et[i]);
+    }
+    
+    fclose( file );
+    
+    for (i = 0; i < nTerms; i++)
+    {
+        free( sr[i] );
+        free( si[i] );
+        free( a0[i] );
+    }
+    free( sr );
+    free( si );
+    free( tvecr );
+    free( tveci );
+    free( et );
+    free( a0 );
 }

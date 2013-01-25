@@ -5,13 +5,21 @@
 #include "random.h"
 #include "simath.h"
 
+#define TIMECORR_ON 1
+
 const double SQRT_2PI;
-const double CORR_LENGTH;
-double CORR_LENGTH2;
+const double CORR_LEN;
+double CORRL2;
 const double DAMP_RATE;
 const double SQRT_C0;
 const double VARIANCE;
 double SIGMA;
+
+const double dt;
+const double CORR_TIME;
+double TIME_RATE;
+double SQRT_TR;
+double SQRT_2TR;
 
 struct Complex;
 struct Vector2;

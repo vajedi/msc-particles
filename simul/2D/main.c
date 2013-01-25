@@ -4,6 +4,7 @@
 #include "anorm.h"
 //#include <GL/glut.h>
 
+
 const int nTerms = 20+1;//(int)(2 / CORR_LENGTH) + 1;//20 + 1;     nTerms = 2L/eta (see p. 30, Lic Thesis, K.G.)
 
 const int SCREEN_WIDTH = 640;
@@ -44,7 +45,8 @@ int main(int argc, char* argv[])
 	//testANorm(a, nTerms, mid);
 	//testScalarCorr(a, nTerms, mid, SIGMA);
     //testVelCorr(a, nTerms, mid, SIGMA);
-    testAccCorr(a, nTerms, mid, SIGMA);
+    //testAccCorr(a, nTerms, mid, SIGMA);
+    testTimeCorr(a, nTerms, mid, SIGMA);
 	
     
     /*
