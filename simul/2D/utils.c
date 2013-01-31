@@ -57,7 +57,9 @@ double randGaussian()
 
 void computeA(struct Complex** a, int nTerms, int mid)
 {
+#if TIMECORR_ON
     double amid_r = a[mid][mid].real;
+#endif
 	int i, j;
 	for (i = 0; i < nTerms; i++)
 	{
@@ -68,8 +70,12 @@ void computeA(struct Complex** a, int nTerms, int mid)
                            + randGauss(0, SQRT_TR);
 			a[i][j].imag = a[i][j].imag * (1 - TIME_RATE)
                            + randGauss(0, SQRT_TR);
+/**			a[i][j].real = a[i][j].real * exp(- TIME_RATE) 
+                           + randGauss(0, sqrt((1-exp(-2.0*TIME_RATE))/2.0));
+			a[i][j].imag = a[i][j].imag * exp(- TIME_RATE)
+                           + randGauss(0, sqrt((1-exp(-2.0*TIME_RATE))/2.0));**/
 #else
-            a[i][j].real = randGauss(0, INV_DQRT_2);
+            a[i][j].real = randGauss(1, INV_SQRT_2);
             a[i][j].imag = randGauss(0, INV_SQRT_2);
 #endif
 			a[2*mid-i][2*mid-j].real = a[i][j].real;
@@ -77,13 +83,15 @@ void computeA(struct Complex** a, int nTerms, int mid)
 			/*
 			printf("i1 = %d, j1 = %d\ni2 = %d, j2 = %d\nIm a1 = %f\nIm a2 = %f\n", 
 					i, j, 2*mid-i, 2*mid-j,
-					a[i][j].imag, a[2*mid-i][2*mid-j].imag);
+					a[i][j].imag, a[3*mid-i][2*mid-j].imag);
 			*/
 		}
 	}
 #if TIMECORR_ON
     a[mid][mid].real = amid_r * (1 - TIME_RATE)
                        + randGauss(0, SQRT_2TR);
+/**    a[mid][mid].real = amid_r * exp(- TIME_RATE)
+                       + randGauss(0, sqrt((1-exp(-2.0*TIME_RATE))/2.0));**/
 #else
     a[mid][mid].real = randGauss(0, 1.0);                  
 #endif
