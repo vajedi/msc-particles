@@ -133,6 +133,7 @@ void testAccCorr(struct Complex** a, int nTerms, int mid, double sigma)
 
     double axx = 0.0, ayx = 0.0, axy = 0.0;
     double a12 = 0.0, a34 = 0.0, a14 = 0.0, a23 = 0.0;
+<<<<<<< HEAD
 
     int n = 10000;
 
@@ -232,6 +233,65 @@ void testAccCorr(struct Complex** a, int nTerms, int mid, double sigma)
     }
 
 
+=======
+	
+	int n = 10000;
+	
+	struct Vector2 p1;
+	struct Vector2 p2;
+	
+	p1.x = 0.0;
+	p1.y = 0.0;
+	
+	int i;
+	double x0 = 0.0, y0 = 0.0;
+	
+	double L = 0.4;
+	double dx = 0.01;
+	
+    double percent = 0.0;
+
+    //for (p2.x = -L/2.0; p2.x <= L/2.0; p2.x += dx)
+    ////for (p2.x = 0.0; p2.x <= L; p2.x += dx)
+    //{
+    p2.x = 0.17; 
+    double Rx = p1.x - p2.x;
+    double Rx2 = Rx*Rx;
+    for (p2.y = 0.011; p2.y <= L; p2.y += dx)
+        //for (p2.y = 0.0; p2.y <= L; p2.y += dx)
+    {
+        for (i = 0; i < n; i++)
+        {
+            computeA(a, nTerms, mid);
+            double A[] = { 0.0, 0.0, 0.0, 0.0 };
+            double B[] = { 0.0, 0.0, 0.0, 0.0 };
+            accMatrix(&p1, A, a, nTerms, mid, sigma);
+            accMatrix(&p2, B, a, nTerms, mid, sigma);
+            axx += A[0]*B[0]; ayx += A[2]*B[2]; axy += A[1]*B[1];
+            a12 += A[0]*B[1]; a34 += A[2]*B[3]; a14 += A[0]*B[3]; a23 += A[1]*B[2];
+        }
+        axx /= n; ayx /= n; axy /= n; a12 /= n; a34 /= n; a14 /= n; a23 /= n;
+        double Ry = p1.y - p2.y;
+        double Ry2 = Ry*Ry;
+        double expon = exp(-(Rx2 + Ry2)/2.0/CORRL2);
+        double cA12 = expon * Rx/CORRL2*(Ry2*Ry/pow(CORRL2,3) - 3.0*Ry/pow(CORR_LEN,4));
+        double cA34 = expon * (-Ry/CORRL2)*(-Rx2*Rx/pow(CORR_LEN,6) + 3.0*Rx/pow(CORR_LEN,4));
+        double cA14 = expon * (Ry2/CORRL2-1.0) * (1.0-Rx2/CORRL2) / CORRL2 / CORRL2;
+        //double cA23 = expon * (Rx2/CORRL2-1.0) * (Ry2/CORRL2 - 1.0) / CORRL2 / CORRL2;
+        double cAxx = expon * (1.0 - Rx2/CORRL2) * (1.0 - Ry2/CORRL2) / CORRL2 / CORRL2;
+        double cAxy = expon * (Ry2*Ry2/pow(CORR_LEN,4)-6.0*Ry2/CORRL2+3.0) / CORRL2 / CORRL2;
+        double cAyx = expon * (Rx2*Rx2/pow(CORR_LEN,4)-6.0*Rx2/CORRL2+3.0) / CORRL2 / CORRL2;
+
+        fprintf(file, "%.3f\t%.3f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\n", 
+                p2.x, p2.y, axx, cAxx, axy, cAxy, ayx, cAyx, a12, cA12, a34, cA34, a14, cA14, a23, cA14);
+        axx = 0.0; axy = 0.0; ayx = 0.0;
+        a12 = 0.0; a34 = 0.0; a14 = 0.0; a23 = 0.0;
+        percent += dx / L;
+        printf("%.2f %%\n", 100*percent);
+    }
+    //
+    //}
+>>>>>>> 020e341fca979b62d4a47ef1a6ccd06306b7d0c9
     fclose( file );
 }
 

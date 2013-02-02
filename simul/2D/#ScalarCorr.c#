@@ -42,7 +42,11 @@ void testScalarCorr(struct Complex** a, int nTerms, int mid, double sigma)
 			double expon = exp(-((p1.x-p2.x)*(p1.x-p2.x)+
 								(p1.y-p2.y)*(p1.y-p2.y))/2.0/CORRL2);
 			
+<<<<<<< HEAD
                     fprintf(file, "%.3f\t%.3f\t%.15f\t%.15f\n", 
+=======
+            fprintf(file, "%.3f\t%.3f\t%.15f\t%.15f\n", 
+>>>>>>> 020e341fca979b62d4a47ef1a6ccd06306b7d0c9
                         p2.x, p2.y, sumScalar, expon);
 			printf("x = %f,  y = %f\n", p2.x, p2.y);
 			printf("<psi*psi'> = %.10f\t", sumScalar);
@@ -126,6 +130,7 @@ void testVelCorr(struct Complex** a, int nTerms, int mid, double sigma)
 void testAccCorr(struct Complex** a, int nTerms, int mid, double sigma)
 {
 
+<<<<<<< HEAD
     printf("\n*********************************************************\nTest correlation of acc field.\n*********************************************************\n");
 
     int use2dgrid = 1;
@@ -172,11 +177,58 @@ void testAccCorr(struct Complex** a, int nTerms, int mid, double sigma)
             double Ry = p1.y - p2.y;
             double Ry2 = Ry*Ry;
             double expon = exp(-(Rx2 + Ry2)/2.0/CORRL2);
+=======
+	printf("\n*********************************************************\nTest correlation of acc field.\n*********************************************************\n");
+	
+    FILE *file = fopen("acccorr", "w");
+    
+    double axx = 0.0, ayx = 0.0, axy = 0.0;
+    double a12 = 0.0, a34 = 0.0, a14 = 0.0, a23 = 0.0;
+	
+	int n = 10000;
+	
+	struct Vector2 p1;
+	struct Vector2 p2;
+	
+	p1.x = 0.0;
+	p1.y = 0.0;
+	
+	int i;
+	double x0 = 0.0, y0 = 0.0;
+	
+	double L = 1.0;
+	double dx = 0.1;
+	
+	double percent = 0.0;
+
+	for (p2.x = -L/2.0; p2.x <= L/2.0; p2.x += dx)
+	//for (p2.x = 0.0; p2.x <= L; p2.x += dx)
+	{ 
+	    for (p2.y = -L/2.0; p2.y <= L/2.0; p2.y += dx)
+		//for (p2.y = 0.0; p2.y <= L; p2.y += dx)
+		{
+            			for (i = 0; i < n; i++)
+			{
+				computeA(a, nTerms, mid);
+                double A[] = { 0.0, 0.0, 0.0, 0.0 };
+                double B[] = { 0.0, 0.0, 0.0, 0.0 };
+                accMatrix(&p1, A, a, nTerms, mid, sigma);
+				accMatrix(&p2, B, a, nTerms, mid, sigma);
+                axx += A[0]*B[0] / n; ayx += A[2]*B[2] / n; axy += A[1]*B[1] / n;
+                a12 += A[0]*B[1] / n; a34 += A[2]*B[3] / n; a14 += A[0]*B[3] / n; a23 += A[1]*B[2] / n;
+			}
+			
+            double Rx = p1.x - p2.x;
+            double Ry = p1.y - p2.y;
+            double Rx2 = Rx*Rx, Ry2 = Ry*Ry;
+			double expon = exp(-(Rx2 + Ry2)/2.0/CORRL2);
+>>>>>>> 020e341fca979b62d4a47ef1a6ccd06306b7d0c9
             double cA12 = expon * Rx/CORRL2*(Ry2*Ry/pow(CORRL2,3) - 3.0*Ry/pow(CORR_LEN,4));
             double cA34 = expon * (-Ry/CORRL2)*(-Rx2*Rx/pow(CORR_LEN,6) + 3.0*Rx/pow(CORR_LEN,4));
             double cA14 = expon * (Ry2/CORRL2-1.0) * (1.0-Rx2/CORRL2) / CORRL2 / CORRL2;
             double cA23 = expon * (Rx2/CORRL2-1.0) * (1.0-Ry2/CORRL2) / CORRL2 / CORRL2;
             double cAxx = expon * (1.0 - Rx2/CORRL2) * (1.0 - Ry2/CORRL2) / CORRL2 / CORRL2;
+<<<<<<< HEAD
             double cAxy = expon * (Ry2*Ry2/pow(CORR_LEN,4)-6.0*Ry2/CORRL2+3.0) / CORRL2 / CORRL2;
             double cAyx = expon * (Rx2*Rx2/pow(CORR_LEN,4)-6.0*Rx2/CORRL2+3.0) / CORRL2 / CORRL2;
 
@@ -232,23 +284,49 @@ void testAccCorr(struct Complex** a, int nTerms, int mid, double sigma)
     }
 
 
+=======
+            double cAxy = expon * (Ry2*Ry2/pow(CORR_LEN,4)-3.0*Ry2/CORRL2+3.0) / CORRL2 / CORRL2;
+            double cAyx = expon * (Rx2*Rx2/pow(CORR_LEN,4)-3.0*Rx2/CORRL2+3.0) / CORRL2 / CORRL2;
+			
+            fprintf(file, "%.3f\t%.3f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\t%.30f\n", 
+                        p2.x, p2.y, axx, cAxx, axy, cAxy, ayx, cAyx, a12, cA12, a34, cA34, a14, cA14, a23, cA23);
+            axx = 0.0; axy = 0.0; ayx = 0.0;
+            a12 = 0.0; a34 = 0.0; a14 = 0.0; a23 = 0.0;
+	    }
+   		printf("%.2f %%\n", 100*percent);
+        percent += dx / L;
+	}
+>>>>>>> 020e341fca979b62d4a47ef1a6ccd06306b7d0c9
     fclose( file );
 }
 
 /** Test time correlation using <a(t1)a(t2)> = exp(-|t2-t1|/tau) **/
 void testTimeCorr(struct Complex** a, int nTerms, int mid, double sigma)
 {
+<<<<<<< HEAD
     printf("\n*********************************************************\nTest time correlation.\n*********************************************************\n");
 
     FILE *file = fopen("timecorr", "w");
 
     int numAvgs = 1000;
+=======
+	printf("\n*********************************************************\nTest time correlation.\n*********************************************************\n");
+	
+    FILE *file = fopen("timecorr", "w");
+
+	int numAvgs = 1000;
+>>>>>>> 020e341fca979b62d4a47ef1a6ccd06306b7d0c9
     int numTimeSteps = 50;
 
     computeA(a, nTerms, mid);
 
+<<<<<<< HEAD
     int i, iAvg;
     struct Complex** a0 = malloc( nTerms*sizeof(struct Complex*) );
+=======
+	int i, iAvg;
+	struct Complex** a0 = malloc( nTerms*sizeof(struct Complex*) );
+>>>>>>> 020e341fca979b62d4a47ef1a6ccd06306b7d0c9
     double** sr = (double**) malloc( nTerms*sizeof(double*) );
     double** si = (double**) malloc( nTerms*sizeof(double*) );
     double* tvecr = (double*) malloc( numTimeSteps*sizeof(double) );
@@ -258,9 +336,15 @@ void testTimeCorr(struct Complex** a, int nTerms, int mid, double sigma)
     {
         tvecr[i] = 0.0; tveci[i] = 0.0; et[i] = 0.0;
     }
+<<<<<<< HEAD
     for (i = 0; i < nTerms; i++)
     {
         a0[i] = (struct Complex*) malloc( nTerms*sizeof(struct Complex) );
+=======
+	for (i = 0; i < nTerms; i++)
+	{
+		a0[i] = (struct Complex*) malloc( nTerms*sizeof(struct Complex) );
+>>>>>>> 020e341fca979b62d4a47ef1a6ccd06306b7d0c9
         sr[i]  = (double*) malloc( nTerms*sizeof(double*) );
         si[i]  = (double*) malloc( nTerms*sizeof(double*) );
         int j = 0;
@@ -295,7 +379,11 @@ void testTimeCorr(struct Complex** a, int nTerms, int mid, double sigma)
 
     for (i = 0; i < numTimeSteps; i++)
     {
+<<<<<<< HEAD
         et[i] = exp(-dt*i/CORR_TIME) / 2.0;
+=======
+        et[i] = exp(-dt*i/CORR_TIME);
+>>>>>>> 020e341fca979b62d4a47ef1a6ccd06306b7d0c9
         fprintf(file, "%.30f\t%.30f\t%.30f\n", tvecr[i], tveci[i], et[i]);
     }
 
