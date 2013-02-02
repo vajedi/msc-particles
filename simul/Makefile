@@ -1,0 +1,45 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+#                                                                     #
+#                       V A R I A B L E S                             #
+#                                                                     #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+SHELL = /bin/sh
+CC = gcc
+CFLAGS = -Wall -O3
+SOURCES = $(wildcard *.c)
+OBJECTS = $(SOURCES: .c=.o)
+DFILES = $(SOURCES: .c=.d)
+LDFLAGS = 
+LIBS =  -lm
+EXECUTABLE = parts2D
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+#                                                                     #
+#                        C O M M A N D S                              #
+#                                                                     #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+all: $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(CPPFLAGS)  $^ -o $@ $(LIBS)
+	
+%.o: %.c
+	@echo " CPP   $@"
+	$(CC) -c $(CLAGS) $< -o $@
+
+.PHONY: clean	
+	
+%.o: %.h
+	@echo "   CPP   $@"
+	$(QUIET)$(CC) $(CFLAGS) -c $< -o $@
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+#                                                                     #
+#                  C L E A N   C O M M A N D S                        #
+#                                                                     #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+
+clean:
+	rm -rf *.o *~ $(EXECUTABLE)

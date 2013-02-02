@@ -5,7 +5,7 @@
 #include "random.h"
 #include "simath.h"
 
-#define TIMECORR_ON 1
+#define TIMECORR_ON 0
 
 const double SQRT_2PI;
 const double CORR_LEN;

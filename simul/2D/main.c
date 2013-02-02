@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "utils.h"
-#include "ScalarCorr.h"
+#include "testcorr.h"
 #include "anorm.h"
 //#include <GL/glut.h>
 
@@ -45,8 +45,8 @@ int main(int argc, char* argv[])
 	//testANorm(a, nTerms, mid);
 	//testScalarCorr(a, nTerms, mid, SIGMA);
     //testVelCorr(a, nTerms, mid, SIGMA);
-    //testAccCorr(a, nTerms, mid, SIGMA);
-    testTimeCorr(a, nTerms, mid, SIGMA);
+    testAccCorr(a, nTerms, mid, SIGMA);
+    //testTimeCorr(a, nTerms, mid, SIGMA);
 	
     
     /*

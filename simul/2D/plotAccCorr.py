@@ -9,12 +9,14 @@ plt.rc('font',**font)
 impath = '../../resources/images/simul/'
 SAVE_PLOTS = False
 SHOW_PLOTS = True
-n = 1e5
-
+n = 1
 if n == 1e4:
     M = np.loadtxt('acccorr')
-else:
+elif n == 1e5:
     M = np.loadtxt('acccorr1e5')
+else:
+    M = np.loadtxt('acccorr2d')
+
 M = np.transpose(M)
 
 axx, exx = M[2], M[3]
@@ -24,8 +26,8 @@ a12, e12 = M[8], M[9]
 a34, e34 = M[10], M[11]
 a14, e14 = M[12], M[13]
 a23, e23 = M[14], M[15]
-
 fig1 = plt.figure()
+
 fig1.suptitle(r'$\langle u_{x,x} u_{x,x}\rangle (= \langle u_{y,y} u_{y,y}\rangle)$')
 ax1 = fig1.add_subplot(1,2,1)
 ax2 = fig1.add_subplot(1,2,2)
