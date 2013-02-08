@@ -75,11 +75,7 @@ void computeA(struct Complex** a, int nTerms, int mid)
 			a[i][j].imag = a[i][j].imag * exp(- TIME_RATE)
                            + randGauss(0, sqrt((1-exp(-2.0*TIME_RATE))/2.0));**/
 #else
-<<<<<<< HEAD
             a[i][j].real = randGauss(0, INV_SQRT_2);
-=======
-            a[i][j].real = randGauss(1, INV_SQRT_2);
->>>>>>> 020e341fca979b62d4a47ef1a6ccd06306b7d0c9
             a[i][j].imag = randGauss(0, INV_SQRT_2);
 #endif
 			a[2*mid-i][2*mid-j].real = a[i][j].real;

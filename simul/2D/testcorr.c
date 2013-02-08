@@ -1,4 +1,4 @@
-#include "ScalarCorr.h"
+#include "testcorr.h"
 
 void testScalarCorr(struct Complex** a, int nTerms, int mid, double sigma)
 {
@@ -313,4 +313,71 @@ void testTimeCorr(struct Complex** a, int nTerms, int mid, double sigma)
     free( tveci );
     free( et );
     free( a0 );
+}
+
+/** Test time correlation using <a(t1)a(t2)> = exp(-|t2-t1|/tau) **/
+void testTimeCorr2(struct Complex** a, int nTerms, int mid, double sigma)
+{
+    printf("\n*********************************************************\nTest time correlation.\n*********************************************************\n");
+
+    FILE *file = fopen("timecorr2", "w");
+
+    int numAvgs = 100000;
+    int numTimeSteps = 50;
+
+    struct Vector2 p1;
+    struct Vector2 p2;
+
+    double L = 0.5;
+    double dx = L / (numTimeSteps - 1.0);
+    p1.x = 0.0; p1.y = 0.0;
+    p2.x = -L/2; p2.y = 0.2;
+    p2.x = 0.05;
+    int i, iAvg;
+
+
+    double* svec = (double*) malloc( numTimeSteps*sizeof(double) );
+    double* ux = (double*) malloc( numTimeSteps*sizeof(double) );
+    double* uy = (double*) malloc( numTimeSteps*sizeof(double) );
+    double CORRL4 = CORRL2*CORRL2;
+    for (i = 0; i < numTimeSteps; i++)
+    {
+        svec[i] = 0; ux[i] = 0; uy[i] = 0;
+    }
+
+    for (iAvg = 0; iAvg < numAvgs; iAvg++)
+    {    
+        computeA(a, nTerms, mid);
+        struct Vector2 u1;
+        flowVel(&p1, a, nTerms, &u1, mid, sigma);
+        double s1 = scalarField(&p1, a, nTerms, mid, sigma);
+
+        for (i = 0; i < numTimeSteps; i++)
+        {   
+            double s2 = scalarField(&p2, a, nTerms, mid, sigma);
+            svec[i] += s1*s2;
+            struct Vector2 u2;
+            flowVel(&p2, a, nTerms, &u2, mid, sigma);
+            ux[i] += u1.x * u2.x;
+            uy[i] += u1.y * u2.y;
+            computeA(a, nTerms, mid);
+        }
+        //p2.x += dx;
+        printf("%.1f %%\n", (double)(iAvg+1)*100.0/(numAvgs));
+    }
+
+    for (i = 0; i < numTimeSteps; i++)
+    {
+        svec[i] /= numAvgs; ux[i] /= numAvgs; uy[i] /= numAvgs;
+        double Rx = p1.x - p2.x;
+        double Ry = p1.y - p2.y;
+        double expon = exp(-(Rx*Rx + Ry*Ry)/2.0/CORRL2-i*TIME_RATE);
+        double cffx = 1.0/CORRL4 - 1.0/CORRL4*Ry*Ry;
+        double cffy = 1.0/CORRL4 - 1.0/CORRL4*Rx*Rx;
+        fprintf(file, "%.31f\t%.30f\t%.31f\t%.30f\t%.30f\t%.30f\n", svec[i], expon, ux[i], expon*cffx, uy[i], expon*cffy);
+        //fprintf(file, "%.31f\t%.30f\t%.31f\t%.30f\t%.30f\t%.30f\n", svec[i], expon, sumUx, expon*cffx, sumUy, expon*cffy);
+    }
+
+    fclose( file );
+    free( svec ); free( ux ); free( uy );
 }

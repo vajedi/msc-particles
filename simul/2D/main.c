@@ -45,8 +45,9 @@ int main(int argc, char* argv[])
 	//testANorm(a, nTerms, mid);
 	//testScalarCorr(a, nTerms, mid, SIGMA);
     //testVelCorr(a, nTerms, mid, SIGMA);
-    testAccCorr(a, nTerms, mid, SIGMA);
+    //testAccCorr(a, nTerms, mid, SIGMA);
     //testTimeCorr(a, nTerms, mid, SIGMA);
+    testTimeCorr2(a, nTerms, mid, SIGMA);
 	
     
     /*
